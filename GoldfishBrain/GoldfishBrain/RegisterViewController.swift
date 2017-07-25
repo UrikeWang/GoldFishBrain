@@ -16,68 +16,65 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var firstNameText: UITextField!
     @IBOutlet weak var lastNameText: UITextField!
-    
-    
+
     @IBAction func registerButton(_ sender: Any) {
-        
+
         guard let email = emailText.text, let password = passwordText.text, let firstName = firstNameText.text, let lastName = lastNameText.text else {
-            
+
             print("Register failed!")
-            
+
             return
         }
-        
+
+        //當新的註冊者使用重複的email，會被firebase阻止登入
         Auth.auth().createUser(withEmail: email, password: password, completion: {
             (user: User?, error) in
-            
+
             if error != nil {
-                print(error)
+                print("錯誤訊息:",error)
                 return
             }
-            
+
             guard let uid = user?.uid else {
-                
+
                 return
-                
+
             }
-            
+
             let ref = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/")
-            
+
             //建立firebase的巢狀結構
             let userReference = ref.child("users").child(uid)
             let values = ["firstName": firstName, "lastName": lastName, "email": email, "password": password]
             userReference.updateChildValues(values, withCompletionBlock: {
-                (err, ref) in
-                
+                (err, _) in
+
                 if err != nil {
-                    
-                    print(err)
+
+                    print("錯誤訊息",err)
                     return
                 }
-                
-                print("saved user successfully into firebase")
-                
-                
-                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 
+                print("saved user successfully into firebase")
+
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 let tabBarVC = storyBoard.instantiateViewController(withIdentifier: "TabBarVC")
                 self.present(tabBarVC, animated: true, completion: nil)
-//                self.performSegue(withIdentifier: "loginToProfile", sender: sender)
-                
+
             })
-            
+
         })
 
     }
 
     @IBAction func loginButton(_ sender: Any) {
-        
+
         self.performSegue(withIdentifier: "registerToLogin", sender: sender)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         passwordText.isSecureTextEntry = true
 
         // Do any additional setup after loading the view.
@@ -87,7 +84,6 @@ class RegisterViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation

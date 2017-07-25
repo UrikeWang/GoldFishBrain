@@ -110,6 +110,7 @@
 				6E2847151F27343F002269EC /* Resources */,
 				EF190401969F2298F7E99053 /* [CP] Embed Pods Frameworks */,
 				1F969C915BDAF4D0B789D4F2 /* [CP] Copy Pods Resources */,
+				6E2847331F274F0D002269EC /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -183,6 +184,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GoldfishBrain/Pods-GoldfishBrain-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		6E2847331F274F0D002269EC /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		EF190401969F2298F7E99053 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
