@@ -1,43 +1,48 @@
 //
-//  ChatRoomTableViewController.swift
+//  ProfileTableViewController.swift
 //  GoldfishBrain
 //
-//  Created by yuling on 2017/7/25.
+//  Created by yuling on 2017/7/26.
 //  Copyright © 2017年 yuling. All rights reserved.
 //
 
 import UIKit
-import FirebaseAuth
 
-class ChatRoomTableViewController: UITableViewController {
+class ProfileTableViewController: UITableViewController, profileManagerDelegate {
 
-    @IBAction func logoutButton(_ sender: Any) {
+    var profiles: [Profile] = []
 
-        do {
+    let profileManager = ProfileManager()
 
-            try Auth.auth().signOut()
+    var userFirstName = ""
 
-        } catch let logoutError {
+    var userLastName = ""
 
-            print("登出錯誤:", logoutError)
+    func profileManager(_ manager: ProfileManager, didGetProfile profile: [Profile]) {
 
-        }
+        self.profiles = profile
 
-        UserDefaults.standard.removeObject(forKey: "uid")
+        self.userFirstName = profiles[0].firstName
 
-        UserDefaults.standard.synchronize()
+        self.userLastName = profiles[0].lastName
 
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        print("my data", profiles)
 
-        let registerVC = storyBoard.instantiateViewController(withIdentifier: "RegisterVC")
+    }
 
-        self.present(registerVC, animated: true, completion: nil)
+    func profileManager(_ manager: ProfileManager, didFailWith error: Error) {
 
-//        print("the userdefaults: ", UserDefaults.standard.value(forKey: "uid"))
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
+
+            profileManager.delegate = self
+            profileManager.fetchProfile(uid: uid)
+
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -63,6 +68,7 @@ class ChatRoomTableViewController: UITableViewController {
         return 0
     }
 
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
@@ -70,6 +76,7 @@ class ChatRoomTableViewController: UITableViewController {
 
         return cell
     }
+    */
 
     /*
     // Override to support conditional editing of the table view.

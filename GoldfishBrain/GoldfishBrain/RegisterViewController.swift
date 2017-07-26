@@ -68,6 +68,10 @@ class RegisterViewController: UIViewController {
 
                 UserDefaults.standard.set(userUid, forKey: "uid")
 
+                UserDefaults.standard.set(firstName, forKey: "firstName")
+
+                UserDefaults.standard.set(lastName, forKey: "lastName")
+
                 UserDefaults.standard.synchronize()
 
                 //存在userdefaults中為optional型態

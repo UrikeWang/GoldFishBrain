@@ -177,10 +177,10 @@
             </objects>
             <point key="canvasLocation" x="978" y="922"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Profile Table View Controller-->
         <scene sceneID="56R-Ky-eOy">
             <objects>
-                <tableViewController id="4yG-oa-5WG" sceneMemberID="viewController">
+                <tableViewController id="4yG-oa-5WG" customClass="ProfileTableViewController" customModule="GoldfishBrain" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Q9S-gi-65d">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
