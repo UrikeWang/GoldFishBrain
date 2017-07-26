@@ -31,7 +31,7 @@ class RegisterViewController: UIViewController {
             (user: User?, error) in
 
             if error != nil {
-                print("錯誤訊息:",error)
+                print("錯誤訊息:", error)
                 return
             }
 
@@ -45,20 +45,38 @@ class RegisterViewController: UIViewController {
 
             //建立firebase的巢狀結構
             let userReference = ref.child("users").child(uid)
+
             let values = ["firstName": firstName, "lastName": lastName, "email": email, "password": password]
+
             userReference.updateChildValues(values, withCompletionBlock: {
                 (err, _) in
 
                 if err != nil {
 
-                    print("錯誤訊息",err)
+                    print("錯誤訊息", err)
                     return
                 }
 
                 print("saved user successfully into firebase")
 
+                guard let userUid = user?.uid else {
+
+                    print("userUid is nil")
+
+                    return
+                }
+
+                UserDefaults.standard.set(userUid, forKey: "uid")
+
+                UserDefaults.standard.synchronize()
+
+                //存在userdefaults中為optional型態
+                print("current user uid", UserDefaults.standard.value(forKey:"uid"))
+
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
                 let tabBarVC = storyBoard.instantiateViewController(withIdentifier: "TabBarVC")
+
                 self.present(tabBarVC, animated: true, completion: nil)
 
             })

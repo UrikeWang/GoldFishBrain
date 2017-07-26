@@ -16,9 +16,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+//        self.window = UIWindow(frame: UIScreen.main.bounds)
+
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+
+        if UserDefaults.standard.value(forKey: "uid") != nil {
+
+            let tabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
+
+            self.window?.rootViewController = tabBarVC
+
+        } else {
+
+            let registerVC = storyboard.instantiateViewController(withIdentifier: "RegisterVC")
+
+            self.window?.rootViewController = registerVC
+
+        }
+//        print("somebody have logged in", UserDefaults.standard.value(forKey:"uid"))
 
         FirebaseApp.configure()
+
         return true
     }
 

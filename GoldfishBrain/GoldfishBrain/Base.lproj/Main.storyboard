@@ -12,7 +12,7 @@
         <!--Register View Controller-->
         <scene sceneID="v8I-Pi-9yC">
             <objects>
-                <viewController id="T1B-Ok-wDG" customClass="RegisterViewController" customModule="GoldfishBrain" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterVC" id="T1B-Ok-wDG" customClass="RegisterViewController" customModule="GoldfishBrain" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Yss-9U-mdF"/>
                         <viewControllerLayoutGuide type="bottom" id="H42-xa-BPA"/>
@@ -78,7 +78,7 @@
                                 <rect key="frame" x="66" y="389" width="243" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="registerButton:" destination="T1B-Ok-wDG" eventType="touchUpInside" id="2te-pN-39z"/>
                                 </connections>
@@ -117,7 +117,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="GoldfishBrain" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="BYZ-38-t0r" customClass="LoginViewController" customModule="GoldfishBrain" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -235,10 +235,10 @@
             </objects>
             <point key="canvasLocation" x="4866" y="1049"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Chat Room Table View Controller-->
         <scene sceneID="Xd9-ZS-D8Y">
             <objects>
-                <tableViewController id="5YI-se-43O" sceneMemberID="viewController">
+                <tableViewController id="5YI-se-43O" customClass="ChatRoomTableViewController" customModule="GoldfishBrain" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="pFZ-7m-0gJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -258,7 +258,13 @@
                             <outlet property="delegate" destination="5YI-se-43O" id="Enr-q9-hmx"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="9yt-Uv-Arf"/>
+                    <navigationItem key="navigationItem" id="9yt-Uv-Arf">
+                        <barButtonItem key="rightBarButtonItem" title="LogOut" id="MHJ-rc-fDp">
+                            <connections>
+                                <action selector="logoutButton:" destination="5YI-se-43O" id="Bh7-ki-pzs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F5y-Al-6Pg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -293,11 +299,11 @@
             </objects>
             <point key="canvasLocation" x="4870" y="2425"/>
         </scene>
-        <!--Item-->
+        <!--Profile-->
         <scene sceneID="3UQ-2n-Voa">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="n4t-Yl-zMd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="g4Q-jE-t4V"/>
+                    <tabBarItem key="tabBarItem" title="Profile" id="g4Q-jE-t4V" userLabel="Profile"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dVy-AU-86f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -315,7 +321,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="YVG-gP-ZrH">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="7m3-4G-t7U" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarVC" automaticallyAdjustsScrollViewInsets="NO" id="7m3-4G-t7U" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="aVz-J8-yhF">
                         <autoresizingMask key="autoresizingMask"/>
@@ -332,11 +338,11 @@
             </objects>
             <point key="canvasLocation" x="2425" y="1393"/>
         </scene>
-        <!--Item-->
+        <!--Do it-->
         <scene sceneID="kVJ-tB-SnM">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="trp-2C-Fyz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="64h-dI-vxs"/>
+                    <tabBarItem key="tabBarItem" title="Do it" id="64h-dI-vxs"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dEn-Ge-CB6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -351,11 +357,11 @@
             </objects>
             <point key="canvasLocation" x="3927" y="1050"/>
         </scene>
-        <!--Item-->
+        <!--Chat-->
         <scene sceneID="ceU-Lg-Y8H">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="77L-hf-cQV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="oqX-AY-q5J"/>
+                    <tabBarItem key="tabBarItem" title="Chat" id="oqX-AY-q5J"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="44w-bi-xBi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -370,11 +376,11 @@
             </objects>
             <point key="canvasLocation" x="3927" y="1739"/>
         </scene>
-        <!--Item-->
+        <!--Trace-->
         <scene sceneID="Yb2-8A-mwt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wjH-pT-9Kl" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="qd1-jT-N21"/>
+                    <tabBarItem key="tabBarItem" title="Trace" id="qd1-jT-N21"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rJl-E4-gz6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

@@ -23,17 +23,33 @@ class LoginViewController: UIViewController {
             return
         }
 
-        Auth.auth().signIn(withEmail: email, password: password) { (_, error) in
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
 
             if error != nil {
 
                 print("email or password is false")
+
                 return
             }
 
+            guard let userUid = user?.uid else {
+
+                print("userUid is nil")
+
+                return
+            }
+
+            UserDefaults.standard.set(userUid, forKey: "uid")
+
+            UserDefaults.standard.synchronize()
+
+//            print("current user uid", UserDefaults.standard.value(forKey:"uid"))
+
             //因為Firebase會延遲，按下確認鍵，將註冊的個人資料丟到Firebase上，這是需要幾秒鐘的時間，倘若直接Segue，資料還來不及送達Firebase，就已經到達下一個頁面，這就非常有可能造成Error
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
             let tabBarVC = storyBoard.instantiateViewController(withIdentifier: "TabBarVC")
+
             self.present(tabBarVC, animated: true, completion: nil)
         }
 
