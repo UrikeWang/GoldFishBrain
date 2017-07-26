@@ -36,8 +36,6 @@ class ProfileManager {
 
                     self.profiles.append(Profile(uid: uid, firstName: firstName, lastName: lastName, email: email))
 
-                    print("my profiles", self.profiles)
-
                     self.delegate?.profileManager(self, didGetProfile: self.profiles)
                 }
 

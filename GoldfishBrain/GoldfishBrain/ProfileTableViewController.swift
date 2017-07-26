@@ -10,6 +10,8 @@ import UIKit
 
 class ProfileTableViewController: UITableViewController, profileManagerDelegate {
 
+    @IBOutlet weak var firstNameLabel: UILabel!
+
     var profiles: [Profile] = []
 
     let profileManager = ProfileManager()
@@ -26,7 +28,9 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
 
         self.userLastName = profiles[0].lastName
 
-        print("my data", profiles)
+        self.firstNameLabel.text = userFirstName
+
+        // TODO : 是否要將user first / last name 存到userdefaults
 
     }
 
@@ -37,9 +41,11 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //取得user註冊時的first/last name 為async
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
 
             profileManager.delegate = self
+
             profileManager.fetchProfile(uid: uid)
 
         }

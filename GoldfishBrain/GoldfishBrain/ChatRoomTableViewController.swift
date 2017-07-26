@@ -8,9 +8,15 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
 
-class ChatRoomTableViewController: UITableViewController {
+class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegate {
 
+    let chatRoomManager = ChatRoomManager()
+
+    let people = [Person]()
+
+    @IBOutlet var chatRoomTableView: UITableView!
     @IBAction func logoutButton(_ sender: Any) {
 
         do {
@@ -36,8 +42,31 @@ class ChatRoomTableViewController: UITableViewController {
 //        print("the userdefaults: ", UserDefaults.standard.value(forKey: "uid"))
     }
 
+//    func fetchPeople() {
+//    
+//    }
+
+    func chatRoomManager(_ manager: ChatRoomManager, didGetPeople people: [Person]) {
+
+        print("many!!!", people)
+
+        DispatchQueue.main.async {
+
+            self.chatRoomTableView.reloadData()
+        }
+
+    }
+
+    func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: Error) {
+
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        chatRoomManager.delegate = self
+
+        chatRoomManager.fetchPeople()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -60,11 +89,11 @@ class ChatRoomTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PeopleCell", for: indexPath)
 
         // Configure the cell...
 
