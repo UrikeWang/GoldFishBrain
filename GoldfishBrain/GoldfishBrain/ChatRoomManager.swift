@@ -25,11 +25,15 @@ class ChatRoomManager {
 
     func fetchPeople() {
 
-        Database.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
+        Database.database().reference().child("users").observe(.value, with: { (snapshot: DataSnapshot) in
+            
+            print("data?", snapshot)
 
-                for user in snapshot.children {
+                for user in (snapshot.value as AnyObject).allValues {
 
                     let dict = user as? [String: AnyObject]
+                    
+//                    print("data??", dict)
 
                     if let firstName = dict?["firstName"] as? String, let lastName = dict?["lastName"] as? String {
 
@@ -37,35 +41,22 @@ class ChatRoomManager {
 
                         self.people.append(man)
                         
-                        print("QQQQQ", self.people)
+//                        print("QQQQQ", self.people)
 
                     }
-
-                    //                    let man = Person(dictionary: [String : Any])
-
-                    //                    do {
-                    //
-                    //                        let man = Person(dictionary: user)
-                    //
-                    //                        man.setValuesForKeys(dictionary)
-                    //
-                    //                        self.people.append(man)
-                    //
-                    //                    } catch(let error) {
-                    //
-                    //                        print(error)
-                    //
-                    //                    }
+                    
+                    else {
+                        
+                        print("failed!!")
+                    }
 
                 }
 
-                //            }
                 DispatchQueue.main.async {
 
                     self.delegate?.chatRoomManager(self, didGetPeople: self.people)
 
                 }
-//            }
 
         }, withCancel: nil)
 

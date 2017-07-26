@@ -39,21 +39,18 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
         self.present(registerVC, animated: true, completion: nil)
 
-//        print("the userdefaults: ", UserDefaults.standard.value(forKey: "uid"))
     }
 
-//    func fetchPeople() {
-//    
-//    }
+
 
     func chatRoomManager(_ manager: ChatRoomManager, didGetPeople people: [Person]) {
 
         print("many!!!", people)
 
-        DispatchQueue.main.async {
-
-            self.chatRoomTableView.reloadData()
-        }
+//        DispatchQueue.main.async {
+//
+//            self.chatRoomTableView.reloadData()
+//        }
 
     }
 
@@ -65,7 +62,7 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
         super.viewDidLoad()
 
         chatRoomManager.delegate = self
-
+        
         chatRoomManager.fetchPeople()
 
         // Uncomment the following line to preserve selection between presentations
