@@ -14,9 +14,10 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
     let chatRoomManager = ChatRoomManager()
 
-    let people = [Person]()
+    var people = [Person]()
 
     @IBOutlet var chatRoomTableView: UITableView!
+
     @IBAction func logoutButton(_ sender: Any) {
 
         do {
@@ -41,16 +42,16 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
     }
 
-
-
     func chatRoomManager(_ manager: ChatRoomManager, didGetPeople people: [Person]) {
 
         print("many!!!", people)
 
-//        DispatchQueue.main.async {
-//
-//            self.chatRoomTableView.reloadData()
-//        }
+        self.people = people
+
+        DispatchQueue.main.async {
+
+            self.chatRoomTableView.reloadData()
+        }
 
     }
 
@@ -62,7 +63,7 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
         super.viewDidLoad()
 
         chatRoomManager.delegate = self
-        
+
         chatRoomManager.fetchPeople()
 
         // Uncomment the following line to preserve selection between presentations
@@ -81,18 +82,23 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return people.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PeopleCell", for: indexPath)
 
-        // Configure the cell...
+        //swiftlint:disable force_cast
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PeopleCell", for: indexPath) as! PeopleTableViewCell
+        //swiftlint:enable force_cast
+
+        cell.peopleNameLabel.text = people[indexPath.row].firstName
+
+        print("count", people.count)
 
         return cell
     }

@@ -25,38 +25,40 @@ class ChatRoomManager {
 
     func fetchPeople() {
 
-        Database.database().reference().child("users").observe(.value, with: { (snapshot: DataSnapshot) in
-            
-            print("data?", snapshot)
+        let ref = Database.database().reference()
 
-                for user in (snapshot.value as AnyObject).allValues {
+//        ref.child(uid).observeSingleEvent(of: .value, with: { (snapshop) in
+//            
+//            
+//            
+//        }, withCancel: nil)
 
-                    let dict = user as? [String: AnyObject]
-                    
-//                    print("data??", dict)
+        ref.child("users").observe(.value, with: { (snapshot: DataSnapshot) in
 
-                    if let firstName = dict?["firstName"] as? String, let lastName = dict?["lastName"] as? String {
+            for user in (snapshot.value as AnyObject).allValues {
 
-                        let man = Person(id: snapshot.key, firstName: firstName, lastName: lastName)
+//                print("!!!!", (snapshot.value as AnyObject).keyPath )
 
-                        self.people.append(man)
-                        
-//                        print("QQQQQ", self.people)
+                let dict = user as? [String: AnyObject]
 
-                    }
-                    
-                    else {
-                        
-                        print("failed!!")
-                    }
+                if let firstName = dict?["firstName"] as? String, let lastName = dict?["lastName"] as? String {
 
+                    let man = Person(id: snapshot.key, firstName: firstName, lastName: lastName)
+
+                    self.people.append(man)
+
+                } else {
+
+                    print("Data fetch failed")
                 }
 
-                DispatchQueue.main.async {
+            }
 
-                    self.delegate?.chatRoomManager(self, didGetPeople: self.people)
+            DispatchQueue.main.async {
 
-                }
+                self.delegate?.chatRoomManager(self, didGetPeople: self.people)
+
+            }
 
         }, withCancel: nil)
 
