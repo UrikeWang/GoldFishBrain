@@ -41,9 +41,9 @@ class ChatRoomManager {
 
                 let dict = user as? [String: AnyObject]
 
-                if let firstName = dict?["firstName"] as? String, let lastName = dict?["lastName"] as? String {
+                if let firstName = dict?["firstName"] as? String, let lastName = dict?["lastName"] as? String, let imageUrl = dict?["profileImageURL"] as? String {
 
-                    let man = Person(id: snapshot.key, firstName: firstName, lastName: lastName)
+                    let man = Person(id: snapshot.key, firstName: firstName, lastName: lastName, imageUrl: imageUrl)
 
                     self.people.append(man)
 

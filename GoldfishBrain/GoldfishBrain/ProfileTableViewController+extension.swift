@@ -71,8 +71,6 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
 
                     if let uploadImageURL = data?.downloadURL()?.absoluteString {
 
-                        print("url:::", uploadImageURL)
-
                         let databaseRef = Database.database().reference().child("users").child("\(uid)")//.child("profileImageURL")
 
                         databaseRef.updateChildValues(["profileImageURL": uploadImageURL])

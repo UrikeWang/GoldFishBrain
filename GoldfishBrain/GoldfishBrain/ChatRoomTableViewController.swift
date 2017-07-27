@@ -44,8 +44,6 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
     func chatRoomManager(_ manager: ChatRoomManager, didGetPeople people: [Person]) {
 
-        print("many!!!", people)
-
         self.people = people
 
         DispatchQueue.main.async {
@@ -97,6 +95,8 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
         //swiftlint:enable force_cast
 
         cell.peopleNameLabel.text = people[indexPath.row].firstName
+        
+        cell.peopleImage.downloadedFrom(link: people[indexPath.row].imageUrl)
 
         return cell
     }
