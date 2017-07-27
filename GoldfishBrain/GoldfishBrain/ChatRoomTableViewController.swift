@@ -108,6 +108,22 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
         return cell
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier == "ShowChatLog" {
+
+            if let cell = sender as? PeopleTableViewCell {
+
+                if let destinationNavigation = segue.destination as? UINavigationController {
+
+                    let destinationViewController = destinationNavigation.viewControllers.first as? ChatLogViewController
+                }
+
+            }
+
+        }
+    }
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
