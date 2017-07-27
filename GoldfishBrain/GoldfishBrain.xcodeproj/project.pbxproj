@@ -22,6 +22,7 @@
 		6E2847401F28881C002269EC /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E28473F1F28881C002269EC /* PeopleTableViewCell.swift */; };
 		6E2847421F288E7B002269EC /* ChatRoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2847411F288E7B002269EC /* ChatRoomManager.swift */; };
 		6E2847461F28A6FB002269EC /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2847451F28A6FB002269EC /* Person.swift */; };
+		6E2847481F29C254002269EC /* ProfileTableViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2847471F29C254002269EC /* ProfileTableViewController+extension.swift */; };
 		FFBC8AE4A54DF4160D000502 /* Pods_GoldfishBrain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD6F5239A0716745520ED04 /* Pods_GoldfishBrain.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		6E28473F1F28881C002269EC /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
 		6E2847411F288E7B002269EC /* ChatRoomManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomManager.swift; sourceTree = "<group>"; };
 		6E2847451F28A6FB002269EC /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		6E2847471F29C254002269EC /* ProfileTableViewController+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProfileTableViewController+extension.swift"; sourceTree = "<group>"; };
 		9AD6F5239A0716745520ED04 /* Pods_GoldfishBrain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoldfishBrain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C575D91E4BBDC71746F58638 /* Pods-GoldfishBrain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoldfishBrain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoldfishBrain/Pods-GoldfishBrain.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				6E28473C1F287645002269EC /* ProfileTableViewController.swift */,
+				6E2847471F29C254002269EC /* ProfileTableViewController+extension.swift */,
 				6E2847381F28722A002269EC /* ProfileManager.swift */,
 				6E28473A1F287358002269EC /* Profile.swift */,
 			);
@@ -286,6 +289,7 @@
 				6E2847401F28881C002269EC /* PeopleTableViewCell.swift in Sources */,
 				6E2847351F278128002269EC /* ChatRoomTableViewController.swift in Sources */,
 				6E2847461F28A6FB002269EC /* Person.swift in Sources */,
+				6E2847481F29C254002269EC /* ProfileTableViewController+extension.swift in Sources */,
 				6E28473B1F287358002269EC /* Profile.swift in Sources */,
 				6E28471D1F27343F002269EC /* LoginViewController.swift in Sources */,
 				6E2847421F288E7B002269EC /* ChatRoomManager.swift in Sources */,

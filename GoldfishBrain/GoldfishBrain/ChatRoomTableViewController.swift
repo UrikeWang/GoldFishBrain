@@ -98,8 +98,6 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
         cell.peopleNameLabel.text = people[indexPath.row].firstName
 
-        print("count", people.count)
-
         return cell
     }
 

@@ -12,6 +12,8 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
 
     @IBOutlet weak var firstNameLabel: UILabel!
 
+    @IBOutlet weak var profileImage: UIImageView!
+
     var profiles: [Profile] = []
 
     let profileManager = ProfileManager()
@@ -49,6 +51,11 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
             profileManager.fetchProfile(uid: uid)
 
         }
+
+        //changed / set profile image (點擊圖片)
+        profileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectionProfileImage)))
+
+        profileImage.isUserInteractionEnabled = true
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

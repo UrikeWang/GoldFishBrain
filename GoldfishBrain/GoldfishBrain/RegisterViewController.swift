@@ -46,7 +46,7 @@ class RegisterViewController: UIViewController {
             //建立firebase的巢狀結構
             let userReference = ref.child("users").child(uid)
 
-            let values = ["firstName": firstName, "lastName": lastName, "email": email, "password": password]
+            let values = ["firstName": firstName, "lastName": lastName, "email": email, "password": password, "profileImageURL": 0] as [String : Any]
 
             userReference.updateChildValues(values, withCompletionBlock: {
                 (err, _) in
