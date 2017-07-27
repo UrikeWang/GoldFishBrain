@@ -77,18 +77,6 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
 
                         databaseRef.updateChildValues(["profileImageURL": uploadImageURL])
 
-//                        databaseRef.setValue(uploadImageURL, withCompletionBlock: { (error, _) in
-//
-//                            if error != nil {
-//
-//                                print(error)
-//
-//                                return
-//                            }
-//
-//                            print("photo saved!")
-//                        })
-
                     }
                 })
 

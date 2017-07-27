@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class ProfileTableViewController: UITableViewController, profileManagerDelegate {
 
@@ -40,6 +41,12 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
 
     }
 
+    func profileManager(_ manager: ProfileManager, didGetImage url: String) {
+
+        profileImage.downloadedFrom(link: url)
+
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -49,6 +56,8 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
             profileManager.delegate = self
 
             profileManager.fetchProfile(uid: uid)
+
+            profileManager.fetchProfileImage(uid: uid)
 
         }
 

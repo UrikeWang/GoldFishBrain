@@ -9,12 +9,15 @@
 import Foundation
 import FirebaseAuth
 import FirebaseDatabase
+import UIKit
 
 protocol profileManagerDelegate: class {
 
     func profileManager(_ manager: ProfileManager, didGetProfile profile: [Profile])
 
     func profileManager(_ manager: ProfileManager, didFailWith error: Error)
+
+    func profileManager(_ manager: ProfileManager, didGetImage url: String)
 
 }
 
@@ -42,6 +45,25 @@ class ProfileManager {
             }
 
         }, withCancel: nil)
+
+    }
+
+    func fetchProfileImage(uid: String) {
+
+        let databaseRef = Database.database().reference().child("users").child("\(uid)")
+
+        databaseRef.observe(.value, with: { [weak self] (snapshot) in
+
+            if let uploadDataDic = snapshot.value as? [String: Any] {
+
+                if let imageUrl = uploadDataDic["profileImageURL"] as? String {
+
+                    self?.delegate?.profileManager(self!, didGetImage: imageUrl)
+
+                }
+            }
+
+        })
 
     }
 
