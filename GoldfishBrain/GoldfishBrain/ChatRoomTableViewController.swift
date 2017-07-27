@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import Kingfisher
 
 class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegate {
 
@@ -95,8 +96,14 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
         //swiftlint:enable force_cast
 
         cell.peopleNameLabel.text = people[indexPath.row].firstName
-        
-        cell.peopleImage.downloadedFrom(link: people[indexPath.row].imageUrl)
+
+        let url = URL(string: "\(people[indexPath.row].imageUrl)")
+
+        cell.peopleImage.kf.setImage(with: url)
+
+//        cell.peopleImage.downloadedFrom(link: people[indexPath.row].imageUrl, contentMode: .scaleAspectFill)
+
+        cell.peopleImage.layer.masksToBounds = true
 
         return cell
     }

@@ -23,6 +23,14 @@ class PeopleTableViewCell: UITableViewCell {
         // Initialization code
     }
 
+    private func setUpPeopleImage() {
+
+//        peopleImage.layer.masksToBounds = true
+
+//        peopleImage.clipsToBounds = true
+
+    }
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

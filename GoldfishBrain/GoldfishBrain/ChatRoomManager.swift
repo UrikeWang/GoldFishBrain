@@ -47,6 +47,8 @@ class ChatRoomManager {
 
                     self.people.append(man)
 
+                    self.delegate?.chatRoomManager(self, didGetPeople: self.people)
+
                 } else {
 
                     print("Data fetch failed")
@@ -54,11 +56,11 @@ class ChatRoomManager {
 
             }
 
-            DispatchQueue.main.async {
-
-                self.delegate?.chatRoomManager(self, didGetPeople: self.people)
-
-            }
+//            DispatchQueue.main.async {
+//
+//                self.delegate?.chatRoomManager(self, didGetPeople: self.people)
+//
+//            }
 
         }, withCancel: nil)
 

@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import Kingfisher
 
 class ProfileTableViewController: UITableViewController, profileManagerDelegate {
 
@@ -43,7 +44,13 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
 
     func profileManager(_ manager: ProfileManager, didGetImage url: String) {
 
-        profileImage.downloadedFrom(link: url)
+        let imageUrl = URL(string: "\(url)")
+
+        profileImage.kf.setImage(with: imageUrl)
+
+//        profileImage.downloadedFrom(link: url, contentMode: .scaleAspectFill)
+
+        profileImage.layer.masksToBounds = true
 
     }
 

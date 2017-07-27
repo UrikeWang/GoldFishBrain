@@ -15,7 +15,7 @@ struct Person {
     var firstName: String
 
     var lastName: String
-    
+
     let imageUrl: String
 
 }
