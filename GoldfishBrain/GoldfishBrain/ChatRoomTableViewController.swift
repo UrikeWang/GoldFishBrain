@@ -126,6 +126,8 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
                             destinationViewController?.peopleLastName = person.lastName
 
+                            destinationViewController?.peopleID = person.id
+
                         }
 
                     }

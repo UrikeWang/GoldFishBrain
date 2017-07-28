@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseDatabase
 
-class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, messageManagerDelegate {
 
     var people = [Person]()
 
@@ -17,21 +17,19 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     var peopleLastName = ""
 
-//    var person: Person? {
-//        
-//        didSet {
-//            
-//            navigationItem.title = person?.firstName
-//        
-//        }
-//    
-//    }
+    var peopleID = ""
+
+    var messages = [Message]()
+
+    var messageManager = MessageManager()
 
     @IBOutlet weak var sendMessageView: UIView!
 
     @IBOutlet weak var messageText: UITextField!
 
     @IBOutlet weak var sendMessageButton: UIButton!
+
+    @IBOutlet weak var chatLogTableView: UITableView!
 
     @IBAction func lastPageButton(_ sender: Any) {
 
@@ -59,6 +57,10 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         self.messageText.delegate = self
 
+        messageManager.delegate = self
+
+        messageManager.observeMessages()
+
     }
 
     func handleSendMessage() {
@@ -69,7 +71,9 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
             let childRef = ref.childByAutoId()
 
-            let values = ["text": messageText.text, "name": uid]
+            let timestamp = Int(Date().timeIntervalSince1970)
+
+            let values = ["text": messageText.text, "fromID": uid, "toID": peopleID, "timestamp": timestamp]
 
             childRef.updateChildValues(values)
         }
@@ -86,6 +90,23 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
         return true
     }
 
+    func messageManager(_ manager: MessageManager, didGetMessage message: [Message]) {
+
+        self.messages = message
+
+        print("::::::::::", message)
+
+        DispatchQueue.main.async {
+
+            self.chatLogTableView.reloadData()
+        }
+
+    }
+
+    func messageManager(_ manager: MessageManager, didFailWith error: Error) {
+
+    }
+
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -93,14 +114,16 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return messages.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         //swiftlint:disable force_cast
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatLogCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatLogCell", for: indexPath) as! ChatLogTableViewCell
         //swiftlint:enable force_cast
+
+        cell.chatText.text = messages[indexPath.row].text
 
         return cell
     }

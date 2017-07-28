@@ -372,7 +372,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="593"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatLogCell" id="02z-6N-Vsg">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatLogCell" id="02z-6N-Vsg" customClass="ChatLogTableViewCell" customModule="GoldfishBrain" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="02z-6N-Vsg" id="wYk-vY-y3J">
@@ -395,6 +395,9 @@
                                                 <constraint firstItem="TNP-Gl-uQe" firstAttribute="leading" secondItem="wYk-vY-y3J" secondAttribute="leadingMargin" constant="13" id="qVj-4t-2Fs"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="chatText" destination="TNP-Gl-uQe" id="9MN-ir-NyR"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -456,6 +459,7 @@
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="chatLogTableView" destination="NrY-m8-HLO" id="jX1-DK-fjH"/>
                         <outlet property="messageText" destination="CHh-q9-Ret" id="kUC-qA-76H"/>
                         <outlet property="sendMessageButton" destination="fOd-MY-hsL" id="NiO-mh-bdg"/>
                         <outlet property="sendMessageView" destination="OgM-0c-cPp" id="gkq-cS-fBM"/>

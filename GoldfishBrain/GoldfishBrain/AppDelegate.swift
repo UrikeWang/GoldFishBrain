@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
+        print("1111111111", UserDefaults.standard.value(forKey: "uid"))
+
         if UserDefaults.standard.value(forKey: "uid") != nil {
 
             let tabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarVC")

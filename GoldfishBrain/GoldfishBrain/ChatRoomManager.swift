@@ -48,6 +48,7 @@ class ChatRoomManager {
                     } else {
 
                         print("Data fetch failed")
+
                     }
 
                 }
