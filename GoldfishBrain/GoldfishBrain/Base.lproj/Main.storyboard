@@ -368,34 +368,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NrY-m8-HLO">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="67" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NrY-m8-HLO">
                                 <rect key="frame" x="0.0" y="28" width="375" height="593"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatLogCell" id="02z-6N-Vsg" customClass="ChatLogTableViewCell" customModule="GoldfishBrain" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatLogCell" rowHeight="67" id="02z-6N-Vsg" customClass="ChatLogTableViewCell" customModule="GoldfishBrain" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="67"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="02z-6N-Vsg" id="wYk-vY-y3J">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNP-Gl-uQe">
-                                                    <rect key="frame" x="21" y="8" width="236" height="21"/>
+                                                    <rect key="frame" x="21" y="31" width="236" height="21"/>
                                                     <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="236" id="ZU2-do-o6k"/>
+                                                        <constraint firstAttribute="width" constant="236" id="YVy-NZ-asS"/>
                                                     </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teL-aO-rjA">
+                                                    <rect key="frame" x="21" y="0.0" width="236" height="21"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="TNP-Gl-uQe" firstAttribute="top" secondItem="wYk-vY-y3J" secondAttribute="topMargin" id="NJZ-dW-Mf4"/>
-                                                <constraint firstItem="TNP-Gl-uQe" firstAttribute="leading" secondItem="wYk-vY-y3J" secondAttribute="leadingMargin" constant="13" id="qVj-4t-2Fs"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="TNP-Gl-uQe" secondAttribute="bottom" constant="6.5" id="CVN-HP-o4e"/>
+                                                <constraint firstItem="TNP-Gl-uQe" firstAttribute="trailing" secondItem="teL-aO-rjA" secondAttribute="trailing" id="F6N-hN-Fpo"/>
+                                                <constraint firstItem="TNP-Gl-uQe" firstAttribute="leading" secondItem="wYk-vY-y3J" secondAttribute="leadingMargin" constant="13" id="N0u-nv-rDt"/>
+                                                <constraint firstItem="TNP-Gl-uQe" firstAttribute="leading" secondItem="teL-aO-rjA" secondAttribute="leading" id="pnQ-A5-hOD"/>
+                                                <constraint firstItem="TNP-Gl-uQe" firstAttribute="top" secondItem="teL-aO-rjA" secondAttribute="bottom" constant="10" id="wLN-XN-6rM"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="chatNameText" destination="teL-aO-rjA" id="CMs-gK-ODI"/>
                                             <outlet property="chatText" destination="TNP-Gl-uQe" id="9MN-ir-NyR"/>
                                         </connections>
                                     </tableViewCell>

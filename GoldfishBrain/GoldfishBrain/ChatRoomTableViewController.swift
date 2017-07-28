@@ -105,6 +105,8 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
         cell.peopleImage.layer.masksToBounds = true
 
+        cell.dateLabel.text = "HH:MM:SS"
+
         return cell
     }
 

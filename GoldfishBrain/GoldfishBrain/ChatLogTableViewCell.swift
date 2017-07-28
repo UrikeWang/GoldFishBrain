@@ -12,6 +12,8 @@ class ChatLogTableViewCell: UITableViewCell {
 
     @IBOutlet weak var chatText: UILabel!
 
+    @IBOutlet weak var chatNameText: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -123,6 +123,36 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatLogCell", for: indexPath) as! ChatLogTableViewCell
         //swiftlint:enable force_cast
 
+        let message = messages[indexPath.row]
+
+//        let refUser = Database.database().reference().child("users").child(peopleID)
+//        
+//        let refMessage = Database.database().reference().child("messages")
+//        
+//        refUser.observeSingleEvent(of: .value, with: { (snapshot) in
+//            
+//            if let dict = snapshot.value as? [String: AnyObject] {
+//            
+//                
+//            }
+//            
+//        }, withCancel: nil)
+
+        if let toID = message.toID as? String {
+
+            let ref = Database.database().reference().child("users").child(toID)
+
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+
+                if let dict = snapshot.value as? [String: AnyObject] {
+
+                    cell.chatNameText.text = dict["firstName"] as? String
+                }
+
+            }, withCancel: nil)
+
+        }
+
         cell.chatText.text = messages[indexPath.row].text
 
         return cell

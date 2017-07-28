@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class PeopleTableViewCell: UITableViewCell {
 
@@ -22,6 +23,12 @@ class PeopleTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+
+//    private func setupDateLabel() {
+//    
+//        dateLabel.text = "HH:MM:SS"
+//        
+//    }
 
     private func setUpPeopleImage() {
 
