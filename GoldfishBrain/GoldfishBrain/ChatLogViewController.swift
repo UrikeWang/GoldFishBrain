@@ -94,7 +94,7 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         self.messages = message
 
-        print("::::::::::", message)
+//        print("::::::::::", message)
 
         DispatchQueue.main.async {
 

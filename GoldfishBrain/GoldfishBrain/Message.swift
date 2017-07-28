@@ -16,6 +16,6 @@ struct Message {
 
     var toID: String
 
-    let timestamp: String
+    let timestamp: Int
 
 }
