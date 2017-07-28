@@ -11,11 +11,15 @@ import FirebaseAuth
 import Firebase
 import Kingfisher
 
-class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegate {
+class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegate, messageManagerDelegate {
 
     let chatRoomManager = ChatRoomManager()
 
     var people = [Person]()
+
+    var messages = [Message]()
+
+    var messageManager = MessageManager()
 
     @IBOutlet var chatRoomTableView: UITableView!
 
@@ -58,12 +62,33 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
     }
 
+    func messageManager(_ manager: MessageManager, didGetMessage message: [Message]) {
+
+        self.messages = message
+
+        //        print("::::::::::", message)
+
+        DispatchQueue.main.async {
+
+            self.chatRoomTableView.reloadData()
+        }
+
+    }
+
+    func messageManager(_ manager: MessageManager, didFailWith error: Error) {
+
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         chatRoomManager.delegate = self
 
         chatRoomManager.fetchPeople()
+
+        messageManager.delegate = self
+
+        messageManager.observeMessages()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -86,7 +111,8 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return people.count
+//        return people.count
+        return messages.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -95,17 +121,62 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeopleCell", for: indexPath) as! PeopleTableViewCell
         //swiftlint:enable force_cast
 
-        cell.peopleNameLabel.text = people[indexPath.row].firstName
+//        cell.peopleNameLabel.text = people[indexPath.row].firstName
+//
+//        let url = URL(string: "\(people[indexPath.row].imageUrl)")
+//
+//        cell.peopleImage.kf.setImage(with: url)
+//
+////        cell.peopleImage.downloadedFrom(link: people[indexPath.row].imageUrl, contentMode: .scaleAspectFill)
+//
+//        cell.peopleImage.layer.masksToBounds = true
+//
 
-        let url = URL(string: "\(people[indexPath.row].imageUrl)")
+        let message = messages[indexPath.row]
 
-        cell.peopleImage.kf.setImage(with: url)
+        if let toID = message.toID as? String {
 
-//        cell.peopleImage.downloadedFrom(link: people[indexPath.row].imageUrl, contentMode: .scaleAspectFill)
+            let ref = Database.database().reference().child("users").child(toID)
 
-        cell.peopleImage.layer.masksToBounds = true
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
 
-        cell.dateLabel.text = "HH:MM:SS"
+                if let dict = snapshot.value as? [String: AnyObject] {
+
+                    cell.peopleNameLabel.text = dict["firstName"] as? String
+
+                    if let profileImageURL = dict["profileImageURL"] as? String {
+
+                        let url = URL(string: "\(profileImageURL)")
+
+                        cell.peopleImage.kf.setImage(with: url)
+
+                        cell.peopleImage.layer.masksToBounds = true
+
+                    }
+                }
+
+            }, withCancel: nil)
+
+        }
+
+        cell.peopleChatContentLabel.text = message.text
+
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.dateFormat = "HH:MM a" //Specify your format that you want
+
+        dateFormatter.timeZone = TimeZone.current //Set timezone that you want
+
+        var date = Date(timeIntervalSince1970: TimeInterval(message.timestamp))
+
+        let strDate = dateFormatter.string(from: date)
+
+//        dateFormatter.locale = Locale.current
+//
+
+        print("date::::", strDate)
+
+        cell.dateLabel.text = strDate
 
         return cell
     }

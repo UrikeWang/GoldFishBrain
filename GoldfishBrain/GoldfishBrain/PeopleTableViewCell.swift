@@ -24,12 +24,6 @@ class PeopleTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-//    private func setupDateLabel() {
-//    
-//        dateLabel.text = "HH:MM:SS"
-//        
-//    }
-
     private func setUpPeopleImage() {
 
 //        peopleImage.layer.masksToBounds = true
