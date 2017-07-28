@@ -117,6 +117,20 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
                 if let destinationNavigation = segue.destination as? UINavigationController {
 
                     let destinationViewController = destinationNavigation.viewControllers.first as? ChatLogViewController
+
+                    if let peopleFirstName = cell.peopleNameLabel.text {
+
+                        for person in people where peopleFirstName == person.firstName {
+
+                            destinationViewController?.peopleFirstName = person.firstName
+
+                            destinationViewController?.peopleLastName = person.lastName
+
+                        }
+
+                    }
+
+                    //                    destinationViewController?.peopleFirstName = people
                 }
 
             }

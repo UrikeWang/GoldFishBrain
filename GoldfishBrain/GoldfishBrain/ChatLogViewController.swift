@@ -11,6 +11,22 @@ import FirebaseDatabase
 
 class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
+    var people = [Person]()
+
+    var peopleFirstName = ""
+
+    var peopleLastName = ""
+
+//    var person: Person? {
+//        
+//        didSet {
+//            
+//            navigationItem.title = person?.firstName
+//        
+//        }
+//    
+//    }
+
     @IBOutlet weak var sendMessageView: UIView!
 
     @IBOutlet weak var messageText: UITextField!
@@ -20,10 +36,16 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func lastPageButton(_ sender: Any) {
 
         dismiss(animated: true)
+
+        peopleLastName = ""
+
+        peopleFirstName = ""
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationItem.title = peopleFirstName
 
 //        sendMessageView.addTopBorder()
 

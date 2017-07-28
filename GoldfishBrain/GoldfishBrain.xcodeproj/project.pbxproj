@@ -93,6 +93,7 @@
 			children = (
 				6E28471E1F27343F002269EC /* Main.storyboard */,
 				6E2847531F2A5040002269EC /* ChatLogViewController.swift */,
+				6E2847341F278128002269EC /* ChatRoomTableViewController.swift */,
 				6E28473E1F288276002269EC /* Register */,
 				6E2847371F2864B5002269EC /* Profile */,
 				6E2847361F27812E002269EC /* ChatRoom */,
@@ -112,7 +113,6 @@
 		6E2847361F27812E002269EC /* ChatRoom */ = {
 			isa = PBXGroup;
 			children = (
-				6E2847341F278128002269EC /* ChatRoomTableViewController.swift */,
 				6E2847411F288E7B002269EC /* ChatRoomManager.swift */,
 				6E28474B1F2A2B86002269EC /* ChatLogTableViewCell.swift */,
 				6E2847451F28A6FB002269EC /* Person.swift */,

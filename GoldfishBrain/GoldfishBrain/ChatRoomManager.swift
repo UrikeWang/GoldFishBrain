@@ -25,20 +25,20 @@ class ChatRoomManager {
 
     func fetchPeople() {
 
-        let ref = Database.database().reference()
+        let ref = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("users")
+        
+        ref.observe(.value, with: { (snapshot: DataSnapshot) in
 
-//        ref.child(uid).observeSingleEvent(of: .value, with: { (snapshop) in
-//            
-//            
-//            
-//        }, withCancel: nil)
-
-        ref.child("users").observe(.value, with: { (snapshot: DataSnapshot) in
+//        ref.child("users").observe(.value, with: { (snapshot: DataSnapshot) in
 
             for user in (snapshot.value as AnyObject).allValues {
+            
+//            for user in (snapshot.value as? [String: AnyObject])! {
+            
+                print("!!!!!", snapshot.value)
 
-//                print("!!!!", (snapshot.value as AnyObject).keyPath )
-
+//                snapshot.key
+                
                 let dict = user as? [String: AnyObject]
 
                 if let firstName = dict?["firstName"] as? String, let lastName = dict?["lastName"] as? String, let imageUrl = dict?["profileImageURL"] as? String {
@@ -46,6 +46,8 @@ class ChatRoomManager {
                     let man = Person(id: snapshot.key, firstName: firstName, lastName: lastName, imageUrl: imageUrl)
 
                     self.people.append(man)
+                    
+                    print("??????", man)
 
                     self.delegate?.chatRoomManager(self, didGetPeople: self.people)
 
