@@ -26,34 +26,30 @@ class ChatRoomManager {
     func fetchPeople() {
 
         let ref = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("users")
-        
+
         ref.observe(.value, with: { (snapshot: DataSnapshot) in
 
-//        ref.child("users").observe(.value, with: { (snapshot: DataSnapshot) in
+            for user in (snapshot.value as? [String: AnyObject])! {
 
-            for user in (snapshot.value as AnyObject).allValues {
-            
-//            for user in (snapshot.value as? [String: AnyObject])! {
-            
-                print("!!!!!", snapshot.value)
+//                print("!!!!!", user)
 
-//                snapshot.key
-                
-                let dict = user as? [String: AnyObject]
+                if let dict = user.value as? [String: String] {
 
-                if let firstName = dict?["firstName"] as? String, let lastName = dict?["lastName"] as? String, let imageUrl = dict?["profileImageURL"] as? String {
+                    if let firstName = dict["firstName"], let lastName = dict["lastName"], let imageUrl = dict["profileImageURL"] {
 
-                    let man = Person(id: snapshot.key, firstName: firstName, lastName: lastName, imageUrl: imageUrl)
+                        let man = Person(id: user.key, firstName: firstName, lastName: lastName, imageUrl: imageUrl)
 
-                    self.people.append(man)
-                    
-                    print("??????", man)
+                        self.people.append(man)
 
-                    self.delegate?.chatRoomManager(self, didGetPeople: self.people)
+//                        print("??????", man)
 
-                } else {
+                        self.delegate?.chatRoomManager(self, didGetPeople: self.people)
 
-                    print("Data fetch failed")
+                    } else {
+
+                        print("Data fetch failed")
+                    }
+
                 }
 
             }
