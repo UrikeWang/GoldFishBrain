@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
-class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+
+    @IBOutlet weak var sendMessageView: UIView!
+
+    @IBOutlet weak var messageText: UITextField!
+
+    @IBOutlet weak var sendMessageButton: UIButton!
 
     @IBAction func lastPageButton(_ sender: Any) {
 
@@ -18,7 +25,43 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+//        sendMessageView.addTopBorder()
+
+        sendMessageButton.setTitle("Send", for: .normal)
+
+        sendMessageButton.addTarget(self, action: #selector(handleSendMessage), for: .touchUpInside)
+
+        messageText.placeholder = "Enter message..."
+
+        messageText.font = UIFont.asiTextStyle11Font()
+
+        self.messageText.delegate = self
+
+    }
+
+    func handleSendMessage() {
+
+        if let uid = UserDefaults.standard.value(forKey: "uid") {
+
+            let ref = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("messages")
+
+            let childRef = ref.childByAutoId()
+
+            let values = ["text": messageText.text, "name": uid]
+
+            childRef.updateChildValues(values)
+        }
+
+    }
+
+    //按完return鍵能自動送出message
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
+        textField.resignFirstResponder()
+
+        handleSendMessage()
+
+        return true
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {

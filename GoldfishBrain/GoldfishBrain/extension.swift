@@ -55,3 +55,36 @@ extension UIImage {
         return UIImageJPEGRepresentation(self, quality.rawValue)
     }
 }
+
+extension UITextField {
+
+    func addTextTopBorder() {
+
+        let border = CALayer()
+        let width = CGFloat(1.0)
+
+        border.borderColor = UIColor.gray.cgColor
+        border.borderWidth = width
+        border.frame = CGRect(x: 0, y: 0, width: Int(self.frame.size.width), height: 1)
+
+        self.layer.addSublayer(border)
+
+    }
+}
+
+extension UIView {
+
+    func addTopBorder() {
+
+        let border = CALayer()
+        let width = CGFloat(1.0)
+
+        border.borderColor = UIColor.gray.cgColor
+        border.borderWidth = width
+        border.frame = CGRect(x: 0, y: 0, width: Int(self.frame.size.width), height: 1)
+
+        self.layer.addSublayer(border)
+
+    }
+
+}

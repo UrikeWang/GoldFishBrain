@@ -27,8 +27,7 @@ class RegisterViewController: UIViewController {
         }
 
         //當新的註冊者使用重複的email，會被firebase阻止登入
-        Auth.auth().createUser(withEmail: email, password: password, completion: {
-            (user: User?, error) in
+        Auth.auth().createUser(withEmail: email, password: password, completion: {(user: User?, error) in
 
             if error != nil {
                 print("錯誤訊息:", error)
@@ -48,8 +47,7 @@ class RegisterViewController: UIViewController {
 
             let values = ["firstName": firstName, "lastName": lastName, "email": email, "password": password, "profileImageURL": 0] as [String : Any]
 
-            userReference.updateChildValues(values, withCompletionBlock: {
-                (err, _) in
+            userReference.updateChildValues(values, withCompletionBlock: {(err, _) in
 
                 if err != nil {
 
