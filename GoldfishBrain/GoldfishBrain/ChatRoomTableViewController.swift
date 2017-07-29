@@ -23,6 +23,8 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
     @IBOutlet var chatRoomTableView: UITableView!
 
+    @IBOutlet weak var friendListButton: UIBarButtonItem!
+
     @IBAction func logoutButton(_ sender: Any) {
 
         do {
@@ -81,6 +83,8 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        friendListButton.title = "List"
 
         chatRoomManager.delegate = self
 
@@ -180,7 +184,7 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        if segue.identifier == "ShowChatLog" {
+        if segue.identifier == "ShowChatLogFromPeople" {
 
             if let cell = sender as? PeopleTableViewCell {
 
@@ -202,7 +206,6 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
                     }
 
-                    //                    destinationViewController?.peopleFirstName = people
                 }
 
             }

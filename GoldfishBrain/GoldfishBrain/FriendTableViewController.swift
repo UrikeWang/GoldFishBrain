@@ -21,6 +21,8 @@ class FriendTableViewController: UITableViewController, chatRoomManagerDelegate 
 
         self.people = people
 
+        print("朋友數量", people.count)
+
         DispatchQueue.main.async {
 
             self.friendTableView.reloadData()
@@ -75,11 +77,41 @@ class FriendTableViewController: UITableViewController, chatRoomManagerDelegate 
 
         cell.friendImageView.kf.setImage(with: url)
 
-        //        cell.peopleImage.downloadedFrom(link: people[indexPath.row].imageUrl, contentMode: .scaleAspectFill)
-
         cell.friendImageView.layer.masksToBounds = true
 
         return cell
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier == "ShowChatLogFromFriend" {
+
+            if let cell = sender as? FriendTableViewCell {
+
+                if let destinationNavigation = segue.destination as? UINavigationController {
+
+                    let destinationViewController = destinationNavigation.viewControllers.first as? ChatLogViewController
+
+                    if let peopleFirstName = cell.friendNameLabel.text {
+
+                        for person in people where peopleFirstName == person.firstName {
+
+                            destinationViewController?.peopleFirstName = person.firstName
+
+                            destinationViewController?.peopleLastName = person.lastName
+
+                            destinationViewController?.peopleID = person.id
+
+                        }
+
+                    }
+
+                    //                    destinationViewController?.peopleFirstName = people
+                }
+
+            }
+
+        }
     }
 
     /*
