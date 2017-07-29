@@ -163,7 +163,7 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
         let dateFormatter = DateFormatter()
 
-        dateFormatter.dateFormat = "HH:MM a" //Specify your format that you want
+        dateFormatter.dateFormat = "hh:mm a" //Specify your format that you want
 
         dateFormatter.timeZone = TimeZone.current //Set timezone that you want
 

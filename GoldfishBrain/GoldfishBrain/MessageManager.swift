@@ -21,6 +21,8 @@ class MessageManager {
 
     var messages = [Message]()
 
+    var messagesdictionary = [String: Message]()
+
     weak var delegate: messageManagerDelegate?
 
     func observeMessages() {
@@ -38,6 +40,12 @@ class MessageManager {
                         let talk = Message(text: text, fromID: fromID, toID: toID, timestamp: timestamp)
 
                         self.messages.append(talk)
+
+//                        if let toIDs = talk.toID {
+//                            
+//                            self.messagesdictionary[toIDs] = talk
+//                        
+//                        }
 
                         self.delegate?.messageManager(self, didGetMessage: self.messages)
 
