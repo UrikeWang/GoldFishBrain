@@ -171,9 +171,6 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
         let strDate = dateFormatter.string(from: date)
 
-//        dateFormatter.locale = Locale.current
-//
-
         print("date::::", strDate)
 
         cell.dateLabel.text = strDate

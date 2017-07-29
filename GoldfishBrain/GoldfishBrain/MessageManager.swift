@@ -41,11 +41,20 @@ class MessageManager {
 
                         self.messages.append(talk)
 
-//                        if let toIDs = talk.toID {
-//                            
-//                            self.messagesdictionary[toIDs] = talk
-//                        
-//                        }
+                        print("talkkk", talk)
+
+                        if toID == talk.toID {
+
+                            self.messagesdictionary[toID] = talk
+
+                            self.messages = Array(self.messagesdictionary.values)
+
+                            self.messages.sort(by: { (talk1, talk2) -> Bool in
+
+                                return talk1.timestamp.hashValue > talk2.timestamp.hashValue
+                            })
+
+                        }
 
                         self.delegate?.messageManager(self, didGetMessage: self.messages)
 

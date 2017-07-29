@@ -75,7 +75,23 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
             let values = ["text": messageText.text, "fromID": uid, "toID": peopleID, "timestamp": timestamp]
 
-            childRef.updateChildValues(values)
+//            childRef.updateChildValues(values)
+
+            childRef.updateChildValues(values, withCompletionBlock: { (error, _) in
+
+                if error != nil {
+
+                    print(error)
+
+                    return
+                }
+
+                let userMessagesRef = Database.database().reference().child("user-messages").child("\(uid)")
+
+                let messageID = childRef.key
+
+                userMessagesRef.updateChildValues([messageID: 1])
+            })
         }
 
     }
