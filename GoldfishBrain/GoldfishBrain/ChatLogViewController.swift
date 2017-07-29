@@ -31,6 +31,8 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     @IBOutlet weak var chatLogTableView: UITableView!
 
+    @IBOutlet weak var lastPageButton: UIBarButtonItem!
+
     @IBAction func lastPageButton(_ sender: Any) {
 
         dismiss(animated: true)
@@ -44,6 +46,8 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
 
         navigationItem.title = peopleFirstName
+
+        lastPageButton.title = "Return"
 
 //        sendMessageView.addTopBorder()
 
