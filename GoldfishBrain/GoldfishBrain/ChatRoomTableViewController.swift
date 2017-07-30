@@ -92,7 +92,9 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
         messageManager.delegate = self
 
-        messageManager.observeMessages()
+//        messageManager.observeMessages()
+
+        messageManager.observeUserMessages()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -174,8 +176,6 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
         var date = Date(timeIntervalSince1970: TimeInterval(message.timestamp))
 
         let strDate = dateFormatter.string(from: date)
-
-        print("date::::", strDate)
 
         cell.dateLabel.text = strDate
 

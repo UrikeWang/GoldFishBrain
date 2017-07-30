@@ -63,7 +63,9 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         messageManager.delegate = self
 
-        messageManager.observeMessages()
+//        messageManager.observeMessages()
+
+        messageManager.observeUserMessages()
 
     }
 
@@ -77,11 +79,7 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
             let timestamp = Int(Date().timeIntervalSince1970)
 
-            print("to ID:::", peopleID)
-
             let values = ["text": messageText.text, "fromID": uid, "toID": peopleID, "timestamp": timestamp]
-
-            print("to who:::::", values)
 
             childRef.updateChildValues(values)
 
@@ -94,12 +92,19 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
                     return
                 }
 
+                //將同一個人發的message 存在同一個child中，並將message一併存起來
                 let userMessagesRef = Database.database().reference().child("user-messages").child("\(uid)")
 
                 let messageID = childRef.key
 
                 userMessagesRef.updateChildValues([messageID: 1])
+
+                let recipientUserMessageRef = Database.database().reference().child("user-messages").child(self.peopleID)
+
+                recipientUserMessageRef.updateChildValues([messageID: 1])
+
             })
+
         }
 
     }
