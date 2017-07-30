@@ -21,8 +21,6 @@ class FriendTableViewController: UITableViewController, chatRoomManagerDelegate 
 
         self.people = people
 
-        print("朋友數量", people.count)
-
         DispatchQueue.main.async {
 
             self.friendTableView.reloadData()

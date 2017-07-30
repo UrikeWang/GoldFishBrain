@@ -99,6 +99,7 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
                 userMessagesRef.updateChildValues([messageID: 1])
 
+                //同時將message存到對方的child中
                 let recipientUserMessageRef = Database.database().reference().child("user-messages").child(self.peopleID)
 
                 recipientUserMessageRef.updateChildValues([messageID: 1])

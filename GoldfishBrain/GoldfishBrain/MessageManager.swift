@@ -60,24 +60,30 @@ class MessageManager {
 
 //                            print("where is dic???", talk)
 
-                            if toID == talk.toID {
+//                            if fromID == Auth.auth().currentUser?.uid || toID == Auth.auth().currentUser?.uid {
 
-                                self.messagesdictionary[toID] = talk
+                                if toID == talk.toID {
 
-                                self.messages = Array(self.messagesdictionary.values)
+                                    self.messagesdictionary[toID] = talk
 
-                                self.messages.sort(by: { (talk1, talk2) -> Bool in
+                                    self.messages = Array(self.messagesdictionary.values)
 
-                                    print("talk1", talk1.timestamp, talk1.text)
+                                    self.messages.sort(by: { (talk1, talk2) -> Bool in
 
-                                    print("talk2", talk2.timestamp, talk2.text)
+                                        // TODO: 修正最後訊息顯示
+                                        //                                    print("talk1", talk1.timestamp, talk1.text)
+                                        //
+                                        //                                    print("talk2", talk2.timestamp, talk2.text)
 
-                                    return talk1.timestamp > talk2.timestamp
-                                })
+                                        return talk1.timestamp > talk2.timestamp
 
-                            }
+                                    })
 
-                            self.delegate?.messageManager(self, didGetMessage: self.messages)
+                                self.delegate?.messageManager(self, didGetMessage: self.messages)
+
+                                }
+
+//                            }
 
                         } else {
 
@@ -94,51 +100,51 @@ class MessageManager {
 
     }
 
-    func observeMessages() {
-
-        let ref = Database.database().reference()
-
-        ref.observe(.childAdded, with: { (snapshot) in
-
-            for message in (snapshot.value as? [String: AnyObject])! {
-
-                if let dicts = message.value as? [String: Any] {
-
-                    if let text = dicts["text"] as? String, let fromID = dicts["fromID"] as? String, let toID = dicts["toID"] as? String, let timestamp = dicts["timestamp"] as? Int {
-
-                        let talk = Message(text: text, fromID: fromID, toID: toID, timestamp: timestamp)
-
-                        self.messages.append(talk)
-
-//                        print("talkkk", talk)
-
-                        if toID == talk.toID {
-
-                            self.messagesdictionary[toID] = talk
-
-                            self.messages = Array(self.messagesdictionary.values)
-
-                            self.messages.sort(by: { (talk1, talk2) -> Bool in
-
-                                return talk1.timestamp.hashValue > talk2.timestamp.hashValue
-                            })
-
-                        }
-
-                        self.delegate?.messageManager(self, didGetMessage: self.messages)
-
-                    } else {
-
-                        print("Message data fetch failed")
-
-                    }
-
-                }
-
-            }
-
-        }, withCancel: nil)
-
-    }
+//    func observeMessages() {
+//
+//        let ref = Database.database().reference()
+//
+//        ref.observe(.childAdded, with: { (snapshot) in
+//
+//            for message in (snapshot.value as? [String: AnyObject])! {
+//
+//                if let dicts = message.value as? [String: Any] {
+//
+//                    if let text = dicts["text"] as? String, let fromID = dicts["fromID"] as? String, let toID = dicts["toID"] as? String, let timestamp = dicts["timestamp"] as? Int {
+//
+//                        let talk = Message(text: text, fromID: fromID, toID: toID, timestamp: timestamp)
+//
+//                        self.messages.append(talk)
+//
+////                        print("talkkk", talk)
+//
+//                        if toID == talk.toID {
+//
+//                            self.messagesdictionary[toID] = talk
+//
+//                            self.messages = Array(self.messagesdictionary.values)
+//
+//                            self.messages.sort(by: { (talk1, talk2) -> Bool in
+//
+//                                return talk1.timestamp.hashValue > talk2.timestamp.hashValue
+//                            })
+//
+//                        }
+//
+//                        self.delegate?.messageManager(self, didGetMessage: self.messages)
+//
+//                    } else {
+//
+//                        print("Message data fetch failed")
+//
+//                    }
+//
+//                }
+//
+//            }
+//
+//        }, withCancel: nil)
+//
+//    }
 
 }
