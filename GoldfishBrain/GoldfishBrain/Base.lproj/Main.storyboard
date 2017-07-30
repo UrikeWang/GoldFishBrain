@@ -482,7 +482,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rzq-a3-XxM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6861.6000000000004" y="1736.5817091454273"/>
+            <point key="canvasLocation" x="7910" y="1738"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="qWV-Y4-PGR">
@@ -668,7 +668,7 @@
                                     <outlet property="friendContentLabel" destination="5Z4-hh-RgW" id="Gqd-C8-qsN"/>
                                     <outlet property="friendImageView" destination="C32-gO-kkz" id="rDH-Mr-EWS"/>
                                     <outlet property="friendNameLabel" destination="28A-0v-MwZ" id="usD-Dz-LXe"/>
-                                    <segue destination="pI9-Ym-Cjh" kind="show" identifier="ShowChatLogFromPeople" id="gZY-3m-UpF"/>
+                                    <segue destination="pI9-Ym-Cjh" kind="show" identifier="ShowChatLogFromFriend" id="gZY-3m-UpF"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -701,7 +701,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LSd-KN-dum" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5868" y="1737"/>
+            <point key="canvasLocation" x="6862" y="1738"/>
         </scene>
         <!--Chat Log View Controller-->
         <scene sceneID="gbC-GY-gYM">
@@ -826,7 +826,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kOF-cD-xH9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8064.8000000000002" y="1027.736131934033"/>
+            <point key="canvasLocation" x="7911" y="1028"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uk2-vN-mUB">
@@ -844,7 +844,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N3c-Oq-wKR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7125.6000000000004" y="1027.736131934033"/>
+            <point key="canvasLocation" x="6862" y="1028"/>
         </scene>
     </scenes>
 </document>

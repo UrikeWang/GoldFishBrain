@@ -77,9 +77,13 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
             let timestamp = Int(Date().timeIntervalSince1970)
 
+            print("to ID:::", peopleID)
+
             let values = ["text": messageText.text, "fromID": uid, "toID": peopleID, "timestamp": timestamp]
 
-//            childRef.updateChildValues(values)
+            print("to who:::::", values)
+
+            childRef.updateChildValues(values)
 
             childRef.updateChildValues(values, withCompletionBlock: { (error, _) in
 
