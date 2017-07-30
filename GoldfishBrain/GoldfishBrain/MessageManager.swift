@@ -56,7 +56,7 @@ class MessageManager {
 
                             let talk = Message(text: text, fromID: fromID, toID: toID, timestamp: timestamp)
 
-                            self.messages.append(talk)
+//                            self.messages.append(talk)
 
 //                            print("where is dic???", talk)
 
