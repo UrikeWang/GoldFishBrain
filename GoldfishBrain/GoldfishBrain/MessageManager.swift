@@ -24,6 +24,8 @@ class MessageManager {
 
     var messagesdictionary = [String: Message]()
 
+    var talk: Message?
+
     weak var delegate: messageManagerDelegate?
 
     func observeUserMessages() {
@@ -38,11 +40,17 @@ class MessageManager {
 
         let ref = Database.database().reference().child("user-messages").child(uid)
 
-            ref.observe(.childAdded, with: { (snapshot) in
+        ref.observe(.childAdded, with: { (snapshot) in
 
             let messageID = snapshot.key
 
             let messagesRef = Database.database().reference().child("messages")/*.child(messageID)*/
+
+            //swiftlint:disable force_cast
+            let uid =  Auth.auth().currentUser?.uid as! String
+            //swiftlint:enable force_cast
+
+            print("currentUser", uid)
 
             messagesRef.observeSingleEvent(of: .value, with: { (snapshot) in
 
@@ -54,19 +62,26 @@ class MessageManager {
 
                         if let text = dicts["text"] as? String, let fromID = dicts["fromID"] as? String, let toID = dicts["toID"] as? String, let timestamp = dicts["timestamp"] as? Int {
 
-                            let talk = Message(text: text, fromID: fromID, toID: toID, timestamp: timestamp)
+                            if fromID == uid || toID == uid {
 
-//                            self.messages.append(talk)
+                                if fromID == uid {
 
-//                            print("where is dic???", talk)
+                                    self.talk = Message(text: text, fromID: fromID, toID: toID, timestamp: timestamp)
 
-                            if fromID == Auth.auth().currentUser?.uid || toID == Auth.auth().currentUser?.uid {
+                                }
 
-                                if toID == talk.toID {
+                                if toID == uid {
 
-                                    self.messagesdictionary[toID] = talk
+                                    self.talk = Message(text: text, fromID: toID, toID: fromID, timestamp: timestamp)
+
+                                    print("talk222222", self.talk)
+                                }
+
+                                    self.messagesdictionary[toID] = self.talk
 
                                     self.messages = Array(self.messagesdictionary.values)
+
+                                    print("messagessss", self.messages)
 
                                     self.messages.sort(by: { (talk1, talk2) -> Bool in
 
@@ -79,9 +94,11 @@ class MessageManager {
 
                                     })
 
-                                self.delegate?.messageManager(self, didGetMessage: self.messages)
+                                print("return:::", self.messages)
 
-                                }
+                                self.delegate?.messageManager(self, didGetMessage: self.messages)
+//
+//                                }
 
                             }
 
