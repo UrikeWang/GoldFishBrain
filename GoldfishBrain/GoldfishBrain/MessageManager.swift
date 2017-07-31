@@ -50,8 +50,6 @@ class MessageManager {
             let uid =  Auth.auth().currentUser?.uid as! String
             //swiftlint:enable force_cast
 
-            print("currentUser", uid)
-
             messagesRef.observeSingleEvent(of: .value, with: { (snapshot) in
 
                 for message in (snapshot.value as? [String: AnyObject])! {
@@ -74,14 +72,11 @@ class MessageManager {
 
                                     self.talk = Message(text: text, fromID: toID, toID: fromID, timestamp: timestamp)
 
-                                    print("talk222222", self.talk)
                                 }
 
                                     self.messagesdictionary[toID] = self.talk
 
                                     self.messages = Array(self.messagesdictionary.values)
-
-                                    print("messagessss", self.messages)
 
                                     self.messages.sort(by: { (talk1, talk2) -> Bool in
 
@@ -93,8 +88,6 @@ class MessageManager {
                                         return talk1.timestamp > talk2.timestamp
 
                                     })
-
-                                print("return:::", self.messages)
 
                                 self.delegate?.messageManager(self, didGetMessage: self.messages)
 //

@@ -71,41 +71,122 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func handleSendMessage() {
 
-        if let uid = UserDefaults.standard.value(forKey: "uid") {
+        if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
 
             let ref = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("messages")
 
-            let childRef = ref.childByAutoId()
-
             let timestamp = Int(Date().timeIntervalSince1970)
 
-            let values = ["text": messageText.text, "fromID": uid, "toID": peopleID, "timestamp": timestamp]
+            let talkChannelRef = Database.database().reference().child("channels")
+//            let childRef = ref.childByAutoId()
 
-            childRef.updateChildValues(values)
+            let childTalkRef = talkChannelRef.childByAutoId()
 
-            childRef.updateChildValues(values, withCompletionBlock: { (error, _) in
+            let chatsRef = Database.database().reference().child("users").child(uid).child("chats")
 
-                if error != nil {
+            let chatsToRef =  Database.database().reference().child("users").child(peopleID).child("chats")
 
-                    print(error)
+            let childTalkTextID = childTalkRef.childByAutoId()
 
-                    return
+            chatsRef.observe(.value, with: { (snapshot) in
+
+                print("???????????", snapshot)
+
+                if snapshot.childrenCount > 0 {
+
+                    print("value:::::", snapshot.value!)
+                    print("1111111111", snapshot.childrenCount)
+
+                    print("222222222", childTalkRef.child("members").child("1"))
+
+//                    if (childTalkRef.child("members").child("1") = uid && childTalkRef.child("members").child("0")) || (childTalkRef.child("members").child("0") = uid && childTalkRef.child("members").child("1")) {
+//                    
+//                        childTalkTextID.updateChildValues(values)
+//                    }
+
+                } else {
+
+                    let memValues = ["o": uid, "1": self.peopleID]
+
+                    let values = ["text": self.messageText.text, "fromID": uid, "toID": self.peopleID, "timestamp": timestamp, "talkChannel": childTalkRef.key] as [String : Any]
+
+//                    let values = [["text": self.messageText.text, "fromID": uid, "toID": self.peopleID, "timestamp": timestamp, "talkChannel": childTalkRef.key], "members": [uid, self.peopleID]] as [String : Any]
+
+                    childTalkRef.child("members").updateChildValues(memValues)
+
+                    childTalkTextID.updateChildValues(values)
+
+                    chatsRef.updateChildValues([childTalkRef.key: 1])
+
+                    chatsToRef.updateChildValues([childTalkRef.key: 1])
+
                 }
 
-                //將同一個人發的message 存在同一個child中，並將message一併存起來
-                let userMessagesRef = Database.database().reference().child("user-messages").child("\(uid)")
+            }, withCancel: nil)
 
-                let messageID = childRef.key
+//            print("!!!!??????", childTalkRef.key)
 
-                userMessagesRef.updateChildValues([messageID: 1])
+//            if talkChannelRef.key == "\(uid) + \(self.peopleID)" || talkChannelRef.key == "\(self.peopleID) + \(uid)" {
 
-                //同時將message存到對方的child中
-                let recipientUserMessageRef = Database.database().reference().child("user-messages").child(self.peopleID)
+//                childRef.updateChildValues(values, withCompletionBlock: { (error, _) in
+//                    
+//                    if error != nil {
+//                        
+//                        print(error)
+//                        
+//                        return
+//                    }
 
-                recipientUserMessageRef.updateChildValues([messageID: 1])
+//                    //將同一個人發的message 存在同一個child中，並將message一併存起來
+//                    let userMessagesRef = Database.database().reference().child("user-messages").child("\(uid)")
+//                    
+//                    let messageID = childRef.key
+//                    
+//                    userMessagesRef.updateChildValues([messageID: 1])
+//                    
+//                    //同時將message存到對方的child中
+//                    let recipientUserMessageRef = Database.database().reference().child("user-messages").child(self.peopleID)
+//                    
+//                    recipientUserMessageRef.updateChildValues([messageID: 1])
 
-            })
+//                })
 
+//            }
+////        else {
+//                
+//                let talkChannelRef = Database.database().reference().child("channels").child("\(uid) + \(self.peopleID)")
+//                
+//                let values = ["text": self.messageText.text, "fromID": uid, "toID": self.peopleID, "timestamp": timestamp, "talkChannel": "\(uid) + \(self.peopleID)"]
+////
+//                talkChannelRef.updateChildValues(values)
+//
+//                    childRef.updateChildValues(values, withCompletionBlock: { (error, _) in
+//
+//                        if error != nil {
+//
+//                            print(error)
+//
+//                            return
+//                        }
+
+//                        //將同一個人發的message 存在同一個child中，並將message一併存起來
+//                        let userMessagesRef = Database.database().reference().child("user-messages").child("\(uid)")
+//
+//                        let messageID = childRef.key
+//
+//                        userMessagesRef.updateChildValues([messageID: 1])
+//
+//                        //同時將message存到對方的child中
+//                        let recipientUserMessageRef = Database.database().reference().child("user-messages").child(self.peopleID)
+//
+//                        recipientUserMessageRef.updateChildValues([messageID: 1])
+
+//                    })
+//
+//                }
+//
+//            }, withCancel: nil)
+//            }
         }
 
     }
@@ -124,7 +205,7 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         self.messages = message
 
-        print("::::::::::", message)
+//        print("::::::::::", message)
 
         DispatchQueue.main.async {
 

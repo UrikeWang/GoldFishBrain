@@ -84,7 +84,14 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        friendListButton.title = "List"
+//        friendListButton.title = "List"
+//        
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "List", style: .plain, target: self, action: #selector(ChatRoomTableViewController))
+//        
+        //right bar button
+//        let icon = UIImage.init(named: "compose")?.withRenderingMode(.alwaysOriginal)
+//        let rightButton = UIBarButtonItem.init(image: icon!, style: .plain, target: self, action: #selector(ChatRoomTableViewController))
+//        self.navigationItem.rightBarButtonItem = rightButton
 
         chatRoomManager.delegate = self
 
