@@ -60,7 +60,7 @@ class MessageManager {
 
 //                            print("where is dic???", talk)
 
-//                            if fromID == Auth.auth().currentUser?.uid || toID == Auth.auth().currentUser?.uid {
+                            if fromID == Auth.auth().currentUser?.uid || toID == Auth.auth().currentUser?.uid {
 
                                 if toID == talk.toID {
 
@@ -83,7 +83,7 @@ class MessageManager {
 
                                 }
 
-//                            }
+                            }
 
                         } else {
 

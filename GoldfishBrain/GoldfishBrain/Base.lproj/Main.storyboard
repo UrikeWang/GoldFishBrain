@@ -272,7 +272,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="76"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vkF-Rj-D3M" id="tL8-gq-Xdg">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="76"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="75.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dbe-GF-HkX">
@@ -379,7 +379,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="67"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="02z-6N-Vsg" id="wYk-vY-y3J">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNP-Gl-uQe">
@@ -668,7 +668,7 @@
                                     <outlet property="friendContentLabel" destination="5Z4-hh-RgW" id="Gqd-C8-qsN"/>
                                     <outlet property="friendImageView" destination="C32-gO-kkz" id="rDH-Mr-EWS"/>
                                     <outlet property="friendNameLabel" destination="28A-0v-MwZ" id="usD-Dz-LXe"/>
-                                    <segue destination="pI9-Ym-Cjh" kind="show" identifier="ShowChatLogFromFriend" id="gZY-3m-UpF"/>
+                                    <segue destination="iYj-or-OB6" kind="show" identifier="ShowChatLogFromFriend" id="GOw-hA-LLG"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -847,4 +847,7 @@
             <point key="canvasLocation" x="6862" y="1028"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="GOw-hA-LLG"/>
+    </inferredMetricsTieBreakers>
 </document>
