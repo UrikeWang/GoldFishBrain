@@ -96,8 +96,6 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
             chatsRef.observeSingleEvent(of: .value, with: { (snapshot) in
 
-//            channelRef.observeSingleEvent(of: .value, with: { (snapshot) in
-
                 switch snapshot.childrenCount {
 
                 case 0 :
@@ -118,40 +116,36 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
                     isrun = Int(snapshot.childrenCount)
 
-                    var chatMember1 = ""
-
-                    var chatMember2 = ""
-
                     print("init isrun!!!!!!!!!!", isrun)
 
-                    for chat in (snapshot.value as? [String: Any])! {
-
-                        print("chat:::", chat)
-
-                        print("chatkey:", chat.key)
+                    for chat in (snapshot.value as? [String: Any])!  {
+//
+//                        print("chat:::", chat)
+//
+//                        print("chatkey:", chat.key)
 
                         //channels ID
                         if let chatroomID = chat.key as? String {
 
                             print("111111111")
 
-                            channelRef.observeSingleEvent(of: .value, with: { (dataSnapshot) in
+                            channelRef.observeSingleEvent(of:.value, with: { (dataSnapshot) in
                                 //                                if chatroomID == dataSnapshot.key {
 
                                 print("222222222")
 
                                 print("member?????", dataSnapshot.childSnapshot(forPath: chatroomID).childSnapshot(forPath: "members"))
 
-                                if let member = dataSnapshot.childSnapshot(forPath: "members").value as? [String] {
+                                if let member = dataSnapshot.childSnapshot(forPath: chatroomID).childSnapshot(forPath: "members").value as? [String] {
 
                                     print("member!!!!!!", member)
 
                                     print("3333333")
 
                                     //swiftlint:disable force_cast
-                                    chatMember1 = member[0]
+                                    let chatMember1 = member[0]
 
-                                    chatMember2 = member[1]
+                                    let chatMember2 = member[1]
                                     //swiftlint:enable force_cast
 
                                     print(chatMember1, chatMember2)
@@ -159,44 +153,62 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
                                     print(self.peopleID)
 
                                     if (uid == chatMember1 && self.peopleID == chatMember2) || (uid == chatMember2 && self.peopleID == chatMember1) {
+                                        
+                                        istalked = true
+                                        
+                                        print("innnnnnnnnnnnnnnnnnnn")
 
                                         let values = ["text": self.messageText.text, "fromID": uid, "toID": self.peopleID, "timestamp": timestamp] as [String : Any]
 
                                         channelRef.child(chatroomID).childByAutoId().updateChildValues(values)
-
-                                        istalked = true
-
                                     }
+                                    
+                                    isrun -= 1
+                                    
+                                    print("isrun value", isrun)
+                                    print("istalked", istalked)
+                                    
                                 }
-                                //                                }
+                                
+                                print("??????")
+                                
+                                if istalked == false && isrun == 0 {
+                                    
+                                    print("newwwwwwwwwwwwwwwww")
+                                    
+                                    let memValues = ["0": uid, "1": self.peopleID]
+                                    
+                                    let values = ["text": self.messageText.text, "fromID": uid, "toID": self.peopleID, "timestamp": timestamp] as [String : Any]
+                                    
+                                    childTalkRef.child("members").updateChildValues(memValues)
+                                    
+                                    childTalkTextID.updateChildValues(values)
+                                    
+                                    chatsRef.updateChildValues([childTalkRef.key: 1])
+                                    
+                                    chatsToRef.updateChildValues([childTalkRef.key: 1])
+                                    
+                                    istalked = true
+                                    
+                                }
+
 
                             }, withCancel: nil)
+                            
+                            print("!!!!!!!")
 
                         }
-
-                        isrun -= 1
-                        print("isrun value", isrun)
-
-                    }
-
-                    if istalked == false  && isrun == 0 {
-
-                        let memValues = ["0": uid, "1": self.peopleID]
-
-                        let values = ["text": self.messageText.text, "fromID": uid, "toID": self.peopleID, "timestamp": timestamp] as [String : Any]
-
-                        childTalkRef.child("members").updateChildValues(memValues)
-
-                        childTalkTextID.updateChildValues(values)
-
-                        chatsRef.updateChildValues([childTalkRef.key: 1])
-
-                        chatsToRef.updateChildValues([childTalkRef.key: 1])
-
-                        istalked = true
+                        
+                        print("end is run!!!!!!!!",isrun)
+                        
+                        if (istalked == false  && isrun == 0) {
+                            
+                            break
+                        }
 
                     }
 
+                    
                 default: break
 
                 }
