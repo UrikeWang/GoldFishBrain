@@ -71,6 +71,12 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func handleSendMessage() {
 
+        var chatsID = [String]()
+
+        var istalked = false
+
+        var isrun = Int()
+
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
 
             let ref = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("messages")
@@ -89,8 +95,6 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
             let childTalkTextID = childTalkRef.childByAutoId()
 
             chatsRef.observeSingleEvent(of: .value, with: { (snapshot) in
-
-                print("here!!!!!!")
 
 //            channelRef.observeSingleEvent(of: .value, with: { (snapshot) in
 
@@ -112,128 +116,84 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
                 case _ where snapshot.childrenCount > 0 :
 
+                    isrun = Int(snapshot.childrenCount)
+
+                    var chatMember1 = ""
+
+                    var chatMember2 = ""
+
+                    print("init isrun!!!!!!!!!!", isrun)
+
                     for chat in (snapshot.value as? [String: Any])! {
+
+                        print("chat:::", chat)
+
+                        print("chatkey:", chat.key)
 
                         //channels ID
                         if let chatroomID = chat.key as? String {
 
-                            print("1111111111", chatroomID)
+                            print("111111111")
 
-                            channelRef.observeSingleEvent(of: .childAdded, with: { (snapshot) in
+                            channelRef.observeSingleEvent(of: .value, with: { (dataSnapshot) in
+                                //                                if chatroomID == dataSnapshot.key {
 
-                                if chatroomID == snapshot.key {
+                                print("222222222")
 
-                                    print("~~~~~~~~~~~~~~~~~", snapshot.childSnapshot(forPath: "members"))
+                                print("member?????", dataSnapshot.childSnapshot(forPath: chatroomID).childSnapshot(forPath: "members"))
 
-                                    print("keyyyyyyy", snapshot.key)
+                                if let member = dataSnapshot.childSnapshot(forPath: "members").value as? [String] {
 
-                                    print("333333", snapshot.childSnapshot(forPath: "members").value)
+                                    print("member!!!!!!", member)
 
-                                    if let member = snapshot.childSnapshot(forPath: "members").value as? [String] {
+                                    print("3333333")
 
-                                        print("mmmmmmm", member)
+                                    //swiftlint:disable force_cast
+                                    chatMember1 = member[0]
 
-                                        //swiftlint:disable force_cast
-                                        let chatMember1 = member[0]
+                                    chatMember2 = member[1]
+                                    //swiftlint:enable force_cast
 
-                                        let chatMember2 = member[1]
-                                        //swiftlint:enable force_cast
+                                    print(chatMember1, chatMember2)
 
-                                        print(chatMember1, chatMember2)
+                                    print(self.peopleID)
 
-                                        if (uid == chatMember1 && self.peopleID == chatMember2) || (uid == chatMember2 && self.peopleID == chatMember1) {
+                                    if (uid == chatMember1 && self.peopleID == chatMember2) || (uid == chatMember2 && self.peopleID == chatMember1) {
 
-                                            print("yes==========================")
+                                        let values = ["text": self.messageText.text, "fromID": uid, "toID": self.peopleID, "timestamp": timestamp] as [String : Any]
 
-                                            let values = ["text": self.messageText.text, "fromID": uid, "toID": self.peopleID, "timestamp": timestamp] as [String : Any]
+                                        channelRef.child(chatroomID).childByAutoId().updateChildValues(values)
 
-                                            channelRef.child(chatroomID).childByAutoId().updateChildValues(values)
-
-                                            //                                                    childTalkTextID.updateChildValues(values)
-                                        }
+                                        istalked = true
 
                                     }
-
-                                } else {
-
-                                    print("new=========================")
-
-                                    let memValues = ["0": uid, "1": self.peopleID]
-
-                                    let values = ["text": self.messageText.text, "fromID": uid, "toID": self.peopleID, "timestamp": timestamp] as [String : Any]
-
-                                    childTalkRef.child("members").updateChildValues(memValues)
-
-                                    childTalkTextID.updateChildValues(values)
-
-                                    chatsRef.updateChildValues([childTalkRef.key: 1])
-
-                                    chatsToRef.updateChildValues([childTalkRef.key: 1])
                                 }
-
-//                                if let member = snapshot.childSnapshot(forPath: "members") as? [AnyObject] {
-//                                
-//                                }
-
-//                                for channel in (snapshot.value as? [String: Any])! {
-//
-//                                    if chatroomID == channel.key {
-//
-////                                        print("?????", chatroomID)
-////                                        print("??!!!!", channel.key)
-//
-//                                        if let channelContent = channel.value as? [String: Any] {
-
-//                                            print("555555", channelContent)
-//                                            print("666666", channelContent["members"])
-
-//                                            if let member = channelContent["members"] as? [AnyObject] {
-//
-////                                                print("444444", member)
-//
-//                                                //swiftlint:disable force_cast
-//                                                let chatMember1 = member[0] as! String
-//
-//                                                let chatMember2 = member[1] as! String
-//                                                //swiftlint:enable force_cast
-//
-////                                                if (uid == chatMember1 && self.peopleID == chatMember2) || (uid == chatMember2 && self.peopleID == chatMember1) {
-//
-//                                                    print("yes==========================")
-//
-//                                                    let values = ["text": self.messageText.text, "fromID": uid, "toID": self.peopleID, "timestamp": timestamp] as [String : Any]
-//
-//                                                    channelRef.child(chatroomID).childByAutoId().updateChildValues(values)
-//
-//                                                    //                                                    childTalkTextID.updateChildValues(values)
-//
-//                                                } else {
-//                                                    
-//                                                    print("new=========================")
-//
-//                                                    let memValues = ["0": uid, "1": self.peopleID]
-//
-//                                                    let values = ["text": self.messageText.text, "fromID": uid, "toID": self.peopleID, "timestamp": timestamp] as [String : Any]
-//
-//                                                    childTalkRef.child("members").updateChildValues(memValues)
-//
-//                                                    childTalkTextID.updateChildValues(values)
-//
-//                                                    chatsRef.updateChildValues([childTalkRef.key: 1])
-//
-//                                                    chatsToRef.updateChildValues([childTalkRef.key: 1])
-//                                                }
-//
-//                                            }
-//
-//                                        }
-//
-//                                    }
-//                                }
+                                //                                }
 
                             }, withCancel: nil)
 
                         }
+
+                        isrun -= 1
+                        print("isrun value", isrun)
+
+                    }
+
+                    if istalked == false  && isrun == 0 {
+
+                        let memValues = ["0": uid, "1": self.peopleID]
+
+                        let values = ["text": self.messageText.text, "fromID": uid, "toID": self.peopleID, "timestamp": timestamp] as [String : Any]
+
+                        childTalkRef.child("members").updateChildValues(memValues)
+
+                        childTalkTextID.updateChildValues(values)
+
+                        chatsRef.updateChildValues([childTalkRef.key: 1])
+
+                        chatsToRef.updateChildValues([childTalkRef.key: 1])
+
+                        istalked = true
 
                     }
 
@@ -243,71 +203,6 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
             }, withCancel: nil)
 
-//                }, withCancel: nil)
-
-            //            print("!!!!??????", childTalkRef.key)
-
-            //            if talkChannelRef.key == "\(uid) + \(self.peopleID)" || talkChannelRef.key == "\(self.peopleID) + \(uid)" {
-
-            //                childRef.updateChildValues(values, withCompletionBlock: { (error, _) in
-            //
-            //                    if error != nil {
-            //
-            //                        print(error)
-            //
-            //                        return
-            //                    }
-
-            //                    //將同一個人發的message 存在同一個child中，並將message一併存起來
-            //                    let userMessagesRef = Database.database().reference().child("user-messages").child("\(uid)")
-            //
-            //                    let messageID = childRef.key
-            //
-            //                    userMessagesRef.updateChildValues([messageID: 1])
-            //
-            //                    //同時將message存到對方的child中
-            //                    let recipientUserMessageRef = Database.database().reference().child("user-messages").child(self.peopleID)
-            //
-            //                    recipientUserMessageRef.updateChildValues([messageID: 1])
-
-            //                })
-
-            //            }
-            ////        else {
-            //
-            //                let talkChannelRef = Database.database().reference().child("channels").child("\(uid) + \(self.peopleID)")
-            //
-            //                let values = ["text": self.messageText.text, "fromID": uid, "toID": self.peopleID, "timestamp": timestamp, "talkChannel": "\(uid) + \(self.peopleID)"]
-            ////
-            //                talkChannelRef.updateChildValues(values)
-            //
-            //                    childRef.updateChildValues(values, withCompletionBlock: { (error, _) in
-            //
-            //                        if error != nil {
-            //
-            //                            print(error)
-            //
-            //                            return
-            //                        }
-
-            //                        //將同一個人發的message 存在同一個child中，並將message一併存起來
-            //                        let userMessagesRef = Database.database().reference().child("user-messages").child("\(uid)")
-            //
-            //                        let messageID = childRef.key
-            //
-            //                        userMessagesRef.updateChildValues([messageID: 1])
-            //
-            //                        //同時將message存到對方的child中
-            //                        let recipientUserMessageRef = Database.database().reference().child("user-messages").child(self.peopleID)
-            //
-            //                        recipientUserMessageRef.updateChildValues([messageID: 1])
-
-            //                    })
-            //
-            //                }
-            //
-            //            }, withCancel: nil)
-            //            }
         }
 
     }
