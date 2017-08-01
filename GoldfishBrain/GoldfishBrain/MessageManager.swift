@@ -40,11 +40,11 @@ class MessageManager {
 
         let ref = Database.database().reference().child("user-messages").child(uid)
 
-        ref.observe(.childAdded, with: { (snapshot) in
+        ref.observe(.value, with: { (snapshot) in
 
             let messageID = snapshot.key
 
-            let messagesRef = Database.database().reference().child("messages")/*.child(messageID)*/
+            let messagesRef = Database.database().reference().child("messages")
 
             //swiftlint:disable force_cast
             let uid =  Auth.auth().currentUser?.uid as! String

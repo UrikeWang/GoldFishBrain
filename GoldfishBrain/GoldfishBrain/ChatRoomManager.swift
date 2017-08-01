@@ -33,9 +33,9 @@ class ChatRoomManager {
 
 //                print("!!!!!", user)
 
-                if let dict = user.value as? [String: String] {
+                if let dict = user.value as? [String: AnyObject] {
 
-                    if let firstName = dict["firstName"], let lastName = dict["lastName"], let imageUrl = dict["profileImageURL"] {
+                    if let firstName = dict["firstName"] as? String, let lastName = dict["lastName"] as? String, let imageUrl = dict["profileImageURL"] as? String {
 
                         let man = Person(id: user.key, firstName: firstName, lastName: lastName, imageUrl: imageUrl)
 
