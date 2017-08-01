@@ -27,7 +27,7 @@ class ChatRoomManager {
 
         let ref = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("users")
 
-        ref.observe(.value, with: { (snapshot: DataSnapshot) in
+        ref.observeSingleEvent(of:.value, with: { (snapshot: DataSnapshot) in
 
             for user in (snapshot.value as? [String: AnyObject])! {
 
@@ -54,12 +54,6 @@ class ChatRoomManager {
                 }
 
             }
-
-//            DispatchQueue.main.async {
-//
-//                self.delegate?.chatRoomManager(self, didGetPeople: self.people)
-//
-//            }
 
         }, withCancel: nil)
 
