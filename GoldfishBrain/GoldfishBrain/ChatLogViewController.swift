@@ -19,9 +19,17 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     var peopleID = ""
 
-    var messages = [Message]()
+    var allMessages: [Message] = []
+
+    var dict = [String: String]()
+
+    var messageCount = 0
 
     var messageManager = MessageManager()
+
+    var getChatroomID = false
+
+    var textArray = [Message]()
 
     @IBOutlet weak var sendMessageView: UIView!
 
@@ -41,6 +49,8 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         peopleFirstName = ""
     }
+
+    let uid = UserDefaults.standard.value(forKey: "uid")!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,7 +136,6 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
                             print("111111111")
 
                             channelRef.observeSingleEvent(of:.value, with: { (dataSnapshot) in
-                                //                                if chatroomID == dataSnapshot.key {
 
                                 print("222222222")
 
@@ -218,13 +227,47 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func messageManager(_ manager: MessageManager, didGetMessage message: [Message]) {
 
-        self.messages = message
+////
+////        print("::::::::::", message)
+////
+////        print("message數量", message.count)
+////
 
-//        print("::::::::::", message)
+    }
+
+    func messageManager(_ manager: MessageManager, didGetAllMessage allMessages: [Message]) {
+
+        self.allMessages = allMessages
+
+        //        if messageCount != message.count {
+
+        //            messageCount = message.count
 
         DispatchQueue.main.async {
 
             self.chatLogTableView.reloadData()
+        }
+        //        }
+
+    }
+
+    func messageManager(_ manager: MessageManager, didGetMessagesDict dict: [String: String]) {
+
+        self.dict = dict
+
+//        print("dict========", dict)
+
+        if let chatroomID = dict[peopleID] {
+
+            print("ID::", peopleID, chatroomID)
+
+            if getChatroomID == false {
+//
+                getChatroomID = true
+
+                messageManager.observeMessages(id: chatroomID)
+
+            }
         }
 
     }
@@ -240,7 +283,9 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return messages.count
+        return allMessages.count
+
+//        return 10
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -249,37 +294,61 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatLogCell", for: indexPath) as! ChatLogTableViewCell
         //swiftlint:enable force_cast
 
-        let message = messages[indexPath.row]
+//        print("????", dict)
 
-//        let refUser = Database.database().reference().child("users").child(peopleID)
-//        
-//        let refMessage = Database.database().reference().child("messages")
-//        
-//        refUser.observeSingleEvent(of: .value, with: { (snapshot) in
-//            
-//            if let dict = snapshot.value as? [String: AnyObject] {
-//            
-//                
-//            }
-//            
-//        }, withCancel: nil)
+        /*
+        if let chatroomID = dict[peopleID] as? String {
 
-        if let toID = message.toID as? String {
+            let ref = Database.database().reference().child("channels").child(chatroomID)
 
-            let ref = Database.database().reference().child("users").child(toID)
+            ref.observe(.value, with: { (snapshot) in
 
-            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                for child in (snapshot.value as? [String: AnyObject])! {
 
-                if let dict = snapshot.value as? [String: AnyObject] {
+                    print("child!!!!", child)
 
-                    cell.chatNameText.text = dict["firstName"] as? String
+                    if let dicts = child.value as? [String: Any] {
+
+                        if let text = dicts["text"] as? String, let fromID = dicts["fromID"] as? String, let toID = dicts["toID"] as? String, let timestamp = dicts["timestamp"] as? Int {
+
+                            let talk = Message(text: text, fromID: fromID, toID: toID, timestamp: timestamp)
+
+                            self.messages.append(talk)
+
+                            cell.chatText.text = talk.text
+
+//                            self.delegate?.messageManager(self, didGetMessage: self.messages)
+
+                        }
+                    }
+
                 }
 
             }, withCancel: nil)
 
         }
+         */
 
-        cell.chatText.text = messages[indexPath.row].text
+        let message = allMessages[indexPath.row]
+
+        cell.chatText.text = message.text
+
+//        if let toID = message.toID as? String {
+//
+//            let ref = Database.database().reference().child("users").child(toID)
+//
+//            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+//
+//                if let dict = snapshot.value as? [String: AnyObject] {
+//
+//                    cell.chatNameText.text = dict["firstName"] as? String
+//                }
+//
+//            }, withCancel: nil)
+//
+//        }
+//
+//        cell.chatText.text = messages[indexPath.row].text
 
         return cell
     }

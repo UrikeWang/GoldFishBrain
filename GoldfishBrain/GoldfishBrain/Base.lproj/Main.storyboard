@@ -384,7 +384,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNP-Gl-uQe">
                                                     <rect key="frame" x="21" y="31" width="236" height="21"/>
-                                                    <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="236" id="YVy-NZ-asS"/>
                                                     </constraints>
@@ -392,24 +392,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teL-aO-rjA">
-                                                    <rect key="frame" x="21" y="0.0" width="236" height="21"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="TNP-Gl-uQe" secondAttribute="bottom" constant="6.5" id="CVN-HP-o4e"/>
-                                                <constraint firstItem="TNP-Gl-uQe" firstAttribute="trailing" secondItem="teL-aO-rjA" secondAttribute="trailing" id="F6N-hN-Fpo"/>
                                                 <constraint firstItem="TNP-Gl-uQe" firstAttribute="leading" secondItem="wYk-vY-y3J" secondAttribute="leadingMargin" constant="13" id="N0u-nv-rDt"/>
-                                                <constraint firstItem="TNP-Gl-uQe" firstAttribute="leading" secondItem="teL-aO-rjA" secondAttribute="leading" id="pnQ-A5-hOD"/>
-                                                <constraint firstItem="TNP-Gl-uQe" firstAttribute="top" secondItem="teL-aO-rjA" secondAttribute="bottom" constant="10" id="wLN-XN-6rM"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="chatNameText" destination="teL-aO-rjA" id="CMs-gK-ODI"/>
                                             <outlet property="chatText" destination="TNP-Gl-uQe" id="9MN-ir-NyR"/>
                                         </connections>
                                     </tableViewCell>

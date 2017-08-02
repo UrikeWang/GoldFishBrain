@@ -77,6 +77,14 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
     }
 
+    func messageManager(_ manager: MessageManager, didGetAllMessage allMessages: [Message]) {
+
+    }
+
+    func messageManager(_ manager: MessageManager, didGetMessagesDict dict: [String: String]) {
+
+    }
+
     func messageManager(_ manager: MessageManager, didFailWith error: Error) {
 
     }
