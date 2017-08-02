@@ -26,8 +26,6 @@ class MessageManager {
 
     var messages = [Message]()
 
-    var allMessages = [Message]()
-
     var messagesdictionary = [String: Message]()
 
     var allMessagesdictionary = [String: [Message]]()
@@ -85,8 +83,6 @@ class MessageManager {
 
                                                         self.talk = Message(text: text, fromID: fromID, toID: toID, timestamp: timestamp)
 
-//                                                        let array = [toID]
-
                                                         self.roomDict[toID] = chatroomID
 
                                                     }
@@ -95,15 +91,9 @@ class MessageManager {
 
                                                         self.talk = Message(text: text, fromID: toID, toID: fromID, timestamp: timestamp)
 
-//                                                        let array = [fromID]
-
                                                         self.roomDict[fromID] = chatroomID
 
                                                     }
-
-                                                    //
-
-//                                                    self.messagesdictionary[toID] = self.talk
 
                                                     self.messagesdictionary[chatroomID] = self.talk
 
@@ -115,16 +105,8 @@ class MessageManager {
 
                                                     })
 
-//                                                    print("++++++++++++++++++", self.messagesdictionary[chatroomID])
-
                                                     self.delegate?.messageManager(self, didGetMessage: self.messages)
 
-//                                                    self.allMessagesdictionary[toID]?.append(self.talk!)
-
-//                                                    self.allMessagesdictionary[toID] = self.talk
-//
-//                                                    self.allMessages = Array(self.allMessagesdictionary.values)
-//
                                                     self.delegate?.messageManager(self, didGetMessagesDict: self.roomDict)
 
                                                 }
@@ -135,7 +117,6 @@ class MessageManager {
 
                                             }
 
-                                            //                                            }
                                         }
 
                                     }, withCancel: nil)
@@ -159,13 +140,13 @@ class MessageManager {
 
     func observeMessages(id: String) {
 
-        print("id??????", id)
-
         let ref = Database.database().reference().child("channels").child(id)
 
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.observe(.value, with: { (snapshot) in
 
             print(snapshot)
+
+            var allMessages = [Message]()
 
             for child in (snapshot.value as? [String: AnyObject])! {
 
@@ -175,78 +156,23 @@ class MessageManager {
 
                         let talk = Message(text: text, fromID: fromID, toID: toID, timestamp: timestamp)
 
-                        print("returnnn", talk)
+                        allMessages.append(talk)
 
-                        self.allMessages.append(talk)
+                        allMessages.sort(by: { (talk1, talk2) -> Bool in
 
-                        print(self.messages)
+                            return talk1.timestamp < talk2.timestamp
 
-                        self.delegate?.messageManager(self, didGetAllMessage: self.allMessages)
+                        })
 
-//                        self.delegate?.messageManager(self, didGetAllMessage allMessages: self.allMessages)
-
-//                        print("back texts::", self.messages)
+                        self.delegate?.messageManager(self, didGetAllMessage: allMessages)
 
                     }
                 }
-
-//                self.messageCount = Int(snapshot.childrenCount)
-
-                //                    print("text",child["text"])
-
-//                    let text = content["text"] as? String, let timestamp = content["timestamp"] as? Int, let fromID = content["fromID"] as? String, let toID = content["toID"] as? String
 
             }
 
         }, withCancel: nil)
 
     }
-
-//    func observeMessages() {
-//
-//        let ref = Database.database().reference()
-//
-//        ref.observe(.childAdded, with: { (snapshot) in
-//
-//            for message in (snapshot.value as? [String: AnyObject])! {
-//
-//                if let dicts = message.value as? [String: Any] {
-//
-//                    if let text = dicts["text"] as? String, let fromID = dicts["fromID"] as? String, let toID = dicts["toID"] as? String, let timestamp = dicts["timestamp"] as? Int {
-//
-//                        let talk = Message(text: text, fromID: fromID, toID: toID, timestamp: timestamp)
-//
-//                        self.messages.append(talk)
-//
-////                        print("talkkk", talk)
-//
-//                        if toID == talk.toID {
-//
-//                            self.messagesdictionary[toID] = talk
-//
-//                            self.messages = Array(self.messagesdictionary.values)
-//
-//                            self.messages.sort(by: { (talk1, talk2) -> Bool in
-//
-//                                return talk1.timestamp.hashValue > talk2.timestamp.hashValue
-//                            })
-//
-//                        }
-//
-//                        self.delegate?.messageManager(self, didGetMessage: self.messages)
-//
-//                    } else {
-//
-//                        print("Message data fetch failed")
-//
-//                    }
-//
-//                }
-//
-//            }
-//
-//        }, withCancel: nil)
-//
-//    }
 
 }

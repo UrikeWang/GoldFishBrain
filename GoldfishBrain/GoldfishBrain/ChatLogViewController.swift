@@ -81,8 +81,6 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func handleSendMessage() {
 
-        var chatsID = [String]()
-
         var istalked = false
 
         var isrun = Int()
@@ -227,27 +225,16 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func messageManager(_ manager: MessageManager, didGetMessage message: [Message]) {
 
-////
-////        print("::::::::::", message)
-////
-////        print("message數量", message.count)
-////
-
     }
 
     func messageManager(_ manager: MessageManager, didGetAllMessage allMessages: [Message]) {
 
         self.allMessages = allMessages
 
-        //        if messageCount != message.count {
-
-        //            messageCount = message.count
-
         DispatchQueue.main.async {
 
             self.chatLogTableView.reloadData()
         }
-        //        }
 
     }
 
@@ -294,61 +281,9 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatLogCell", for: indexPath) as! ChatLogTableViewCell
         //swiftlint:enable force_cast
 
-//        print("????", dict)
-
-        /*
-        if let chatroomID = dict[peopleID] as? String {
-
-            let ref = Database.database().reference().child("channels").child(chatroomID)
-
-            ref.observe(.value, with: { (snapshot) in
-
-                for child in (snapshot.value as? [String: AnyObject])! {
-
-                    print("child!!!!", child)
-
-                    if let dicts = child.value as? [String: Any] {
-
-                        if let text = dicts["text"] as? String, let fromID = dicts["fromID"] as? String, let toID = dicts["toID"] as? String, let timestamp = dicts["timestamp"] as? Int {
-
-                            let talk = Message(text: text, fromID: fromID, toID: toID, timestamp: timestamp)
-
-                            self.messages.append(talk)
-
-                            cell.chatText.text = talk.text
-
-//                            self.delegate?.messageManager(self, didGetMessage: self.messages)
-
-                        }
-                    }
-
-                }
-
-            }, withCancel: nil)
-
-        }
-         */
-
         let message = allMessages[indexPath.row]
 
         cell.chatText.text = message.text
-
-//        if let toID = message.toID as? String {
-//
-//            let ref = Database.database().reference().child("users").child(toID)
-//
-//            ref.observeSingleEvent(of: .value, with: { (snapshot) in
-//
-//                if let dict = snapshot.value as? [String: AnyObject] {
-//
-//                    cell.chatNameText.text = dict["firstName"] as? String
-//                }
-//
-//            }, withCancel: nil)
-//
-//        }
-//
-//        cell.chatText.text = messages[indexPath.row].text
 
         return cell
     }
