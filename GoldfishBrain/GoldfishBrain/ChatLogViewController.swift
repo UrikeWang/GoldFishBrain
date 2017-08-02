@@ -115,14 +115,12 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
                     childTalkRef.child("members").updateChildValues(memValues)
 
                     childTalkTextID.updateChildValues(values)
-                    
+
                     self.messageText.text = ""
 
                     chatsRef.updateChildValues([childTalkRef.key: 1])
 
                     chatsToRef.updateChildValues([childTalkRef.key: 1])
-                    
-                    
 
                 case _ where snapshot.childrenCount > 0 :
 
@@ -150,7 +148,7 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
                                         let values = ["text": self.messageText.text, "fromID": uid, "toID": self.peopleID, "timestamp": timestamp] as [String : Any]
 
                                         channelRef.child(chatroomID).childByAutoId().updateChildValues(values)
-                                        
+
                                         self.messageText.text = ""
                                     }
 
@@ -167,7 +165,7 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
                                     childTalkRef.child("members").updateChildValues(memValues)
 
                                     childTalkTextID.updateChildValues(values)
-                                    
+
                                     self.messageText.text = ""
 
                                     chatsRef.updateChildValues([childTalkRef.key: 1])

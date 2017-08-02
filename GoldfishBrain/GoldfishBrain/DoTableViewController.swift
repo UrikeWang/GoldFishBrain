@@ -8,7 +8,62 @@
 
 import UIKit
 
-class DoTableViewController: UITableViewController {
+class DoTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
+
+    @IBOutlet var popTableView: UITableView!
+
+    @IBAction func addDoButton(_ sender: Any) {
+
+        //swiftlint:disable force_cast
+        let popVC = storyboard?.instantiateViewController(withIdentifier: "popVC") as! AddDoPopViewController
+        //swiftlint:enable force_cast
+
+        popVC.modalPresentationStyle = .popover
+
+        var popOverVC = popVC.popoverPresentationController
+
+        if let popOverVC = popVC.popoverPresentationController {
+
+            //swiftlint:disable force_cast
+            let viewForSource = sender as! UIView
+            //swiftlint:enable force_cast
+
+            popOverVC.sourceView = viewForSource
+
+            // the position of the popover where it's showed
+//            popOverVC.sourceRect = viewForSource.bounds
+
+            // the size you want to display
+            popVC.preferredContentSize = CGSize(width: UIScreen.main.bounds.width, height: 600)
+
+            popOverVC.delegate = self
+
+        }
+
+//        let navigationVC = UINavigationController(rootViewController: popVC)
+
+//        
+//        popVC.preferredContentSize = CGSize(width: UIScreen.main.bounds.width, height: 500)
+//
+//        
+//
+//        
+//
+//        popOverVC?.delegate = self
+//        
+//        //swiftlint:disable force_cast
+//        popOverVC?.barButtonItem = sender as! UIBarButtonItem
+//        //swiftlint:enable force_cast
+
+        self.present(popVC, animated: true, completion: nil)
+
+    }
+
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+
+        return .none
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,23 +84,34 @@ class DoTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
+        if indexPath.row == 0 {
 
-        return cell
+            //swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AddDoCell", for: indexPath) as! AddDoTableViewCell
+            //swiftlint:enable force_cast
+
+            return cell
+
+        } else {
+
+            //swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DoCell", for: indexPath) as! DoTableViewCell
+            //swiftlint:enable force_cast
+
+            return cell
+        }
+
     }
-    
 
     /*
     // Override to support conditional editing of the table view.
