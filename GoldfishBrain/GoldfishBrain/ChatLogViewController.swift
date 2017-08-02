@@ -115,35 +115,27 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
                     childTalkRef.child("members").updateChildValues(memValues)
 
                     childTalkTextID.updateChildValues(values)
+                    
+                    self.messageText.text = ""
 
                     chatsRef.updateChildValues([childTalkRef.key: 1])
 
                     chatsToRef.updateChildValues([childTalkRef.key: 1])
+                    
+                    
 
                 case _ where snapshot.childrenCount > 0 :
 
                     isrun = Int(snapshot.childrenCount)
-
-                    print("init isrun!!!!!!!!!!", isrun)
 
                     for chat in (snapshot.value as? [String: Any])! {
 
                         //channels ID
                         if let chatroomID = chat.key as? String {
 
-                            print("111111111")
-
                             channelRef.observeSingleEvent(of:.value, with: { (dataSnapshot) in
 
-                                print("222222222")
-
-                                print("member?????", dataSnapshot.childSnapshot(forPath: chatroomID).childSnapshot(forPath: "members"))
-
                                 if let member = dataSnapshot.childSnapshot(forPath: chatroomID).childSnapshot(forPath: "members").value as? [String] {
-
-                                    print("member!!!!!!", member)
-
-                                    print("3333333")
 
                                     //swiftlint:disable force_cast
                                     let chatMember1 = member[0]
@@ -151,33 +143,22 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
                                     let chatMember2 = member[1]
                                     //swiftlint:enable force_cast
 
-                                    print(chatMember1, chatMember2)
-
-                                    print(self.peopleID)
-
                                     if (uid == chatMember1 && self.peopleID == chatMember2) || (uid == chatMember2 && self.peopleID == chatMember1) {
 
                                         istalked = true
 
-                                        print("innnnnnnnnnnnnnnnnnnn")
-
                                         let values = ["text": self.messageText.text, "fromID": uid, "toID": self.peopleID, "timestamp": timestamp] as [String : Any]
 
                                         channelRef.child(chatroomID).childByAutoId().updateChildValues(values)
+                                        
+                                        self.messageText.text = ""
                                     }
 
                                     isrun -= 1
 
-                                    print("isrun value", isrun)
-                                    print("istalked", istalked)
-
                                 }
 
-                                print("??????")
-
                                 if istalked == false && isrun == 0 {
-
-                                    print("newwwwwwwwwwwwwwwww")
 
                                     let memValues = ["0": uid, "1": self.peopleID]
 
@@ -186,6 +167,8 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
                                     childTalkRef.child("members").updateChildValues(memValues)
 
                                     childTalkTextID.updateChildValues(values)
+                                    
+                                    self.messageText.text = ""
 
                                     chatsRef.updateChildValues([childTalkRef.key: 1])
 
