@@ -11,8 +11,6 @@ import UIKit
 class DoTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet var popTableView: UITableView!
-    
-    
 
     var darkView: UIView!
 
@@ -75,7 +73,7 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
         darkView.isHidden = true
         
-
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {

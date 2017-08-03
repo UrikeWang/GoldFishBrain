@@ -10,7 +10,7 @@ import UIKit
 
 class AddDoTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var addDoButton: UIButton!
+    @IBOutlet private(set) weak var addDoButton: UIButton!
     
     private func setupAddDoButton() {
     
@@ -18,10 +18,16 @@ class AddDoTableViewCell: UITableViewCell {
         
         addDoButton.layer.borderColor = UIColor.gray.cgColor
         
+        addDoButton.layer.borderWidth = 1
+        
+        addDoButton.setTitle("Add 『 Do 』", for: .normal)
+
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        setupAddDoButton()
         // Initialization code
     }
 

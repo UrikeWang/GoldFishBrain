@@ -8,12 +8,17 @@
 
 import UIKit
 import GoogleMaps
+import GooglePlaces
 
 class AddDoPopViewController: UIViewController {
 
     @IBOutlet weak var mapView: GMSMapView!
 
-//    var darkView: UIView!
+    var locationManager = CLLocationManager()
+    
+    var currentLocation: CLLocation?
+    
+    var placesClient: GMSPlacesClient!
 
     @IBAction func popoverDone(_ sender: UIButton) {
 
@@ -24,12 +29,26 @@ class AddDoPopViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Initialize the location manager
+        locationManager = CLLocationManager()
+        
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        locationManager.requestAlwaysAuthorization()
+        
+        locationManager.distanceFilter = 50
+        
+        locationManager.startUpdatingLocation()
+        
+        locationManager.delegate = self
+        
+        //Initialize the GMSPlacesClient
+        placesClient = GMSPlacesClient.shared()
 
-        view.layer.shadowOffset = CGSize(width: -1, height: 1)
-
-//        view.layer.shadowOffset = CGSize(width: 10, height: 10)
-
-        view.layer.shadowColor = UIColor.black.cgColor
+//        view.layer.shadowOffset = CGSize(width: -1, height: 1)
+//
+//        view.layer.shadowColor = UIColor.black.cgColor
 
         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
 
