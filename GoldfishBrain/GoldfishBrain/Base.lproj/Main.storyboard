@@ -545,7 +545,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="rightChatText" destination="55b-PS-KAL" id="MLK-tf-6GH"/>
+                                            <outlet property="rightChatText" destination="55b-PS-KAL" id="8FX-xf-K8o"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LeftChatLogCell" rowHeight="67" id="02z-6N-Vsg" userLabel="Left ChatLogCell" customClass="LeftChatLogTableViewCell" customModule="GoldfishBrain" customModuleProvider="target">

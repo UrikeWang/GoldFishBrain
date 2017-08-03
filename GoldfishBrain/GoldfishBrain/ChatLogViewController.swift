@@ -8,7 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
-import JSQMessagesViewController
+//import JSQMessagesViewController
 
 class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, messageManagerDelegate {
 
