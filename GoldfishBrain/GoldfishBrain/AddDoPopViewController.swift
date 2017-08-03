@@ -15,9 +15,9 @@ class AddDoPopViewController: UIViewController {
     @IBOutlet weak var mapView: GMSMapView!
 
     var locationManager = CLLocationManager()
-    
+
     var currentLocation: CLLocation?
-    
+
     var placesClient: GMSPlacesClient!
 
     @IBAction func popoverDone(_ sender: UIButton) {
@@ -27,58 +27,75 @@ class AddDoPopViewController: UIViewController {
 //        darkView.isHidden = true
     }
 
+    func nearbyPlaces() {
+
+        placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
+            if let error = error {
+                print("Pick Place error: \(error.localizedDescription)")
+                return
+            }
+
+            if let placeLikelihoodList = placeLikelihoodList {
+
+                for likelihood in placeLikelihoodList.likelihoods {
+
+                    let place = likelihood.place
+                    print("Current Place name \(place.name) at likelihood \(likelihood.likelihood)")
+                    //                    print("Current Place address \(place.formattedAddress)")
+                    //                    print("Current Place attributions \(place.attributions)")
+                    //                    print("Current PlaceID \(place.placeID)")
+                }
+            }
+        })
+
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         //Initialize the location manager
         locationManager = CLLocationManager()
-        
+
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
-        locationManager.requestAlwaysAuthorization()
-        
+
+//        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+
         locationManager.distanceFilter = 50
-        
+
         locationManager.startUpdatingLocation()
-        
+
         locationManager.delegate = self
-        
+
+        locationManager.requestLocation()
+
         //Initialize the GMSPlacesClient
         placesClient = GMSPlacesClient.shared()
 
-//        view.layer.shadowOffset = CGSize(width: -1, height: 1)
+        self.nearbyPlaces()
+
+//        let camera = GMSCameraPosition.camera(withLatitude: (currentLocation?.coordinate.latitude)!, longitude: (currentLocation?.coordinate.longitude)!, zoom: 6.0)
+
 //
-//        view.layer.shadowColor = UIColor.black.cgColor
+//        self.mapView.camera = camera
+//        
 
-        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
+//        // Creates a marker in the center of the map.
+//        let marker = GMSMarker()
+//
+//        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
+//
+//        marker.title = "Sydney"
+//
+//        marker.snippet = "Australia"
+//
+//        marker.map = mapView
 
-        self.mapView.isMyLocationEnabled = true
-
-        self.mapView.camera = camera
-
-//        mapView.isMyLocationEnabled = true
-//        view = mapView
-
-        // Creates a marker in the center of the map.
-        let marker = GMSMarker()
-
-        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
-
-        marker.title = "Sydney"
-
-        marker.snippet = "Australia"
-
-        //swiftlint:disable force_cast
-        marker.map = mapView
-
-        // Do any additional setup after loading the view.
-
-//        self.view.addSubview(mapView!)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
     }
 
     /*

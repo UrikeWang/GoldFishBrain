@@ -40,7 +40,7 @@ class FriendTableViewController: UITableViewController, chatRoomManagerDelegate 
         chatRoomManager.fetchPeople()
 
         friendTableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        
+
     }
 
     override func didReceiveMemoryWarning() {

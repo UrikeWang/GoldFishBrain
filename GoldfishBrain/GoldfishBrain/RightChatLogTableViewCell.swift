@@ -9,7 +9,7 @@
 import UIKit
 
 class RightChatLogTableViewCell: UITableViewCell {
-    
+
     @IBOutlet weak var rightChatText: UILabel!
 
     override func awakeFromNib() {

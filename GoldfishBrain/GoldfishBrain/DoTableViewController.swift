@@ -14,50 +14,6 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
     var darkView: UIView!
 
-    @IBAction func addDoButton(_ sender: Any) {
-
-//       self.view.addSubview(darkView)
-
-        darkView.isHidden = false
-
-        //swiftlint:disable force_cast
-        let popVC = storyboard?.instantiateViewController(withIdentifier: "popVC") as! AddDoPopViewController
-        //swiftlint:enable force_cast
-
-        popVC.modalPresentationStyle = .popover
-
-        var popOverVC = popVC.popoverPresentationController
-
-        if let popOverVC = popVC.popoverPresentationController {
-
-            //swiftlint:disable force_cast
-            let viewForSource = sender as! UIButton
-            //swiftlint:enable force_cast
-
-            popOverVC.sourceView = viewForSource
-
-            popVC.preferredContentSize = CGSize(width: UIScreen.main.bounds.width, height: 600)
-
-            popOverVC.delegate = self
-
-            /*把原本按鈕隱藏
-            viewForSource.alpha = 0.0
-            viewForSource.layer.cornerRadius = 5
-            viewForSource.layer.borderWidth = 2
-            */
-
-        }
-
-        self.present(popVC, animated: true, completion: nil)
-
-    }
-
-    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-
-        return .none
-
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -72,8 +28,7 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 //        self.view.addSubview(darkView)
 
         darkView.isHidden = true
-        
-        
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
