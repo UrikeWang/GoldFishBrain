@@ -11,6 +11,8 @@ import UIKit
 class DoTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet var popTableView: UITableView!
+    
+    
 
     var darkView: UIView!
 
@@ -72,6 +74,7 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 //        self.view.addSubview(darkView)
 
         darkView.isHidden = true
+        
 
     }
 

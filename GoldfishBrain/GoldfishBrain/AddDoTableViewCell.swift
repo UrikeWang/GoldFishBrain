@@ -11,6 +11,14 @@ import UIKit
 class AddDoTableViewCell: UITableViewCell {
 
     @IBOutlet weak var addDoButton: UIButton!
+    
+    private func setupAddDoButton() {
+    
+        addDoButton.layer.cornerRadius = 3
+        
+        addDoButton.layer.borderColor = UIColor.gray.cgColor
+        
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

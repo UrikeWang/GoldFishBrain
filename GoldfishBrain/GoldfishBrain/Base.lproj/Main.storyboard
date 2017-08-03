@@ -248,7 +248,6 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ytf-Vg-Fae">
                                             <rect key="frame" x="38" y="28" width="299" height="159.5"/>
-                                            <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" title="ADD"/>
                                             <connections>
                                                 <action selector="addDoButton:" destination="Y6y-gz-K84" eventType="touchUpInside" id="NnW-Q8-nsa"/>
@@ -413,16 +412,16 @@
         <scene sceneID="Xd9-ZS-D8Y">
             <objects>
                 <tableViewController id="5YI-se-43O" customClass="ChatRoomTableViewController" customModule="GoldfishBrain" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="76" sectionHeaderHeight="28" sectionFooterHeight="28" id="pFZ-7m-0gJ">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="pFZ-7m-0gJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PeopleCell" rowHeight="76" id="vkF-Rj-D3M" customClass="PeopleTableViewCell" customModule="GoldfishBrain" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="76"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PeopleCell" rowHeight="90" id="vkF-Rj-D3M" customClass="PeopleTableViewCell" customModule="GoldfishBrain" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vkF-Rj-D3M" id="tL8-gq-Xdg">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="75.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dbe-GF-HkX">
@@ -507,7 +506,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F5y-Al-6Pg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5868" y="1738"/>
+            <point key="canvasLocation" x="5868" y="1737.481259370315"/>
         </scene>
         <!--Chat Log View Controller-->
         <scene sceneID="FeP-kD-AYX">
@@ -799,16 +798,16 @@
         <scene sceneID="XZG-QX-uVr">
             <objects>
                 <tableViewController id="Nzz-g7-mWo" customClass="FriendTableViewController" customModule="GoldfishBrain" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="111" sectionHeaderHeight="28" sectionFooterHeight="28" id="577-jJ-6Kr">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="94" sectionHeaderHeight="28" sectionFooterHeight="28" id="577-jJ-6Kr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="111" id="0v1-C0-asL" customClass="FriendTableViewCell" customModule="GoldfishBrain" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="111"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="94" id="0v1-C0-asL" customClass="FriendTableViewCell" customModule="GoldfishBrain" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="94"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0v1-C0-asL" id="OSW-e7-h5f">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="110.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C32-gO-kkz">
@@ -868,7 +867,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bC7-ZY-bYt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6862" y="997"/>
+            <point key="canvasLocation" x="6861.6000000000004" y="996.25187406296857"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BfO-pI-Atb">
@@ -890,6 +889,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="YcT-13-zxj"/>
+        <segue reference="GOw-hA-LLG"/>
     </inferredMetricsTieBreakers>
 </document>
