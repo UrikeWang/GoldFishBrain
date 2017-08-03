@@ -32,7 +32,12 @@
 		6E28477D1F2C81B3002269EC /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E28477C1F2C81B3002269EC /* FriendTableViewCell.swift */; };
 		6E28477F1F2C81C4002269EC /* FriendTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E28477E1F2C81C4002269EC /* FriendTableViewController.swift */; };
 		6E9861C81F31D78200EFEFCB /* DoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9861C71F31D78200EFEFCB /* DoTableViewController.swift */; };
-		6E996A6E1F32ED1E0097BA4C /* RightChatLogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E996A6D1F32ED1E0097BA4C /* RightChatLogTableViewCell.swift */; };
+
+
+		6E9861CA1F31DCA500EFEFCB /* AddDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9861C91F31DCA500EFEFCB /* AddDoTableViewCell.swift */; };
+		6E9861CC1F31F3DF00EFEFCB /* AddDoPopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9861CB1F31F3DF00EFEFCB /* AddDoPopViewController.swift */; };
+		6E9861CE1F31FEEA00EFEFCB /* DoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9861CD1F31FEEA00EFEFCB /* DoTableViewCell.swift */; };
+		6E996A6C1F32E3570097BA4C /* AddDoPopViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E996A6B1F32E3570097BA4C /* AddDoPopViewController+extension.swift */; };
 		FFBC8AE4A54DF4160D000502 /* Pods_GoldfishBrain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD6F5239A0716745520ED04 /* Pods_GoldfishBrain.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +70,10 @@
 		6E28477C1F2C81B3002269EC /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		6E28477E1F2C81C4002269EC /* FriendTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewController.swift; sourceTree = "<group>"; };
 		6E9861C71F31D78200EFEFCB /* DoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoTableViewController.swift; sourceTree = "<group>"; };
-		6E996A6D1F32ED1E0097BA4C /* RightChatLogTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightChatLogTableViewCell.swift; sourceTree = "<group>"; };
+		6E9861C91F31DCA500EFEFCB /* AddDoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDoTableViewCell.swift; sourceTree = "<group>"; };
+		6E9861CB1F31F3DF00EFEFCB /* AddDoPopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDoPopViewController.swift; sourceTree = "<group>"; };
+		6E9861CD1F31FEEA00EFEFCB /* DoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoTableViewCell.swift; sourceTree = "<group>"; };
+		6E996A6B1F32E3570097BA4C /* AddDoPopViewController+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AddDoPopViewController+extension.swift"; sourceTree = "<group>"; };
 		9AD6F5239A0716745520ED04 /* Pods_GoldfishBrain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoldfishBrain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C575D91E4BBDC71746F58638 /* Pods-GoldfishBrain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoldfishBrain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoldfishBrain/Pods-GoldfishBrain.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				6E28471E1F27343F002269EC /* Main.storyboard */,
+				6E9861CB1F31F3DF00EFEFCB /* AddDoPopViewController.swift */,
+				6E996A6B1F32E3570097BA4C /* AddDoPopViewController+extension.swift */,
 				6E9861C61F31D76800EFEFCB /* Do */,
 				6E28473E1F288276002269EC /* Register */,
 				6E2847371F2864B5002269EC /* Profile */,
@@ -178,6 +188,8 @@
 			isa = PBXGroup;
 			children = (
 				6E9861C71F31D78200EFEFCB /* DoTableViewController.swift */,
+				6E9861C91F31DCA500EFEFCB /* AddDoTableViewCell.swift */,
+				6E9861CD1F31FEEA00EFEFCB /* DoTableViewCell.swift */,
 			);
 			name = Do;
 			sourceTree = "<group>";
@@ -351,15 +363,19 @@
 				6E9861C81F31D78200EFEFCB /* DoTableViewController.swift in Sources */,
 				6E2847481F29C254002269EC /* ProfileTableViewController+extension.swift in Sources */,
 				6E28477B1F2B3E77002269EC /* MessageManager.swift in Sources */,
+				6E9861CC1F31F3DF00EFEFCB /* AddDoPopViewController.swift in Sources */,
 				6E28473B1F287358002269EC /* Profile.swift in Sources */,
+				6E9861CE1F31FEEA00EFEFCB /* DoTableViewCell.swift in Sources */,
 				6E28471D1F27343F002269EC /* LoginViewController.swift in Sources */,
 				6E28474C1F2A2B86002269EC /* LeftChatLogTableViewCell.swift in Sources */,
 				6E28474A1F29E6AE002269EC /* extension.swift in Sources */,
+				6E996A6C1F32E3570097BA4C /* AddDoPopViewController+extension.swift in Sources */,
 				6E2847421F288E7B002269EC /* ChatRoomManager.swift in Sources */,
 				6E28471B1F27343F002269EC /* AppDelegate.swift in Sources */,
 				6E28473D1F287645002269EC /* ProfileTableViewController.swift in Sources */,
 				6E996A6E1F32ED1E0097BA4C /* RightChatLogTableViewCell.swift in Sources */,
 				6E28477D1F2C81B3002269EC /* FriendTableViewCell.swift in Sources */,
+				6E9861CA1F31DCA500EFEFCB /* AddDoTableViewCell.swift in Sources */,
 				6E2847321F273BB3002269EC /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

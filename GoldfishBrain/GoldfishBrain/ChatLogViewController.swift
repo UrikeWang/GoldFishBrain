@@ -83,6 +83,8 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        messageManager.observeMessages()
 
         messageManager.observeUserMessages()
+        
+        chatLogTableView.separatorStyle = UITableViewCellSeparatorStyle.none
 
 //        setupBubbles()
 
