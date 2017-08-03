@@ -144,7 +144,7 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
                             channelRef.observeSingleEvent(of:.value, with: { (dataSnapshot) in
 
-                                if let member = dataSnapshot.childSnapshot(forPath: chatroomID).childSnapshot(forPath: "members").value as? [String] {
+                                if let member = dataSnapshot.childSnapshot(forPath: chatroomID).childSnapshot(forPath: "members").value as? [Int: String] {
 
                                     //swiftlint:disable force_cast
                                     let chatMember1 = member[0]

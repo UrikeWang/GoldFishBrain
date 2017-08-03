@@ -8,10 +8,51 @@
 
 import UIKit
 
-class CreateDoViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+class CreateDoViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITextFieldDelegate {
 
-    @IBAction func dateText(_ sender: Any) {
+    @IBOutlet weak var dateText: UITextField!
 
+    @IBOutlet weak var timeText: UITextField!
+
+    let dateTimeFormatter = DateFormatter()
+
+    var datePicker = UIDatePicker()
+
+    @IBAction func dateText(_ sender: UITextField) {
+
+        let datePickerView: UIDatePicker = UIDatePicker()
+
+        datePickerView.datePickerMode = UIDatePickerMode.date
+
+        // 設置 UIDatePicker 格式
+        datePickerView.datePickerMode = .dateAndTime
+
+        // 選取時間時的分鐘間隔 這邊以 5 分鐘為一個間隔
+        datePickerView.minuteInterval = 5
+
+        datePickerView.date = Date()
+
+        datePicker.locale = Locale(identifier: "zh_TW")
+
+        // Creates the toolbar
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor(red: 92/255, green: 216/255, blue: 255/255, alpha: 1)
+        toolBar.sizeToFit()
+
+        // Adds the buttons
+
+        var doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(CreateDoViewController.donePressed))
+        var spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        var cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: "cancelClick")
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+
+        sender.inputView = datePickerView
+        sender.inputAccessoryView = toolBar
+
+        datePickerView.addTarget(self, action: #selector(CreateDoViewController.datePickerValueChanged), for: UIControlEvents.valueChanged)
     }
 
     @IBAction func destinationText(_ sender: Any) {
@@ -53,6 +94,29 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     }
 
+    func donePressed(_ sender: UIBarButtonItem) {
+
+        dateText.resignFirstResponder()
+
+    }
+
+    func datePickerValueChanged(_ sender: UIDatePicker) {
+
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+
+        dateText.text = dateFormatter.string(from: sender.date)
+
+//        dateText.resignFirstResponder()
+
+    }
+
+    func cancelClick() {
+
+        dateText.resignFirstResponder()
+    }
+
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
 
         return .none
@@ -70,6 +134,10 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        dateText.placeholder = "add time.."
+
+        self.dateText.delegate = self
 
     }
 
