@@ -27,8 +27,7 @@ class RegisterViewController: UIViewController {
         }
 
         //當新的註冊者使用重複的email，會被firebase阻止登入
-        Auth.auth().createUser(withEmail: email, password: password, completion: {
-            (user: User?, error) in
+        Auth.auth().createUser(withEmail: email, password: password, completion: {(user: User?, error) in
 
             if error != nil {
                 print("錯誤訊息:", error)
@@ -46,10 +45,9 @@ class RegisterViewController: UIViewController {
             //建立firebase的巢狀結構
             let userReference = ref.child("users").child(uid)
 
-            let values = ["firstName": firstName, "lastName": lastName, "email": email, "password": password, "profileImageURL": 0] as [String : Any]
+            let values = ["firstName": firstName, "lastName": lastName, "email": email, "password": password, "profileImageURL": "https://firebasestorage.googleapis.com/v0/b/goldfishbrain-e2684.appspot.com/o/05c1348a7d53f02a1cc861f01d21878e-600x400.jpg?alt=media&token=0375102f-9417-466c-b957-74ac60dd91dc"] as [String : Any]
 
-            userReference.updateChildValues(values, withCompletionBlock: {
-                (err, _) in
+            userReference.updateChildValues(values, withCompletionBlock: {(err, _) in
 
                 if err != nil {
 

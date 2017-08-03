@@ -24,8 +24,15 @@
 		6E2847461F28A6FB002269EC /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2847451F28A6FB002269EC /* Person.swift */; };
 		6E2847481F29C254002269EC /* ProfileTableViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2847471F29C254002269EC /* ProfileTableViewController+extension.swift */; };
 		6E28474A1F29E6AE002269EC /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2847491F29E6AE002269EC /* extension.swift */; };
-		6E28474C1F2A2B86002269EC /* ChatLogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E28474B1F2A2B86002269EC /* ChatLogTableViewCell.swift */; };
+		6E28474C1F2A2B86002269EC /* LeftChatLogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E28474B1F2A2B86002269EC /* LeftChatLogTableViewCell.swift */; };
 		6E2847541F2A5040002269EC /* ChatLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2847531F2A5040002269EC /* ChatLogViewController.swift */; };
+		6E2847771F2B1616002269EC /* StyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2847761F2B1616002269EC /* StyleGuide.swift */; };
+		6E2847791F2B3D67002269EC /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2847781F2B3D67002269EC /* Message.swift */; };
+		6E28477B1F2B3E77002269EC /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E28477A1F2B3E77002269EC /* MessageManager.swift */; };
+		6E28477D1F2C81B3002269EC /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E28477C1F2C81B3002269EC /* FriendTableViewCell.swift */; };
+		6E28477F1F2C81C4002269EC /* FriendTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E28477E1F2C81C4002269EC /* FriendTableViewController.swift */; };
+		6E9861C81F31D78200EFEFCB /* DoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9861C71F31D78200EFEFCB /* DoTableViewController.swift */; };
+		6E996A6E1F32ED1E0097BA4C /* RightChatLogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E996A6D1F32ED1E0097BA4C /* RightChatLogTableViewCell.swift */; };
 		FFBC8AE4A54DF4160D000502 /* Pods_GoldfishBrain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD6F5239A0716745520ED04 /* Pods_GoldfishBrain.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,8 +57,15 @@
 		6E2847451F28A6FB002269EC /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		6E2847471F29C254002269EC /* ProfileTableViewController+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProfileTableViewController+extension.swift"; sourceTree = "<group>"; };
 		6E2847491F29E6AE002269EC /* extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
-		6E28474B1F2A2B86002269EC /* ChatLogTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogTableViewCell.swift; sourceTree = "<group>"; };
+		6E28474B1F2A2B86002269EC /* LeftChatLogTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftChatLogTableViewCell.swift; sourceTree = "<group>"; };
 		6E2847531F2A5040002269EC /* ChatLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogViewController.swift; sourceTree = "<group>"; };
+		6E2847761F2B1616002269EC /* StyleGuide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
+		6E2847781F2B3D67002269EC /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		6E28477A1F2B3E77002269EC /* MessageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
+		6E28477C1F2C81B3002269EC /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
+		6E28477E1F2C81C4002269EC /* FriendTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewController.swift; sourceTree = "<group>"; };
+		6E9861C71F31D78200EFEFCB /* DoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoTableViewController.swift; sourceTree = "<group>"; };
+		6E996A6D1F32ED1E0097BA4C /* RightChatLogTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightChatLogTableViewCell.swift; sourceTree = "<group>"; };
 		9AD6F5239A0716745520ED04 /* Pods_GoldfishBrain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoldfishBrain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C575D91E4BBDC71746F58638 /* Pods-GoldfishBrain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoldfishBrain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoldfishBrain/Pods-GoldfishBrain.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,11 +104,13 @@
 			isa = PBXGroup;
 			children = (
 				6E28471E1F27343F002269EC /* Main.storyboard */,
+				6E9861C61F31D76800EFEFCB /* Do */,
 				6E28473E1F288276002269EC /* Register */,
 				6E2847371F2864B5002269EC /* Profile */,
 				6E2847361F27812E002269EC /* ChatRoom */,
 				6E28471A1F27343F002269EC /* AppDelegate.swift */,
 				6E2847491F29E6AE002269EC /* extension.swift */,
+				6E2847761F2B1616002269EC /* StyleGuide.swift */,
 				6E28471C1F27343F002269EC /* LoginViewController.swift */,
 				6E2847241F27343F002269EC /* Assets.xcassets */,
 				6E2847261F27343F002269EC /* LaunchScreen.storyboard */,
@@ -108,10 +124,11 @@
 		6E2847361F27812E002269EC /* ChatRoom */ = {
 			isa = PBXGroup;
 			children = (
-				6E2847341F278128002269EC /* ChatRoomTableViewController.swift */,
-				6E2847531F2A5040002269EC /* ChatLogViewController.swift */,
+				6E9861C51F31D56600EFEFCB /* FriendList */,
+				6E9861C41F31D53400EFEFCB /* ChatRoomLog */,
+				6E28477A1F2B3E77002269EC /* MessageManager.swift */,
+				6E2847781F2B3D67002269EC /* Message.swift */,
 				6E2847411F288E7B002269EC /* ChatRoomManager.swift */,
-				6E28474B1F2A2B86002269EC /* ChatLogTableViewCell.swift */,
 				6E2847451F28A6FB002269EC /* Person.swift */,
 				6E28473F1F28881C002269EC /* PeopleTableViewCell.swift */,
 			);
@@ -135,6 +152,34 @@
 				6E2847311F273BB3002269EC /* RegisterViewController.swift */,
 			);
 			name = Register;
+			sourceTree = "<group>";
+		};
+		6E9861C41F31D53400EFEFCB /* ChatRoomLog */ = {
+			isa = PBXGroup;
+			children = (
+				6E2847531F2A5040002269EC /* ChatLogViewController.swift */,
+				6E28474B1F2A2B86002269EC /* LeftChatLogTableViewCell.swift */,
+				6E996A6D1F32ED1E0097BA4C /* RightChatLogTableViewCell.swift */,
+				6E2847341F278128002269EC /* ChatRoomTableViewController.swift */,
+				6E28477E1F2C81C4002269EC /* FriendTableViewController.swift */,
+			);
+			name = ChatRoomLog;
+			sourceTree = "<group>";
+		};
+		6E9861C51F31D56600EFEFCB /* FriendList */ = {
+			isa = PBXGroup;
+			children = (
+				6E28477C1F2C81B3002269EC /* FriendTableViewCell.swift */,
+			);
+			name = FriendList;
+			sourceTree = "<group>";
+		};
+		6E9861C61F31D76800EFEFCB /* Do */ = {
+			isa = PBXGroup;
+			children = (
+				6E9861C71F31D78200EFEFCB /* DoTableViewController.swift */,
+			);
+			name = Do;
 			sourceTree = "<group>";
 		};
 		A563013A9E89B9809BE57A38 /* Pods */ = {
@@ -190,6 +235,7 @@
 				TargetAttributes = {
 					6E2847161F27343F002269EC = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 2QFPTG9564;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -294,19 +340,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E2847541F2A5040002269EC /* ChatLogViewController.swift in Sources */,
+				6E28477F1F2C81C4002269EC /* FriendTableViewController.swift in Sources */,
 				6E2847231F27343F002269EC /* GoldfishBrain.xcdatamodeld in Sources */,
 				6E2847391F28722A002269EC /* ProfileManager.swift in Sources */,
+				6E2847791F2B3D67002269EC /* Message.swift in Sources */,
 				6E2847401F28881C002269EC /* PeopleTableViewCell.swift in Sources */,
 				6E2847351F278128002269EC /* ChatRoomTableViewController.swift in Sources */,
+				6E2847771F2B1616002269EC /* StyleGuide.swift in Sources */,
 				6E2847461F28A6FB002269EC /* Person.swift in Sources */,
+				6E9861C81F31D78200EFEFCB /* DoTableViewController.swift in Sources */,
 				6E2847481F29C254002269EC /* ProfileTableViewController+extension.swift in Sources */,
+				6E28477B1F2B3E77002269EC /* MessageManager.swift in Sources */,
 				6E28473B1F287358002269EC /* Profile.swift in Sources */,
 				6E28471D1F27343F002269EC /* LoginViewController.swift in Sources */,
-				6E28474C1F2A2B86002269EC /* ChatLogTableViewCell.swift in Sources */,
+				6E28474C1F2A2B86002269EC /* LeftChatLogTableViewCell.swift in Sources */,
 				6E28474A1F29E6AE002269EC /* extension.swift in Sources */,
 				6E2847421F288E7B002269EC /* ChatRoomManager.swift in Sources */,
 				6E28471B1F27343F002269EC /* AppDelegate.swift in Sources */,
 				6E28473D1F287645002269EC /* ProfileTableViewController.swift in Sources */,
+				6E996A6E1F32ED1E0097BA4C /* RightChatLogTableViewCell.swift in Sources */,
+				6E28477D1F2C81B3002269EC /* FriendTableViewCell.swift in Sources */,
 				6E2847321F273BB3002269EC /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,7 +427,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -419,7 +472,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -433,6 +486,7 @@
 			baseConfigurationReference = C575D91E4BBDC71746F58638 /* Pods-GoldfishBrain.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2QFPTG9564;
 				INFOPLIST_FILE = GoldfishBrain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = swift.GoldfishBrain;
@@ -446,6 +500,7 @@
 			baseConfigurationReference = 06E4DE41735E1EF4B5078D95 /* Pods-GoldfishBrain.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2QFPTG9564;
 				INFOPLIST_FILE = GoldfishBrain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = swift.GoldfishBrain;

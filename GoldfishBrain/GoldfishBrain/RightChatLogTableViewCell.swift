@@ -1,14 +1,16 @@
 //
-//  ChatLogTableViewCell.swift
+//  RightChatLogTableViewCell.swift
 //  GoldfishBrain
 //
-//  Created by yuling on 2017/7/27.
+//  Created by yuling on 2017/8/3.
 //  Copyright © 2017年 yuling. All rights reserved.
 //
 
 import UIKit
 
-class ChatLogTableViewCell: UITableViewCell {
+class RightChatLogTableViewCell: UITableViewCell {
+
+    @IBOutlet weak var rightChatText: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
