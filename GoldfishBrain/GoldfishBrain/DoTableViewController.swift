@@ -12,7 +12,13 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
     @IBOutlet var popTableView: UITableView!
 
+    var darkView: UIView!
+
     @IBAction func addDoButton(_ sender: Any) {
+
+//       self.view.addSubview(darkView)
+
+        darkView.isHidden = false
 
         //swiftlint:disable force_cast
         let popVC = storyboard?.instantiateViewController(withIdentifier: "popVC") as! AddDoPopViewController
@@ -25,35 +31,22 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
         if let popOverVC = popVC.popoverPresentationController {
 
             //swiftlint:disable force_cast
-            let viewForSource = sender as! UIView
+            let viewForSource = sender as! UIButton
             //swiftlint:enable force_cast
 
             popOverVC.sourceView = viewForSource
 
-            // the position of the popover where it's showed
-//            popOverVC.sourceRect = viewForSource.bounds
-
-            // the size you want to display
             popVC.preferredContentSize = CGSize(width: UIScreen.main.bounds.width, height: 600)
 
             popOverVC.delegate = self
 
+            /*把原本按鈕隱藏
+            viewForSource.alpha = 0.0
+            viewForSource.layer.cornerRadius = 5
+            viewForSource.layer.borderWidth = 2
+            */
+
         }
-
-//        let navigationVC = UINavigationController(rootViewController: popVC)
-
-//        
-//        popVC.preferredContentSize = CGSize(width: UIScreen.main.bounds.width, height: 500)
-//
-//        
-//
-//        
-//
-//        popOverVC?.delegate = self
-//        
-//        //swiftlint:disable force_cast
-//        popOverVC?.barButtonItem = sender as! UIBarButtonItem
-//        //swiftlint:enable force_cast
 
         self.present(popVC, animated: true, completion: nil)
 
@@ -68,11 +61,25 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        darkView = UIView()
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        darkView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+
+        darkView.backgroundColor = UIColor(red: 0 / 255.0, green: 0 / 255.0, blue: 0 / 255.0, alpha: 0.5) // 设置半透明颜色
+
+        darkView.isUserInteractionEnabled = true // 打开用户交互
+
+//        self.view.addSubview(darkView)
+
+        darkView.isHidden = true
+
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+
+        super.viewWillAppear(animated) // No need for semicolon
+
+        darkView.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {

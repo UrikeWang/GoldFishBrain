@@ -108,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				6E28471E1F27343F002269EC /* Main.storyboard */,
+				6E9861CB1F31F3DF00EFEFCB /* AddDoPopViewController.swift */,
 				6E9861C61F31D76800EFEFCB /* Do */,
 				6E28473E1F288276002269EC /* Register */,
 				6E2847371F2864B5002269EC /* Profile */,
@@ -181,7 +182,6 @@
 			isa = PBXGroup;
 			children = (
 				6E9861C71F31D78200EFEFCB /* DoTableViewController.swift */,
-				6E9861CB1F31F3DF00EFEFCB /* AddDoPopViewController.swift */,
 				6E9861C91F31DCA500EFEFCB /* AddDoTableViewCell.swift */,
 				6E9861CD1F31FEEA00EFEFCB /* DoTableViewCell.swift */,
 			);

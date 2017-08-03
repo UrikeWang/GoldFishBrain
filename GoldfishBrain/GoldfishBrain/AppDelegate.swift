@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Firebase
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -37,6 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        print("somebody have logged in", UserDefaults.standard.value(forKey:"uid"))
 
         FirebaseApp.configure()
+
+        GMSServices.provideAPIKey("AIzaSyCkCP7Fmu2QLKMhavYJHlC64ZhiKF6lSuo")
 
         return true
     }
