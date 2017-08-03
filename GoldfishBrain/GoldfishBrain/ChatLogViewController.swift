@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import JSQMessagesViewController
 
 class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, messageManagerDelegate {
 
@@ -21,6 +22,10 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     var allMessages: [Message] = []
 
+//    var outgoingBubbleImageView: JSQMessagesBubbleImage!
+//    
+//    var incomingBubbleImageView: JSQMessagesBubbleImage!
+
     var dict = [String: String]()
 
     var messageCount = 0
@@ -29,7 +34,7 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     var getChatroomID = false
 
-    var textArray = [Message]()
+//    var textArray = [Message]()
 
     @IBOutlet weak var sendMessageView: UIView!
 
@@ -50,7 +55,9 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
         peopleFirstName = ""
     }
 
-    let uid = UserDefaults.standard.value(forKey: "uid")!
+    //swiftlint:disable force_cast
+    let uid = UserDefaults.standard.value(forKey: "uid") as! String
+    //swiftlint:enable force_cast
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +83,8 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        messageManager.observeMessages()
 
         messageManager.observeUserMessages()
+
+//        setupBubbles()
 
     }
 
@@ -115,14 +124,12 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
                     childTalkRef.child("members").updateChildValues(memValues)
 
                     childTalkTextID.updateChildValues(values)
-                    
+
                     self.messageText.text = ""
 
                     chatsRef.updateChildValues([childTalkRef.key: 1])
 
                     chatsToRef.updateChildValues([childTalkRef.key: 1])
-                    
-                    
 
                 case _ where snapshot.childrenCount > 0 :
 
@@ -150,7 +157,7 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
                                         let values = ["text": self.messageText.text, "fromID": uid, "toID": self.peopleID, "timestamp": timestamp] as [String : Any]
 
                                         channelRef.child(chatroomID).childByAutoId().updateChildValues(values)
-                                        
+
                                         self.messageText.text = ""
                                     }
 
@@ -167,7 +174,7 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
                                     childTalkRef.child("members").updateChildValues(memValues)
 
                                     childTalkTextID.updateChildValues(values)
-                                    
+
                                     self.messageText.text = ""
 
                                     chatsRef.updateChildValues([childTalkRef.key: 1])
@@ -214,6 +221,8 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         self.allMessages = allMessages
 
+        print("message:", self.allMessages)
+
         DispatchQueue.main.async {
 
             self.chatLogTableView.reloadData()
@@ -232,7 +241,7 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
             print("ID::", peopleID, chatroomID)
 
             if getChatroomID == false {
-//
+
                 getChatroomID = true
 
                 messageManager.observeMessages(id: chatroomID)
@@ -260,15 +269,30 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        //swiftlint:disable force_cast
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatLogCell", for: indexPath) as! ChatLogTableViewCell
-        //swiftlint:enable force_cast
-
         let message = allMessages[indexPath.row]
 
-        cell.chatText.text = message.text
+        if message.fromID == uid {
 
-        return cell
+            //swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RightChatLogCell", for: indexPath) as! RightChatLogTableViewCell
+            //swiftlint:enable force_cast
+
+            cell.rightChatText.text = message.text
+
+            return cell
+
+        } else {
+
+            //swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LeftChatLogCell", for: indexPath) as! LeftChatLogTableViewCell
+            //swiftlint:enable force_cast
+
+            cell.leftChatText.text = message.text
+
+            return cell
+
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
