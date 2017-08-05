@@ -37,10 +37,31 @@ extension AddDoPopViewController: CLLocationManagerDelegate {
 
             marker.position = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
 
+            marker.title = "Here you are"
+
+            routePoints["Start"] = [location.coordinate.latitude, location.coordinate.longitude]
+
+//            print("points", routePoints)
+
             marker.map = mapView
 
             // 8
 //            locationManager.stopUpdatingLocation()
+
+//            // Create request
+//            let request = MKDirectionsRequest()
+//            request.source = sourceMapItem
+//            request.destination = destinationMapItem
+//            request.transportType = MKDirectionsTransportType.Automobile
+//            request.requestsAlternateRoutes = false
+//            let directions = MKDirections(request: request)
+//            directions.calculateDirectionsWithCompletionHandler { response, error in
+//                if let route = response?.routes.first {
+//                    print("Distance: \(route.distance), ETA: \(route.expectedTravelTime)")
+//                } else {
+//                    print("Error!")
+//                }
+//            }
         }
 
     }

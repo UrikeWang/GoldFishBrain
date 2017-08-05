@@ -50,11 +50,11 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         toolBar.sizeToFit()
 
         // Adds the buttons
-        var doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(CreateDoViewController.donePressed))
+        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(CreateDoViewController.donePressed))
 
-        var spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 
-        var cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: "cancelClick")
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: "cancelClick")
 
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
 
@@ -79,7 +79,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         popVC.modalPresentationStyle = .popover
 
-        var popOverVC = popVC.popoverPresentationController
+//        var popOverVC = popVC.popoverPresentationController
 
         if let popOverVC = popVC.popoverPresentationController {
 

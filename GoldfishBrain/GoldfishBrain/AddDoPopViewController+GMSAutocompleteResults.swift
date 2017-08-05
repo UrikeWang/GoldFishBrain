@@ -15,10 +15,24 @@ extension AddDoPopViewController: GMSAutocompleteResultsViewControllerDelegate {
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                            didAutocompleteWith place: GMSPlace) {
         searchController?.isActive = false
+
+        // Creates a marker in the center of the map
+        let destinationMarker = GMSMarker()
+
+        destinationMarker.position = CLLocationCoordinate2DMake(place.coordinate.latitude, place.coordinate.longitude)
+
+        destinationMarker.map = mapView
+
+        destinationMarker.title = "Your destination"
+
+        mapView.camera = GMSCameraPosition(target: place.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+
+        routePoints["End"] = [place.coordinate.latitude, place.coordinate.longitude]
+
         // Do something with the selected place.
         print("Place name: \(place.name)")
         print("Place address: \(place.formattedAddress)")
-        print("Place attributions: \(place.attributions)")
+//        print("Place attributions: \(place.attributions)")
     }
 
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,

@@ -9,10 +9,17 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import Alamofire
 
 class AddDoPopViewController: UIViewController {
 
     @IBOutlet weak var mapView: GMSMapView!
+
+    @IBOutlet weak var publicTransportationButton: UIButton!
+
+    @IBOutlet weak var carButton: UIButton!
+
+    @IBOutlet weak var walkButton: UIButton!
 
     var locationManager = CLLocationManager()
 
@@ -26,34 +33,32 @@ class AddDoPopViewController: UIViewController {
 
     var resultView: UITextView?
 
+    var routePoints = [String: [Double]]()
+
     @IBAction func popoverDone(_ sender: UIButton) {
 
         dismiss(animated: true, completion: nil)
 
     }
 
-//    func nearbyPlaces() {
-//
-//        placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
-//            if let error = error {
-//                print("Pick Place error: \(error.localizedDescription)")
-//                return
-//            }
-//
-//            if let placeLikelihoodList = placeLikelihoodList {
-//
-//                for likelihood in placeLikelihoodList.likelihoods {
-//
-//                    let place = likelihood.place
-//                    print("Current Place name \(place.name) at likelihood \(likelihood.likelihood)")
-//                    //                    print("Current Place address \(place.formattedAddress)")
-//                    //                    print("Current Place attributions \(place.attributions)")
-//                    //                    print("Current PlaceID \(place.placeID)")
-//                }
-//            }
-//        })
-//
-//    }
+    @IBAction func publicTransportationButton(_ sender: Any) {
+    }
+
+    @IBAction func carButton(_ sender: Any) {
+    }
+
+    @IBAction func walkButton(_ sender: Any) {
+    }
+
+    func calculateTravelTime(type: String) {
+
+        let directionURL = "https://maps.googleapis.com/maps/api/directions/json?origin=\(routePoints["Start"]?[0]),\(routePoints["Start"]?[1])&destination=\(routePoints["End"]?[0]),\(routePoints["End"]?[1])&key=AIzaSyBAu1RqxhTwvzAD-ODP2KmDrpdT8BJwJxA"
+
+        Alamofire.request(directionURL, method: .get, headers: <#T##HTTPHeaders?#>).responseJSON { _ in
+            <#code#>
+        }
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,9 +82,6 @@ class AddDoPopViewController: UIViewController {
         //Initialize the GMSPlacesClient
         placesClient = GMSPlacesClient.shared()
 
-//        //附近地點
-//        self.nearbyPlaces()
-
         resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController?.delegate = self
 
@@ -96,6 +98,23 @@ class AddDoPopViewController: UIViewController {
         // When UISearchController presents the results view, present it in
         // this view controller, not one further up the chain.
         definesPresentationContext = true
+
+        if routePoints["Start"] != nil && routePoints["End"] != nil {
+
+            let path = GMSMutablePath()
+            path.add(CLLocationCoordinate2D(latitude: (routePoints["Start"]?[0])!, longitude: (routePoints["Start"]?[1])!))
+            path.add(CLLocationCoordinate2D(latitude: (routePoints["End"]?[0])!, longitude: (routePoints["End"]?[1])!))
+
+            let rectangle = GMSPolyline(path: path)
+            rectangle.map = mapView
+
+        }
+
+        publicTransportationButton.setTitle("public", for: .normal)
+
+        carButton.setTitle("car", for: .normal)
+
+        walkButton.setTitle("walk", for: .normal)
 
     }
 
