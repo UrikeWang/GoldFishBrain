@@ -65,6 +65,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - GoogleMaps
   - GooglePlaces
+  - JSQMessagesViewController
   - Kingfisher
 
 SPEC CHECKSUMS:
@@ -84,6 +85,6 @@ SPEC CHECKSUMS:
   Kingfisher: a0ac82dc5bcf0388dd74b294cf2cc13730c63436
   nanopb: 22bc080fa3955e2116b6ff3ee6c2cb3c15ab97cb
 
-PODFILE CHECKSUM: 62028564d3d2b21387468697902d2f0a8fd13870
+PODFILE CHECKSUM: 0204488601941a3eb7ec5efd271d9363e67988e0
 
 COCOAPODS: 1.2.1

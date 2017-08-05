@@ -32,6 +32,13 @@ extension AddDoPopViewController: CLLocationManagerDelegate {
             // 7
             mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
 
+            // Creates a marker in the center of the map
+            let marker = GMSMarker()
+
+            marker.position = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+
+            marker.map = mapView
+
             // 8
 //            locationManager.stopUpdatingLocation()
         }

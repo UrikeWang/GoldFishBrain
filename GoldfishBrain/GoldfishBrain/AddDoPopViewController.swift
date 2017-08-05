@@ -20,35 +20,40 @@ class AddDoPopViewController: UIViewController {
 
     var placesClient: GMSPlacesClient!
 
+    var resultsViewController: GMSAutocompleteResultsViewController?
+
+    var searchController: UISearchController?
+
+    var resultView: UITextView?
+
     @IBAction func popoverDone(_ sender: UIButton) {
 
         dismiss(animated: true, completion: nil)
 
-//        darkView.isHidden = true
     }
 
-    func nearbyPlaces() {
-
-        placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
-            if let error = error {
-                print("Pick Place error: \(error.localizedDescription)")
-                return
-            }
-
-            if let placeLikelihoodList = placeLikelihoodList {
-
-                for likelihood in placeLikelihoodList.likelihoods {
-
-                    let place = likelihood.place
-                    print("Current Place name \(place.name) at likelihood \(likelihood.likelihood)")
-                    //                    print("Current Place address \(place.formattedAddress)")
-                    //                    print("Current Place attributions \(place.attributions)")
-                    //                    print("Current PlaceID \(place.placeID)")
-                }
-            }
-        })
-
-    }
+//    func nearbyPlaces() {
+//
+//        placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
+//            if let error = error {
+//                print("Pick Place error: \(error.localizedDescription)")
+//                return
+//            }
+//
+//            if let placeLikelihoodList = placeLikelihoodList {
+//
+//                for likelihood in placeLikelihoodList.likelihoods {
+//
+//                    let place = likelihood.place
+//                    print("Current Place name \(place.name) at likelihood \(likelihood.likelihood)")
+//                    //                    print("Current Place address \(place.formattedAddress)")
+//                    //                    print("Current Place attributions \(place.attributions)")
+//                    //                    print("Current PlaceID \(place.placeID)")
+//                }
+//            }
+//        })
+//
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,24 +77,25 @@ class AddDoPopViewController: UIViewController {
         //Initialize the GMSPlacesClient
         placesClient = GMSPlacesClient.shared()
 
-        self.nearbyPlaces()
+//        //附近地點
+//        self.nearbyPlaces()
 
-//        let camera = GMSCameraPosition.camera(withLatitude: (currentLocation?.coordinate.latitude)!, longitude: (currentLocation?.coordinate.longitude)!, zoom: 6.0)
+        resultsViewController = GMSAutocompleteResultsViewController()
+        resultsViewController?.delegate = self
 
-//
-//        self.mapView.camera = camera
-//        
+        searchController = UISearchController(searchResultsController: resultsViewController)
+        searchController?.searchResultsUpdater = resultsViewController
 
-//        // Creates a marker in the center of the map.
-//        let marker = GMSMarker()
-//
-//        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
-//
-//        marker.title = "Sydney"
-//
-//        marker.snippet = "Australia"
-//
-//        marker.map = mapView
+        let subView = UIView(frame: CGRect(x: 0, y: 0.0, width: 350, height: 45.0))
+
+        subView.addSubview((searchController?.searchBar)!)
+        view.addSubview(subView)
+        searchController?.searchBar.sizeToFit()
+        searchController?.hidesNavigationBarDuringPresentation = false
+
+        // When UISearchController presents the results view, present it in
+        // this view controller, not one further up the chain.
+        definesPresentationContext = true
 
     }
 

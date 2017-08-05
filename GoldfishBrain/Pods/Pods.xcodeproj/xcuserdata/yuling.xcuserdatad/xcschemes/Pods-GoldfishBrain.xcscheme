@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EA5F01E41EAE79CCEE3683E84D3AE6A7"
-               BuildableName = "Pods-GoldfishBrain"
+               BuildableName = "Pods_GoldfishBrain.framework"
                BlueprintName = "Pods-GoldfishBrain"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EA5F01E41EAE79CCEE3683E84D3AE6A7"
-            BuildableName = "Pods-GoldfishBrain"
+            BuildableName = "Pods_GoldfishBrain.framework"
             BlueprintName = "Pods-GoldfishBrain"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

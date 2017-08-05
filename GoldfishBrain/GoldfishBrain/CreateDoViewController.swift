@@ -12,7 +12,15 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     @IBOutlet weak var dateText: UITextField!
 
-    @IBOutlet weak var timeText: UITextField!
+    @IBOutlet weak var dateLabel: UILabel!
+
+    @IBOutlet weak var destinationLabel: UILabel!
+
+    @IBOutlet weak var toWhoLabel: UILabel!
+
+    @IBOutlet var popMapView: UIView!
+
+    var effect: UIVisualEffect!
 
     let dateTimeFormatter = DateFormatter()
 
@@ -42,14 +50,18 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         toolBar.sizeToFit()
 
         // Adds the buttons
-
         var doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(CreateDoViewController.donePressed))
+
         var spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+
         var cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: "cancelClick")
+
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+
         toolBar.isUserInteractionEnabled = true
 
         sender.inputView = datePickerView
+
         sender.inputAccessoryView = toolBar
 
         datePickerView.addTarget(self, action: #selector(CreateDoViewController.datePickerValueChanged), for: UIControlEvents.valueChanged)
@@ -79,7 +91,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             popOverVC.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
 
-            popVC.preferredContentSize = CGSize(width: UIScreen.main.bounds.width, height: 600)
+            popVC.preferredContentSize = CGSize(width: 350, height: 600)
 
             popOverVC.delegate = self
 
@@ -94,6 +106,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     }
 
+    //Picker Date Done Button
     func donePressed(_ sender: UIBarButtonItem) {
 
         dateText.resignFirstResponder()
@@ -135,9 +148,18 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        effect = visualEffectView.effect
+
         dateText.placeholder = "add time.."
 
+        //textFieldDidBeginEditing
         self.dateText.delegate = self
+
+        dateLabel.text = "Select your start time"
+
+        destinationLabel.text = "Select your desination"
+
+        toWhoLabel.text = "Select your friend who you want to notify"
 
     }
 
