@@ -13,21 +13,41 @@ import GooglePlaces
 extension AddDoPopViewController: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        // 3
-        if status == .authorizedWhenInUse {
+
+        switch status {
+
+        case .restricted:
+            print("Location access was restricted.")
+
+        case .denied:
+            print("User denied access to location.")
+            // Display the map using the default location.
+            mapView.isHidden = false
+
+        case .notDetermined:
+            print("Location status not determined.")
+
+        case .authorizedAlways: fallthrough
+
+        case .authorizedWhenInUse:
 
             // 4
-//            locationManager.startUpdatingLocation()
+            locationManager.startUpdatingLocation()
 
             //5
             mapView.isMyLocationEnabled = true
             mapView.settings.myLocationButton = true
+//            print("Location status is OK.")
         }
+
     }
 
     // 6
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
+
+        print("past", locations)
+
+        if let location = locations.last {
 
             // 7
             mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
@@ -41,27 +61,11 @@ extension AddDoPopViewController: CLLocationManagerDelegate {
 
             routePoints["Start"] = [location.coordinate.latitude, location.coordinate.longitude]
 
-//            print("points", routePoints)
-
             marker.map = mapView
 
             // 8
-//            locationManager.stopUpdatingLocation()
+            locationManager.stopUpdatingLocation()
 
-//            // Create request
-//            let request = MKDirectionsRequest()
-//            request.source = sourceMapItem
-//            request.destination = destinationMapItem
-//            request.transportType = MKDirectionsTransportType.Automobile
-//            request.requestsAlternateRoutes = false
-//            let directions = MKDirections(request: request)
-//            directions.calculateDirectionsWithCompletionHandler { response, error in
-//                if let route = response?.routes.first {
-//                    print("Distance: \(route.distance), ETA: \(route.expectedTravelTime)")
-//                } else {
-//                    print("Error!")
-//                }
-//            }
         }
 
     }

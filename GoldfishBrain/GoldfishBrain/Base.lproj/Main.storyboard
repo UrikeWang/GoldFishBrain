@@ -530,29 +530,29 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yaf-nL-Upd">
-                                <rect key="frame" x="51" y="495" width="46" height="30"/>
+                                <rect key="frame" x="51" y="495" width="46" height="36"/>
                                 <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="publicTransportationButton:" destination="dc2-oZ-9Qk" eventType="touchUpInside" id="1F9-Ku-9sP"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lil-5j-vFp">
-                                <rect key="frame" x="278" y="495" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lil-5j-vFp">
+                                <rect key="frame" x="234" y="495" width="90" height="36"/>
                                 <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Button" image="ic_account_circle_36pt_3x"/>
                                 <connections>
                                     <action selector="walkButton:" destination="dc2-oZ-9Qk" eventType="touchUpInside" id="c2N-in-kje"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BjU-FY-zKN">
-                                <rect key="frame" x="51" y="543" width="273" height="66"/>
+                                <rect key="frame" x="51" y="549" width="273" height="60"/>
                                 <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nna-Fc-4lL">
-                                <rect key="frame" x="164" y="495" width="46" height="30"/>
+                                <rect key="frame" x="164" y="495" width="46" height="36"/>
                                 <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
@@ -673,7 +673,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="9yt-Uv-Arf">
-                        <barButtonItem key="leftBarButtonItem" title="Friend" id="cV5-Cz-v67">
+                        <barButtonItem key="leftBarButtonItem" image="ic_people" id="cV5-Cz-v67">
                             <connections>
                                 <segue destination="Nzz-g7-mWo" kind="show" id="LyE-ul-Szz"/>
                             </connections>
@@ -864,7 +864,7 @@
         <scene sceneID="3UQ-2n-Voa">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="n4t-Yl-zMd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" id="g4Q-jE-t4V" userLabel="Profile"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="ic_account_circle" id="g4Q-jE-t4V" userLabel="Profile"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dVy-AU-86f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -904,7 +904,7 @@
         <scene sceneID="kVJ-tB-SnM">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="trp-2C-Fyz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Do it" id="64h-dI-vxs"/>
+                    <tabBarItem key="tabBarItem" title="Do it" image="ic_playlist_add" id="64h-dI-vxs"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dEn-Ge-CB6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -923,7 +923,7 @@
         <scene sceneID="ceU-Lg-Y8H">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="77L-hf-cQV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chat" id="oqX-AY-q5J"/>
+                    <tabBarItem key="tabBarItem" title="Chat" image="ic_question_answer" id="oqX-AY-q5J"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="44w-bi-xBi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -988,7 +988,7 @@
         <scene sceneID="Yb2-8A-mwt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wjH-pT-9Kl" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Trace" id="qd1-jT-N21"/>
+                    <tabBarItem key="tabBarItem" title="Trace" image="ic_loyalty" id="qd1-jT-N21"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rJl-E4-gz6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1095,6 +1095,14 @@
             <point key="canvasLocation" x="6862" y="1738"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_account_circle" width="24" height="24"/>
+        <image name="ic_account_circle_36pt_3x" width="36" height="36"/>
+        <image name="ic_loyalty" width="24" height="24"/>
+        <image name="ic_people" width="24" height="24"/>
+        <image name="ic_playlist_add" width="24" height="24"/>
+        <image name="ic_question_answer" width="24" height="24"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="YcT-13-zxj"/>
     </inferredMetricsTieBreakers>

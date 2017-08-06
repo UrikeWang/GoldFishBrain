@@ -42,20 +42,79 @@ class AddDoPopViewController: UIViewController {
     }
 
     @IBAction func publicTransportationButton(_ sender: Any) {
+
+        calculateTravelTime(type: "transit")
+        //transit_mode=bus
     }
 
     @IBAction func carButton(_ sender: Any) {
+
+        calculateTravelTime(type: "driving")
     }
 
     @IBAction func walkButton(_ sender: Any) {
+
+        calculateTravelTime(type: "walking")
     }
 
     func calculateTravelTime(type: String) {
 
-        let directionURL = "https://maps.googleapis.com/maps/api/directions/json?origin=\(routePoints["Start"]?[0]),\(routePoints["Start"]?[1])&destination=\(routePoints["End"]?[0]),\(routePoints["End"]?[1])&key=AIzaSyBAu1RqxhTwvzAD-ODP2KmDrpdT8BJwJxA"
+        if let start0 = routePoints["Start"]?[0] as? Double, let start1 = routePoints["Start"]?[1] as? Double, let end0 = routePoints["End"]?[0] as? Double, let end1 = routePoints["End"]?[1] as? Double {
 
-        Alamofire.request(directionURL, method: .get, headers: <#T##HTTPHeaders?#>).responseJSON { _ in
-            <#code#>
+            print("111111", start0)
+            print("222222", start1)
+            print("333333", end0)
+            print("44444", end1)
+
+            switch type {
+            case "transit":
+                let directionURL = "https://maps.googleapis.com/maps/api/directions/json?units=imperial&origin=\(start0),\(start1)&destination=\(end0),\(end1)&mode=driving&key=AIzaSyBAu1RqxhTwvzAD-ODP2KmDrpdT8BJwJxA"
+
+                Alamofire.request(directionURL, method: .get, parameters: nil).responseJSON { response in
+
+                    switch response.result {
+
+                    case .success(let data):
+
+                        if let travelData = data as? [String: Any] {
+
+                            if let route = travelData["routes"] as? [[String: Any]] {
+
+//                                print("results::::::", route["legs"])
+
+//                                let detailData = route["duration"] as? [Any]
+
+//                                if let detailData = route["duration"] as! [String: String] {
+//                                
+//                                }
+
+                            }
+
+                        }
+
+                    case .failure(let error):
+
+                        print("Request failed with error: \(error)")
+
+                    }
+
+                }
+
+            case "driving":
+
+                print("driving")
+
+            case "walking":
+
+                print("walking")
+
+            default: break
+
+            }
+
+        } else {
+
+            print("You didn't select your destination")
         }
 
     }
@@ -81,6 +140,8 @@ class AddDoPopViewController: UIViewController {
 
         //Initialize the GMSPlacesClient
         placesClient = GMSPlacesClient.shared()
+
+//        fetchCurrentLocation()
 
         resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController?.delegate = self
@@ -117,6 +178,26 @@ class AddDoPopViewController: UIViewController {
         walkButton.setTitle("walk", for: .normal)
 
     }
+
+//    func fetchCurrentLocation() {
+//        
+//        placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
+//            if let error = error {
+//                print("Pick Place error: \(error.localizedDescription)")
+//                return
+//            }
+//            
+//            if let placeLikelihoodList = placeLikelihoodList {
+//                for likelihood in placeLikelihoodList.likelihoods {
+//                    let place = likelihood.place
+//                    print("Current Place name \(place.name) at likelihood \(likelihood.likelihood)")
+//                    print("Current Place address \(place.formattedAddress)")
+//                    print("Current Place attributions \(place.attributions)")
+//                    print("Current PlaceID \(place.placeID)")
+//                }
+//            }
+//        })
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
