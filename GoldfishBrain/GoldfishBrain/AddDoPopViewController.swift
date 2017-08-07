@@ -68,7 +68,7 @@ class AddDoPopViewController: UIViewController {
 
             switch type {
             case "transit":
-                let directionURL = "https://maps.googleapis.com/maps/api/directions/json?units=imperial&origin=\(start0),\(start1)&destination=\(end0),\(end1)&mode=driving&key=AIzaSyBAu1RqxhTwvzAD-ODP2KmDrpdT8BJwJxA"
+                let directionURL = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=\(start0),\(start1)&destinations=\(end0),\(end1)&mode=driving&key=AIzaSyBAu1RqxhTwvzAD-ODP2KmDrpdT8BJwJxA"
 
                 Alamofire.request(directionURL, method: .get, parameters: nil).responseJSON { response in
 
@@ -78,15 +78,26 @@ class AddDoPopViewController: UIViewController {
 
                         if let travelData = data as? [String: Any] {
 
-                            if let route = travelData["routes"] as? [[String: Any]] {
+                            if let route = travelData["rows"] as? [[String: Any]] {
+                                
+                                print("do:::", route)
 
 //                                print("results::::::", route["legs"])
 
 //                                let detailData = route["duration"] as? [Any]
+                                
+//                                print("1111111", route.first)
+                                
 
-//                                if let detailData = route["duration"] as! [String: String] {
-//                                
-//                                }
+                                if let detailData = route.first {
+                                
+                                    print("1111111", detailData)
+                                    
+                                    if let details = detailData["elements"] as? [String: Any] {
+                                        
+                                        print("2222222222", details)
+                                    }
+                                }
 
                             }
 
