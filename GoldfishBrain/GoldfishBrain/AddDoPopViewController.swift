@@ -39,21 +39,17 @@ class AddDoPopViewController: UIViewController {
 
     var routeAddresses = [String: String]()
 
-    var travelDetails = [TravelDetail]()
-    
     var travelDuration = ""
-    
+
     var travelDistance = ""
+
+    var travelDestination = ""
 
     @IBOutlet weak var travelTime: UITextView!
 
     @IBAction func popoverDone(_ sender: UIButton) {
-        
-//        self.delegate?.transferTravelData(duration: travelDuration, distance: travelDistance)
-        
+
         performSegue(withIdentifier: "showSelectedDestination", sender: self)
-        
-        print("\(travelDistance), \(travelDuration)")
 
 //        dismiss(animated: true, completion: nil)
 
@@ -104,10 +100,12 @@ class AddDoPopViewController: UIViewController {
                                             //swiftlint:enable force_cast
 
                                             self.travelTime.text = "目的地：\(desination)\r\n總距離：\(distanceText)\r\n總時間：\(durationText)"
-                                            
+
                                             self.travelDuration = "\(durationText)"
-                                            
+
                                             self.travelDistance = "\(distanceText)"
+
+                                            self.travelDestination = "\(desination)"
                                         }
 
                                     }
@@ -223,25 +221,24 @@ class AddDoPopViewController: UIViewController {
 
     }
 
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
+
         if segue.identifier == "showSelectedDestination" {
-            
+
             //swiftlint:disable force_cast
             let VC = segue.destination as! CreateDoViewController
-            
+            //swiftlint:enable force_cast
+
             VC.travelDistance = self.travelDistance
-            
+
             VC.travelDuration = self.travelDuration
-//            VC.dataPassed = labelOne.text
+
+            VC.travelDestination = self.travelDestination
+
         }
     }
-    
 
 }

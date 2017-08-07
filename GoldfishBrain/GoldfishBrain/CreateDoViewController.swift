@@ -20,18 +20,25 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     @IBOutlet var popMapView: UIView!
 
+    @IBOutlet weak var createDoButton: UIButton!
+
+    @IBOutlet weak var cancelDoButton: UIButton!
+
     var effect: UIVisualEffect!
 
     let dateTimeFormatter = DateFormatter()
 
     var datePicker = UIDatePicker()
-    
+
     var travelDuration = ""
-    
+
     var travelDistance = ""
-    
+
+    var travelDestination = ""
+
+    var travelTime = ""
+
     @IBOutlet weak var travelDetails: UITextView!
-    
 
     @IBAction func dateText(_ sender: UITextField) {
 
@@ -76,17 +83,11 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     @IBAction func destinationText(_ sender: Any) {
 
-        //       self.view.addSubview(darkView)
-
-//        darkView.isHidden = false
-
         //swiftlint:disable force_cast
         let popVC = storyboard?.instantiateViewController(withIdentifier: "popVC") as! AddDoPopViewController
         //swiftlint:enable force_cast
 
         popVC.modalPresentationStyle = .popover
-
-//        var popOverVC = popVC.popoverPresentationController
 
         if let popOverVC = popVC.popoverPresentationController {
 
@@ -122,11 +123,13 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     func datePickerValueChanged(_ sender: UIDatePicker) {
 
-        let dateFormatter = DateFormatter()
+        let dateFormatter1 = DateFormatter()
 
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter1.dateFormat = "yyyy-MM-dd HH:mm"
 
-        dateText.text = dateFormatter.string(from: sender.date)
+        dateText.text = dateFormatter1.string(from: sender.date)
+
+        travelTime = dateText.text!
 
 //        dateText.resignFirstResponder()
 
@@ -142,16 +145,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         return .none
 
     }
-    
-//    func transferTravelData(duration: String, distance: String) {
-//        
-//        self.travelDuration = duration
-//        
-//        self.travelDistance = distance
-//        
-//        print("123456 \(self.travelDistance) , \(self.travelDuration)")
-//    
-//    }
 
     @IBAction func toWhoText(_ sender: Any) {
     }
@@ -165,8 +158,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        effect = visualEffectView.effect
-
         dateText.placeholder = "add time.."
 
         //textFieldDidBeginEditing
@@ -178,16 +169,22 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         toWhoLabel.text = "Select your friend who you want to notify"
 
+        createDoButton.setTitle("Create", for: .normal)
+
+        cancelDoButton.setTitle("Cancel", for: .normal)
 
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
-        
+
         super.viewWillAppear(animated) // No need for semicolon
-        
-        travelDetails.text = "總距離：\(travelDistance)\r\n預估時間：\(travelDuration)"
-        
-        
+
+        dateText.text = travelTime
+
+        print("33333333", travelTime)
+
+        travelDetails.text = "目的地：\(travelDestination)\r\n起始時間：\(travelTime)\r\n總距離：\(travelDistance)\r\n預估時間：\(travelDuration)\r\n"
+
     }
 
     override func didReceiveMemoryWarning() {
