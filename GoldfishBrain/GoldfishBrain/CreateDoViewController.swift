@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateDoViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITextFieldDelegate, selectedDestinationDelegate {
+class CreateDoViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var dateText: UITextField!
 
@@ -26,11 +26,12 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     var datePicker = UIDatePicker()
     
-    let selectDistance = AddDoPopViewController()
-    
     var travelDuration = ""
     
     var travelDistance = ""
+    
+    @IBOutlet weak var travelDetails: UITextView!
+    
 
     @IBAction func dateText(_ sender: UITextField) {
 
@@ -142,15 +143,15 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     }
     
-    func transferTravelData(duration: String, distance: String) {
-        
-        self.travelDuration = duration
-        
-        self.travelDistance = distance
-        
-        print("123456 \(self.travelDistance) , \(self.travelDuration)")
-    
-    }
+//    func transferTravelData(duration: String, distance: String) {
+//        
+//        self.travelDuration = duration
+//        
+//        self.travelDistance = distance
+//        
+//        print("123456 \(self.travelDistance) , \(self.travelDuration)")
+//    
+//    }
 
     @IBAction func toWhoText(_ sender: Any) {
     }
@@ -176,9 +177,17 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         destinationLabel.text = "Select your desination"
 
         toWhoLabel.text = "Select your friend who you want to notify"
-        
-        selectDistance.delegate = self
 
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated) // No need for semicolon
+        
+        travelDetails.text = "總距離：\(travelDistance)\r\n預估時間：\(travelDuration)"
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

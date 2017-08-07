@@ -301,7 +301,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pIO-VR-6Rj">
-                                <rect key="frame" x="28" y="111" width="319" height="30"/>
+                                <rect key="frame" x="28" y="67" width="319" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -310,7 +310,7 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmY-PG-JYH">
-                                <rect key="frame" x="0.0" y="64" width="375" height="35"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="35"/>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="rBM-4l-2PB"/>
@@ -320,7 +320,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snF-18-srj">
-                                <rect key="frame" x="0.0" y="153" width="375" height="35"/>
+                                <rect key="frame" x="0.0" y="109" width="375" height="35"/>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="INp-Ag-tpb"/>
@@ -339,7 +339,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bnl-mz-CEL">
-                                <rect key="frame" x="28" y="200" width="319" height="30"/>
+                                <rect key="frame" x="28" y="156" width="319" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="uI7-OR-yPF"/>
                                 </constraints>
@@ -351,7 +351,7 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xkx-jw-nwe">
-                                <rect key="frame" x="0.0" y="242" width="375" height="35"/>
+                                <rect key="frame" x="0.0" y="198" width="375" height="35"/>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="Y4H-qW-fSG"/>
@@ -370,7 +370,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rEc-YU-50T">
-                                <rect key="frame" x="28" y="289" width="319" height="30"/>
+                                <rect key="frame" x="28" y="245" width="319" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="3jK-vl-Znl"/>
                                 </constraints>
@@ -381,7 +381,7 @@
                                     <action selector="toWhoText:" destination="CTh-gv-XZQ" eventType="touchUpInside" id="IAO-Sv-baC"/>
                                 </connections>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Zoq-1D-T6G">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Zoq-1D-T6G">
                                 <rect key="frame" x="28" y="401" width="319" height="211"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -417,6 +417,7 @@
                         <outlet property="dateText" destination="pIO-VR-6Rj" id="vti-KP-1NK"/>
                         <outlet property="destinationLabel" destination="snF-18-srj" id="JHr-iV-JLk"/>
                         <outlet property="toWhoLabel" destination="Xkx-jw-nwe" id="Bys-5a-FPM"/>
+                        <outlet property="travelDetails" destination="Zoq-1D-T6G" id="W63-JQ-oMK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zvh-i8-qYf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -555,6 +556,7 @@
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="popoverDone:" destination="dc2-oZ-9Qk" eventType="touchUpInside" id="EI1-dI-ILo"/>
+                                    <segue destination="CTh-gv-XZQ" kind="show" identifier="showSelectedDestination" id="ctj-4y-Hje"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -864,7 +866,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="n4t-Yl-zMd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="ic_account_circle" id="g4Q-jE-t4V" userLabel="Profile"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dVy-AU-86f">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dVy-AU-86f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -904,7 +906,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="trp-2C-Fyz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Do it" image="ic_playlist_add" id="64h-dI-vxs"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dEn-Ge-CB6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dEn-Ge-CB6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -923,7 +925,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="77L-hf-cQV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chat" image="ic_question_answer" id="oqX-AY-q5J"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="44w-bi-xBi">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="44w-bi-xBi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -988,7 +990,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wjH-pT-9Kl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Trace" image="ic_loyalty" id="qd1-jT-N21"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rJl-E4-gz6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rJl-E4-gz6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1079,7 +1081,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iYj-or-OB6" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8QB-yT-V3J">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8QB-yT-V3J">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1104,5 +1106,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="YcT-13-zxj"/>
+        <segue reference="ctj-4y-Hje"/>
     </inferredMetricsTieBreakers>
 </document>

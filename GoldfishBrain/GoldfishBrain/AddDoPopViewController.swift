@@ -11,11 +11,6 @@ import GoogleMaps
 import GooglePlaces
 import Alamofire
 
-protocol selectedDestinationDelegate: class {
-    
-    func transferTravelData(duration: String, distance: String)
-}
-
 class AddDoPopViewController: UIViewController {
 
     @IBOutlet weak var mapView: GMSMapView!
@@ -49,18 +44,18 @@ class AddDoPopViewController: UIViewController {
     var travelDuration = ""
     
     var travelDistance = ""
-    
-    weak var delegate: selectedDestinationDelegate?
 
     @IBOutlet weak var travelTime: UITextView!
 
     @IBAction func popoverDone(_ sender: UIButton) {
         
-        self.delegate?.transferTravelData(duration: travelDuration, distance: travelDistance)
+//        self.delegate?.transferTravelData(duration: travelDuration, distance: travelDistance)
+        
+        performSegue(withIdentifier: "showSelectedDestination", sender: self)
         
         print("\(travelDistance), \(travelDuration)")
 
-        dismiss(animated: true, completion: nil)
+//        dismiss(animated: true, completion: nil)
 
     }
 
@@ -228,14 +223,25 @@ class AddDoPopViewController: UIViewController {
 
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "showSelectedDestination" {
+            
+            //swiftlint:disable force_cast
+            let VC = segue.destination as! CreateDoViewController
+            
+            VC.travelDistance = self.travelDistance
+            
+            VC.travelDuration = self.travelDuration
+//            VC.dataPassed = labelOne.text
+        }
     }
-    */
+    
 
 }
