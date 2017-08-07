@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateDoViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITextFieldDelegate {
+class CreateDoViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITextFieldDelegate, selectedDestinationDelegate {
 
     @IBOutlet weak var dateText: UITextField!
 
@@ -25,6 +25,12 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     let dateTimeFormatter = DateFormatter()
 
     var datePicker = UIDatePicker()
+    
+    let selectDistance = AddDoPopViewController()
+    
+    var travelDuration = ""
+    
+    var travelDistance = ""
 
     @IBAction func dateText(_ sender: UITextField) {
 
@@ -135,6 +141,16 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         return .none
 
     }
+    
+    func transferTravelData(duration: String, distance: String) {
+        
+        self.travelDuration = duration
+        
+        self.travelDistance = distance
+        
+        print("123456 \(self.travelDistance) , \(self.travelDuration)")
+    
+    }
 
     @IBAction func toWhoText(_ sender: Any) {
     }
@@ -160,6 +176,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         destinationLabel.text = "Select your desination"
 
         toWhoLabel.text = "Select your friend who you want to notify"
+        
+        selectDistance.delegate = self
 
     }
 

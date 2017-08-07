@@ -11,6 +11,11 @@ import GoogleMaps
 import GooglePlaces
 import Alamofire
 
+protocol selectedDestinationDelegate: class {
+    
+    func transferTravelData(duration: String, distance: String)
+}
+
 class AddDoPopViewController: UIViewController {
 
     @IBOutlet weak var mapView: GMSMapView!
@@ -40,10 +45,20 @@ class AddDoPopViewController: UIViewController {
     var routeAddresses = [String: String]()
 
     var travelDetails = [TravelDetail]()
+    
+    var travelDuration = ""
+    
+    var travelDistance = ""
+    
+    weak var delegate: selectedDestinationDelegate?
 
     @IBOutlet weak var travelTime: UITextView!
 
     @IBAction func popoverDone(_ sender: UIButton) {
+        
+        self.delegate?.transferTravelData(duration: travelDuration, distance: travelDistance)
+        
+        print("\(travelDistance), \(travelDuration)")
 
         dismiss(animated: true, completion: nil)
 
@@ -94,6 +109,10 @@ class AddDoPopViewController: UIViewController {
                                             //swiftlint:enable force_cast
 
                                             self.travelTime.text = "目的地：\(desination)\r\n總距離：\(distanceText)\r\n總時間：\(durationText)"
+                                            
+                                            self.travelDuration = "\(durationText)"
+                                            
+                                            self.travelDistance = "\(distanceText)"
                                         }
 
                                     }
@@ -112,48 +131,8 @@ class AddDoPopViewController: UIViewController {
 
                 }
 
-            case "transit":
-
-                let directionURL = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=\(start0),\(start1)&destinations=\(end0),\(end1)&mode=\(type)&key=AIzaSyBAu1RqxhTwvzAD-ODP2KmDrpdT8BJwJxA"
-
-                Alamofire.request(directionURL, method: .get, parameters: nil).responseJSON { response in
-
-                    switch response.result {
-
-                    case .success(let data):
-
-                        if let travelData = data as? [String: Any] {
-
-                            if let route = travelData["rows"] as? [[String: Any]] {
-
-                                if let detailData = route.first?["elements"] as? [[String: Any]] {
-
-                                    if let duration = detailData.first?["duration"] as? [String: Any], let distance = detailData.first?["distance"] as? [String: Any] {
-
-                                        if let durationText = duration["text"] as? String, let distanceText = distance["text"] as?String {
-
-                                            print("qqqqqqqqq", durationText)
-
-                                            print("pppppppp", distanceText)
-
-                                            self.travelTime.text = "總距離：\(distanceText), 總時間：\(durationText)"
-                                        }
-
-                                    }
-
-                                }
-
-                            }
-
-                        }
-
-                    case .failure(let error):
-
-                        print("Request failed with error: \(error)")
-
-                    }
-
-                }
+            // TODO: transit
+            case "transit": break
 
             default: break
 
