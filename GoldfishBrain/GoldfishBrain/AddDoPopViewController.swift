@@ -15,6 +15,8 @@ class AddDoPopViewController: UIViewController {
 
     @IBOutlet weak var mapView: GMSMapView!
 
+    @IBOutlet weak var estimatedTitle: UILabel!
+
     @IBOutlet weak var publicTransportationButton: UIButton!
 
     @IBOutlet weak var carButton: UIButton!
@@ -87,12 +89,9 @@ class AddDoPopViewController: UIViewController {
 
                                         if let durationText = duration["text"] as? String, let distanceText = distance["text"] as?String {
 
-                                            print("qqqqqqqqq", durationText)
-
-                                            print("pppppppp", distanceText)
-
                                             //swiftlint:disable force_cast
                                             let desination = self.routeAddresses["Destination"] as! String
+                                            //swiftlint:enable force_cast
 
                                             self.travelTime.text = "目的地：\(desination)\r\n總距離：\(distanceText)\r\n總時間：\(durationText)"
                                         }
@@ -219,11 +218,9 @@ class AddDoPopViewController: UIViewController {
 
         }
 
-        publicTransportationButton.setTitle("public", for: .normal)
+        estimatedTitle.text = "預估行程時間"
 
-        carButton.setTitle("car", for: .normal)
-
-        walkButton.setTitle("walk", for: .normal)
+        travelTime.isScrollEnabled = true
 
     }
 

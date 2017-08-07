@@ -29,14 +29,8 @@ extension AddDoPopViewController: GMSAutocompleteResultsViewControllerDelegate {
 
         destinationMarker.title = "Your destination"
 
-        // Do something with the selected place.
-        print("Place name: \(place.name)")
-
         routeAddresses["Destination"] = "\(place.formattedAddress!)"
 
-        print("222222", routeAddresses)
-
-//        routePoints["Destination"] = "\(place.formattedAddress)"
     }
 
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
