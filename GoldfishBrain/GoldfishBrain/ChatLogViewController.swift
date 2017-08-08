@@ -85,8 +85,10 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
         messageManager.observeUserMessages()
 
         chatLogTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        
+        chatLogTableView.estimatedRowHeight = 86.0
 
-//        setupBubbles()
+        chatLogTableView.rowHeight = UITableViewAutomaticDimension
 
     }
 
@@ -270,6 +272,14 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
             //swiftlint:enable force_cast
 
             cell.rightChatText.text = message.text
+            
+            cell.rightChatText.layer.backgroundColor = UIColor.lightGray.cgColor as! CGColor
+            
+            cell.setNeedsUpdateConstraints()
+            
+            cell.updateConstraintsIfNeeded()
+            
+            
 
             return cell
 
@@ -280,6 +290,14 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
             //swiftlint:enable force_cast
 
             cell.leftChatText.text = message.text
+            
+            cell.leftChatText.layer.backgroundColor = UIColor.asiSeaBlue.cgColor
+            
+            cell.setNeedsUpdateConstraints()
+            
+            cell.updateConstraintsIfNeeded()
+            
+            
 
             return cell
 

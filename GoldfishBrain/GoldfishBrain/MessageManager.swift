@@ -144,8 +144,6 @@ class MessageManager {
 
         ref.observe(.value, with: { (snapshot) in
 
-            print(snapshot)
-
             var allMessages = [Message]()
 
             for child in (snapshot.value as? [String: AnyObject])! {

@@ -326,8 +326,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
                     
                 case 0 :
                     
-                    print("child = 0")
-                    
                     let memValues = ["0": uid, "1": self.friendID]
                     
                     let values = ["text": text, "fromID": uid, "toID": self.friendID, "timestamp": timestamp] as [String : Any]
@@ -343,8 +341,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
                     chatsToRef.updateChildValues([childTalkRef.key: 1])
                     
                 case _ where snapshot.childrenCount > 0 :
-                    
-                    print("child <> 0")
                     
                     isrun = Int(snapshot.childrenCount)
                     
@@ -377,8 +373,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
                                 }
                                 
                                 if istalked == false && isrun == 0 {
-                                    
-                                    print("44444444444")
                                     
                                     let memValues = ["0": uid, "1": self.friendID]
                                     

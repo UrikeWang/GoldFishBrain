@@ -798,17 +798,20 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55b-PS-KAL">
-                                                    <rect key="frame" x="154" y="13" width="200" height="41"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55b-PS-KAL">
+                                                    <rect key="frame" x="58" y="13" width="296" height="41"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="55b-PS-KAL" secondAttribute="bottom" constant="5" id="F2M-XL-J4G"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="55b-PS-KAL" secondAttribute="trailing" constant="13" id="HcU-Pw-0yX"/>
                                                 <constraint firstItem="55b-PS-KAL" firstAttribute="top" secondItem="D50-7R-nd2" secondAttribute="topMargin" constant="5" id="RWW-3g-QbK"/>
+                                                <constraint firstItem="55b-PS-KAL" firstAttribute="leading" secondItem="D50-7R-nd2" secondAttribute="leadingMargin" constant="50" id="Wci-Nf-Un3"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="55b-PS-KAL" secondAttribute="bottom" constant="5" id="dxb-bS-aSt"/>
+                                                <constraint firstItem="55b-PS-KAL" firstAttribute="top" secondItem="D50-7R-nd2" secondAttribute="topMargin" constant="5" id="zaZ-jv-KG4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -822,19 +825,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNP-Gl-uQe">
-                                                    <rect key="frame" x="21" y="13" width="236" height="40.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="236" id="YVy-NZ-asS"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNP-Gl-uQe">
+                                                    <rect key="frame" x="21" y="13" width="296" height="40.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="TNP-Gl-uQe" firstAttribute="top" secondItem="wYk-vY-y3J" secondAttribute="topMargin" constant="5" id="6cB-24-zPh"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="TNP-Gl-uQe" secondAttribute="bottom" constant="5" id="DYO-PH-U5v"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="TNP-Gl-uQe" secondAttribute="trailing" constant="50" id="HjA-jr-Y0r"/>
                                                 <constraint firstItem="TNP-Gl-uQe" firstAttribute="leading" secondItem="wYk-vY-y3J" secondAttribute="leadingMargin" constant="13" id="N0u-nv-rDt"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="TNP-Gl-uQe" secondAttribute="bottom" constant="5" id="R5w-9c-NWn"/>
                                                 <constraint firstItem="TNP-Gl-uQe" firstAttribute="top" secondItem="wYk-vY-y3J" secondAttribute="topMargin" constant="5" id="xMo-D6-eFK"/>
                                             </constraints>
                                         </tableViewCellContentView>
