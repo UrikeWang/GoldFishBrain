@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class CreateDoViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITextFieldDelegate, managerDestinationDelegate {
+class CreateDoViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITextFieldDelegate, managerDestinationDelegate, managerFriendDelegate {
 
     @IBOutlet weak var dateText: UITextField!
 
@@ -27,6 +27,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     @IBOutlet weak var destinationText: UITextField!
 
+    @IBOutlet weak var friendText: UITextField!
+
     var effect: UIVisualEffect!
 
     let dateTimeFormatter = DateFormatter()
@@ -40,6 +42,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     var travelDestination = ""
 
     var travelTime = ""
+
+    var friendName = ""
 
     var detail: TravelDetail?
 
@@ -131,9 +135,9 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         let popFriendVC = storyboard?.instantiateViewController(withIdentifier: "popFriendVC") as! PopFriendViewController
         //swiftlint:enable force_cast
 
-        popFriendVC.modalPresentationStyle = .popover
+        popFriendVC.modalPresentationStyle = .overFullScreen
 
-//        popFriendVC.delegate = self
+        popFriendVC.delegate = self
 
         if let popOverFriendVC = popFriendVC.popoverPresentationController {
 
@@ -143,9 +147,9 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             popOverFriendVC.sourceView = viewForSource
 
-            popOverFriendVC.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
-
-            popFriendVC.preferredContentSize = CGSize(width: 350, height: 300)
+//            popOverFriendVC.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+//
+//            popFriendVC.preferredContentSize = CGSize(width: 350, height: 300)
 
             popOverFriendVC.delegate = self
 
@@ -164,9 +168,19 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         destinationText.text = destination
 
-        travelDetails.text = "目的地：\(self.travelDestination)\n\r行程時間：\(self.travelDuration)\n\t"
+        travelDetails.text = "出發時間：\(travelTime)\n\r目的地：\(self.travelDestination)\n\r行程時間：\(self.travelDuration)\n\r通知：\(self.friendName)\n\r"
 
         self.view.reloadInputViews()
+    }
+
+    func manager(_ manager: PopFriendViewController, name: String) {
+
+        self.friendName = name
+
+        friendText.text = name
+
+        travelDetails.text = "出發時間：\(travelTime)\n\r目的地：\(self.travelDestination)\n\r行程時間：\(self.travelDuration)\n\r通知：\(self.friendName)\n\r"
+
     }
 
     //Picker Date Done Button
@@ -195,8 +209,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
             appDelegate.saveContext()
 
         }
-
-//        dateText.resignFirstResponder()
 
     }
 

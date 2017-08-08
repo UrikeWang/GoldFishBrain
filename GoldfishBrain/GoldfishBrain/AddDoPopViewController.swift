@@ -62,29 +62,19 @@ class AddDoPopViewController: UIViewController {
 
     @IBAction func popoverDone(_ sender: UIButton) {
 
-//        performSegue(withIdentifier: "showSelectedDestination", sender: self)
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-//        if let presenter = self.presentingViewController as? CreateDoViewController {
-//
-//            presenter.travelDistance = travelDistance
-//
-//            presenter.travelDuration = travelDuration
-//
-//            presenter.travelDestination = travelDestination
+            travelData = TravelDataMO(context: appDelegate.persistentContainer.viewContext)
 
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            travelData.duration = travelDuration
 
-                travelData = TravelDataMO(context: appDelegate.persistentContainer.viewContext)
+            travelData.distance = travelDistance
 
-                travelData.duration = travelDuration
+            travelData.destination = travelDestination
 
-                travelData.distance = travelDistance
+            appDelegate.saveContext()
 
-                travelData.destination = travelDestination
-
-                appDelegate.saveContext()
-
-            }
+        }
 
         self.delegate?.manager(
             self,
@@ -93,19 +83,7 @@ class AddDoPopViewController: UIViewController {
             distance: travelDistance
         )
 
-//        }
-
         dismiss(animated: true, completion: nil)
-
-    }
-
-    func returnData() {
-
-        //delegate
-
-        print(delegate)
-
-        print("++++++++++++++++++++++++++++")
 
     }
 
@@ -278,21 +256,21 @@ class AddDoPopViewController: UIViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        if segue.identifier == "showSelectedDestination" {
-
-            //swiftlint:disable force_cast
-            let VC = segue.destination as! CreateDoViewController
-            //swiftlint:enable force_cast
-
-            VC.travelDistance = self.travelDistance
-
-            VC.travelDuration = self.travelDuration
-
-            VC.travelDestination = self.travelDestination
-
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//        if segue.identifier == "showSelectedDestination" {
+//
+//            //swiftlint:disable force_cast
+//            let VC = segue.destination as! CreateDoViewController
+//            //swiftlint:enable force_cast
+//
+//            VC.travelDistance = self.travelDistance
+//
+//            VC.travelDuration = self.travelDuration
+//
+//            VC.travelDestination = self.travelDestination
+//
+//        }
+//    }
 
 }

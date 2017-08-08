@@ -419,6 +419,7 @@
                         <outlet property="dateText" destination="pIO-VR-6Rj" id="vti-KP-1NK"/>
                         <outlet property="destinationLabel" destination="snF-18-srj" id="JHr-iV-JLk"/>
                         <outlet property="destinationText" destination="bnl-mz-CEL" id="qdR-dY-8oq"/>
+                        <outlet property="friendText" destination="rEc-YU-50T" id="Y1I-JU-65X"/>
                         <outlet property="toWhoLabel" destination="Xkx-jw-nwe" id="Bys-5a-FPM"/>
                         <outlet property="travelDetails" destination="Zoq-1D-T6G" id="W63-JQ-oMK"/>
                     </connections>
@@ -611,7 +612,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WFV-RQ-qVw">
-                                <rect key="frame" x="0.0" y="28" width="375" height="523"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="492"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BUL-14-xzU">

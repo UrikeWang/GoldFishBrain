@@ -7,6 +7,12 @@
 //
 
 import UIKit
+import Kingfisher
+
+protocol managerFriendDelegate: class {
+
+    func manager(_ manager: PopFriendViewController, name: String)
+}
 
 class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -15,6 +21,8 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
     let chatRoomManager = ChatRoomManager()
 
     var people = [Person]()
+
+    weak var delegate: managerFriendDelegate?
 
     let sectionInsets = UIEdgeInsets(top: 30.0, left: 20.0, bottom: 30.0, right: 20.0)
 
@@ -36,9 +44,10 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        friendCollectionView.delegate = self
+        chatRoomManager.delegate = self
 
-        // Do any additional setup after loading the view.
+        chatRoomManager.fetchPeople()
+
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -46,9 +55,8 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return people.count
 
-        return 6
+        return people.count
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -59,12 +67,19 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        let paddingSpace = sectionInsets.left * 4
-        let availableWidth = 300 - paddingSpace
-        let widthPerItem = availableWidth / 3
+//        return indexPath.section % 2 == 0 ? CGSize(width: 80, height: 80) : CGSize(width: 120, height: 120)
 
-        return CGSize(width: widthPerItem, height: widthPerItem)
+        return CGSize(width: 80, height: 80)
     }
+
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//        let paddingSpace = sectionInsets.left * 4
+//        let availableWidth = 300 - paddingSpace
+//        let widthPerItem = availableWidth / 3
+//
+//        return CGSize(width: widthPerItem, height: widthPerItem)
+//    }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
@@ -72,8 +87,37 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopFriendCell", for: indexPath) as! PopFriendCollectionViewCell
         //swiftlint:enable force_cast
 
+        cell.friendNameLabel.text = people[indexPath.row].firstName
+
+        let url = URL(string: "\(people[indexPath.row].imageUrl)")
+
+        cell.friendPhoto.kf.setImage(with: url)
+
+        cell.friendPhoto.layer.masksToBounds = true
+
+        cell.friendPhoto.tag = indexPath.row
+
         return cell
     }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        self.delegate?.manager(self, name: people[indexPath.row].firstName)
+
+        dismiss(animated: true, completion: nil)
+
+    }
+
+//    func collectionView(_ collectionView: UICollectionView, didSelectRowAtIndexPath indexPath: IndexPath) {
+//        if indexPath.item == 0 {
+//            let alertController = UIAlertController(title: "Share", message: "No Bookmarks to Share", preferredStyle: .alert)
+//            let cancelAction = UIAlertAction(title: "Dismiss", style: .cancel) { (_) in }
+//            alertController.addAction(cancelAction)
+//            self.present(alertController, animated: true) {}
+//            
+//            self.dismiss(animated: true, completion: nil)
+//        }
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
