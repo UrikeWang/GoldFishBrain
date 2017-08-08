@@ -17,5 +17,7 @@ pod 'GooglePlaces'
 pod 'GoogleMapsDirections'
 pod 'JSQMessagesViewController'
 pod 'Alamofire'
+pod 'SwifterSwift'
+pod 'IQKeyboardManagerSwift'
 
 end

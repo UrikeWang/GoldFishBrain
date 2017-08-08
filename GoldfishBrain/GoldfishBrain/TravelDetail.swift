@@ -10,7 +10,10 @@ import Foundation
 
 struct TravelDetail {
 
+    var destination: String
+
     var distance: String
 
     var duration: String
+
 }

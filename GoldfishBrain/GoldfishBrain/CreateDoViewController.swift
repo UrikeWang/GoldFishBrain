@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-class CreateDoViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITextFieldDelegate {
+class CreateDoViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITextFieldDelegate, managerDestinationDelegate {
 
     @IBOutlet weak var dateText: UITextField!
 
@@ -24,6 +25,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     @IBOutlet weak var cancelDoButton: UIButton!
 
+    @IBOutlet weak var destinationText: UITextField!
+
     var effect: UIVisualEffect!
 
     let dateTimeFormatter = DateFormatter()
@@ -37,6 +40,12 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     var travelDestination = ""
 
     var travelTime = ""
+
+    var detail: TravelDetail?
+
+    var travelDatas = [TravelDataMO]()
+
+    var travelData: TravelDataMO!
 
     @IBOutlet weak var travelDetails: UITextView!
 
@@ -89,6 +98,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         popVC.modalPresentationStyle = .popover
 
+        popVC.delegate = self
+
         if let popOverVC = popVC.popoverPresentationController {
 
             //swiftlint:disable force_cast
@@ -114,6 +125,50 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     }
 
+    @IBAction func toWhoText(_ sender: Any) {
+
+        //swiftlint:disable force_cast
+        let popFriendVC = storyboard?.instantiateViewController(withIdentifier: "popFriendVC") as! PopFriendViewController
+        //swiftlint:enable force_cast
+
+        popFriendVC.modalPresentationStyle = .popover
+
+//        popFriendVC.delegate = self
+
+        if let popOverFriendVC = popFriendVC.popoverPresentationController {
+
+            //swiftlint:disable force_cast
+            let viewForSource = sender as! UITextField
+            //swiftlint:enable force_cast
+
+            popOverFriendVC.sourceView = viewForSource
+
+            popOverFriendVC.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+
+            popFriendVC.preferredContentSize = CGSize(width: 350, height: 300)
+
+            popOverFriendVC.delegate = self
+
+        }
+
+        self.present(popFriendVC, animated: true, completion: nil)
+    }
+
+    func manager(_ manager: AddDoPopViewController, destination: String, duration: String, distance: String) {
+
+        self.travelDistance = distance
+
+        self.travelDuration = duration
+
+        self.travelDestination = destination
+
+        destinationText.text = destination
+
+        travelDetails.text = "目的地：\(self.travelDestination)\n\r行程時間：\(self.travelDuration)\n\t"
+
+        self.view.reloadInputViews()
+    }
+
     //Picker Date Done Button
     func donePressed(_ sender: UIBarButtonItem) {
 
@@ -131,6 +186,16 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         travelTime = dateText.text!
 
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+
+            travelData = TravelDataMO(context: appDelegate.persistentContainer.viewContext)
+
+            travelData.time = travelTime
+
+            appDelegate.saveContext()
+
+        }
+
 //        dateText.resignFirstResponder()
 
     }
@@ -144,9 +209,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         return .none
 
-    }
-
-    @IBAction func toWhoText(_ sender: Any) {
     }
 
     @IBAction func createDoButton(_ sender: Any) {
@@ -178,12 +240,11 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     override func viewWillAppear(_ animated: Bool) {
 
         super.viewWillAppear(animated) // No need for semicolon
-
-        dateText.text = travelTime
-
-        print("33333333", travelTime)
-
-        travelDetails.text = "目的地：\(travelDestination)\r\n起始時間：\(travelTime)\r\n總距離：\(travelDistance)\r\n預估時間：\(travelDuration)\r\n"
+//        dateText.text = travelTime
+//
+//        print("33333333", travelTime)
+//
+//        travelDetails.text = "目的地：\(travelDestination)\r\n起始時間：\(travelTime)\r\n總距離：\(travelDistance)\r\n預估時間：\(travelDuration)\r\n"
 
     }
 

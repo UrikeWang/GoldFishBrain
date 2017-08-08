@@ -11,6 +11,11 @@ import GoogleMaps
 import GooglePlaces
 import Alamofire
 
+protocol managerDestinationDelegate: class {
+
+    func manager(_ manager: AddDoPopViewController, destination: String, duration: String, distance: String)
+}
+
 class AddDoPopViewController: UIViewController {
 
     @IBOutlet weak var mapView: GMSMapView!
@@ -45,13 +50,62 @@ class AddDoPopViewController: UIViewController {
 
     var travelDestination = ""
 
+    var detail: TravelDetail?
+
+    var travelDatas = [TravelDataMO]()
+
+    var travelData: TravelDataMO!
+
+    weak var delegate: managerDestinationDelegate?
+
     @IBOutlet weak var travelTime: UITextView!
 
     @IBAction func popoverDone(_ sender: UIButton) {
 
-        performSegue(withIdentifier: "showSelectedDestination", sender: self)
+//        performSegue(withIdentifier: "showSelectedDestination", sender: self)
 
-//        dismiss(animated: true, completion: nil)
+//        if let presenter = self.presentingViewController as? CreateDoViewController {
+//
+//            presenter.travelDistance = travelDistance
+//
+//            presenter.travelDuration = travelDuration
+//
+//            presenter.travelDestination = travelDestination
+
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+
+                travelData = TravelDataMO(context: appDelegate.persistentContainer.viewContext)
+
+                travelData.duration = travelDuration
+
+                travelData.distance = travelDistance
+
+                travelData.destination = travelDestination
+
+                appDelegate.saveContext()
+
+            }
+
+        self.delegate?.manager(
+            self,
+            destination: travelDestination,
+            duration: travelDuration,
+            distance: travelDistance
+        )
+
+//        }
+
+        dismiss(animated: true, completion: nil)
+
+    }
+
+    func returnData() {
+
+        //delegate
+
+        print(delegate)
+
+        print("++++++++++++++++++++++++++++")
 
     }
 
