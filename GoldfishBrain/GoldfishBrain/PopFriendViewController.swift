@@ -11,7 +11,7 @@ import Kingfisher
 
 protocol managerFriendDelegate: class {
 
-    func manager(_ manager: PopFriendViewController, name: String)
+    func manager(_ manager: PopFriendViewController, name: String, id: String)
 }
 
 class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -102,7 +102,7 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        self.delegate?.manager(self, name: people[indexPath.row].firstName)
+        self.delegate?.manager(self, name: people[indexPath.row].firstName, id: people[indexPath.row].id)
 
         dismiss(animated: true, completion: nil)
 

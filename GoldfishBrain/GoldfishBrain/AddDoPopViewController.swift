@@ -52,29 +52,11 @@ class AddDoPopViewController: UIViewController {
 
     var detail: TravelDetail?
 
-    var travelDatas = [TravelDataMO]()
-
-    var travelData: TravelDataMO!
-
     weak var delegate: managerDestinationDelegate?
 
     @IBOutlet weak var travelTime: UITextView!
 
     @IBAction func popoverDone(_ sender: UIButton) {
-
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-
-            travelData = TravelDataMO(context: appDelegate.persistentContainer.viewContext)
-
-            travelData.duration = travelDuration
-
-            travelData.distance = travelDistance
-
-            travelData.destination = travelDestination
-
-            appDelegate.saveContext()
-
-        }
 
         self.delegate?.manager(
             self,
