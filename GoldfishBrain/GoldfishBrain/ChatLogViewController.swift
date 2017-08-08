@@ -143,14 +143,12 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
                         if let chatroomID = chat.key as? String {
 
                             channelRef.observeSingleEvent(of:.value, with: { (dataSnapshot) in
+                                
+                                if let member = dataSnapshot.childSnapshot(forPath: chatroomID).childSnapshot(forPath: "members").value as? [String] {
 
-                                if let member = dataSnapshot.childSnapshot(forPath: chatroomID).childSnapshot(forPath: "members").value as? [Int: String] {
-
-                                    //swiftlint:disable force_cast
                                     let chatMember1 = member[0]
 
                                     let chatMember2 = member[1]
-                                    //swiftlint:enable force_cast
 
                                     if (uid == chatMember1 && self.peopleID == chatMember2) || (uid == chatMember2 && self.peopleID == chatMember1) {
 
@@ -189,8 +187,6 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
                             }, withCancel: nil)
 
-                            print("!!!!!!!")
-
                         }
 
                     }
@@ -223,8 +219,6 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         self.allMessages = allMessages
 
-        print("message:", self.allMessages)
-
         DispatchQueue.main.async {
 
             self.chatLogTableView.reloadData()
@@ -236,11 +230,7 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         self.dict = dict
 
-//        print("dict========", dict)
-
         if let chatroomID = dict[peopleID] {
-
-            print("ID::", peopleID, chatroomID)
 
             if getChatroomID == false {
 

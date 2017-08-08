@@ -187,8 +187,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         self.friendName = name
         
         self.friendID = id
-        
-        print("friendID????", self.friendID)
 
         friendText.text = name
 
@@ -301,8 +299,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     
     func autoSendDo(text: String, id: String) {
         
-//        print("talked", text)
-        
         var istalked = false
         
         var isrun = Int()
@@ -357,23 +353,15 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
                         //channels ID
                         if let chatroomID = chat.key as? String {
                             
-                            print("chatroomID", chatroomID)
-                            
                             channelRef.observeSingleEvent(of:.value, with: { (dataSnapshot) in
                                 
-                                print("1111111111", dataSnapshot)
-                                
-                                if let member = dataSnapshot.childSnapshot(forPath: chatroomID).childSnapshot(forPath: "members").value as? [Int: String] {
-                                    
-                                    print("2222222222")
+                                if let member = dataSnapshot.childSnapshot(forPath: chatroomID).childSnapshot(forPath: "members").value as? [String] {
                                     
                                     let chatMember1 = member[0]
                                     
                                     let chatMember2 = member[1]
                                     
                                     if (uid == chatMember1 && self.friendID == chatMember2) || (uid == chatMember2 && self.friendID == chatMember1) {
-                                        
-                                        print("333333333333")
                                         
                                         istalked = true
                                         

@@ -68,8 +68,6 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
         self.messages = message
 
-        //        print("::::::::::", message)
-
         DispatchQueue.main.async {
 
             self.chatRoomTableView.reloadData()
