@@ -1,16 +1,16 @@
 //
-//  DoTableViewCell.swift
+//  NoneDoTableViewCell.swift
 //  GoldfishBrain
 //
-//  Created by yuling on 2017/8/2.
+//  Created by yuling on 2017/8/9.
 //  Copyright © 2017年 yuling. All rights reserved.
 //
 
 import UIKit
 
-class DoTableViewCell: UITableViewCell {
+class NoneDoTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var doDetailsTextView: UITextView!
+    @IBOutlet weak var noneLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

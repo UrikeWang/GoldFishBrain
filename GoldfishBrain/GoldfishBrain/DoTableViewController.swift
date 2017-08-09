@@ -16,17 +16,26 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         addDoButton.layer.cornerRadius = 3
-        
+
         addDoButton.layer.borderColor = UIColor.gray.cgColor
-        
+
         addDoButton.layer.borderWidth = 1
-        
+
         addDoButton.setTitle("Add 『 Do 』", for: .normal)
 
     }
 
+    @IBAction func addDoButton(_ sender: Any) {
+
+        //swiftlint:disable force_cast
+        let addDoVC = storyboard?.instantiateViewController(withIdentifier: "addDoVC") as! CreateDoViewController
+        //swiftlint:enable force_cast
+
+        present(addDoVC, animated: true, completion: nil)
+
+    }
     override func viewWillAppear(_ animated: Bool) {
 
         super.viewWillAppear(animated) // No need for semicolon
@@ -46,29 +55,32 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 2
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-//        if indexPath.row == 0 {
-//
-//            //swiftlint:disable force_cast
+        if let userDestination = UserDefaults.standard.value(forKey: "destination") as? String, let friendID = UserDefaults.standard.value(forKey: "friend") as? String {
+
+            //swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: "DoCell", for: indexPath) as! DoTableViewCell
-//            //swiftlint:enable force_cast
-//
-//            return cell
-//
-//        } else {
-//
-//            //swiftlint:disable force_cast
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "DoCell", for: indexPath) as! DoTableViewCell
-//            //swiftlint:enable force_cast
-//
-//            return cell
-//        }
-        
-        return cell
+            //swiftlint:enable force_cast
+
+            cell.doDetailsTextView.text = "目的地：\(userDestination)\r\n通知朋友：\(friendID)"
+
+             return cell
+
+        } else {
+
+            //swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NoneDoCell", for: indexPath) as! NoneDoTableViewCell
+            //swiftlint:enable force_cast
+
+            cell.noneLabel.text = "No more task"
+
+            return cell
+
+        }
 
     }
 

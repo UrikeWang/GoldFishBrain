@@ -29,34 +29,28 @@ extension AddDoPopViewController: CLLocationManagerDelegate {
         case .notDetermined:
             print("Location status not determined.")
 
-        
         case .authorizedWhenInUse: fallthrough
-            
+
         case .authorizedAlways:
             locationManager.startMonitoringSignificantLocationChanges()
-            
+
             locationManager.startUpdatingLocation()
-            
+
             mapView.isMyLocationEnabled = true
             mapView.settings.myLocationButton = true
             //            print("Location status is OK.")
 
-        
                     }
 
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+
         if let location = locations.last {
-            
-//            getcoordinate(address: userDestination)
+
+            mapView.clear()
 
             mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
-            
-//            print("location", location.coordinate.latitude)
-//            
-//            print("\(UserDefaults.standard.value(forKey: "destination0")) ,,,,,,,\(UserDefaults.standard.value(forKey: "destination1"))")
 
             // Creates a marker in the center of the map
             let marker = GMSMarker()
@@ -70,20 +64,24 @@ extension AddDoPopViewController: CLLocationManagerDelegate {
             marker.map = mapView
 
 //            locationManager.stopUpdatingLocation()
-            
+
             var location00 = String(format: "%0.6f", location.coordinate.latitude)
-            
+
             var location10 = String(format: "%0.6f", location.coordinate.longitude)
-            
-            if notify == false && location00 == userDestination0 && location10 == userDestination1 {
-            
-                print("i'm here")
-                
-                autoResponse(destination: userDestination, id: friendID)
-                
-                locationManager.stopUpdatingLocation()
-                
-                notify == true
+
+            if let userDestination0 = UserDefaults.standard.value(forKey: "destination0") as? String, let userDestination1 = UserDefaults.standard.value(forKey: "destination1") as? String, let userDestination = UserDefaults.standard.value(forKey: "destination") as? String, let friendID = UserDefaults.standard.value(forKey: "friend") as? String {
+
+                if notify == false && location00 == userDestination0 && location10 == userDestination1 && location00 != "" {
+
+                    print("i'm here")
+
+                    autoResponse(destination: userDestination, id: friendID)
+
+                    locationManager.stopUpdatingLocation()
+
+                    notify == true
+                }
+
             }
 
         }
@@ -94,119 +92,115 @@ extension AddDoPopViewController: CLLocationManagerDelegate {
 
         print("error:: \(error.localizedDescription)")
     }
-    
+
     func autoResponse(destination: String, id: String) {
-        
+
         var istalked = false
-        
+
         var isrun = Int()
-        
+
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
-            
+
             let ref = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("messages")
-            
+
             let timestamp = Int(Date().timeIntervalSince1970)
-            
+
             let channelRef = Database.database().reference().child("channels")
             //            let childRef = ref.childByAutoId()
-            
+
             let childTalkRef = channelRef.childByAutoId()
-            
+
             let chatsRef = Database.database().reference().child("users").child(uid).child("chats")
-            
-            let chatsToRef =  Database.database().reference().child("users").child(friendID).child("chats")
-            
+
+            let chatsToRef =  Database.database().reference().child("users").child(id).child("chats")
+
             let childTalkTextID = childTalkRef.childByAutoId()
-            
+
             chatsRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                
+
                 switch snapshot.childrenCount {
-                    
+
                 case 0 :
-                    
-                    let memValues = ["0": uid, "1": self.friendID]
-                    
-                    let values = ["text": "我到達\(destination)", "fromID": uid, "toID": self.friendID, "timestamp": timestamp] as [String : Any]
-                    
+
+                    let memValues = ["0": uid, "1": id]
+
+                    let values = ["text": "我到達\(destination)", "fromID": uid, "toID": id, "timestamp": timestamp] as [String : Any]
+
                     childTalkRef.child("members").updateChildValues(memValues)
-                    
+
                     childTalkTextID.updateChildValues(values)
-                    
+
                     //                    self.messageText.text = ""
-                    
+
                     chatsRef.updateChildValues([childTalkRef.key: 1])
-                    
+
                     chatsToRef.updateChildValues([childTalkRef.key: 1])
-                    
+
                 case _ where snapshot.childrenCount > 0 :
-                    
+
                     isrun = Int(snapshot.childrenCount)
-                    
+
                     for chat in (snapshot.value as? [String: Any])! {
-                        
+
                         //channels ID
                         if let chatroomID = chat.key as? String {
-                            
+
                             channelRef.observeSingleEvent(of:.value, with: { (dataSnapshot) in
-                                
+
                                 if let member = dataSnapshot.childSnapshot(forPath: chatroomID).childSnapshot(forPath: "members").value as? [String] {
-                                    
+
                                     let chatMember1 = member[0]
-                                    
+
                                     let chatMember2 = member[1]
-                                    
-                                    if (uid == chatMember1 && self.friendID == chatMember2) || (uid == chatMember2 && self.friendID == chatMember1) {
-                                        
+
+                                    if (uid == chatMember1 && id == chatMember2) || (uid == chatMember2 && id == chatMember1) {
+
                                         istalked = true
-                                        
-                                        let values = ["text": "我到達\(destination)", "fromID": uid, "toID": self.friendID, "timestamp": timestamp] as [String : Any]
-                                        
+
+                                        let values = ["text": "我到達\(destination)", "fromID": uid, "toID": id, "timestamp": timestamp] as [String : Any]
+
                                         channelRef.child(chatroomID).childByAutoId().updateChildValues(values)
-                                        
-                                        //                                        self.messageText.text = ""
+
                                     }
-                                    
+
                                     isrun -= 1
-                                    
+
                                 }
-                                
+
                                 if istalked == false && isrun == 0 {
-                                    
-                                    let memValues = ["0": uid, "1": self.friendID]
-                                    
-                                    let values = ["text": "我到達\(destination)", "fromID": uid, "toID": self.friendID, "timestamp": timestamp] as [String : Any]
-                                    
+
+                                    let memValues = ["0": uid, "1": id]
+
+                                    let values = ["text": "我到達\(destination)", "fromID": uid, "toID": id, "timestamp": timestamp] as [String : Any]
+
                                     childTalkRef.child("members").updateChildValues(memValues)
-                                    
+
                                     childTalkTextID.updateChildValues(values)
-                                    
+
                                     //                                    self.messageText.text = ""
-                                    
+
                                     chatsRef.updateChildValues([childTalkRef.key: 1])
-                                    
+
                                     chatsToRef.updateChildValues([childTalkRef.key: 1])
-                                    
+
                                     istalked = true
-                                    
+
                                 }
-                                
+
                             }, withCancel: nil)
-                            
-                            //                            print("!!!!!!!")
-                            
+
                         }
-                        
+
                     }
-                    
+
                 default: break
-                    
+
                 }
-                
+
             }, withCancel: nil)
-            
+
         }
 
-    
     }
 
 }

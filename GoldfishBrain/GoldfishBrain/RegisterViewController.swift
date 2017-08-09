@@ -63,7 +63,7 @@ class RegisterViewController: UIViewController {
 
                     return
                 }
-                
+
                 //存在userdefaults中為optional型態
                 UserDefaults.standard.set(userUid, forKey: "uid")
 

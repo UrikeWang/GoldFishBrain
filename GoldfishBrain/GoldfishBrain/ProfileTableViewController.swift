@@ -9,12 +9,15 @@
 import UIKit
 import FirebaseDatabase
 import Kingfisher
+import CoreData
 
 class ProfileTableViewController: UITableViewController, profileManagerDelegate {
 
     @IBOutlet weak var firstNameLabel: UILabel!
 
     @IBOutlet weak var profileImage: UIImageView!
+
+    @IBOutlet var dosTableView: UITableView!
 
     var profiles: [Profile] = []
 
@@ -23,6 +26,14 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
     var userFirstName = ""
 
     var userLastName = ""
+
+    var travelDatas = [TravelDataMO]()
+
+    var travelData: TravelDataMO!
+
+    //swiftlint:disable force_cast
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    //swiftlint:enable force_cast
 
     func profileManager(_ manager: ProfileManager, didGetProfile profile: [Profile]) {
 
@@ -80,6 +91,28 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated) // No need for semicolon
+
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+
+            let request: NSFetchRequest<TravelDataMO> = TravelDataMO.fetchRequest()
+            do {
+
+                travelDatas = try context.fetch(request)
+
+            } catch {
+
+                print(error)
+
+            }
+
+            dosTableView.reloadData()
+
+        }
+
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -89,23 +122,68 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return travelDatas.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
+        //swiftlint:disable force_cast
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AllMyDosCell", for: indexPath) as! AllMyDosTableViewCell
+        //swiftlint:enable force_cast
+
+        if let date = travelDatas[indexPath.row].time as? String {
+
+            cell.travelDate.text = "出發時間：" + date
+
+        } else {
+
+            cell.travelDate.text = "出發時間："
+        }
+
+        if let destination = travelDatas[indexPath.row].destination as? String {
+
+            cell.travelDestinationTextView.text = "目的地：" + destination
+
+        } else {
+
+            cell.travelDestinationTextView.text = "目的地："
+        }
+
+        if let finished = travelDatas[indexPath.row].finished as? Bool {
+
+            cell.travelFinished.text = "行程是否完成：\(finished)"
+
+        } else {
+
+            cell.travelFinished.text = "行程是否完成："
+        }
+
+        if let notified = travelDatas[indexPath.row].notify as? Bool {
+
+            cell.travelNotified.text = "行程是否通知：\(notified)"
+
+        } else {
+
+            cell.travelNotified.text = "行程是否通知："
+        }
+
+//        cell.travelDate.text = "出發時間：\(travelDatas[indexPath.row].time)"
+
+        //swiftlint:disable force_cast
+//        cell.travelDestinationTextView.text = "目的地：\(travelDatas[indexPath.row].destination!)"
+//        //swiftlint:enable force_cast
+//        
+//        cell.travelFinished.text = "行程是否完成：\(travelDatas[indexPath.row].finished)"
+//        
+//        cell.travelNotified.text = "行程是否通知：\(travelDatas[indexPath.row].notify)"
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

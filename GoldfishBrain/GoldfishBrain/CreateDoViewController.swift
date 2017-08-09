@@ -45,7 +45,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     var travelTime = ""
 
     var friendName = ""
-    
+
     var friendID = ""
 
     var detail: TravelDetail?
@@ -53,10 +53,10 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     var travelDatas = [TravelDataMO]()
 
     var travelData: TravelDataMO!
-    
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+
     //swiftlint:disable force_cast
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
     let uid = UserDefaults.standard.value(forKey: "uid") as! String
     //swiftlint:enable force_cast
 
@@ -185,7 +185,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     func manager(_ manager: PopFriendViewController, name: String, id: String) {
 
         self.friendName = name
-        
+
         self.friendID = id
 
         friendText.text = name
@@ -225,54 +225,64 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     }
 
     @IBAction func createDoButton(_ sender: Any) {
-        
+
         if travelDestination != "" && friendID != "" {
-            
+
             autoSendDo(text: travelDetails.text, id: friendID)
-            
+
             UserDefaults.standard.set(travelDestination, forKey: "destination")
-            
+
             UserDefaults.standard.set(friendID, forKey: "friend")
-            
+
+            UserDefaults.standard.synchronize()
+
             print("userdefault", UserDefaults.standard.value(forKey: "destination"))
-            
+
+            self.dismiss(animated: false, completion: nil)
+
         } else {
-            
+
             print("You did not set your destination or friend you want to notify.")
-            
+
         }
-        
-//        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-//            
-//            travelData = TravelDataMO(context: appDelegate.persistentContainer.viewContext)
-//            
-//            travelData.time = travelTime
-//            
-//            travelData.destination = travelDestination
-//            
-//            travelData.distance = travelDistance
-//            
-//            travelData.duration = travelDuration
-//            
-//            travelData.finished = false
-//            
-//            do {
-//                
-//                let task = try self.context.fetch(TravelDataMO.fetchRequest())
-//                
-//                travelDatas = (task as? [TravelDataMO])!
-//                
-//            } catch let error {
-//                
-//                print("did not save the data!")
-//            
-//            }
-//        
-//        }
-        
+
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+
+            travelData = TravelDataMO(context: appDelegate.persistentContainer.viewContext)
+
+            travelData.time = travelTime
+
+            travelData.destination = travelDestination
+
+            travelData.distance = travelDistance
+
+            travelData.duration = travelDuration
+
+            travelData.finished = false
+
+            travelData.notify = false
+
+            do {
+
+                let task = try self.context.fetch(TravelDataMO.fetchRequest())
+
+                travelDatas = (task as? [TravelDataMO])!
+
+            } catch let error {
+
+                print("did not save the data!")
+
+            }
+
+        }
+
     }
 
     @IBAction func cancelDoButton(_ sender: Any) {
+
+//        self.present(DoTableViewController(), animated: true, completion: nil)
+
+        self.dismiss(animated: true, completion: nil)
     }
 
     override func viewDidLoad() {
@@ -310,119 +320,118 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     func autoSendDo(text: String, id: String) {
-        
+
         var istalked = false
-        
+
         var isrun = Int()
-        
+
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
-            
+
             let ref = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("messages")
-            
+
             let timestamp = Int(Date().timeIntervalSince1970)
-            
+
             let channelRef = Database.database().reference().child("channels")
             //            let childRef = ref.childByAutoId()
-            
+
             let childTalkRef = channelRef.childByAutoId()
-            
+
             let chatsRef = Database.database().reference().child("users").child(uid).child("chats")
-            
+
             let chatsToRef =  Database.database().reference().child("users").child(friendID).child("chats")
-            
+
             let childTalkTextID = childTalkRef.childByAutoId()
-            
+
             chatsRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                
+
                 switch snapshot.childrenCount {
-                    
+
                 case 0 :
-                    
+
                     let memValues = ["0": uid, "1": self.friendID]
-                    
+
                     let values = ["text": text, "fromID": uid, "toID": self.friendID, "timestamp": timestamp] as [String : Any]
-                    
+
                     childTalkRef.child("members").updateChildValues(memValues)
-                    
+
                     childTalkTextID.updateChildValues(values)
-                    
+
 //                    self.messageText.text = ""
-                    
+
                     chatsRef.updateChildValues([childTalkRef.key: 1])
-                    
+
                     chatsToRef.updateChildValues([childTalkRef.key: 1])
-                    
+
                 case _ where snapshot.childrenCount > 0 :
-                    
+
                     isrun = Int(snapshot.childrenCount)
-                    
+
                     for chat in (snapshot.value as? [String: Any])! {
-                        
+
                         //channels ID
                         if let chatroomID = chat.key as? String {
-                            
+
                             channelRef.observeSingleEvent(of:.value, with: { (dataSnapshot) in
-                                
+
                                 if let member = dataSnapshot.childSnapshot(forPath: chatroomID).childSnapshot(forPath: "members").value as? [String] {
-                                    
+
                                     let chatMember1 = member[0]
-                                    
+
                                     let chatMember2 = member[1]
-                                    
+
                                     if (uid == chatMember1 && self.friendID == chatMember2) || (uid == chatMember2 && self.friendID == chatMember1) {
-                                        
+
                                         istalked = true
-                                        
+
                                         let values = ["text": text, "fromID": uid, "toID": self.friendID, "timestamp": timestamp] as [String : Any]
-                                        
+
                                         channelRef.child(chatroomID).childByAutoId().updateChildValues(values)
-                                        
+
 //                                        self.messageText.text = ""
                                     }
-                                    
+
                                     isrun -= 1
-                                    
+
                                 }
-                                
+
                                 if istalked == false && isrun == 0 {
-                                    
+
                                     let memValues = ["0": uid, "1": self.friendID]
-                                    
+
                                     let values = ["text": text, "fromID": uid, "toID": self.friendID, "timestamp": timestamp] as [String : Any]
-                                    
+
                                     childTalkRef.child("members").updateChildValues(memValues)
-                                    
+
                                     childTalkTextID.updateChildValues(values)
-                                    
+
 //                                    self.messageText.text = ""
-                                    
+
                                     chatsRef.updateChildValues([childTalkRef.key: 1])
-                                    
+
                                     chatsToRef.updateChildValues([childTalkRef.key: 1])
-                                    
+
                                     istalked = true
-                                    
+
                                 }
-                                
+
                             }, withCancel: nil)
-                            
+
 //                            print("!!!!!!!")
-                            
+
                         }
-                        
+
                     }
-                    
+
                 default: break
-                    
+
                 }
-                
+
             }, withCancel: nil)
-            
+
         }
 
-    
     }
 
     /*

@@ -1,16 +1,22 @@
 //
-//  DoTableViewCell.swift
+//  AllMyDosTableViewCell.swift
 //  GoldfishBrain
 //
-//  Created by yuling on 2017/8/2.
+//  Created by yuling on 2017/8/9.
 //  Copyright © 2017年 yuling. All rights reserved.
 //
 
 import UIKit
 
-class DoTableViewCell: UITableViewCell {
+class AllMyDosTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var doDetailsTextView: UITextView!
+    @IBOutlet weak var travelDate: UILabel!
+
+    @IBOutlet weak var travelDestinationTextView: UITextView!
+
+    @IBOutlet weak var travelFinished: UILabel!
+
+    @IBOutlet weak var travelNotified: UILabel! //到達目的地時通知狀態
 
     override func awakeFromNib() {
         super.awakeFromNib()

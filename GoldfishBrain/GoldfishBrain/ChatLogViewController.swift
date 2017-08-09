@@ -85,7 +85,7 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
         messageManager.observeUserMessages()
 
         chatLogTableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        
+
         chatLogTableView.estimatedRowHeight = 86.0
 
         chatLogTableView.rowHeight = UITableViewAutomaticDimension
@@ -145,7 +145,7 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
                         if let chatroomID = chat.key as? String {
 
                             channelRef.observeSingleEvent(of:.value, with: { (dataSnapshot) in
-                                
+
                                 if let member = dataSnapshot.childSnapshot(forPath: chatroomID).childSnapshot(forPath: "members").value as? [String] {
 
                                     let chatMember1 = member[0]
@@ -272,14 +272,14 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
             //swiftlint:enable force_cast
 
             cell.rightChatText.text = message.text
-            
+
+            //swiftlint:disable force_cast
             cell.rightChatText.layer.backgroundColor = UIColor.lightGray.cgColor as! CGColor
-            
+            //swiftlint:enable force_cast
+
             cell.setNeedsUpdateConstraints()
-            
+
             cell.updateConstraintsIfNeeded()
-            
-            
 
             return cell
 
@@ -290,14 +290,12 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
             //swiftlint:enable force_cast
 
             cell.leftChatText.text = message.text
-            
+
             cell.leftChatText.layer.backgroundColor = UIColor.asiSeaBlue.cgColor
-            
+
             cell.setNeedsUpdateConstraints()
-            
+
             cell.updateConstraintsIfNeeded()
-            
-            
 
             return cell
 
