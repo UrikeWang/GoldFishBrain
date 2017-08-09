@@ -196,8 +196,8 @@
 			isa = PBXGroup;
 			children = (
 				6E996A731F3348A00097BA4C /* CreateDoViewController.swift */,
-				6E996A6B1F32E3570097BA4C /* AddDoPopViewController+extension.swift */,
 				6E9861CB1F31F3DF00EFEFCB /* AddDoPopViewController.swift */,
+				6E996A6B1F32E3570097BA4C /* AddDoPopViewController+extension.swift */,
 				6EB1D2091F359B1B00377FDE /* AddDoPopViewController+GMSAutocompleteResults.swift */,
 				6EB1D25B1F38963100377FDE /* Friend */,
 				6EB1D2561F384DC800377FDE /* Location */,

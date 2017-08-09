@@ -46,7 +46,7 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -54,7 +54,7 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 //        if indexPath.row == 0 {
 //
 //            //swiftlint:disable force_cast
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AddDoCell", for: indexPath) as! AddDoTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DoCell", for: indexPath) as! DoTableViewCell
 //            //swiftlint:enable force_cast
 //
 //            return cell

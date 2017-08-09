@@ -226,35 +226,49 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     @IBAction func createDoButton(_ sender: Any) {
         
-        autoSendDo(text: travelDetails.text, id: friendID)
-        
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+        if travelDestination != "" && friendID != "" {
             
-            travelData = TravelDataMO(context: appDelegate.persistentContainer.viewContext)
+            autoSendDo(text: travelDetails.text, id: friendID)
             
-            travelData.time = travelTime
+            UserDefaults.standard.set(travelDestination, forKey: "destination")
             
-            travelData.destination = travelDestination
+            UserDefaults.standard.set(friendID, forKey: "friend")
             
-            travelData.distance = travelDistance
+            print("userdefault", UserDefaults.standard.value(forKey: "destination"))
             
-            travelData.duration = travelDuration
+        } else {
             
-            travelData.finished = false
+            print("You did not set your destination or friend you want to notify.")
             
-            do {
-                
-                let task = try self.context.fetch(TravelDataMO.fetchRequest())
-                
-                travelDatas = (task as? [TravelDataMO])!
-                
-            } catch let error {
-                
-                print("did not save the data!")
-            
-            }
-        
         }
+        
+//        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+//            
+//            travelData = TravelDataMO(context: appDelegate.persistentContainer.viewContext)
+//            
+//            travelData.time = travelTime
+//            
+//            travelData.destination = travelDestination
+//            
+//            travelData.distance = travelDistance
+//            
+//            travelData.duration = travelDuration
+//            
+//            travelData.finished = false
+//            
+//            do {
+//                
+//                let task = try self.context.fetch(TravelDataMO.fetchRequest())
+//                
+//                travelDatas = (task as? [TravelDataMO])!
+//                
+//            } catch let error {
+//                
+//                print("did not save the data!")
+//            
+//            }
+//        
+//        }
         
     }
 

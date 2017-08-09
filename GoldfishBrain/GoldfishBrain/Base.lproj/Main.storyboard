@@ -259,30 +259,14 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddDoCell" rowHeight="216" id="VCa-YP-V6e" customClass="AddDoTableViewCell" customModule="GoldfishBrain" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="263" width="375" height="216"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VCa-YP-V6e" id="7Db-cX-Rbz">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="215.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="JmV-Ap-Q27">
-                                <rect key="frame" x="0.0" y="479" width="375" height="111"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JmV-Ap-Q27" id="T6c-vG-xoC">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="110.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DoCell" rowHeight="142" id="bbm-hO-nnE" customClass="DoTableViewCell" customModule="GoldfishBrain" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="590" width="375" height="142"/>
+                                <rect key="frame" x="0.0" y="263" width="375" height="142"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bbm-hO-nnE" id="4L3-Nz-BF2">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="141.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -347,7 +331,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="createDoButton:" destination="CTh-gv-XZQ" eventType="touchUpInside" id="CQm-V9-h95"/>
+                                    <action selector="createDoButton:" destination="CTh-gv-XZQ" eventType="touchUpInside" id="mQY-jy-X5D"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bnl-mz-CEL">
@@ -426,7 +410,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="cancelDoButton" destination="wCD-9D-EbN" id="fav-jn-lS2"/>
-                        <outlet property="createDoButton" destination="Jza-aK-hji" id="SsH-b9-ej7"/>
+                        <outlet property="createDoButton" destination="Jza-aK-hji" id="xlB-tn-I5L"/>
                         <outlet property="dateLabel" destination="lmY-PG-JYH" id="ij7-Mm-frh"/>
                         <outlet property="dateText" destination="pIO-VR-6Rj" id="vti-KP-1NK"/>
                         <outlet property="destinationLabel" destination="snF-18-srj" id="JHr-iV-JLk"/>
@@ -437,74 +421,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zvh-i8-qYf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="MrK-E5-sSA">
-                    <rect key="frame" x="0.0" y="0.0" width="379" height="651"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ctU-Ja-CGJ" customClass="GMSMapView">
-                            <rect key="frame" x="0.0" y="0.0" width="379" height="435"/>
-                            <subviews>
-                                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="rVI-1P-N1E">
-                                    <rect key="frame" x="0.0" y="0.0" width="379" height="44"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </searchBar>
-                            </subviews>
-                            <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="rVI-1P-N1E" secondAttribute="trailing" id="3pw-kV-Je6"/>
-                                <constraint firstAttribute="height" constant="435" id="46c-cN-KlQ"/>
-                                <constraint firstItem="rVI-1P-N1E" firstAttribute="top" secondItem="ctU-Ja-CGJ" secondAttribute="top" id="o0X-lc-bbO"/>
-                                <constraint firstItem="rVI-1P-N1E" firstAttribute="leading" secondItem="ctU-Ja-CGJ" secondAttribute="leading" id="vyA-la-C1u"/>
-                            </constraints>
-                        </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2FR-le-iYf">
-                            <rect key="frame" x="59" y="453" width="260" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Qi-Gb-NgF">
-                            <rect key="frame" x="59" y="484" width="46" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="Button"/>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Enj-gb-Ob5">
-                            <rect key="frame" x="166" y="484" width="46" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="Button"/>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NkC-99-RjZ">
-                            <rect key="frame" x="273" y="484" width="46" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="Button"/>
-                        </button>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XmJ-Zh-emE">
-                            <rect key="frame" x="59" y="522" width="260" height="73"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.80000001190000003" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        </textView>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xy2-xM-ZmP">
-                            <rect key="frame" x="148" y="603" width="83" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="Button"/>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="ctU-Ja-CGJ" firstAttribute="leading" secondItem="MrK-E5-sSA" secondAttribute="leading" id="CmF-GJ-ibw"/>
-                        <constraint firstAttribute="trailing" secondItem="ctU-Ja-CGJ" secondAttribute="trailing" id="Vz9-a6-Nn8"/>
-                        <constraint firstItem="ctU-Ja-CGJ" firstAttribute="top" secondItem="MrK-E5-sSA" secondAttribute="top" id="tyc-76-TK0"/>
-                    </constraints>
-                </view>
             </objects>
             <point key="canvasLocation" x="5720.8000000000002" y="994.45277361319347"/>
         </scene>

@@ -53,6 +53,18 @@ class AddDoPopViewController: UIViewController {
     var detail: TravelDetail?
 
     weak var delegate: managerDestinationDelegate?
+    
+    let userDestination0 = UserDefaults.standard.value(forKey: "destination0") as! String
+    
+    let userDestination1 = UserDefaults.standard.value(forKey: "destination1") as! String
+    
+    let userDestination = UserDefaults.standard.value(forKey: "destination") as! String
+    
+    let friendID = UserDefaults.standard.value(forKey: "friend") as! String
+    
+    let uid = UserDefaults.standard.value(forKey: "uid") as! String
+    
+    var notify = false
 
     @IBOutlet weak var travelTime: UITextView!
 
@@ -120,6 +132,15 @@ class AddDoPopViewController: UIViewController {
                                             self.travelDistance = "\(distanceText)"
 
                                             self.travelDestination = "\(desination)"
+                                            
+                                            var end00 = String(format: "%0.6f", end0)
+                                            
+                                            var end10 = String(format: "%0.6f", end1)
+                                            
+                                            UserDefaults.standard.set(end00, forKey: "destination0")
+                                            
+                                            UserDefaults.standard.set(end10, forKey: "destination1")
+
                                         }
 
                                     }
@@ -160,8 +181,8 @@ class AddDoPopViewController: UIViewController {
 
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
 
-//        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
+//        locationManager.requestWhenInUseAuthorization()
 
         locationManager.distanceFilter = 50
 
