@@ -54,6 +54,31 @@ class LoginViewController: UIViewController {
 
     }
 
+    @IBAction func forgetPasswordButton(_ sender: Any) {
+
+        if emailText.text == "" {
+
+            print("You have to keyin your email")
+
+        } else {
+
+            Auth.auth().sendPasswordReset(withEmail: emailText.text!, completion: { (error) in
+
+                if error != nil {
+
+                    print("error occured", error)
+
+                } else {
+
+                    print("Sent password reset mail successfully!")
+
+                }
+
+            })
+
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

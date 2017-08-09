@@ -84,11 +84,7 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
 
         profileImage.isUserInteractionEnabled = true
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        firstNameLabel.textAlignment = .center
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -123,6 +119,16 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+
+        return "歷史行程"
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+
+        return 60.0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -125,13 +125,13 @@
 			children = (
 				6E28471E1F27343F002269EC /* Main.storyboard */,
 				6E9861C61F31D76800EFEFCB /* Do */,
+				6EF577BB1F3B3D4400D1068A /* Login */,
 				6E28473E1F288276002269EC /* Register */,
 				6E2847371F2864B5002269EC /* Profile */,
 				6E2847361F27812E002269EC /* ChatRoom */,
 				6E28471A1F27343F002269EC /* AppDelegate.swift */,
 				6E2847491F29E6AE002269EC /* extension.swift */,
 				6E2847761F2B1616002269EC /* StyleGuide.swift */,
-				6E28471C1F27343F002269EC /* LoginViewController.swift */,
 				6E2847241F27343F002269EC /* Assets.xcassets */,
 				6E2847261F27343F002269EC /* LaunchScreen.storyboard */,
 				6E2847291F27343F002269EC /* Info.plist */,
@@ -226,6 +226,14 @@
 				6EB1D2591F38961000377FDE /* PopFriendCollectionViewCell.swift */,
 			);
 			name = Friend;
+			sourceTree = "<group>";
+		};
+		6EF577BB1F3B3D4400D1068A /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				6E28471C1F27343F002269EC /* LoginViewController.swift */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 		A563013A9E89B9809BE57A38 /* Pods */ = {

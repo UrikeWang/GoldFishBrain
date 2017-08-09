@@ -258,6 +258,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             travelData.duration = travelDuration
 
+            travelData.friend = friendName
+
             travelData.finished = false
 
             travelData.notify = false
@@ -273,6 +275,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
                 print("did not save the data!")
 
             }
+
+            appDelegate.saveContext()
 
         }
 
