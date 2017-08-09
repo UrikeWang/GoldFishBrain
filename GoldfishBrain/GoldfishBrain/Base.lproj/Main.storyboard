@@ -238,35 +238,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="iFT-Tu-Ohf">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="235"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ytf-Vg-Fae">
+                                    <rect key="frame" x="38" y="20" width="299" height="195"/>
+                                    <state key="normal" title="ADD"/>
+                                    <connections>
+                                        <segue destination="CTh-gv-XZQ" kind="show" id="JBV-44-e8W"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.80000001190000003" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="ytf-Vg-Fae" secondAttribute="trailing" constant="38" id="ba9-Pc-yDb"/>
+                                <constraint firstItem="ytf-Vg-Fae" firstAttribute="top" secondItem="iFT-Tu-Ohf" secondAttribute="top" constant="20" id="bit-zj-WK4"/>
+                                <constraint firstAttribute="bottom" secondItem="ytf-Vg-Fae" secondAttribute="bottom" constant="20" id="frA-N7-tDd"/>
+                                <constraint firstItem="ytf-Vg-Fae" firstAttribute="leading" secondItem="iFT-Tu-Ohf" secondAttribute="leading" constant="38" id="uya-nw-EII"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddDoCell" rowHeight="216" id="VCa-YP-V6e" customClass="AddDoTableViewCell" customModule="GoldfishBrain" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="216"/>
+                                <rect key="frame" x="0.0" y="263" width="375" height="216"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VCa-YP-V6e" id="7Db-cX-Rbz">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="215.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ytf-Vg-Fae">
-                                            <rect key="frame" x="38" y="28" width="299" height="159.5"/>
-                                            <state key="normal" title="ADD"/>
-                                            <connections>
-                                                <segue destination="CTh-gv-XZQ" kind="show" id="Rch-I0-8X3"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="ytf-Vg-Fae" firstAttribute="top" secondItem="7Db-cX-Rbz" secondAttribute="topMargin" constant="20" id="6Rx-xO-4j5"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="ytf-Vg-Fae" secondAttribute="trailing" constant="30" id="Bzc-e3-ToV"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="ytf-Vg-Fae" secondAttribute="bottom" constant="20" id="KPD-8j-56w"/>
-                                        <constraint firstItem="ytf-Vg-Fae" firstAttribute="leading" secondItem="7Db-cX-Rbz" secondAttribute="leadingMargin" constant="30" id="dG4-kG-30d"/>
-                                    </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="addDoButton" destination="ytf-Vg-Fae" id="FPe-gd-ELN"/>
-                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="JmV-Ap-Q27">
+                                <rect key="frame" x="0.0" y="479" width="375" height="111"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JmV-Ap-Q27" id="T6c-vG-xoC">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="110.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DoCell" rowHeight="142" id="bbm-hO-nnE" customClass="DoTableViewCell" customModule="GoldfishBrain" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="244" width="375" height="142"/>
+                                <rect key="frame" x="0.0" y="590" width="375" height="142"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bbm-hO-nnE" id="4L3-Nz-BF2">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="141.5"/>
@@ -281,6 +292,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="GNc-oZ-kst"/>
                     <connections>
+                        <outlet property="addDoButton" destination="ytf-Vg-Fae" id="hOi-zi-vdC"/>
                         <outlet property="popTableView" destination="3JD-24-GI9" id="TgA-Hi-W7f"/>
                     </connections>
                 </tableViewController>
@@ -717,10 +729,10 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTT-mY-NbG">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTT-mY-NbG">
                                             <rect key="frame" x="262" y="13" width="90" height="20"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="80" id="DMY-ke-gyy"/>
+                                                <constraint firstAttribute="width" constant="90" id="MXw-hv-xgD"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -729,15 +741,15 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Dbe-GF-HkX" firstAttribute="leading" secondItem="tL8-gq-Xdg" secondAttribute="leadingMargin" constant="20" id="3Ox-Iu-4wm"/>
+                                        <constraint firstItem="VTT-mY-NbG" firstAttribute="trailing" secondItem="zoy-fI-N9f" secondAttribute="trailing" id="4fv-eG-btm"/>
                                         <constraint firstItem="Squ-ZR-mjA" firstAttribute="top" secondItem="Dbe-GF-HkX" secondAttribute="top" id="7W5-eT-MtS"/>
-                                        <constraint firstItem="Squ-ZR-mjA" firstAttribute="baseline" secondItem="VTT-mY-NbG" secondAttribute="baseline" id="Hn1-wR-MPD"/>
+                                        <constraint firstItem="VTT-mY-NbG" firstAttribute="leading" secondItem="Squ-ZR-mjA" secondAttribute="trailing" constant="1" id="8v0-f3-39f"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="zoy-fI-N9f" secondAttribute="trailing" constant="15" id="J75-gw-GP9"/>
                                         <constraint firstItem="Squ-ZR-mjA" firstAttribute="leading" secondItem="zoy-fI-N9f" secondAttribute="leading" id="PjU-sz-wAJ"/>
                                         <constraint firstItem="zoy-fI-N9f" firstAttribute="bottom" secondItem="Dbe-GF-HkX" secondAttribute="bottom" id="S7O-b2-miv"/>
-                                        <constraint firstItem="VTT-mY-NbG" firstAttribute="trailing" secondItem="zoy-fI-N9f" secondAttribute="trailing" id="T8h-wR-Rlc"/>
                                         <constraint firstItem="Dbe-GF-HkX" firstAttribute="top" secondItem="tL8-gq-Xdg" secondAttribute="topMargin" constant="5" id="b1o-xF-82M"/>
                                         <constraint firstItem="zoy-fI-N9f" firstAttribute="leading" secondItem="Dbe-GF-HkX" secondAttribute="trailing" constant="15" id="baQ-KV-uSV"/>
-                                        <constraint firstItem="VTT-mY-NbG" firstAttribute="leading" secondItem="Squ-ZR-mjA" secondAttribute="trailing" constant="11" id="hKT-jp-t4m"/>
+                                        <constraint firstItem="VTT-mY-NbG" firstAttribute="baseline" secondItem="Squ-ZR-mjA" secondAttribute="baseline" id="pBg-71-KVE"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

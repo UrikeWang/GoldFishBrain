@@ -12,22 +12,22 @@ class AddDoTableViewCell: UITableViewCell {
 
     @IBOutlet private(set) weak var addDoButton: UIButton!
 
-    private func setupAddDoButton() {
-
-        addDoButton.layer.cornerRadius = 3
-
-        addDoButton.layer.borderColor = UIColor.gray.cgColor
-
-        addDoButton.layer.borderWidth = 1
-
-        addDoButton.setTitle("Add 『 Do 』", for: .normal)
-
-    }
+//    private func setupAddDoButton() {
+//
+//        addDoButton.layer.cornerRadius = 3
+//
+//        addDoButton.layer.borderColor = UIColor.gray.cgColor
+//
+//        addDoButton.layer.borderWidth = 1
+//
+//        addDoButton.setTitle("Add 『 Do 』", for: .normal)
+//
+//    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        setupAddDoButton()
+//        setupAddDoButton()
         // Initialization code
     }
 

@@ -228,33 +228,33 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         
         autoSendDo(text: travelDetails.text, id: friendID)
         
-//        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-//            
-//            travelData = TravelDataMO(context: appDelegate.persistentContainer.viewContext)
-//            
-//            travelData.time = travelTime
-//            
-//            travelData.destination = travelDestination
-//            
-//            travelData.distance = travelDistance
-//            
-//            travelData.duration = travelDuration
-//            
-//            travelData.finished = false
-//            
-//            do {
-//                
-//                let task = try self.context.fetch(TravelDataMO.fetchRequest())
-//                
-//                travelDatas = (task as? [TravelDataMO])!
-//                
-//            } catch let error {
-//                
-//                print("did not save the data!")
-//            
-//            }
-//        
-//        }
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            
+            travelData = TravelDataMO(context: appDelegate.persistentContainer.viewContext)
+            
+            travelData.time = travelTime
+            
+            travelData.destination = travelDestination
+            
+            travelData.distance = travelDistance
+            
+            travelData.duration = travelDuration
+            
+            travelData.finished = false
+            
+            do {
+                
+                let task = try self.context.fetch(TravelDataMO.fetchRequest())
+                
+                travelDatas = (task as? [TravelDataMO])!
+                
+            } catch let error {
+                
+                print("did not save the data!")
+            
+            }
+        
+        }
         
     }
 
