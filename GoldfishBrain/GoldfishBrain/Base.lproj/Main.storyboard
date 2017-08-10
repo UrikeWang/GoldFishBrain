@@ -647,6 +647,7 @@
                         <outlet property="carButton" destination="nna-Fc-4lL" id="CJY-h5-F8F"/>
                         <outlet property="estimatedTitle" destination="daW-BQ-Ogn" id="16t-gs-Eso"/>
                         <outlet property="mapView" destination="4Gd-Dt-fzH" id="BfK-pp-tHC"/>
+                        <outlet property="popoverDone" destination="gh6-iT-zDx" id="CMP-fr-d0T"/>
                         <outlet property="travelTime" destination="BjU-FY-zKN" id="kLs-bS-gR7"/>
                         <outlet property="walkButton" destination="Lil-5j-vFp" id="s0E-Kb-U1e"/>
                     </connections>

@@ -62,17 +62,34 @@ class AddDoPopViewController: UIViewController {
 
     @IBOutlet weak var travelTime: UITextView!
 
+    @IBOutlet weak var popoverDone: UIButton!
+
     @IBAction func popoverDone(_ sender: UIButton) {
 
-        self.delegate?.manager(
-            self,
-            destination: travelDestination,
-            duration: travelDuration,
-            distance: travelDistance,
-            coordinate: [(routePoints["End"]?[0])!, (routePoints["End"]?[1])!]
-        )
+        print("12345", travelTime.text)
 
-        dismiss(animated: true, completion: nil)
+        if travelTime.text == "" {
+
+            print("222222")
+
+            let alertController = UIAlertController(
+                title: "無交通方式",
+                message: "請選取交通方式",
+                preferredStyle: .alert)
+
+        } else {
+
+            self.delegate?.manager(
+                self,
+                destination: travelDestination,
+                duration: travelDuration,
+                distance: travelDistance,
+                coordinate: [(routePoints["End"]?[0])!, (routePoints["End"]?[1])!]
+            )
+
+            dismiss(animated: true, completion: nil)
+
+        }
 
     }
 
@@ -221,6 +238,8 @@ class AddDoPopViewController: UIViewController {
         estimatedTitle.text = "預估行程時間"
 
         travelTime.isScrollEnabled = true
+
+        popoverDone.setTitle("確認地點", for: .normal)
 
     }
 

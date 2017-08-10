@@ -17,6 +17,8 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var firstNameText: UITextField!
     @IBOutlet weak var lastNameText: UITextField!
 
+    var gradientLayer: CAGradientLayer
+
     @IBAction func registerButton(_ sender: Any) {
 
         guard let email = emailText.text, let password = passwordText.text, let firstName = firstNameText.text, let lastName = lastNameText.text else {
@@ -86,6 +88,16 @@ class RegisterViewController: UIViewController {
         self.performSegue(withIdentifier: "registerToLogin", sender: sender)
     }
 
+    func createGradientLayer() {
+
+        gradientLayer = CAGradientLayer()
+
+        gradientLayer.frame = self.view.bounds
+
+        gradientLayer.colors = [ UIColor(red: 211.0 / 255.0, green: 150.0 / 255.0, blue: 104.0 / 255.0, alpha: 1.0)  ]
+
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -98,15 +110,5 @@ class RegisterViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
