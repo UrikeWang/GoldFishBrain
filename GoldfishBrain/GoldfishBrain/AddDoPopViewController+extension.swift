@@ -36,7 +36,7 @@ extension AddDoPopViewController: CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
 
             mapView.isMyLocationEnabled = true
-            
+
             mapView.settings.myLocationButton = true
             //            print("Location status is OK.")
 
@@ -65,24 +65,55 @@ extension AddDoPopViewController: CLLocationManagerDelegate {
 
 //            locationManager.stopUpdatingLocation()
 
-            var location00 = String(format: "%0.6f", location.coordinate.latitude)
+//            var location00 = String(format: "%0.6f", location.coordinate.latitude)
+//
+//            var location10 = String(format: "%0.6f", location.coordinate.longitude)
+//
+//            if let userDestination0 = UserDefaults.standard.value(forKey: "destination0") as? String, let userDestination1 = UserDefaults.standard.value(forKey: "destination1") as? String, let userDestination = UserDefaults.standard.value(forKey: "destination") as? String, let friendID = UserDefaults.standard.value(forKey: "friend") as? String {
+//
+//                if notify == false && location00 == userDestination0 && location10 == userDestination1 && location00 != "" {
+//
+//                    print("i'm here")
+//
+//                    autoResponse(destination: userDestination, id: friendID)
+//
+//                    locationManager.stopUpdatingLocation()
+//
+//                    notify == true
+//                }
+//
+//            }
 
-            var location10 = String(format: "%0.6f", location.coordinate.longitude)
+        }
 
-            if let userDestination0 = UserDefaults.standard.value(forKey: "destination0") as? String, let userDestination1 = UserDefaults.standard.value(forKey: "destination1") as? String, let userDestination = UserDefaults.standard.value(forKey: "destination") as? String, let friendID = UserDefaults.standard.value(forKey: "friend") as? String {
+    }
 
-                if notify == false && location00 == userDestination0 && location10 == userDestination1 && location00 != "" {
+    func setData(coordinate: [Double]) {
 
-                    print("i'm here")
+        if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
 
-                    autoResponse(destination: userDestination, id: friendID)
+            let title = "Destination"
 
-                    locationManager.stopUpdatingLocation()
+            let coordinate = CLLocationCoordinate2D(latitude: coordinate[0] as CLLocationDegrees, longitude: coordinate[1] as CLLocationDegrees)
 
-                    notify == true
-                }
+            let regionRadius = 300.0
 
-            }
+            let region = CLCircularRegion(center: coordinate, radius: regionRadius, identifier: title)
+
+            locationManager.startMonitoring(for: region)
+
+        } else {
+
+            print("System can't track regions")
+        }
+
+    }
+
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+
+        if let userDestination = UserDefaults.standard.value(forKey: "destination") as? String, let friendID = UserDefaults.standard.value(forKey: "friend") as? String {
+
+            autoResponse(destination: userDestination, id: friendID)
 
         }
 

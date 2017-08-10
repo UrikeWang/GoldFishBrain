@@ -48,6 +48,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     var friendID = ""
 
+    var coordinate = [Double]()
+
     var detail: TravelDetail?
 
     var travelDatas = [TravelDataMO]()
@@ -59,6 +61,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     let uid = UserDefaults.standard.value(forKey: "uid") as! String
     //swiftlint:enable force_cast
+
+    let addPopViewController = AddDoPopViewController()
 
     @IBOutlet weak var travelDetails: UITextView!
 
@@ -167,13 +171,15 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         self.present(popFriendVC, animated: true, completion: nil)
     }
 
-    func manager(_ manager: AddDoPopViewController, destination: String, duration: String, distance: String) {
+    func manager(_ manager: AddDoPopViewController, destination: String, duration: String, distance: String, coordinate: [Double]) {
 
         self.travelDistance = distance
 
         self.travelDuration = duration
 
         self.travelDestination = destination
+
+        self.coordinate = coordinate
 
         destinationText.text = destination
 
@@ -237,6 +243,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
             UserDefaults.standard.synchronize()
 
             print("userdefault", UserDefaults.standard.value(forKey: "destination"))
+
+            addPopViewController.setData(coordinate: coordinate)
 
             self.dismiss(animated: false, completion: nil)
 

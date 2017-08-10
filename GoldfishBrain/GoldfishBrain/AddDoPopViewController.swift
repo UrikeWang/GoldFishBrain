@@ -13,7 +13,7 @@ import Alamofire
 
 protocol managerDestinationDelegate: class {
 
-    func manager(_ manager: AddDoPopViewController, destination: String, duration: String, distance: String)
+    func manager(_ manager: AddDoPopViewController, destination: String, duration: String, distance: String, coordinate: [Double])
 }
 
 class AddDoPopViewController: UIViewController {
@@ -68,7 +68,8 @@ class AddDoPopViewController: UIViewController {
             self,
             destination: travelDestination,
             duration: travelDuration,
-            distance: travelDistance
+            distance: travelDistance,
+            coordinate: [(routePoints["End"]?[0])!, (routePoints["End"]?[1])!]
         )
 
         dismiss(animated: true, completion: nil)
