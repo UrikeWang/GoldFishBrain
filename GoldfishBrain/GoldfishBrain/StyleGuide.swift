@@ -12,6 +12,19 @@ import UIKit
 // Color palette
 
 extension UIColor {
+
+    class var textBackground: UIColor {
+        return UIColor(red: 78.0 / 255.0, green: 77.0 / 255.0, blue: 77.0 / 255.0, alpha: 0.5)
+    }
+
+    class var buttonBackground: UIColor {
+        return UIColor(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 0.5)
+    }
+
+    class var buttonTitleBackground: UIColor {
+        return UIColor(red: 229.0 / 255.0, green: 89.0 / 255.0, blue: 39.0 / 255.0, alpha: 0.5)
+    }
+
     class var asiSandBrown: UIColor {
         return UIColor(red: 211.0 / 255.0, green: 150.0 / 255.0, blue: 104.0 / 255.0, alpha: 1.0)
     }
