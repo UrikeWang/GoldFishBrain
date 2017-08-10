@@ -31,9 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         } else {
 
-            let registerVC = storyboard.instantiateViewController(withIdentifier: "RegisterVC")
+            let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginVC")
 
-            self.window?.rootViewController = registerVC
+            self.window?.rootViewController = loginVC
 
         }
 //        print("somebody have logged in", UserDefaults.standard.value(forKey:"uid"))

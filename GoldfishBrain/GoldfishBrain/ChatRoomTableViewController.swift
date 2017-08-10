@@ -43,9 +43,9 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
-        let registerVC = storyBoard.instantiateViewController(withIdentifier: "RegisterVC")
+        let loginVC = storyBoard.instantiateViewController(withIdentifier: "LoginVC")
 
-        self.present(registerVC, animated: true, completion: nil)
+        self.present(loginVC, animated: true, completion: nil)
 
     }
 

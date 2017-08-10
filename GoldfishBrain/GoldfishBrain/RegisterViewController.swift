@@ -89,7 +89,7 @@ class RegisterViewController: UIViewController {
 
     @IBAction func loginButton(_ sender: Any) {
 
-        self.performSegue(withIdentifier: "registerToLogin", sender: sender)
+        dismiss(animated: true, completion: nil)
     }
 
     override func viewDidLoad() {

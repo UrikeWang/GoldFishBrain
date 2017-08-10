@@ -14,6 +14,11 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
+    @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var appTitle: UILabel!
+    @IBOutlet weak var appLogo: UIImageView!
+    @IBOutlet weak var forgotPasswordButton: UIButton!
 
     @IBAction func loginButton(_ sender: Any) {
 
@@ -79,6 +84,15 @@ class LoginViewController: UIViewController {
         }
     }
 
+    @IBAction func registerButton(_ sender: Any) {
+
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+
+        let registerVC = storyBoard.instantiateViewController(withIdentifier: "RegisterVC")
+
+        self.present(registerVC, animated: true, completion: nil)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -98,6 +112,55 @@ class LoginViewController: UIViewController {
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
 
         self.view.layer.insertSublayer(gradientLayer, at: 0)
+
+        appLogo.tintColor = UIColor.black
+        appLogo.layer.shadowOffset = CGSize(width: 0, height: 3)
+        appLogo.layer.shadowOpacity = 0.4
+        appLogo.layer.shadowRadius = 4
+        appLogo.layer.shadowColor = UIColor.black.cgColor
+
+        appTitle.text = "GOLDFISH\nBRAIN"
+        appTitle.font = UIFont(name: "Comix Loud", size: 20.0)
+
+        let attrString = NSMutableAttributedString(string: appTitle.text!)
+        var style = NSMutableParagraphStyle()
+        style.lineSpacing = 24 // change line spacing between paragraph like 36 or 48
+        style.minimumLineHeight = 20 // change line spacing between each line like 30 or 40
+        attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSRange(location: 0, length: (appTitle.text?.characters.count)!))
+        appTitle.attributedText = attrString
+        appTitle.textAlignment = .center
+        appTitle.textColor = UIColor.white
+
+        emailText.placeholder = "Enter your email address"
+        emailText.backgroundColor = UIColor.textBackground
+        emailText.layer.cornerRadius = 15
+        emailText.textAlignment = .center
+        emailText.textColor = UIColor.white
+        emailText.returnKeyType = .done
+
+        passwordText.placeholder = "Enter your password"
+        passwordText.backgroundColor = UIColor.textBackground
+        passwordText.layer.cornerRadius = 15
+        passwordText.textAlignment = .center
+        passwordText.textColor = UIColor.white
+        passwordText.returnKeyType = .done
+
+        registerButton.layer.cornerRadius = 15
+        registerButton.backgroundColor = UIColor.buttonBackground
+        registerButton.contentHorizontalAlignment = .center
+        registerButton.setTitleColor(UIColor.buttonTitleBackground, for: .normal)
+        registerButton.setTitle("Register", for: .normal)
+
+        loginButton.layer.cornerRadius = 15
+        loginButton.backgroundColor = UIColor.buttonBackground
+        loginButton.contentHorizontalAlignment = .center
+        loginButton.setTitleColor(UIColor.buttonTitleBackground, for: .normal)
+        loginButton.setTitle("Login", for: .normal)
+
+        forgotPasswordButton.backgroundColor = UIColor.clear
+        forgotPasswordButton.setTitleColor(UIColor.white, for: .normal)
+        forgotPasswordButton.setTitle("Forgot your password?", for: .normal)
+        forgotPasswordButton.contentHorizontalAlignment = .center
 
     }
 
