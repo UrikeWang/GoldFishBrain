@@ -11,7 +11,7 @@ import Cocoa
 
 // MARK: - Properties
 public extension NSView {
-	
+
 	@IBInspectable
 	/// SwifterSwift: Border color of view; also inspectable from Storyboard.
 	public var borderColor: NSColor? {
@@ -23,7 +23,7 @@ public extension NSView {
 			layer?.borderColor = newValue?.cgColor
 		}
 	}
-	
+
 	@IBInspectable
 	/// SwifterSwift: Border width of view; also inspectable from Storyboard.
 	public var borderWidth: CGFloat {
@@ -35,7 +35,7 @@ public extension NSView {
 			layer?.borderWidth = newValue
 		}
 	}
-	
+
 	@IBInspectable
 	/// SwifterSwift: Corner radius of view; also inspectable from Storyboard.
 	public var cornerRadius: CGFloat {
@@ -48,7 +48,7 @@ public extension NSView {
 			layer?.cornerRadius = abs(CGFloat(Int(newValue * 100)) / 100)
 		}
 	}
-	
+
 	// SwifterSwift: Height of view.
 	public var height: CGFloat {
 		get {
@@ -58,7 +58,7 @@ public extension NSView {
 			frame.size.height = newValue
 		}
 	}
-	
+
 	@IBInspectable
 	/// SwifterSwift: Shadow color of view; also inspectable from Storyboard.
 	public var shadowColor: NSColor? {
@@ -70,7 +70,7 @@ public extension NSView {
 			layer?.shadowColor = newValue?.cgColor
 		}
 	}
-	
+
 	@IBInspectable
 	/// SwifterSwift: Shadow offset of view; also inspectable from Storyboard.
 	public var shadowOffset: CGSize {
@@ -82,7 +82,7 @@ public extension NSView {
 			layer?.shadowOffset = newValue
 		}
 	}
-	
+
 	@IBInspectable
 	/// SwifterSwift: Shadow opacity of view; also inspectable from Storyboard.
 	public var shadowOpacity: Float {
@@ -94,7 +94,7 @@ public extension NSView {
 			layer?.shadowOpacity = newValue
 		}
 	}
-	
+
 	@IBInspectable
 	/// SwifterSwift: Shadow radius of view; also inspectable from Storyboard.
 	public var shadowRadius: CGFloat {
@@ -106,7 +106,7 @@ public extension NSView {
 			layer?.shadowRadius = newValue
 		}
 	}
-	
+
 	/// SwifterSwift: Size of view.
 	public var size: CGSize {
 		get {
@@ -117,7 +117,7 @@ public extension NSView {
 			height = newValue.height
 		}
 	}
-	
+
 	/// SwifterSwift: Width of view.
 	public var width: CGFloat {
 		get {
@@ -127,25 +127,24 @@ public extension NSView {
 			frame.size.width = newValue
 		}
 	}
-	
-}
 
+}
 
 // MARK: - Methods
 extension NSView {
-	
+
 	/// SwifterSwift: Add array of subviews to view.
 	///
 	/// - Parameter subviews: array of subviews to add to self.
 	public func addSubviews(_ subviews: [NSView]) {
 		subviews.forEach({self.addSubview($0)})
 	}
-	
+
 	/// SwifterSwift: Remove all subviews in view.
 	public func removeSubviews() {
 		subviews.forEach({$0.removeFromSuperview()})
 	}
-	
+
 }
-	
+
 #endif

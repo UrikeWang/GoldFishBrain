@@ -9,10 +9,9 @@
 #if os(iOS)
 import UIKit
 
-
 // MARK: - Methods
 public extension UISwitch {
-	
+
 	/// SwifterSwift: Toggle a UISwitch
 	///
 	/// - Parameter animated: set true to animate the change (default is true)

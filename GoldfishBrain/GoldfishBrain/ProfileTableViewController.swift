@@ -68,6 +68,14 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.navigationBar.barTintColor = UIColor.goldfishRed
+
+        navigationItem.title = "Profile"
+
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+
         //取得user註冊時的first/last name 為async
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
 

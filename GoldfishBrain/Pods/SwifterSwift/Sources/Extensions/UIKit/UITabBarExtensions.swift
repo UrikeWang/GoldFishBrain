@@ -9,10 +9,9 @@
 #if os(iOS) || os(tvOS)
 import UIKit
 
-
 // MARK: - Methods
 public extension UITabBar {
-	
+
 	/// SwifterSwift: Set tabBar colors.
 	///
 	/// - Parameters:
@@ -24,26 +23,26 @@ public extension UITabBar {
 	                      selectedBackground: UIColor? = nil,
 	                      item: UIColor? = nil,
 	                      selectedItem: UIColor? = nil) {
-		
+
 		// background
 		barTintColor = background ?? barTintColor
-		
+
 		// selectedItem
 		tintColor = selectedItem ?? tintColor
 		// shadowImage = UIImage()
 		backgroundImage = UIImage()
 		isTranslucent = false
-		
+
 		// selectedBackgoundColor
 		guard let barItems = items else {
 			return
 		}
-		
+
 		if let selectedbg = selectedBackground {
 			let rect = CGSize(width: frame.width/CGFloat(barItems.count), height: frame.height)
 			selectionIndicatorImage = UIImage(color: selectedbg, size: rect)
 		}
-		
+
 		if let itemColor = item {
 			for barItem in barItems as [UITabBarItem] {
 				// item
@@ -51,9 +50,9 @@ public extension UITabBar {
 					continue
 				}
 				barItem.image = image.filled(withColor: itemColor).withRenderingMode(.alwaysOriginal)
-				barItem.setTitleTextAttributes([NSForegroundColorAttributeName : itemColor], for: .normal)
+				barItem.setTitleTextAttributes([NSForegroundColorAttributeName: itemColor], for: .normal)
 				if let selected = selectedItem {
-					barItem.setTitleTextAttributes([NSForegroundColorAttributeName : selected], for: .selected)
+					barItem.setTitleTextAttributes([NSForegroundColorAttributeName: selected], for: .selected)
 				}
 			}
 		}

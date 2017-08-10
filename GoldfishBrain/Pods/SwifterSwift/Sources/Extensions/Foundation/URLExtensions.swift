@@ -8,9 +8,8 @@
 
 import Foundation
 
-
 public extension URL {
-	
+
 	/// SwifterSwift: URL with appending query parameters.
 	///
 	/// - Parameter parameters: parameters dictionary.
@@ -22,12 +21,12 @@ public extension URL {
 		urlComponents.queryItems = items
 		return urlComponents.url!
 	}
-	
+
 	/// SwifterSwift: Append query parameters to URL.
 	///
 	/// - Parameter parameters: parameters dictionary.
 	public mutating func appendQueryParameters(_ parameters: [String: String]) {
 		self = appendingQueryParameters(parameters)
 	}
-	
+
 }

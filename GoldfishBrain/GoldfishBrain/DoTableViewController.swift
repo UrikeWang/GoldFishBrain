@@ -17,6 +17,14 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.navigationBar.barTintColor = UIColor.goldfishRed
+
+        navigationItem.title = "Do it"
+
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+
         addDoButton.layer.cornerRadius = 3
 
         addDoButton.layer.borderColor = UIColor.gray.cgColor

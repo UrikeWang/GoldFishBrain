@@ -9,36 +9,34 @@
 #if os(iOS) || os(tvOS) || os(watchOS)
 import UIKit
 
-
 // MARK: - Properties
 public extension UIImage {
-	
+
 	/// SwifterSwift: Size in bytes of UIImage
 	public var bytesSize: Int {
 		return UIImageJPEGRepresentation(self, 1)?.count ?? 0
 	}
-	
+
 	/// SwifterSwift: Size in kilo bytes of UIImage
 	public var kilobytesSize: Int {
 		return bytesSize / 1024
 	}
-	
+
 	/// SwifterSwift: UIImage with .alwaysOriginal rendering mode.
 	public var original: UIImage {
 		return withRenderingMode(.alwaysOriginal)
 	}
-	
+
 	/// SwifterSwift: UIImage with .alwaysTemplate rendering mode.
 	public var template: UIImage {
 		return withRenderingMode(.alwaysTemplate)
 	}
-	
-}
 
+}
 
 // MARK: - Methods
 public extension UIImage {
-	
+
 	/// SwifterSwift: Compressed UIImage from original UIImage.
 	///
 	/// - Parameter quality: The quality of the resulting JPEG image, expressed as a value from 0.0 to 1.0. The value 0.0 represents the maximum compression (or lowest quality) while the value 1.0 represents the least compression (or best quality), (default is 0.5).
@@ -49,7 +47,7 @@ public extension UIImage {
 		}
 		return UIImage(data: data)
 	}
-	
+
 	/// SwifterSwift: Compressed UIImage data from original UIImage.
 	///
 	/// - Parameter quality: The quality of the resulting JPEG image, expressed as a value from 0.0 to 1.0. The value 0.0 represents the maximum compression (or lowest quality) while the value 1.0 represents the least compression (or best quality), (default is 0.5).
@@ -57,7 +55,7 @@ public extension UIImage {
 	public func compressedData(quality: CGFloat = 0.5) -> Data? {
 		return UIImageJPEGRepresentation(self, quality)
 	}
-	
+
 	/// SwifterSwift: UIImage Cropped to CGRect.
 	///
 	/// - Parameter rect: CGRect to crop UIImage to.
@@ -71,7 +69,7 @@ public extension UIImage {
 		}
 		return UIImage(cgImage: image)
 	}
-	
+
 	/// SwifterSwift: UIImage scaled to height with respect to aspect ratio.
 	///
 	/// - Parameters:
@@ -87,7 +85,7 @@ public extension UIImage {
 		UIGraphicsEndImageContext()
 		return newImage
 	}
-	
+
 	/// SwifterSwift: UIImage scaled to width with respect to aspect ratio.
 	///
 	/// - Parameters:
@@ -103,7 +101,7 @@ public extension UIImage {
 		UIGraphicsEndImageContext()
 		return newImage
 	}
-	
+
 	/// SwifterSwift: UIImage filled with color
 	///
 	/// - Parameter color: color to fill image with.
@@ -114,29 +112,28 @@ public extension UIImage {
 		guard let context = UIGraphicsGetCurrentContext() else {
 			return self
 		}
-		
+
 		context.translateBy(x: 0, y: size.height)
-		context.scaleBy(x: 1.0, y: -1.0);
+		context.scaleBy(x: 1.0, y: -1.0)
 		context.setBlendMode(CGBlendMode.normal)
-		
+
 		let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
 		guard let mask = self.cgImage else {
 			return self
 		}
 		context.clip(to: rect, mask: mask)
 		context.fill(rect)
-		
+
 		let newImage = UIGraphicsGetImageFromCurrentImageContext()!
 		UIGraphicsEndImageContext()
 		return newImage
 	}
-	
-}
 
+}
 
 // MARK: - Initializers
 public extension UIImage {
-	
+
 	/// SwifterSwift: Create UIImage from color and size.
 	///
 	/// - Parameters:
@@ -157,6 +154,6 @@ public extension UIImage {
 		}
 		self.init(cgImage: aCgImage)
 	}
-	
+
 }
 #endif

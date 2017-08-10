@@ -8,9 +8,8 @@
 
 import Foundation
 
-
 public extension Optional {
-	
+
 	/// SwifterSwift: Get self of default value (if self is nil).
 	///
 	/// - Parameter defaultValue: default value to return if self is nil.
@@ -19,7 +18,7 @@ public extension Optional {
 		// http://www.russbishop.net/improving-optionals
 		return self ?? defaultValue
 	}
-	
+
 	/// SwifterSwift: Runs a block to Wrapped if not nil
 	///
 	/// - Parameter block: a block to run if self is not nil.

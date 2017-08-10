@@ -19,7 +19,7 @@ public extension GoogleMapsDirections {
         case ok = "OK"
         case zeroResults = "ZERO_RESULTS"
     }
-    
+
     /**
      Address type of the geocoding result used for calculating directions.
      
@@ -80,7 +80,7 @@ public extension GoogleMapsDirections {
         case park = "park"
         case pointOfInterest = "point_of_interest"
     }
-    
+
     /**
      Transportation mode
      
@@ -95,7 +95,7 @@ public extension GoogleMapsDirections {
         case bicycling = "BICYCLING"
         case transit = "TRANSIT"
     }
-    
+
     /**
      Calculated route(s) should avoid the indicated features.
      
@@ -110,7 +110,7 @@ public extension GoogleMapsDirections {
         case ferries = "ferries"
         case indoor = "indoor"
     }
-    
+
     /**
      Specifies the assumptions to use when calculating time in traffic. 
      Discussion: This setting affects the value returned in the duration_in_traffic field in the response, which contains the predicted time in traffic based on historical averages. The traffic_model parameter may only be specified for driving directions where the request includes a departure_time, and only if the request includes an API key or a Google Maps APIs Premium Plan client ID.
@@ -124,7 +124,7 @@ public extension GoogleMapsDirections {
         case pessimistic = "pessimistic"
         case optimistic = "optimistic"
     }
-    
+
     /**
      Specifies one or more preferred modes of transit.
      Discussion: This parameter may only be specified for transit directions, and only if the request includes an API key or a Google Maps APIs Premium Plan client ID.
@@ -142,7 +142,7 @@ public extension GoogleMapsDirections {
         case tram = "tram"
         case rail = "rail"
     }
-    
+
     /**
      Specifies preferences for transit routes. 
      Discussion: Using this parameter, you can bias the options returned, rather than accepting the default best route chosen by the API. This parameter may only be specified for transit directions, and only if the request includes an API key or a Google Maps APIs Premium Plan client ID.
@@ -154,7 +154,7 @@ public extension GoogleMapsDirections {
         case lessWalking = "less_walking"
         case fewerTransfers = "fewer_transfers"
     }
-    
+
     /**
      Unit system
      Discussion: Directions results contain text within distance fields that may be displayed to the user to indicate the distance of a particular "step" of the route. By default, this text uses the unit system of the origin's country or region.
@@ -167,7 +167,7 @@ public extension GoogleMapsDirections {
         case metric = "metric"
         case imperial = "imperial"
     }
-    
+
     /**
      Type of vehicle that runs on this line
      

@@ -12,15 +12,14 @@
 	import UIKit
 #endif
 
-
 // MARK: - Properties
 public extension Int {
-	
+
 	/// SwifterSwift: Absolute value of integer.
 	public var abs: Int {
 		return Swift.abs(self)
 	}
-	
+
 	/// SwifterSwift: String with number and current locale currency.
 	public var asLocaleCurrency: String {
 		let formatter = NumberFormatter()
@@ -28,12 +27,12 @@ public extension Int {
 		formatter.locale = Locale.current
 		return formatter.string(from: self as NSNumber)!
 	}
-	
+
 	/// SwifterSwift: Radian value of degree input.
 	public var degreesToRadians: Double {
 		return Double.pi * Double(self) / 180.0
 	}
-	
+
 	/// SwifterSwift: Array of digits of integer value.
 	public var digits: [Int] {
 		var digits: [Int] = []
@@ -44,57 +43,57 @@ public extension Int {
 		}
 		return digits
 	}
-	
+
 	/// SwifterSwift: Number of digits of integer value.
 	public var digitsCount: Int {
 		return String(self).characters.count
 	}
-	
+
 	/// SwifterSwift: Check if integer is even.
 	public var isEven: Bool {
 		return (self % 2) == 0
 	}
-	
+
 	/// SwifterSwift: Check if integer is odd.
 	public var isOdd: Bool {
 		return (self % 2) != 0
 	}
-	
+
 	/// SwifterSwift: Check if integer is positive.
 	public var isPositive: Bool {
 		return self > 0
 	}
-	
+
 	/// SwifterSwift: Check if integer is negative.
 	public var isNegative: Bool {
 		return self < 0
 	}
-	
+
 	/// SwifterSwift: Double.
 	public var double: Double {
 		return Double(self)
 	}
-	
+
 	/// SwifterSwift: Float.
 	public var float: Float {
 		return Float(self)
 	}
-	
+
 	/// SwifterSwift: CGFloat.
 	public var cgFloat: CGFloat {
 		return CGFloat(self)
 	}
-	
+
 	/// SwifterSwift: String.
 	public var string: String {
 		return String(self)
 	}
-	
+
 	/// SwifterSwift: Degree value of radian input
 	public var radiansToDegrees: Double {
 		return Double(self) * 180 / Double.pi
 	}
-	
+
 	/// SwifterSwift: Roman numeral string from integer (if applicable).
 	public var romanNumeral: String? {
 		// https://gist.github.com/kumo/a8e1cb1f4b7cff1548c7
@@ -103,10 +102,10 @@ public extension Int {
 		}
 		let romanValues = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"]
 		let arabicValues = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
-		
+
 		var romanValue = ""
 		var startingValue = self
-		
+
 		for (index, romanChar) in romanValues.enumerated() {
 			let arabicValue = arabicValues[index]
 			let div = startingValue / arabicValue
@@ -119,7 +118,7 @@ public extension Int {
 		}
 		return romanValue
 	}
-	
+
 	/// SwifterSwift: String of format (XXh XXm) from seconds Int.
 	public var timeString: String {
 		guard self > 0 else {
@@ -133,13 +132,13 @@ public extension Int {
 		}
 		let hours = self / 3600
 		let mins = (self % 3600) / 60
-		
+
 		if hours != 0 && mins == 0 {
 			return "\(hours)h"
 		}
 		return "\(hours)h \(mins)m"
 	}
-	
+
 	/// SwifterSwift: String formatted for values over ±1000 (example: 1k, -2k, 100k, 1kk, -5kk..)
 	public var kFormatted: String {
 		var sign: String {
@@ -155,13 +154,12 @@ public extension Int {
 		}
 		return String(format: "\(sign)%ikk", abs / 100000)
 	}
-	
-}
 
+}
 
 // MARK: - Methods
 public extension Int {
-	
+
 	/// SwifterSwift: Greatest common divisor of integer value and n.
 	///
 	/// - Parameter n: integer value to find gcd with.
@@ -169,7 +167,7 @@ public extension Int {
 	public func gcd(of n: Int) -> Int {
 		return n == 0 ? self : n.gcd(of: self % n)
 	}
-	
+
 	/// SwifterSwift: Least common multiple of integer and n.
 	///
 	/// - Parameter n: integer value to find lcm with.
@@ -177,7 +175,7 @@ public extension Int {
 	public func lcm(of n: Int) -> Int {
 		return (self * n).abs / gcd(of: n)
 	}
-	
+
 	/// SwifterSwift: Random integer between two integer values.
 	///
 	/// - Parameters:
@@ -187,7 +185,7 @@ public extension Int {
 	public static func random(between min: Int, and max: Int) -> Int {
 		return random(inRange: min...max)
 	}
-	
+
 	/// SwifterSwift: Random integer in a closed interval range.
 	///
 	/// - Parameter range: closed interval range.
@@ -196,13 +194,12 @@ public extension Int {
 		let delta = UInt32(range.upperBound - range.lowerBound + 1)
 		return range.lowerBound + Int(arc4random_uniform(delta))
 	}
-	
-}
 
+}
 
 // MARK: - Initializers
 public extension Int {
-	
+
 	/// SwifterSwift: Created a random integer between two integer values.
 	///
 	/// - Parameters:
@@ -211,16 +208,15 @@ public extension Int {
 	public init(randomBetween min: Int, and max: Int) {
 		self = Int.random(between: min, and: max)
 	}
-	
+
 	/// SwifterSwift: Create a random integer in a closed interval range.
 	///
 	/// - Parameter range: closed interval range.
 	public init(randomInRange range: ClosedRange<Int>) {
 		self = Int.random(inRange: range)
 	}
-	
-}
 
+}
 
 // MARK: - Operators
 

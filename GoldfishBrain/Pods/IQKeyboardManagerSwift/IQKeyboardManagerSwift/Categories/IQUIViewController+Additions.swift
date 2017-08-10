@@ -23,9 +23,7 @@
 
 import UIKit
 
-
 private var kIQLayoutGuideConstraint = "kIQLayoutGuideConstraint"
-
 
 public extension UIViewController {
 
@@ -34,12 +32,12 @@ public extension UIViewController {
     */
     @IBOutlet public var IQLayoutGuideConstraint: NSLayoutConstraint? {
         get {
-            
+
             return objc_getAssociatedObject(self, &kIQLayoutGuideConstraint) as? NSLayoutConstraint
         }
 
         set(newValue) {
-            objc_setAssociatedObject(self, &kIQLayoutGuideConstraint, newValue,objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &kIQLayoutGuideConstraint, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 }

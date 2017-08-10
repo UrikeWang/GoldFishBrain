@@ -46,7 +46,6 @@ public func <- <T: SignedInteger>(left: inout T!, right: Map) {
 	}
 }
 
-
 // MARK: - Unsigned Integer
 
 /// UnsignedInteger mapping
@@ -60,7 +59,6 @@ public func <- <T: UnsignedInteger>(left: inout T, right: Map) {
 	default: ()
 	}
 }
-
 
 /// Optional UnsignedInteger mapping
 public func <- <T: UnsignedInteger>(left: inout T?, right: Map) {

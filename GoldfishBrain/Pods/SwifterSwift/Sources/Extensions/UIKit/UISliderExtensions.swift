@@ -9,10 +9,9 @@
 #if os(iOS)
 import UIKit
 
-
 // MARK: - Methods
 public extension UISlider {
-	
+
 	/// SwifterSwift: Set slide bar value with completion handler.
 	///
 	/// - Parameters:
@@ -24,7 +23,7 @@ public extension UISlider {
 		if animated {
 			UIView.animate(withDuration: duration, animations: {
 				self.setValue(value, animated: true)
-			}, completion: { finished in
+			}, completion: { _ in
 				completion?()
 			})
 		} else {
@@ -32,6 +31,6 @@ public extension UISlider {
 			completion?()
 		}
 	}
-	
+
 }
 #endif

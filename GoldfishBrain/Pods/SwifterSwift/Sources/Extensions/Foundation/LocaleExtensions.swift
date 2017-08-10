@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 // MARK: - Properties
 public extension Locale {
 
@@ -16,5 +15,5 @@ public extension Locale {
     public static var posix: Locale {
         return Locale(identifier: "en_US_POSIX")
     }
-	
+
 }

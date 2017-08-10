@@ -1,54 +1,31 @@
 //
-//  FriendTableViewController.swift
+//  TraceTableViewController.swift
 //  GoldfishBrain
 //
-//  Created by yuling on 2017/7/29.
+//  Created by yuling on 2017/8/10.
 //  Copyright © 2017年 yuling. All rights reserved.
 //
 
 import UIKit
-import Kingfisher
 
-class FriendTableViewController: UITableViewController, chatRoomManagerDelegate {
-
-    let chatRoomManager = ChatRoomManager()
-
-    var people = [Person]()
-
-    @IBOutlet var friendTableView: UITableView!
-
-    func chatRoomManager(_ manager: ChatRoomManager, didGetPeople people: [Person]) {
-
-        self.people = people
-
-        DispatchQueue.main.async {
-
-            self.friendTableView.reloadData()
-        }
-
-    }
-
-    func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: Error) {
-
-    }
+class TraceTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationController?.navigationBar.barTintColor = UIColor.goldfishRed
 
-        navigationItem.title = "Friend"
+        navigationItem.title = "Trace"
 
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
 
-        chatRoomManager.delegate = self
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
 
-        chatRoomManager.fetchPeople()
-
-        friendTableView.separatorStyle = UITableViewCellSeparatorStyle.none
-
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,62 +37,20 @@ class FriendTableViewController: UITableViewController, chatRoomManagerDelegate 
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return people.count
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TraceCell", for: indexPath)
 
-        //swiftlint:disable force_cast
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendTableViewCell
-        //swiftlint:enable force_cast
-
-        cell.friendNameLabel.text = people[indexPath.row].firstName
-
-        let url = URL(string: "\(people[indexPath.row].imageUrl)")
-
-        cell.friendImageView.kf.setImage(with: url)
-
-        cell.friendImageView.layer.masksToBounds = true
+        // Configure the cell...
 
         return cell
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        if segue.identifier == "ShowChatLogFromFriend" {
-
-            if let cell = sender as? FriendTableViewCell {
-
-                if let destinationNavigation = segue.destination as? UINavigationController {
-
-                    let destinationViewController = destinationNavigation.viewControllers.first as? ChatLogViewController
-
-                    if let peopleFirstName = cell.friendNameLabel.text {
-
-                        for person in people where peopleFirstName == person.firstName {
-
-                            destinationViewController?.peopleFirstName = person.firstName
-
-                            destinationViewController?.peopleLastName = person.lastName
-
-                            destinationViewController?.peopleID = person.id
-
-//                            print("??????", person.id)
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-        }
     }
 
     /*

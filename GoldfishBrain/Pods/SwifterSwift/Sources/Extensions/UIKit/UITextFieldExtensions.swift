@@ -11,17 +11,17 @@ import UIKit
 
 // MARK: - Properties
 public extension UITextField {
-	
+
 	/// SwifterSwift: Check if text field is empty.
 	public var isEmpty: Bool {
 		return text?.isEmpty == true
 	}
-	
+
 	/// SwifterSwift: Return text with no spaces or new lines in beginning and end.
 	public var trimmedText: String? {
 		return text?.trimmingCharacters(in: .whitespacesAndNewlines)
 	}
-	
+
 	@IBInspectable
 	/// SwifterSwift: Left view tint color.
 	public var leftViewTintColor: UIColor? {
@@ -62,13 +62,13 @@ public extension UITextField {
 
 // MARK: - Methods
 public extension UITextField {
-	
+
 	/// SwifterSwift: Clear text.
 	public func clear() {
 		text = ""
 		attributedText = NSAttributedString(string: "")
 	}
-	
+
 	/// SwifterSwift: Set placeholder text color.
 	///
 	/// - Parameter color: placeholder text color.
@@ -78,7 +78,7 @@ public extension UITextField {
 		}
 		self.attributedPlaceholder = NSAttributedString(string: holder, attributes: [NSForegroundColorAttributeName: color])
 	}
-  
+
   /// SwifterSwift: Add padding to the left of the textfield rect.
   ///
   /// - Parameter padding: amount of padding to apply to the left of the textfield rect.

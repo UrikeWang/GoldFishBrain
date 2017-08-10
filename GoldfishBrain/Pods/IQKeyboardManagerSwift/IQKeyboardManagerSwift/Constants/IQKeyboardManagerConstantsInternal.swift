@@ -21,7 +21,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
 import Foundation
 
 ///-----------------------------------
@@ -38,7 +37,7 @@ If provided IQLayoutGuideConstraint is associated with with viewController topLa
 `IQLayoutGuidePositionBottom`
 If provided IQLayoutGuideConstraint is associated with with viewController bottomLayoutGuide
 */
-enum IQLayoutGuidePosition : Int {
+enum IQLayoutGuidePosition: Int {
     case none
     case top
     case bottom

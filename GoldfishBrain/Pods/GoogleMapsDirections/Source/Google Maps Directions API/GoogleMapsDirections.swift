@@ -15,7 +15,7 @@ import ObjectMapper
 public class GoogleMapsDirections: GoogleMapsService {
 
     public static let baseURLString = "https://maps.googleapis.com/maps/api/directions/json"
-    
+
     /**
      Request to Google Directions API
      Documentations: https://developers.google.com/maps/documentation/directions/intro#RequestParameters
@@ -50,95 +50,94 @@ public class GoogleMapsDirections: GoogleMapsService {
         trafficModel: TrafficMode? = nil,
         transitMode: TransitMode? = nil,
         transitRoutingPreference: TransitRoutingPreference? = nil,
-        completion: ((_ response: Response?, _ error: NSError?) -> Void)? = nil)
-    {
+        completion: ((_ response: Response?, _ error: NSError?) -> Void)? = nil) {
         var requestParameters: [String : Any] = baseRequestParameters + [
-            "origin" : origin.toString(),
-            "destination" : destination.toString(),
-            "mode" : travelMode.rawValue.lowercased()
+            "origin": origin.toString(),
+            "destination": destination.toString(),
+            "mode": travelMode.rawValue.lowercased()
         ]
-        
+
         if let wayPoints = wayPoints {
             requestParameters["waypoints"] = wayPoints.map { $0.toString() }.joined(separator: "|")
         }
-        
+
         if let alternatives = alternatives {
             requestParameters["alternatives"] = String(alternatives)
         }
-        
+
         if let avoid = avoid {
             requestParameters["avoid"] = avoid.map { $0.rawValue }.joined(separator: "|")
         }
-        
+
         if let language = language {
             requestParameters["language"] = language
         }
-        
+
         if let units = units {
             requestParameters["units"] = units.rawValue
         }
-        
+
         if let region = region {
             requestParameters["region"] = region
         }
-        
+
         if arrivalTime != nil && departureTime != nil {
             NSLog("Warning: You can only specify one of arrivalTime or departureTime at most, requests may failed")
         }
-        
+
         if let arrivalTime = arrivalTime, (travelMode == .transit || travelMode == .driving) {
             requestParameters["arrival_time"] = Int(arrivalTime.timeIntervalSince1970)
         }
-        
+
         if let departureTime = departureTime, (travelMode == .transit || travelMode == .driving) {
             requestParameters["departure_time"] = Int(departureTime.timeIntervalSince1970)
         }
-        
+
         if let trafficModel = trafficModel {
             requestParameters["traffic_model"] = trafficModel.rawValue
         }
-        
+
         if let transitMode = transitMode {
             requestParameters["transit_mode"] = transitMode.rawValue
         }
-        
+
         if let transitRoutingPreference = transitRoutingPreference {
             requestParameters["transit_routing_preference"] = transitRoutingPreference.rawValue
         }
-        
+
         let request = Alamofire.request(baseURLString, method: .get, parameters: requestParameters).responseJSON { response in
             if response.result.isFailure {
                 NSLog("Error: GET failed")
                 completion?(nil, NSError(domain: "GoogleMapsDirectionsError", code: -1, userInfo: nil))
                 return
             }
-            
+
             // Nil
             if let _ = response.result.value as? NSNull {
                 completion?(Response(), nil)
                 return
             }
-            
+
             // JSON
             guard let json = response.result.value as? [String : AnyObject] else {
                 NSLog("Error: Parsing json failed")
                 completion?(nil, NSError(domain: "GoogleMapsDirectionsError", code: -2, userInfo: nil))
                 return
             }
-            
+
             guard let directionsResponse = Mapper<Response>().map(JSON: json) else {
                 NSLog("Error: Mapping directions response failed")
                 completion?(nil, NSError(domain: "GoogleMapsDirectionsError", code: -3, userInfo: nil))
                 return
             }
-            
+
             var error: NSError?
-            
+
             switch directionsResponse.status {
             case .none:
                 let userInfo: [AnyHashable: Any] = [
-                    NSLocalizedDescriptionKey : NSLocalizedString("StatusCodeError", value: "Status Code not found", comment: ""),
-                    NSLocalizedFailureReasonErrorKey : NSLocalizedString("StatusCodeError", value: "Status Code not found", comment: "")
+                    NSLocalizedDescriptionKey: NSLocalizedString("StatusCodeError", value: "Status Code not found", comment: ""),
+                    NSLocalizedFailureReasonErrorKey: NSLocalizedString("StatusCodeError", value: "Status Code not found", comment: "")
                 ]
                 error = NSError(domain: "GoogleMapsDirectionsError", code: -4, userInfo: userInfo)
             case .some(let status):
@@ -147,52 +146,52 @@ public class GoogleMapsDirections: GoogleMapsService {
                     break
                 case .notFound:
                     let userInfo: [AnyHashable: Any] = [
-                        NSLocalizedDescriptionKey : NSLocalizedString("StatusCodeError", value: "At least one of the locations specified in the request's origin, destination, or waypoints could not be geocoded.", comment: ""),
-                        NSLocalizedFailureReasonErrorKey : NSLocalizedString("StatusCodeError", value: directionsResponse.errorMessage ?? "", comment: "")
+                        NSLocalizedDescriptionKey: NSLocalizedString("StatusCodeError", value: "At least one of the locations specified in the request's origin, destination, or waypoints could not be geocoded.", comment: ""),
+                        NSLocalizedFailureReasonErrorKey: NSLocalizedString("StatusCodeError", value: directionsResponse.errorMessage ?? "", comment: "")
                     ]
                     error = NSError(domain: "GoogleMapsDirectionsError", code: -5, userInfo: userInfo)
                 case .zeroResults:
                     let userInfo: [AnyHashable: Any] = [
-                        NSLocalizedDescriptionKey : NSLocalizedString("StatusCodeError", value: "No route could be found between the origin and destination.", comment: ""),
-                        NSLocalizedFailureReasonErrorKey : NSLocalizedString("StatusCodeError", value: directionsResponse.errorMessage ?? "", comment: "")
+                        NSLocalizedDescriptionKey: NSLocalizedString("StatusCodeError", value: "No route could be found between the origin and destination.", comment: ""),
+                        NSLocalizedFailureReasonErrorKey: NSLocalizedString("StatusCodeError", value: directionsResponse.errorMessage ?? "", comment: "")
                     ]
                     error = NSError(domain: "GoogleMapsDirectionsError", code: -6, userInfo: userInfo)
                 case .maxWaypointsExceeded:
                     let userInfo: [AnyHashable: Any] = [
-                        NSLocalizedDescriptionKey : NSLocalizedString("StatusCodeError", value: "Too many waypoints were provided in the request. The maximum allowed number of waypoints is 23, plus the origin and destination. (If the request does not include an API key, the maximum allowed number of waypoints is 8.", comment: ""),
-                        NSLocalizedFailureReasonErrorKey : NSLocalizedString("StatusCodeError", value: directionsResponse.errorMessage ?? "", comment: "")
+                        NSLocalizedDescriptionKey: NSLocalizedString("StatusCodeError", value: "Too many waypoints were provided in the request. The maximum allowed number of waypoints is 23, plus the origin and destination. (If the request does not include an API key, the maximum allowed number of waypoints is 8.", comment: ""),
+                        NSLocalizedFailureReasonErrorKey: NSLocalizedString("StatusCodeError", value: directionsResponse.errorMessage ?? "", comment: "")
                     ]
                     error = NSError(domain: "GoogleMapsDirectionsError", code: -7, userInfo: userInfo)
                 case .invalidRequest:
                     let userInfo: [AnyHashable: Any] = [
-                        NSLocalizedDescriptionKey : NSLocalizedString("StatusCodeError", value: "Provided request was invalid. Common causes of this status include an invalid parameter or parameter value.", comment: ""),
-                        NSLocalizedFailureReasonErrorKey : NSLocalizedString("StatusCodeError", value: directionsResponse.errorMessage ?? "", comment: "")
+                        NSLocalizedDescriptionKey: NSLocalizedString("StatusCodeError", value: "Provided request was invalid. Common causes of this status include an invalid parameter or parameter value.", comment: ""),
+                        NSLocalizedFailureReasonErrorKey: NSLocalizedString("StatusCodeError", value: directionsResponse.errorMessage ?? "", comment: "")
                     ]
                     error = NSError(domain: "GoogleMapsDirectionsError", code: -8, userInfo: userInfo)
                 case .overQueryLimit:
                     let userInfo: [AnyHashable: Any] = [
-                        NSLocalizedDescriptionKey : NSLocalizedString("StatusCodeError", value: "Service has received too many requests from your application within the allowed time period.", comment: ""),
-                        NSLocalizedFailureReasonErrorKey : NSLocalizedString("StatusCodeError", value: directionsResponse.errorMessage ?? "", comment: "")
+                        NSLocalizedDescriptionKey: NSLocalizedString("StatusCodeError", value: "Service has received too many requests from your application within the allowed time period.", comment: ""),
+                        NSLocalizedFailureReasonErrorKey: NSLocalizedString("StatusCodeError", value: directionsResponse.errorMessage ?? "", comment: "")
                     ]
                     error = NSError(domain: "GoogleMapsDirectionsError", code: -9, userInfo: userInfo)
                 case .requestDenied:
                     let userInfo: [AnyHashable: Any] = [
-                        NSLocalizedDescriptionKey : NSLocalizedString("StatusCodeError", value: "Service denied use of the directions service by your application.", comment: ""),
-                        NSLocalizedFailureReasonErrorKey : NSLocalizedString("StatusCodeError", value: directionsResponse.errorMessage ?? "", comment: "")
+                        NSLocalizedDescriptionKey: NSLocalizedString("StatusCodeError", value: "Service denied use of the directions service by your application.", comment: ""),
+                        NSLocalizedFailureReasonErrorKey: NSLocalizedString("StatusCodeError", value: directionsResponse.errorMessage ?? "", comment: "")
                     ]
                     error = NSError(domain: "GoogleMapsDirectionsError", code: -10, userInfo: userInfo)
                 case .unknownError:
                     let userInfo: [AnyHashable: Any] = [
-                        NSLocalizedDescriptionKey : NSLocalizedString("StatusCodeError", value: "A directions request could not be processed due to a server error. The request may succeed if you try again.", comment: ""),
-                        NSLocalizedFailureReasonErrorKey : NSLocalizedString("StatusCodeError", value: directionsResponse.errorMessage ?? "", comment: "")
+                        NSLocalizedDescriptionKey: NSLocalizedString("StatusCodeError", value: "A directions request could not be processed due to a server error. The request may succeed if you try again.", comment: ""),
+                        NSLocalizedFailureReasonErrorKey: NSLocalizedString("StatusCodeError", value: directionsResponse.errorMessage ?? "", comment: "")
                     ]
                     error = NSError(domain: "GoogleMapsDirectionsError", code: -11, userInfo: userInfo)
                 }
             }
-            
+
             completion?(directionsResponse, error)
         }
-        
+
         debugPrint("\(request)")
     }
 }
@@ -232,8 +231,7 @@ extension GoogleMapsDirections {
         trafficModel: TrafficMode? = nil,
         transitMode: TransitMode? = nil,
         transitRoutingPreference: TransitRoutingPreference? = nil,
-        completion: ((_ response: Response?, _ error: NSError?) -> Void)? = nil)
-    {
+        completion: ((_ response: Response?, _ error: NSError?) -> Void)? = nil) {
         direction(fromOrigin: Place.stringDescription(address: originAddress),
             toDestination: Place.stringDescription(address: destinationAddress),
             travelMode: travelMode,
@@ -250,7 +248,7 @@ extension GoogleMapsDirections {
             transitRoutingPreference: transitRoutingPreference,
             completion: completion)
     }
-    
+
     /**
      Request to Google Directions API, with coordinate
      Documentations: https://developers.google.com/maps/documentation/directions/intro#RequestParameters
@@ -285,8 +283,7 @@ extension GoogleMapsDirections {
         trafficModel: TrafficMode? = nil,
         transitMode: TransitMode? = nil,
         transitRoutingPreference: TransitRoutingPreference? = nil,
-        completion: ((_ response: Response?, _ error: NSError?) -> Void)? = nil)
-    {
+        completion: ((_ response: Response?, _ error: NSError?) -> Void)? = nil) {
         direction(fromOrigin: Place.coordinate(coordinate: originCoordinate),
             toDestination: Place.coordinate(coordinate: destinationCoordinate),
             travelMode: travelMode,

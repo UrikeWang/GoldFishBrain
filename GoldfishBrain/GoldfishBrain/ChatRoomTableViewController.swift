@@ -90,6 +90,14 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.navigationBar.barTintColor = UIColor.goldfishRed
+
+        navigationItem.title = "Chatroom"
+
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+
 //        friendListButton.title = "List"
 //        
 //        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "List", style: .plain, target: self, action: #selector(ChatRoomTableViewController))

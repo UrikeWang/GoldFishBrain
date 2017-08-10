@@ -35,7 +35,7 @@ public struct MapError: Error {
 	public var file: StaticString?
 	public var function: StaticString?
 	public var line: UInt?
-	
+
 	public init(key: String?, currentValue: Any?, reason: String?, file: StaticString? = nil, function: StaticString? = nil, line: UInt? = nil) {
 		self.key = key
 		self.currentValue = currentValue
@@ -47,22 +47,22 @@ public struct MapError: Error {
 }
 
 extension MapError: CustomStringConvertible {
-	
+
 	private var location: String? {
 		guard let file = file, let function = function, let line = line else { return nil }
 		let fileName = ((String(describing: file).components(separatedBy: "/").last ?? "").components(separatedBy: ".").first ?? "")
 		return "\(fileName).\(function):\(line)"
 	}
-	
+
 	public var description: String {
 		let info: [(String, Any?)] = [
 			("- reason", reason),
 			("- location", location),
 			("- key", key),
-			("- currentValue", currentValue),
+			("- currentValue", currentValue)
 			]
 		let infoString = info.map { "\($0): \($1 ?? "nil")" }.joined(separator: "\n")
 		return "Got an error while mapping.\n\(infoString)"
 	}
-	
+
 }

@@ -9,10 +9,9 @@
 #if os(iOS) || os(tvOS)
 import UIKit
 
-
 // MARK: - Properties
 public extension UISegmentedControl {
-	
+
 	/// SwifterSwift: Segments titles.
 	public var segmentTitles: [String] {
 		get {
@@ -26,7 +25,7 @@ public extension UISegmentedControl {
 			}
 		}
 	}
-	
+
 	/// SwifterSwift: Segments images.
 	public var segmentImages: [UIImage] {
 		get {

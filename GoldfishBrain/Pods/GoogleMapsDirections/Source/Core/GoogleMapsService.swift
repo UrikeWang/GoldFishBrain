@@ -12,9 +12,9 @@ open class GoogleMapsService {
     enum GoogleMapsServiceError: Error {
         case apiKeyNotExisted
     }
-    
+
     fileprivate static var _apiKey: String?
-    
+
     /**
      Provide a Google Maps API key
      
@@ -23,7 +23,7 @@ open class GoogleMapsService {
     public class func provide(apiKey: String) {
         _apiKey = apiKey
     }
-    
+
     /**
      Return a valid API key, or throw an exception
      
@@ -38,9 +38,9 @@ open class GoogleMapsService {
         }
         return apiKey
     }
-    
+
     /// Get a base request parameter dictionary, this will include API key
     class var baseRequestParameters: [String : String] {
-        return try! ["key" : apiKey()]
+        return try! ["key": apiKey()]
     }
 }

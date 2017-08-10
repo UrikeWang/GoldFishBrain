@@ -157,21 +157,21 @@ class ImageIndicator: Indicator {
         if !options.preloadAllAnimationData {
             options.append(.preloadAllAnimationData)
         }
-        
+
         guard let image = processor.process(item: .data(data), options: options) else {
             return nil
         }
 
         animatedImageIndicatorView = ImageView()
         animatedImageIndicatorView.image = image
-        
+
         #if os(macOS)
             // Need for gif to animate on macOS
             self.animatedImageIndicatorView.imageScaling = .scaleNone
             self.animatedImageIndicatorView.canDrawSubviewsIntoLayer = true
         #else
             animatedImageIndicatorView.contentMode = .center
-            
+
             animatedImageIndicatorView.autoresizingMask = [.flexibleLeftMargin,
                                                            .flexibleRightMargin,
                                                            .flexibleBottomMargin,
