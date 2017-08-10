@@ -124,12 +124,12 @@
 			isa = PBXGroup;
 			children = (
 				6E28471E1F27343F002269EC /* Main.storyboard */,
+				6E28471A1F27343F002269EC /* AppDelegate.swift */,
 				6E9861C61F31D76800EFEFCB /* Do */,
 				6EF577BB1F3B3D4400D1068A /* Login */,
 				6E28473E1F288276002269EC /* Register */,
 				6E2847371F2864B5002269EC /* Profile */,
 				6E2847361F27812E002269EC /* ChatRoom */,
-				6E28471A1F27343F002269EC /* AppDelegate.swift */,
 				6E2847491F29E6AE002269EC /* extension.swift */,
 				6E2847761F2B1616002269EC /* StyleGuide.swift */,
 				6E2847241F27343F002269EC /* Assets.xcassets */,
@@ -199,9 +199,6 @@
 			isa = PBXGroup;
 			children = (
 				6E996A731F3348A00097BA4C /* CreateDoViewController.swift */,
-				6E9861CB1F31F3DF00EFEFCB /* AddDoPopViewController.swift */,
-				6E996A6B1F32E3570097BA4C /* AddDoPopViewController+extension.swift */,
-				6EB1D2091F359B1B00377FDE /* AddDoPopViewController+GMSAutocompleteResults.swift */,
 				6EB1D25B1F38963100377FDE /* Friend */,
 				6EB1D2561F384DC800377FDE /* Location */,
 				6E9861C71F31D78200EFEFCB /* DoTableViewController.swift */,
@@ -215,6 +212,9 @@
 			isa = PBXGroup;
 			children = (
 				6EB1D2541F383C4F00377FDE /* TravelDetail.swift */,
+				6E9861CB1F31F3DF00EFEFCB /* AddDoPopViewController.swift */,
+				6E996A6B1F32E3570097BA4C /* AddDoPopViewController+extension.swift */,
+				6EB1D2091F359B1B00377FDE /* AddDoPopViewController+GMSAutocompleteResults.swift */,
 			);
 			name = Location;
 			sourceTree = "<group>";

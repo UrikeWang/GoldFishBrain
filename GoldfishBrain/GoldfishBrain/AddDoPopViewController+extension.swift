@@ -9,7 +9,6 @@
 import Foundation
 import GoogleMaps
 import GooglePlaces
-import CoreLocation
 import Firebase
 
 extension AddDoPopViewController: CLLocationManagerDelegate {
@@ -37,6 +36,7 @@ extension AddDoPopViewController: CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
 
             mapView.isMyLocationEnabled = true
+            
             mapView.settings.myLocationButton = true
             //            print("Location status is OK.")
 

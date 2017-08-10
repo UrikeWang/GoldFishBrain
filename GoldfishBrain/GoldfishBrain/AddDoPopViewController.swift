@@ -189,8 +189,6 @@ class AddDoPopViewController: UIViewController {
         //Initialize the GMSPlacesClient
         placesClient = GMSPlacesClient.shared()
 
-//        fetchCurrentLocation()
-
         resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController?.delegate = self
 

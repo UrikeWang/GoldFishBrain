@@ -19,5 +19,6 @@ pod 'JSQMessagesViewController'
 pod 'Alamofire'
 pod 'SwifterSwift'
 pod 'IQKeyboardManagerSwift'
+pod 'SDWebImage'
 
 end
