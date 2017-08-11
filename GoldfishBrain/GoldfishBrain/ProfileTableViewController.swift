@@ -111,23 +111,6 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
 
         fetchTravelDetails()
 
-//        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-//
-//            let request: NSFetchRequest<TravelDataMO> = TravelDataMO.fetchRequest()
-//            do {
-//
-//                travelDatas = try context.fetch(request)
-//
-//            } catch {
-//
-//                print(error)
-//
-//            }
-//
-//            dosTableView.reloadData()
-//
-//        }
-
     }
 
     func fetchTravelDetails() {

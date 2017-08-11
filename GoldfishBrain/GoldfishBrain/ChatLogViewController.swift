@@ -62,18 +62,20 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.navigationBar.barTintColor = UIColor.goldfishRed
         navigationItem.title = peopleFirstName
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+
+        self.navigationController?.navigationBar.tintColor = UIColor.white
 
         lastPageButton.title = "Return"
 
 //        sendMessageView.addTopBorder()
 
         sendMessageButton.setTitle("Send", for: .normal)
-
         sendMessageButton.addTarget(self, action: #selector(handleSendMessage), for: .touchUpInside)
 
         messageText.placeholder = "Enter message..."
-
         messageText.font = UIFont.asiTextStyle11Font()
 
         self.messageText.delegate = self
@@ -85,9 +87,7 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
         messageManager.observeUserMessages()
 
         chatLogTableView.separatorStyle = UITableViewCellSeparatorStyle.none
-
         chatLogTableView.estimatedRowHeight = 86.0
-
         chatLogTableView.rowHeight = UITableViewAutomaticDimension
 
     }
@@ -299,10 +299,6 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
             cell.rightChatText.text = message.text
 
-            //swiftlint:disable force_cast
-            cell.rightChatText.layer.backgroundColor = UIColor.lightGray.cgColor as! CGColor
-            //swiftlint:enable force_cast
-
             cell.setNeedsUpdateConstraints()
 
             cell.updateConstraintsIfNeeded()
@@ -317,7 +313,7 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
             cell.leftChatText.text = message.text
 
-            cell.leftChatText.layer.backgroundColor = UIColor.asiSeaBlue.cgColor
+            cell.leftChatText.layer.backgroundColor = UIColor.lightGray.cgColor
 
             cell.setNeedsUpdateConstraints()
 

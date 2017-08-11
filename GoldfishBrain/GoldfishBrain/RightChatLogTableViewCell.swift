@@ -14,7 +14,21 @@ class RightChatLogTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        setupRightChatText()
+
+    }
+
+    private func setupRightChatText() {
+
+        let label = rightChatText!
+
+        label.dropShadow()
+
+        label.layer.cornerRadius = 15
+
+        label.layer.backgroundColor = UIColor.goldfishRedLight2.cgColor
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
