@@ -10,14 +10,21 @@ import UIKit
 import FirebaseAuth
 import Firebase
 import Kingfisher
+import SDWebImage
 
-class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegate {
+class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegate, messageManagerDelegate {
 
     let chatRoomManager = ChatRoomManager()
 
     var people = [Person]()
 
+    var messages = [Message]()
+
+    var messageManager = MessageManager()
+
     @IBOutlet var chatRoomTableView: UITableView!
+
+    @IBOutlet weak var friendListButton: UIBarButtonItem!
 
     @IBAction func logoutButton(_ sender: Any) {
 
@@ -37,9 +44,9 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
-        let registerVC = storyBoard.instantiateViewController(withIdentifier: "RegisterVC")
+        let loginVC = storyBoard.instantiateViewController(withIdentifier: "LoginVC")
 
-        self.present(registerVC, animated: true, completion: nil)
+        self.present(loginVC, animated: true, completion: nil)
 
     }
 
@@ -58,18 +65,60 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
     }
 
+    func messageManager(_ manager: MessageManager, didGetMessage message: [Message]) {
+
+        self.messages = message
+
+        DispatchQueue.main.async {
+
+            self.chatRoomTableView.reloadData()
+        }
+
+    }
+
+    func messageManager(_ manager: MessageManager, didGetAllMessage allMessages: [Message]) {
+
+    }
+
+    func messageManager(_ manager: MessageManager, didGetMessagesDict dict: [String: String]) {
+
+    }
+
+    func messageManager(_ manager: MessageManager, didFailWith error: Error) {
+
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationController?.navigationBar.barTintColor = UIColor.goldfishRed
+
+        navigationItem.title = "Chatroom"
+
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+
+//        friendListButton.title = "List"
+//        
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "List", style: .plain, target: self, action: #selector(ChatRoomTableViewController))
+//        
+        //right bar button
+//        let icon = UIImage.init(named: "compose")?.withRenderingMode(.alwaysOriginal)
+//        let rightButton = UIBarButtonItem.init(image: icon!, style: .plain, target: self, action: #selector(ChatRoomTableViewController))
+//        self.navigationItem.rightBarButtonItem = rightButton
 
         chatRoomManager.delegate = self
 
         chatRoomManager.fetchPeople()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        messageManager.delegate = self
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+//        messageManager.observeMessages()
+
+        messageManager.observeUserMessages()
+
+        chatRoomTableView.separatorStyle = UITableViewCellSeparatorStyle.none
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,7 +135,8 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return people.count
+//        return people.count
+        return messages.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -95,28 +145,87 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeopleCell", for: indexPath) as! PeopleTableViewCell
         //swiftlint:enable force_cast
 
-        cell.peopleNameLabel.text = people[indexPath.row].firstName
+//        cell.peopleNameLabel.text = people[indexPath.row].firstName
+//
+//        let url = URL(string: "\(people[indexPath.row].imageUrl)")
+//
+//        cell.peopleImage.kf.setImage(with: url)
+//
+////        cell.peopleImage.downloadedFrom(link: people[indexPath.row].imageUrl, contentMode: .scaleAspectFill)
+//
+//        cell.peopleImage.layer.masksToBounds = true
+//
 
-        let url = URL(string: "\(people[indexPath.row].imageUrl)")
+        let message = messages[indexPath.row]
 
-        cell.peopleImage.kf.setImage(with: url)
+        if let toID = message.toID as? String {
 
-//        cell.peopleImage.downloadedFrom(link: people[indexPath.row].imageUrl, contentMode: .scaleAspectFill)
+            let ref = Database.database().reference().child("users").child(toID)
 
-        cell.peopleImage.layer.masksToBounds = true
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+
+                if let dict = snapshot.value as? [String: AnyObject] {
+
+                    cell.peopleNameLabel.text = dict["firstName"] as? String
+
+                    if let profileImageURL = dict["profileImageURL"] as? String {
+
+                        let url = URL(string: "\(profileImageURL)")
+
+//                        cell.peopleImage.kf.setImage(with: url)
+
+                        cell.peopleImage.sd_setImage(with: url, placeholderImage: UIImage(named: "icon-placeholder"))
+
+                        cell.peopleImage.layer.masksToBounds = true
+
+                    }
+                }
+
+            }, withCancel: nil)
+
+        }
+
+        cell.peopleChatContentLabel.text = message.text
+
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.dateFormat = "hh:mm a" //Specify your format that you want
+
+        dateFormatter.timeZone = TimeZone.current //Set timezone that you want
+
+        var date = Date(timeIntervalSince1970: TimeInterval(message.timestamp))
+
+        let strDate = dateFormatter.string(from: date)
+
+        cell.dateLabel.text = strDate
 
         return cell
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        if segue.identifier == "ShowChatLog" {
+        if segue.identifier == "ShowChatLogFromPeople" {
 
             if let cell = sender as? PeopleTableViewCell {
 
                 if let destinationNavigation = segue.destination as? UINavigationController {
 
                     let destinationViewController = destinationNavigation.viewControllers.first as? ChatLogViewController
+
+                    if let peopleFirstName = cell.peopleNameLabel.text {
+
+                        for person in people where peopleFirstName == person.firstName {
+
+                            destinationViewController?.peopleFirstName = person.firstName
+
+                            destinationViewController?.peopleLastName = person.lastName
+
+                            destinationViewController?.peopleID = person.id
+
+                        }
+
+                    }
+
                 }
 
             }

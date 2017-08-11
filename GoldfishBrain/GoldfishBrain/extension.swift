@@ -55,3 +55,51 @@ extension UIImage {
         return UIImageJPEGRepresentation(self, quality.rawValue)
     }
 }
+
+extension UITextField {
+
+    func addTextTopBorder() {
+
+        let border = CALayer()
+        let width = CGFloat(1.0)
+
+        border.borderColor = UIColor.gray.cgColor
+        border.borderWidth = width
+        border.frame = CGRect(x: 0, y: 0, width: Int(self.frame.size.width), height: 1)
+
+        self.layer.addSublayer(border)
+
+    }
+}
+
+extension UIView {
+
+    func addTopBorder() {
+
+        let border = CALayer()
+        let width = CGFloat(1.0)
+
+        border.borderColor = UIColor.gray.cgColor
+        border.borderWidth = width
+        border.frame = CGRect(x: 0, y: 0, width: Int(self.frame.size.width), height: 1)
+
+        self.layer.addSublayer(border)
+
+    }
+
+    func dropShadow() {
+
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.3
+        self.layer.shadowOffset = CGSize(width: 0, height: 1)
+        self.layer.shadowRadius = 2
+
+//        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+//        self.layer.shouldRasterize = true
+//        
+//        self.layer.rasterizationScale = UIScreen.main.scale
+
+    }
+
+}

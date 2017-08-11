@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 import Firebase
+import GoogleMaps
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
 //        self.window = UIWindow(frame: UIScreen.main.bounds)
+
+        UITabBar.appearance().tintColor = UIColor.goldfishOrange
 
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
@@ -29,14 +33,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         } else {
 
-            let registerVC = storyboard.instantiateViewController(withIdentifier: "RegisterVC")
+            let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginVC")
 
-            self.window?.rootViewController = registerVC
+            self.window?.rootViewController = loginVC
 
         }
 //        print("somebody have logged in", UserDefaults.standard.value(forKey:"uid"))
 
         FirebaseApp.configure()
+
+        GMSServices.provideAPIKey("AIzaSyCkCP7Fmu2QLKMhavYJHlC64ZhiKF6lSuo")
+
+        GMSPlacesClient.provideAPIKey("AIzaSyBbNQ0lsCDDV3GKCSXYfAnA25_yOnf3gio")
 
         return true
     }

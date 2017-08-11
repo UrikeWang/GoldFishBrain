@@ -9,12 +9,17 @@
 import UIKit
 import FirebaseDatabase
 import Kingfisher
+import CoreData
 
 class ProfileTableViewController: UITableViewController, profileManagerDelegate {
 
     @IBOutlet weak var firstNameLabel: UILabel!
 
     @IBOutlet weak var profileImage: UIImageView!
+
+    @IBOutlet var dosTableView: UITableView!
+
+    @IBOutlet weak var separateLine: UIView!
 
     var profiles: [Profile] = []
 
@@ -23,6 +28,16 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
     var userFirstName = ""
 
     var userLastName = ""
+
+    var travelDatas = [TravelDataMO]()
+
+    var travelData: TravelDataMO!
+
+    let coreDataManager = CoreDataManager()
+
+    //swiftlint:disable force_cast
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    //swiftlint:enable force_cast
 
     func profileManager(_ manager: ProfileManager, didGetProfile profile: [Profile]) {
 
@@ -46,7 +61,9 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
 
         let imageUrl = URL(string: "\(url)")
 
-        profileImage.kf.setImage(with: imageUrl)
+//        profileImage.kf.setImage(with: imageUrl)
+
+        profileImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "icon-placeholder"))
 
 //        profileImage.downloadedFrom(link: url, contentMode: .scaleAspectFill)
 
@@ -56,6 +73,14 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationController?.navigationBar.barTintColor = UIColor.goldfishRed
+
+        navigationItem.title = "Profile"
+
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+
+        self.navigationController?.navigationBar.tintColor = UIColor.white
 
         //取得user註冊時的first/last name 為async
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
@@ -70,14 +95,30 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
 
         //changed / set profile image (點擊圖片)
         profileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectionProfileImage)))
-
         profileImage.isUserInteractionEnabled = true
+        profileImage.layer.cornerRadius = profileImage.frame.width/2
+        profileImage.dropShadow()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        firstNameLabel.textAlignment = .center
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+//        separateLine.backgroundColor = UIColor.goldfishRed
+
+        dosTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated) // No need for semicolon
+
+        fetchTravelDetails()
+
+    }
+
+    func fetchTravelDetails() {
+
+        travelDatas = coreDataManager.fetchData()
+
+        self.dosTableView.reloadData()
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -89,23 +130,85 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+
+        return "歷史行程"
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+
+        return 60.0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return travelDatas.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
+        //swiftlint:disable force_cast
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AllMyDosCell", for: indexPath) as! AllMyDosTableViewCell
+        //swiftlint:enable force_cast
+
+        if let date = travelDatas[indexPath.row].time as? String {
+
+            cell.travelDate.text = "出發時間：" + date
+
+        } else {
+
+            cell.travelDate.text = "出發時間："
+        }
+
+        if let destination = travelDatas[indexPath.row].destination as? String {
+
+            cell.travelDestinationTextView.text = "目的地：" + destination
+
+        } else {
+
+            cell.travelDestinationTextView.text = "目的地："
+        }
+
+        if let finished = travelDatas[indexPath.row].finished as? Bool {
+
+            cell.travelFinished.text = "行程是否完成：\(finished)"
+
+        } else {
+
+            cell.travelFinished.text = "行程是否完成："
+        }
+
+        if let notified = travelDatas[indexPath.row].notify as? Bool {
+
+            cell.travelNotified.text = "行程是否通知：\(notified)"
+
+        } else {
+
+            cell.travelNotified.text = "行程是否通知："
+        }
+
+        cell.travelDestinationTextView.tag = indexPath.row
 
         return cell
     }
-    */
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+
+        if editingStyle == .delete {
+
+            coreDataManager.deleteDo(indexPath: indexPath.row)
+
+            coreDataManager.fetchData()
+
+            self.travelDatas.remove(at: indexPath.row)
+
+            self.dosTableView.reloadData()
+
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.
