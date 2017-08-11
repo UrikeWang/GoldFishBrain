@@ -35,6 +35,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     @IBOutlet weak var friendText: UITextField!
 
+    @IBOutlet weak var detailsLabel: UILabel!
+
     var effect: UIVisualEffect!
 
     let dateTimeFormatter = DateFormatter()
@@ -315,20 +317,40 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dateText.placeholder = "add time.."
+        dateText.placeholder = "Select time.."
+
+        destinationText.placeholder = "Select destination"
+
+        friendText.placeholder = "Select friend"
 
         //textFieldDidBeginEditing
         self.dateText.delegate = self
 
         dateLabel.text = "Select your start time"
+        dateLabel.backgroundColor = UIColor.goldfishRedLight
+        dateLabel.textColor = UIColor.white
 
         destinationLabel.text = "Select your desination"
+        destinationLabel.backgroundColor = UIColor.goldfishRedLight
+        destinationLabel.textColor = UIColor.white
 
         toWhoLabel.text = "Select your friend who you want to notify"
+        toWhoLabel.backgroundColor = UIColor.goldfishRedLight
+        toWhoLabel.textColor = UIColor.white
+
+        detailsLabel.text = "行程資訊"
+        detailsLabel.backgroundColor = UIColor.goldfishOrangeLight
+        detailsLabel.textColor = UIColor.white
 
         createDoButton.setTitle("Create", for: .normal)
+        createDoButton.backgroundColor = UIColor.goldfishRed
+        createDoButton.layer.cornerRadius = createDoButton.frame.height/2
+        createDoButton.setTitleColor(UIColor.white, for: .normal)
 
         cancelDoButton.setTitle("Cancel", for: .normal)
+        cancelDoButton.backgroundColor = UIColor.goldfishOrange
+        cancelDoButton.layer.cornerRadius = cancelDoButton.frame.height/2
+        cancelDoButton.setTitleColor(UIColor.white, for: .normal)
 
     }
 
