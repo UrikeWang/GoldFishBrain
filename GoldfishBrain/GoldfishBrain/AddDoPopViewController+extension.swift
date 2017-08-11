@@ -99,28 +99,28 @@ extension AddDoPopViewController: CLLocationManagerDelegate {
 
     func checkUserCurrentDestination(coordinate: [Double]) {
 
-//        if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+        //        if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
 
-            let title = "Destination"
+        let title = "Destination"
 
-//            let coordinate = coordinate
+        //            let coordinate = coordinate
 
-            let coordinate = CLLocationCoordinate2D(latitude: coordinate[0] as CLLocationDegrees, longitude: coordinate[1] as CLLocationDegrees)
+        let coordinate = CLLocationCoordinate2D(latitude: coordinate[0] as CLLocationDegrees, longitude: coordinate[1] as CLLocationDegrees)
 
-            print("location:::", coordinate)
+        print("location:::", coordinate)
 
-            let regionRadius = 300.0
+        let regionRadius = 300.0
 
-            let region = CLCircularRegion(center: coordinate, radius: regionRadius, identifier: title)
+        let region = CLCircularRegion(center: coordinate, radius: regionRadius, identifier: title)
 
         region.notifyOnEntry = true
 
-            locationManager.startMonitoring(for: region)
-//
-//        } else {
-//
-//            print("System can't track regions")
-//        }
+        locationManager.startMonitoring(for: region)
+        //
+        //        } else {
+        //
+        //            print("System can't track regions")
+        //        }
 
     }
 

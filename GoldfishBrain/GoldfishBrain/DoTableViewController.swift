@@ -25,13 +25,17 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
 
-        addDoButton.layer.cornerRadius = 3
+        addDoButton.layer.cornerRadius = 15
 
-        addDoButton.layer.borderColor = UIColor.gray.cgColor
+        addDoButton.layer.borderColor = UIColor(red: 218.0 / 255.0, green: 52.0 / 255.0, blue: 51.0 / 255.0, alpha: 0.6).cgColor
 
-        addDoButton.layer.borderWidth = 1
+        addDoButton.backgroundColor = UIColor(red: 218.0 / 255.0, green: 52.0 / 255.0, blue: 51.0 / 255.0, alpha: 0.5)
+
+        addDoButton.layer.borderWidth = 5
 
         addDoButton.setTitle("Add 『 Do 』", for: .normal)
+
+        addDoButton.setTitleColor(UIColor.white, for: .normal)
 
     }
 

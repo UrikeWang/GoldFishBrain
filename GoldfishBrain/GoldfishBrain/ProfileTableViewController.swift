@@ -19,6 +19,8 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
 
     @IBOutlet var dosTableView: UITableView!
 
+    @IBOutlet weak var separateLine: UIView!
+
     var profiles: [Profile] = []
 
     let profileManager = ProfileManager()
@@ -94,7 +96,13 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
 
         profileImage.isUserInteractionEnabled = true
 
+        profileImage.layer.cornerRadius = profileImage.frame.width/2
+
         firstNameLabel.textAlignment = .center
+
+//        separateLine.backgroundColor = UIColor.goldfishRed
+
+        dosTableView.separatorStyle = UITableViewCellSeparatorStyle.none
     }
 
     override func viewWillAppear(_ animated: Bool) {

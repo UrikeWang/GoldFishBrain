@@ -92,6 +92,32 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        DispatchQueue.main.async {
+
+            self.moveToLastComment()
+        }
+    }
+
+    func moveToLastComment() {
+
+        if self.chatLogTableView.contentSize.height > self.chatLogTableView.frame.height {
+            // First figure out how many sections there are
+            let lastSectionIndex = self.chatLogTableView!.numberOfSections - 1
+
+            // Then grab the number of rows in the last section
+            let lastRowIndex = self.chatLogTableView!.numberOfRows(inSection: lastSectionIndex) - 1
+
+            // Now just construct the index path
+            let pathToLastRow = NSIndexPath(row: lastRowIndex, section: lastSectionIndex)
+
+            // Make the last row visible
+            self.chatLogTableView?.scrollToRow(at: pathToLastRow as IndexPath, at: UITableViewScrollPosition.bottom, animated: false)
+        }
+    }
+
     func handleSendMessage() {
 
         var istalked = false
