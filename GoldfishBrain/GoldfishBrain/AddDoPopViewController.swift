@@ -72,6 +72,8 @@ class AddDoPopViewController: UIViewController, managerCreateStartDelegate {
 
     @IBOutlet weak var popoverDone: UIButton!
 
+    @IBOutlet weak var popoverCancel: UIButton!
+
     @IBAction func popoverDone(_ sender: UIButton) {
 
         print("12345", travelTime.text)
@@ -101,6 +103,11 @@ class AddDoPopViewController: UIViewController, managerCreateStartDelegate {
 
     }
 
+    @IBAction func popoverCancel(_ sender: Any) {
+
+        dismiss(animated: true, completion: nil)
+    }
+
     @IBAction func publicTransportationButton(_ sender: Any) {
 
         calculateTravelTime(type: "transit")
@@ -110,11 +117,26 @@ class AddDoPopViewController: UIViewController, managerCreateStartDelegate {
     @IBAction func carButton(_ sender: Any) {
 
         calculateTravelTime(type: "driving")
+
+        carButton.layer.borderWidth = 1
+        carButton.layer.borderColor = UIColor.goldfishRed.cgColor
+        carButton.tintColor = UIColor.goldfishRed
+
+        walkButton.layer.borderColor = UIColor.clear.cgColor
+        walkButton.tintColor = UIColor.darkGray
+
     }
 
     @IBAction func walkButton(_ sender: Any) {
 
         calculateTravelTime(type: "walking")
+
+        walkButton.layer.borderWidth = 1
+        walkButton.layer.borderColor = UIColor.goldfishRed.cgColor
+        walkButton.tintColor = UIColor.goldfishRed
+
+        carButton.layer.borderColor = UIColor.clear.cgColor
+        carButton.tintColor = UIColor.darkGray
     }
 
     func manager(_ manager: CreateDoViewController, destination: String, duration: String, distance: String, coordinate: [Double]) {
@@ -259,29 +281,27 @@ class AddDoPopViewController: UIViewController, managerCreateStartDelegate {
 
         travelTime.isScrollEnabled = true
 
-        popoverDone.setTitle("確認地點", for: .normal)
+        popoverDone.setTitle("確認", for: .normal)
+        popoverDone.backgroundColor = UIColor.goldfishRed
+        popoverDone.layer.cornerRadius = popoverDone.frame.height/2
+        popoverDone.setTitleColor(UIColor.white, for: .normal)
+        popoverDone.dropShadow()
+
+        popoverCancel.setTitle("取消", for: .normal)
+        popoverCancel.backgroundColor = UIColor.goldfishOrange
+        popoverCancel.layer.cornerRadius = popoverCancel.frame.height/2
+        popoverCancel.setTitleColor(UIColor.white, for: .normal)
+        popoverCancel.dropShadow()
+
+        carButton.tintColor = UIColor.darkGray
+        carButton.layer.cornerRadius = carButton.frame.width/2
+        carButton.dropShadow()
+
+        walkButton.tintColor = UIColor.darkGray
+        walkButton.layer.cornerRadius = walkButton.frame.width/2
+        walkButton.dropShadow()
 
     }
-
-//    func fetchCurrentLocation() {
-//        
-//        placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
-//            if let error = error {
-//                print("Pick Place error: \(error.localizedDescription)")
-//                return
-//            }
-//            
-//            if let placeLikelihoodList = placeLikelihoodList {
-//                for likelihood in placeLikelihoodList.likelihoods {
-//                    let place = likelihood.place
-//                    print("Current Place name \(place.name) at likelihood \(likelihood.likelihood)")
-//                    print("Current Place address \(place.formattedAddress)")
-//                    print("Current Place attributions \(place.attributions)")
-//                    print("Current PlaceID \(place.placeID)")
-//                }
-//            }
-//        })
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

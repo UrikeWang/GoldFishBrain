@@ -33,6 +33,8 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
 
     var travelData: TravelDataMO!
 
+    let coreDataManager = CoreDataManager()
+
     //swiftlint:disable force_cast
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     //swiftlint:enable force_cast
@@ -93,10 +95,9 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
 
         //changed / set profile image (點擊圖片)
         profileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectionProfileImage)))
-
         profileImage.isUserInteractionEnabled = true
-
         profileImage.layer.cornerRadius = profileImage.frame.width/2
+        profileImage.dropShadow()
 
         firstNameLabel.textAlignment = .center
 
@@ -108,22 +109,32 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated) // No need for semicolon
 
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+        fetchTravelDetails()
 
-            let request: NSFetchRequest<TravelDataMO> = TravelDataMO.fetchRequest()
-            do {
+//        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+//
+//            let request: NSFetchRequest<TravelDataMO> = TravelDataMO.fetchRequest()
+//            do {
+//
+//                travelDatas = try context.fetch(request)
+//
+//            } catch {
+//
+//                print(error)
+//
+//            }
+//
+//            dosTableView.reloadData()
+//
+//        }
 
-                travelDatas = try context.fetch(request)
+    }
 
-            } catch {
+    func fetchTravelDetails() {
 
-                print(error)
+        travelDatas = coreDataManager.fetchData()
 
-            }
-
-            dosTableView.reloadData()
-
-        }
+        self.dosTableView.reloadData()
 
     }
 
@@ -196,17 +207,24 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
             cell.travelNotified.text = "行程是否通知："
         }
 
-//        cell.travelDate.text = "出發時間：\(travelDatas[indexPath.row].time)"
-
-        //swiftlint:disable force_cast
-//        cell.travelDestinationTextView.text = "目的地：\(travelDatas[indexPath.row].destination!)"
-//        //swiftlint:enable force_cast
-//        
-//        cell.travelFinished.text = "行程是否完成：\(travelDatas[indexPath.row].finished)"
-//        
-//        cell.travelNotified.text = "行程是否通知：\(travelDatas[indexPath.row].notify)"
+        cell.travelDestinationTextView.tag = indexPath.row
 
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+
+        if editingStyle == .delete {
+
+            coreDataManager.deleteDo(indexPath: indexPath.row)
+
+            coreDataManager.fetchData()
+
+            self.travelDatas.remove(at: indexPath.row)
+
+            self.dosTableView.reloadData()
+
+        }
     }
 
     /*

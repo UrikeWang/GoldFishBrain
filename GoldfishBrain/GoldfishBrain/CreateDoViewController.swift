@@ -57,15 +57,11 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     var coordinate = [Double]()
 
+    let coreDataManager = CoreDataManager()
+
     var detail: TravelDetail?
 
-    var travelDatas = [TravelDataMO]()
-
-    var travelData: TravelDataMO!
-
     //swiftlint:disable force_cast
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
     let uid = UserDefaults.standard.value(forKey: "uid") as! String
     //swiftlint:enable force_cast
 
@@ -271,39 +267,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         }
 
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-
-            travelData = TravelDataMO(context: appDelegate.persistentContainer.viewContext)
-
-            travelData.time = travelTime
-
-            travelData.destination = travelDestination
-
-            travelData.distance = travelDistance
-
-            travelData.duration = travelDuration
-
-            travelData.friend = friendName
-
-            travelData.finished = false
-
-            travelData.notify = false
-
-            do {
-
-                let task = try self.context.fetch(TravelDataMO.fetchRequest())
-
-                travelDatas = (task as? [TravelDataMO])!
-
-            } catch let error {
-
-                print("did not save the data!")
-
-            }
-
-            appDelegate.saveContext()
-
-        }
+        coreDataManager.addDo(destination: travelDestination, distance: travelDistance, duration: travelDuration, finished: false, friend: friendName, notify: false, time: travelTime)
 
     }
 
@@ -346,11 +310,13 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         createDoButton.backgroundColor = UIColor.goldfishRed
         createDoButton.layer.cornerRadius = createDoButton.frame.height/2
         createDoButton.setTitleColor(UIColor.white, for: .normal)
+        createDoButton.dropShadow()
 
         cancelDoButton.setTitle("Cancel", for: .normal)
         cancelDoButton.backgroundColor = UIColor.goldfishOrange
         cancelDoButton.layer.cornerRadius = cancelDoButton.frame.height/2
         cancelDoButton.setTitleColor(UIColor.white, for: .normal)
+        cancelDoButton.dropShadow()
 
     }
 

@@ -28,16 +28,12 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
         self.navigationController?.navigationBar.tintColor = UIColor.white
 
         addDoButton.layer.cornerRadius = 15
-
         addDoButton.layer.borderColor = UIColor(red: 218.0 / 255.0, green: 52.0 / 255.0, blue: 51.0 / 255.0, alpha: 0.6).cgColor
-
         addDoButton.backgroundColor = UIColor.white
-
         addDoButton.layer.borderWidth = 1
-
         addDoButton.setTitle("建立行程", for: .normal)
-
         addDoButton.setTitleColor(UIColor.goldfishRed, for: .normal)
+        addDoButton.dropShadow()
 
 //        fishImage.tintColor = UIColor.black
         fishImage.layer.shadowOffset = CGSize(width: 0, height: 3)
