@@ -14,9 +14,11 @@ protocol managerFriendDelegate: class {
     func manager(_ manager: PopFriendViewController, name: String, id: String)
 }
 
-class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var friendCollectionView: UICollectionView!
+
+    @IBOutlet weak var cancelSelectFriendButton: UIButton!
 
     let chatRoomManager = ChatRoomManager()
 
@@ -25,6 +27,11 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
     weak var delegate: managerFriendDelegate?
 
     let sectionInsets = UIEdgeInsets(top: 30.0, left: 20.0, bottom: 30.0, right: 20.0)
+
+    @IBAction func cancelSelectFriendButton(_ sender: Any) {
+
+        dismiss(animated: true, completion: nil)
+    }
 
     func chatRoomManager(_ manager: ChatRoomManager, didGetPeople people: [Person]) {
 
@@ -48,6 +55,18 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
         chatRoomManager.fetchPeople()
 
+        cancelSelectFriendButton.setTitle("Cancel", for: .normal)
+
+        cancelSelectFriendButton.setTitleColor(UIColor.white, for: .normal)
+
+        cancelSelectFriendButton.layer.borderWidth = 2
+
+        cancelSelectFriendButton.backgroundColor = UIColor.goldfishRed
+
+        cancelSelectFriendButton.layer.borderColor = UIColor.goldfishOrange.cgColor
+
+        cancelSelectFriendButton.layer.cornerRadius = 20
+
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -67,19 +86,12 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-//        return indexPath.section % 2 == 0 ? CGSize(width: 80, height: 80) : CGSize(width: 120, height: 120)
+        let paddingSpace = sectionInsets.left * 3
+        let availableWidth = UIScreen.main.bounds.width - paddingSpace
+        let widthPerItem = availableWidth / 3
 
-        return CGSize(width: 80, height: 80)
+        return CGSize(width: widthPerItem, height: widthPerItem + 50)
     }
-
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        let paddingSpace = sectionInsets.left * 4
-//        let availableWidth = 300 - paddingSpace
-//        let widthPerItem = availableWidth / 3
-//
-//        return CGSize(width: widthPerItem, height: widthPerItem)
-//    }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
@@ -94,8 +106,6 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 //        cell.friendPhoto.kf.setImage(with: url)
 
         cell.friendPhoto.sd_setImage(with: url, placeholderImage: UIImage(named: "icon-placeholder"))
-
-        cell.friendPhoto.layer.masksToBounds = true
 
         cell.friendPhoto.tag = indexPath.row
 

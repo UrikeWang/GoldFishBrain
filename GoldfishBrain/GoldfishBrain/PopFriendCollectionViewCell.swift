@@ -14,4 +14,29 @@ class PopFriendCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var friendNameLabel: UILabel!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        setupFriendPhoto()
+
+        setupFriendNameLabel()
+    }
+
+    private func setupFriendPhoto() {
+
+        let image = friendPhoto!
+
+        image.layer.cornerRadius = image.frame.width/2
+
+        image.layer.masksToBounds = true
+
+    }
+
+    private func setupFriendNameLabel() {
+
+        let label = friendNameLabel!
+
+        label.textAlignment = .center
+    }
+
 }
