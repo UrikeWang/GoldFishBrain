@@ -14,6 +14,8 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
     @IBOutlet weak var addDoButton: UIButton!
 
+    @IBOutlet weak var fishImage: UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,13 +31,19 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
         addDoButton.layer.borderColor = UIColor(red: 218.0 / 255.0, green: 52.0 / 255.0, blue: 51.0 / 255.0, alpha: 0.6).cgColor
 
-        addDoButton.backgroundColor = UIColor(red: 218.0 / 255.0, green: 52.0 / 255.0, blue: 51.0 / 255.0, alpha: 0.5)
+        addDoButton.backgroundColor = UIColor.white
 
-        addDoButton.layer.borderWidth = 5
+        addDoButton.layer.borderWidth = 1
 
-        addDoButton.setTitle("Add 『 Do 』", for: .normal)
+        addDoButton.setTitle("建立行程", for: .normal)
 
-        addDoButton.setTitleColor(UIColor.white, for: .normal)
+        addDoButton.setTitleColor(UIColor.goldfishRed, for: .normal)
+
+//        fishImage.tintColor = UIColor.black
+        fishImage.layer.shadowOffset = CGSize(width: 0, height: 3)
+        fishImage.layer.shadowOpacity = 0.4
+        fishImage.layer.shadowRadius = 4
+        fishImage.layer.shadowColor = UIColor.black.cgColor
 
     }
 

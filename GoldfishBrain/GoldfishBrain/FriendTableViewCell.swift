@@ -14,11 +14,30 @@ class FriendTableViewCell: UITableViewCell {
 
     @IBOutlet weak var friendNameLabel: UILabel!
 
-    @IBOutlet weak var friendContentLabel: UILabel!
-
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        setupFriendImageView()
+
+        setupFriendNameLabel()
+    }
+
+    private func setupFriendImageView() {
+
+        let imageView = friendImageView!
+
+        imageView.layer.masksToBounds = true
+
+        imageView.layer.cornerRadius = imageView.frame.width/2
+
+    }
+
+    private func setupFriendNameLabel() {
+
+        let label = friendNameLabel!
+
+        label.font = UIFont(name: "Georgia-Bold", size: 20)
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

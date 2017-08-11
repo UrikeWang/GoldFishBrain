@@ -21,14 +21,49 @@ class PeopleTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        setupPeopleImage()
+
+        setupPeopleNameLabel()
+
+        setupPeopleChatContent()
+
+        setupDateLabel()
     }
 
-    private func setUpPeopleImage() {
+    private func setupPeopleImage() {
 
-//        peopleImage.layer.masksToBounds = true
+        let imageView = peopleImage!
 
-//        peopleImage.clipsToBounds = true
+        imageView.layer.masksToBounds = true
+
+        imageView.layer.cornerRadius = imageView.frame.width/2
+
+    }
+
+    private func setupPeopleNameLabel() {
+
+        let label = peopleNameLabel!
+
+        label.font = UIFont(name: "Georgia-Bold", size: 18)
+
+    }
+
+    private func setupPeopleChatContent() {
+
+        let label = peopleChatContentLabel!
+
+        label.font = UIFont(name: "Georgia", size: 18)
+
+    }
+
+    private func setupDateLabel() {
+
+        let label = dateLabel!
+
+        label.font = UIFont(name: "Georgia", size: 16)
+
+        label.textColor = UIColor.lightGray
 
     }
 

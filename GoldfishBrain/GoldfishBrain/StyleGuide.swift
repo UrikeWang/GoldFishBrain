@@ -30,7 +30,7 @@ extension UIColor {
     }
 
     class var buttonTitleBackground: UIColor {
-        return UIColor(red: 229.0 / 255.0, green: 89.0 / 255.0, blue: 39.0 / 255.0, alpha: 0.5)
+        return UIColor(red: 229.0 / 255.0, green: 89.0 / 255.0, blue: 39.0 / 255.0, alpha: 0.7)
     }
 
     class var asiSandBrown: UIColor {

@@ -82,8 +82,6 @@ class FriendTableViewController: UITableViewController, chatRoomManagerDelegate 
 
         cell.friendImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "icon-placeholder"))
 
-        cell.friendImageView.layer.masksToBounds = true
-
         return cell
     }
 

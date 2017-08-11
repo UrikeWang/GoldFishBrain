@@ -111,7 +111,7 @@ class RegisterViewController: UIViewController {
 
         self.view.layer.insertSublayer(gradientLayer, at: 0)
 
-        appLogo.tintColor = UIColor.black
+//        appLogo.tintColor = UIColor.black
         appLogo.layer.shadowOffset = CGSize(width: 0, height: 3)
         appLogo.layer.shadowOpacity = 0.4
         appLogo.layer.shadowRadius = 4
