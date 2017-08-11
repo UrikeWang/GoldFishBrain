@@ -16,7 +16,7 @@ protocol managerDestinationDelegate: class {
     func manager(_ manager: AddDoPopViewController, destination: String, duration: String, distance: String, coordinate: [Double])
 }
 
-class AddDoPopViewController: UIViewController {
+class AddDoPopViewController: UIViewController, managerCreateStartDelegate {
 
     @IBOutlet weak var mapView: GMSMapView!
 
@@ -53,6 +53,14 @@ class AddDoPopViewController: UIViewController {
     var detail: TravelDetail?
 
     weak var delegate: managerDestinationDelegate?
+
+    var doDestination = ""
+
+    var doDuration = ""
+
+    var doDistance = ""
+
+    var doCoordinate = [Double]()
 
     //swiftlint:disable force_cast
     let uid = UserDefaults.standard.value(forKey: "uid") as! String
@@ -107,6 +115,18 @@ class AddDoPopViewController: UIViewController {
     @IBAction func walkButton(_ sender: Any) {
 
         calculateTravelTime(type: "walking")
+    }
+
+    func manager(_ manager: CreateDoViewController, destination: String, duration: String, distance: String, coordinate: [Double]) {
+
+        self.doDestination = destination
+
+        self.doDuration = duration
+
+        self.doDistance = distance
+
+        self.doCoordinate = coordinate
+
     }
 
     func calculateTravelTime(type: String) {

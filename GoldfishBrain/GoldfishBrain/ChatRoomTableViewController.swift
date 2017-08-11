@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import Firebase
 import Kingfisher
+import SDWebImage
 
 class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegate, messageManagerDelegate {
 
@@ -171,7 +172,9 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
                         let url = URL(string: "\(profileImageURL)")
 
-                        cell.peopleImage.kf.setImage(with: url)
+//                        cell.peopleImage.kf.setImage(with: url)
+
+                        cell.peopleImage.sd_setImage(with: url, placeholderImage: UIImage(named: "icon-placeholder"))
 
                         cell.peopleImage.layer.masksToBounds = true
 

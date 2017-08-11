@@ -57,7 +57,9 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
 
         let imageUrl = URL(string: "\(url)")
 
-        profileImage.kf.setImage(with: imageUrl)
+//        profileImage.kf.setImage(with: imageUrl)
+
+        profileImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "icon-placeholder"))
 
 //        profileImage.downloadedFrom(link: url, contentMode: .scaleAspectFill)
 

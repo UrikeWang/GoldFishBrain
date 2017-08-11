@@ -10,6 +10,11 @@ import UIKit
 import CoreData
 import Firebase
 
+protocol managerCreateStartDelegate: class {
+
+    func manager(_ manager: CreateDoViewController, destination: String, duration: String, distance: String, coordinate: [Double])
+}
+
 class CreateDoViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITextFieldDelegate, managerDestinationDelegate, managerFriendDelegate {
 
     @IBOutlet weak var dateText: UITextField!
@@ -63,6 +68,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     //swiftlint:enable force_cast
 
     let addPopViewController = AddDoPopViewController()
+
+    weak var delegate: managerCreateStartDelegate?
 
     @IBOutlet weak var travelDetails: UITextView!
 
@@ -244,7 +251,15 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             print("userdefault", UserDefaults.standard.value(forKey: "destination"))
 
-            addPopViewController.setData(coordinate: coordinate)
+            addPopViewController.checkUserCurrentDestination(coordinate: coordinate)
+
+//            self.delegate?.manager(
+//                self,
+//                destination: travelDestination,
+//                duration: travelDuration,
+//                distance: travelDistance,
+//                coordinate: coordinate
+//            )
 
             self.dismiss(animated: false, completion: nil)
 

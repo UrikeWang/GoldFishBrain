@@ -78,7 +78,9 @@ class FriendTableViewController: UITableViewController, chatRoomManagerDelegate 
 
         let url = URL(string: "\(people[indexPath.row].imageUrl)")
 
-        cell.friendImageView.kf.setImage(with: url)
+//        cell.friendImageView.kf.setImage(with: url)
+
+        cell.friendImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "icon-placeholder"))
 
         cell.friendImageView.layer.masksToBounds = true
 

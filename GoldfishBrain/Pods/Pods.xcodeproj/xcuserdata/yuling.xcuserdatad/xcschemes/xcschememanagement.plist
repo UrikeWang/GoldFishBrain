@@ -44,6 +44,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>NVActivityIndicatorView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>ObjectMapper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -82,7 +87,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3AA5B7526136A7E6819FB9EB9CF4B83D</key>
+		<key>3EDFE4052B5DE7D509935AC0774CB135</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>615895A8E339749A69A6681AD59901BD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,17 +102,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>82AE8ACB45412DAB4793F94DD875D63F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B9CF3B24A5DFD0899E61C9D1A55F8CEC</key>
+		<key>AA293DA11B784EFD9530E377AA5C3521</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -133,6 +138,11 @@
 			<true/>
 		</dict>
 		<key>E4DD95323C54A78F879DAB0F1508B8E7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FB7D18C8AA37A41374B110F86818D46D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -91,7 +91,9 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
         let url = URL(string: "\(people[indexPath.row].imageUrl)")
 
-        cell.friendPhoto.kf.setImage(with: url)
+//        cell.friendPhoto.kf.setImage(with: url)
+
+        cell.friendPhoto.sd_setImage(with: url, placeholderImage: UIImage(named: "icon-placeholder"))
 
         cell.friendPhoto.layer.masksToBounds = true
 

@@ -20,5 +20,6 @@ pod 'Alamofire'
 pod 'SwifterSwift'
 pod 'IQKeyboardManagerSwift'
 pod 'SDWebImage'
+pod 'NVActivityIndicatorView'
 
 end
