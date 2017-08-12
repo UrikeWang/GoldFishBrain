@@ -65,7 +65,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     let uid = UserDefaults.standard.value(forKey: "uid") as! String
     //swiftlint:enable force_cast
 
-    let addPopViewController = AddDoPopViewController()
+//    let addPopViewController = AddDoPopViewController()
+    let profileViewController = ProfileTableViewController()
 
     weak var delegate: managerCreateStartDelegate?
 
@@ -249,7 +250,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             print("userdefault", UserDefaults.standard.value(forKey: "destination"))
 
-            addPopViewController.checkUserCurrentDestination(coordinate: coordinate)
+//            addPopViewController.checkUserCurrentDestination(coordinate: coordinate)
+            profileViewController.checkUserCurrentDestination(coordinate: coordinate)
 
 //            self.delegate?.manager(
 //                self,

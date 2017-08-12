@@ -10,8 +10,10 @@ import UIKit
 import FirebaseDatabase
 import Kingfisher
 import CoreData
+import GoogleMaps
+import GooglePlaces
 
-class ProfileTableViewController: UITableViewController, profileManagerDelegate {
+class ProfileTableViewController: UITableViewController, profileManagerDelegate, managerCreateStartDelegate {
 
     @IBOutlet weak var firstNameLabel: UILabel!
 
@@ -29,9 +31,25 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
 
     var userLastName = ""
 
+    var doDestination = ""
+
+    var doDuration = ""
+
+    var doDistance = ""
+
+    var doCoordinate = [Double]()
+
     var travelDatas = [TravelDataMO]()
 
-    var travelData: TravelDataMO!
+    @IBOutlet weak var mapView: GMSMapView!
+
+    let addPopViewController = AddDoPopViewController()
+
+    var locationManager = CLLocationManager()
+
+    var placesClient: GMSPlacesClient!
+
+//    var travelData: TravelDataMO!
 
     let coreDataManager = CoreDataManager()
 
@@ -81,6 +99,25 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
+
+        //Initialize the location manager
+        locationManager = CLLocationManager()
+
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+
+        locationManager.requestAlwaysAuthorization()
+        //        locationManager.requestWhenInUseAuthorization()
+
+        locationManager.distanceFilter = 50
+
+        locationManager.startUpdatingLocation()
+
+        locationManager.delegate = self
+
+        locationManager.requestLocation()
+
+        //Initialize the GMSPlacesClient
+        placesClient = GMSPlacesClient.shared()
 
         //取得user註冊時的first/last name 為async
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {

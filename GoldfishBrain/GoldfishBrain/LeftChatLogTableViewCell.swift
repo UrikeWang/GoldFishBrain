@@ -14,7 +14,20 @@ class LeftChatLogTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        setupLeftChatText()
+    }
+
+    private func setupLeftChatText() {
+
+        let label = leftChatText!
+
+        label.dropShadow()
+
+        label.layer.cornerRadius = 15
+
+        label.layer.backgroundColor = UIColor.lightGray.cgColor
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
