@@ -25,6 +25,38 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
     }
 
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+
+        switch status {
+
+        case .restricted:
+            print("Location access was restricted.")
+
+        case .denied:
+            print("User denied access to location.")
+            // Display the map using the default location.
+            mapView.isHidden = false
+
+        case .notDetermined:
+            print("Location status not determined.")
+
+        case .authorizedWhenInUse: fallthrough
+
+        case .authorizedAlways:
+            locationManager.startMonitoringSignificantLocationChanges()
+
+            locationManager.startUpdatingLocation()
+
+            mapView.isMyLocationEnabled = true
+
+            mapView.settings.myLocationButton = true
+
+            //            print("Location status is OK.")
+
+        }
+
+    }
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
         let location = locations.last
@@ -34,15 +66,15 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
         mapView.camera = GMSCameraPosition(target: (location?.coordinate)!, zoom: 15, bearing: 0, viewingAngle: 0)
 
         // Creates a marker in the center of the map
-        let marker = GMSMarker()
-
-        marker.position = CLLocationCoordinate2DMake((location?.coordinate.latitude)!, (location?.coordinate.longitude)!)
-
-//        marker.title = "Here you are"
-
-//        routePoints["Start"] = [(location?.coordinate.latitude)!, (location?.coordinate.longitude)!]
-
-        marker.map = mapView
+//        let marker = GMSMarker()
+//
+//        marker.position = CLLocationCoordinate2DMake((location?.coordinate.latitude)!, (location?.coordinate.longitude)!)
+//
+////        marker.title = "Here you are"
+//
+////        routePoints["Start"] = [(location?.coordinate.latitude)!, (location?.coordinate.longitude)!]
+//
+//        marker.map = mapView
 
         //swiftlint:disable force_cast
         let addDoVC = CreateDoViewController()

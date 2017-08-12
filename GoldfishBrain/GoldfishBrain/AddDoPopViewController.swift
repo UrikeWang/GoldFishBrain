@@ -80,8 +80,6 @@ class AddDoPopViewController: UIViewController, managerCreateStartDelegate {
 
         if travelTime.text == "" {
 
-            print("222222")
-
             let alertController = UIAlertController(
                 title: "無交通方式",
                 message: "請選取交通方式",
