@@ -47,10 +47,6 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
             locationManager.startUpdatingLocation()
 
-            mapView.isMyLocationEnabled = true
-
-            mapView.settings.myLocationButton = true
-
         }
 
     }
@@ -62,6 +58,10 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
         mapView.clear()
 
         mapView.camera = GMSCameraPosition(target: (location?.coordinate)!, zoom: 15, bearing: 0, viewingAngle: 0)
+        
+        mapView.isMyLocationEnabled = true
+        
+        mapView.settings.myLocationButton = true
 
         print("where am i?", location)
 

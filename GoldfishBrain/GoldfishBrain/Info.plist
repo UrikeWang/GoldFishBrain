@@ -2,16 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationUsageDescription</key>
-	<string>追蹤使用者位置，在創建行程後才可以自動發訊息給親朋好友</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>請提供定位存取權限，才可以進行行程位置回報喔！</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>location</string>
-	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -33,8 +25,19 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>請提供定位存取權限，才可以進行行程位置回報喔！</string>
+	<key>NSLocationUsageDescription</key>
+	<string>追蹤使用者位置，在創建行程後才可以自動發訊息給親朋好友</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>User&apos;s photo </string>
+	<string>User's photo </string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

@@ -93,28 +93,31 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate/
         super.viewDidLoad()
 
         navigationController?.navigationBar.barTintColor = UIColor.goldfishRed
-
-        navigationItem.title = "Profile"
-
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
+        
+        navigationItem.title = "Profile"
 
         //Initialize the location manager
 //        locationManager = CLLocationManager()
 
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
 
         locationManager.requestAlwaysAuthorization()
-        //        locationManager.requestWhenInUseAuthorization()
 
+        //設定需要重新定位的距離差距
         locationManager.distanceFilter = 10
+        
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
 
         locationManager.startUpdatingLocation()
 
         locationManager.delegate = self
 
         locationManager.requestLocation()
+        
+        locationManager.allowsBackgroundLocationUpdates = true
 
         //Initialize the GMSPlacesClient
         placesClient = GMSPlacesClient.shared()

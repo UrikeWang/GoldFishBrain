@@ -76,14 +76,20 @@ class AddDoPopViewController: UIViewController, managerCreateStartDelegate {
 
     @IBAction func popoverDone(_ sender: UIButton) {
 
-        print("12345", travelTime.text)
-
         if travelTime.text == "" {
 
             let alertController = UIAlertController(
                 title: "無交通方式",
                 message: "請選取交通方式",
                 preferredStyle: .alert)
+            
+            let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+                alertController.dismiss(animated: true, completion: nil)
+            })
+            
+            alertController.addAction(check)
+            
+            self.present(alertController, animated: true, completion: nil)
 
         } else {
 

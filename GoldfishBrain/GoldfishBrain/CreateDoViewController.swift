@@ -41,8 +41,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     let dateTimeFormatter = DateFormatter()
 
-    var datePicker = UIDatePicker()
-
     var travelDuration = ""
 
     var travelDistance = ""
@@ -74,18 +72,14 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     @IBAction func dateText(_ sender: UITextField) {
 
-        let datePickerView: UIDatePicker = UIDatePicker()
-
-        datePickerView.datePickerMode = UIDatePickerMode.date
+        let datePicker: UIDatePicker = UIDatePicker()
 
         // 設置 UIDatePicker 格式
-        datePickerView.datePickerMode = .dateAndTime
+        datePicker.datePickerMode = .dateAndTime
 
         // 選取時間時的分鐘間隔 這邊以 5 分鐘為一個間隔
-        datePickerView.minuteInterval = 5
-
-        datePickerView.date = Date()
-
+        datePicker.minuteInterval = 5
+        datePicker.date = Date()
         datePicker.locale = Locale(identifier: "zh_TW")
 
         // Creates the toolbar
@@ -106,11 +100,11 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         toolBar.isUserInteractionEnabled = true
 
-        sender.inputView = datePickerView
+        sender.inputView = datePicker
 
         sender.inputAccessoryView = toolBar
 
-        datePickerView.addTarget(self, action: #selector(CreateDoViewController.datePickerValueChanged), for: UIControlEvents.valueChanged)
+        datePicker.addTarget(self, action: #selector(CreateDoViewController.datePickerValueChanged), for: UIControlEvents.valueChanged)
     }
 
     @IBAction func destinationText(_ sender: Any) {
@@ -274,8 +268,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     }
 
     @IBAction func cancelDoButton(_ sender: Any) {
-
-//        self.present(DoTableViewController(), animated: true, completion: nil)
 
         self.dismiss(animated: true, completion: nil)
     }
