@@ -65,30 +65,17 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
         mapView.camera = GMSCameraPosition(target: (location?.coordinate)!, zoom: 15, bearing: 0, viewingAngle: 0)
 
-        // Creates a marker in the center of the map
-//        let marker = GMSMarker()
+//        let addDoVC = CreateDoViewController()
 //
-//        marker.position = CLLocationCoordinate2DMake((location?.coordinate.latitude)!, (location?.coordinate.longitude)!)
+//        addDoVC.delegate = self
 //
-////        marker.title = "Here you are"
+//        print("where??????????", doCoordinate)
 //
-////        routePoints["Start"] = [(location?.coordinate.latitude)!, (location?.coordinate.longitude)!]
+//        if doCoordinate.isEmpty == false {
 //
-//        marker.map = mapView
-
-        //swiftlint:disable force_cast
-        let addDoVC = CreateDoViewController()
-        //swiftlint:enable force_cast
-
-        addDoVC.delegate = self
-
-        print("where??????????", doCoordinate)
-
-        if doCoordinate.isEmpty == false {
-
-            checkUserCurrentDestination(coordinate: doCoordinate)
-
-        }
+//            checkUserCurrentDestination(coordinate: doCoordinate)
+//
+//        }
 
     }
 
@@ -97,8 +84,6 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
         //        if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
 
         let title = "Destination"
-
-        //            let coordinate = coordinate
 
         let coordinate = CLLocationCoordinate2D(latitude: coordinate[0] as CLLocationDegrees, longitude: coordinate[1] as CLLocationDegrees)
 
@@ -112,12 +97,6 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
         region.notifyOnEntry = true
 
-        //
-        //        } else {
-        //
-        //            print("System can't track regions")
-        //        }
-
     }
 
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
@@ -126,7 +105,15 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
         if let friendID = UserDefaults.standard.value(forKey: "friend") as? String, let userDestination = UserDefaults.standard.value(forKey: "destination") as? String {
 
-            autoResponse(destination: userDestination, id: friendID)
+            if isNotified == false {
+
+                autoResponse(destination: userDestination, id: friendID)
+
+                isNotified = true
+
+                locationManager.stopMonitoring(for: region)
+
+            }
 
         }
 

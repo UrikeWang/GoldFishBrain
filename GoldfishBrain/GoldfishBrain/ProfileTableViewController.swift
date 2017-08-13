@@ -49,13 +49,13 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
     var placesClient: GMSPlacesClient!
 
-//    var travelData: TravelDataMO!
-
     let coreDataManager = CoreDataManager()
 
-    //swiftlint:disable force_cast
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    //swiftlint:enable force_cast
+//    //swiftlint:disable force_cast
+//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//    //swiftlint:enable force_cast
+
+    var isNotified = false
 
     func profileManager(_ manager: ProfileManager, didGetProfile profile: [Profile]) {
 
@@ -101,7 +101,7 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
         self.navigationController?.navigationBar.tintColor = UIColor.white
 
         //Initialize the location manager
-        locationManager = CLLocationManager()
+//        locationManager = CLLocationManager()
 
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
 
@@ -191,7 +191,7 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllMyDosCell", for: indexPath) as! AllMyDosTableViewCell
         //swiftlint:enable force_cast
 
-        if let date = travelDatas[indexPath.row].time as? String {
+        if let date = travelDatas[indexPath.row].time {
 
             cell.travelDate.text = "出發時間：" + date
 
