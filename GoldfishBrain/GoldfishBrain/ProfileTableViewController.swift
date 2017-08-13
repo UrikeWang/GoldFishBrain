@@ -13,7 +13,7 @@ import CoreData
 import GoogleMaps
 import GooglePlaces
 
-class ProfileTableViewController: UITableViewController, profileManagerDelegate, managerCreateStartDelegate {
+class ProfileTableViewController: UITableViewController, profileManagerDelegate/*, managerCreateStartDelegate*/ {
 
     @IBOutlet weak var firstNameLabel: UILabel!
 
@@ -108,7 +108,7 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
         locationManager.requestAlwaysAuthorization()
         //        locationManager.requestWhenInUseAuthorization()
 
-        locationManager.distanceFilter = 50
+        locationManager.distanceFilter = 10
 
         locationManager.startUpdatingLocation()
 

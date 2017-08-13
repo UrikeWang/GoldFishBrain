@@ -13,17 +13,17 @@ import Firebase
 
 extension ProfileTableViewController: CLLocationManagerDelegate {
 
-    func manager(_ manager: CreateDoViewController, destination: String, duration: String, distance: String, coordinate: [Double]) {
-
-        self.doDestination = destination
-
-        self.doDuration = duration
-
-        self.doDistance = distance
-
-        self.doCoordinate = coordinate
-
-    }
+//    func manager(_ manager: CreateDoViewController, destination: String, duration: String, distance: String, coordinate: [Double]) {
+//
+//        self.doDestination = destination
+//
+//        self.doDuration = duration
+//
+//        self.doDistance = distance
+//
+//        self.doCoordinate = coordinate
+//
+//    }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
 
@@ -51,8 +51,6 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
             mapView.settings.myLocationButton = true
 
-            //            print("Location status is OK.")
-
         }
 
     }
@@ -64,6 +62,8 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
         mapView.clear()
 
         mapView.camera = GMSCameraPosition(target: (location?.coordinate)!, zoom: 15, bearing: 0, viewingAngle: 0)
+
+        print("where am i?", location)
 
 //        let addDoVC = CreateDoViewController()
 //
@@ -89,7 +89,7 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
         print("location:::", coordinate)
 
-        let regionRadius = 300.0
+        let regionRadius = 30.0
 
         let region = CLCircularRegion(center: coordinate, radius: regionRadius, identifier: title)
 

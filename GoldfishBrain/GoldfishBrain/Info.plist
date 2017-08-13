@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationUsageDescription</key>
+	<string>追蹤使用者位置，在創建行程後才可以自動發訊息給親朋好友</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>請提供定位存取權限，才可以進行行程回報喔！</string>
+	<string>請提供定位存取權限，才可以進行行程位置回報喔！</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>UIBackgroundModes</key>
