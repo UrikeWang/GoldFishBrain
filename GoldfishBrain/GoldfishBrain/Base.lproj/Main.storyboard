@@ -300,54 +300,52 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZp-pw-39k">
-                                            <rect key="frame" x="28" y="121" width="319" height="21"/>
+                                            <rect key="frame" x="28" y="95.5" width="319" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="248" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XcW-pz-bvO">
-                                            <rect key="frame" x="28" y="44" width="319" height="46"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="46" id="qTj-tL-Z5s"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        </textView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INs-Ed-0TH">
-                                            <rect key="frame" x="28" y="95" width="319" height="21"/>
+                                            <rect key="frame" x="28" y="69.5" width="319" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jgd-ku-Ts7">
-                                            <rect key="frame" x="28" y="162" width="319" height="1"/>
+                                            <rect key="frame" x="28" y="136.5" width="319" height="1"/>
                                             <color key="backgroundColor" red="0.85490196078431369" green="0.20392156862745098" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="Eoi-Az-TEO"/>
                                             </constraints>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qer-Xl-Fta">
+                                            <rect key="frame" x="28" y="44" width="319" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="nZp-pw-39k" firstAttribute="leading" secondItem="dzd-OL-fAB" secondAttribute="leadingMargin" constant="20" id="1WN-RL-Hxp"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Qer-Xl-Fta" secondAttribute="trailing" constant="20" id="2Tx-Hn-z6M"/>
+                                        <constraint firstItem="Qer-Xl-Fta" firstAttribute="top" secondItem="i3D-Ou-rcI" secondAttribute="bottom" constant="5" id="2lk-N7-N1D"/>
+                                        <constraint firstItem="Qer-Xl-Fta" firstAttribute="leading" secondItem="dzd-OL-fAB" secondAttribute="leadingMargin" constant="20" id="841-nY-pfl"/>
                                         <constraint firstItem="INs-Ed-0TH" firstAttribute="leading" secondItem="dzd-OL-fAB" secondAttribute="leadingMargin" constant="20" id="DgO-JI-9ef"/>
                                         <constraint firstItem="i3D-Ou-rcI" firstAttribute="top" secondItem="dzd-OL-fAB" secondAttribute="topMargin" constant="10" id="HeK-Rm-E29"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="INs-Ed-0TH" secondAttribute="trailing" constant="20" id="QYG-v9-jMF"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="nZp-pw-39k" secondAttribute="trailing" constant="20" id="UPe-3h-XBF"/>
                                         <constraint firstItem="i3D-Ou-rcI" firstAttribute="leading" secondItem="dzd-OL-fAB" secondAttribute="leadingMargin" constant="20" id="VZr-oV-cLn"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="XcW-pz-bvO" secondAttribute="trailing" constant="20" id="acl-23-4mh"/>
                                         <constraint firstItem="jgd-ku-Ts7" firstAttribute="leading" secondItem="dzd-OL-fAB" secondAttribute="leadingMargin" constant="20" id="cFV-3e-aj9"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="jgd-ku-Ts7" secondAttribute="trailing" constant="20" id="gBj-Es-pEm"/>
+                                        <constraint firstItem="INs-Ed-0TH" firstAttribute="top" secondItem="Qer-Xl-Fta" secondAttribute="bottom" constant="5" id="hPy-CU-wBX"/>
                                         <constraint firstItem="nZp-pw-39k" firstAttribute="top" secondItem="INs-Ed-0TH" secondAttribute="bottom" constant="5" id="lVr-9o-hyx"/>
-                                        <constraint firstItem="INs-Ed-0TH" firstAttribute="top" secondItem="XcW-pz-bvO" secondAttribute="bottom" constant="5" id="sJR-PN-pl5"/>
-                                        <constraint firstItem="XcW-pz-bvO" firstAttribute="top" secondItem="i3D-Ou-rcI" secondAttribute="bottom" constant="5" id="ukY-at-CfW"/>
                                         <constraint firstItem="jgd-ku-Ts7" firstAttribute="top" secondItem="nZp-pw-39k" secondAttribute="bottom" constant="20" id="wqi-Nq-Ifz"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="i3D-Ou-rcI" secondAttribute="trailing" constant="20" id="xes-mv-UtE"/>
-                                        <constraint firstItem="XcW-pz-bvO" firstAttribute="leading" secondItem="dzd-OL-fAB" secondAttribute="leadingMargin" constant="20" id="znB-Tx-EOk"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="travelDate" destination="i3D-Ou-rcI" id="7sY-Z9-Sdb"/>
-                                    <outlet property="travelDestinationTextView" destination="XcW-pz-bvO" id="MQ6-A9-xVq"/>
+                                    <outlet property="travelDestination" destination="Qer-Xl-Fta" id="Ta9-q1-EkA"/>
                                     <outlet property="travelFinished" destination="INs-Ed-0TH" id="yTW-9A-hA5"/>
                                     <outlet property="travelNotified" destination="nZp-pw-39k" id="M0i-3q-6vr"/>
                                 </connections>

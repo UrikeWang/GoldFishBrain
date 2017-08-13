@@ -202,11 +202,11 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
         if let destination = travelDatas[indexPath.row].destination as? String {
 
-            cell.travelDestinationTextView.text = "目的地：" + destination
+            cell.travelDestination.text = "目的地：" + destination
 
         } else {
 
-            cell.travelDestinationTextView.text = "目的地："
+            cell.travelDestination.text = "目的地："
         }
 
         if let finished = travelDatas[indexPath.row].finished as? Bool {
@@ -227,7 +227,7 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
             cell.travelNotified.text = "行程是否通知："
         }
 
-        cell.travelDestinationTextView.tag = indexPath.row
+        cell.travelDestination.tag = indexPath.row
 
         return cell
     }

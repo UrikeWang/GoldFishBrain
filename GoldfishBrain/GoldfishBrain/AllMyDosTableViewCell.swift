@@ -12,7 +12,9 @@ class AllMyDosTableViewCell: UITableViewCell {
 
     @IBOutlet weak var travelDate: UILabel!
 
-    @IBOutlet weak var travelDestinationTextView: UITextView!
+//    @IBOutlet weak var travelDestinationTextView: UITextView!
+
+    @IBOutlet weak var travelDestination: UILabel!
 
     @IBOutlet weak var travelFinished: UILabel!
 
