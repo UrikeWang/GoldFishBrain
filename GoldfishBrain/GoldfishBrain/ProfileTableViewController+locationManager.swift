@@ -58,9 +58,9 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
         mapView.clear()
 
         mapView.camera = GMSCameraPosition(target: (location?.coordinate)!, zoom: 15, bearing: 0, viewingAngle: 0)
-        
+
         mapView.isMyLocationEnabled = true
-        
+
         mapView.settings.myLocationButton = true
 
         print("where am i?", location)
@@ -89,7 +89,8 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
         print("location:::", coordinate)
 
-        let regionRadius = 30.0
+//        let regionRadius = 30.0
+        let regionRadius = 50.0
 
         let region = CLCircularRegion(center: coordinate, radius: regionRadius, identifier: title)
 
@@ -119,7 +120,7 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
     }
 
-    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
 
         print("exit")
     }
@@ -137,7 +138,7 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
 
-            let ref = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("messages")
+            _ = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("messages")
 
             let timestamp = Int(Date().timeIntervalSince1970)
 

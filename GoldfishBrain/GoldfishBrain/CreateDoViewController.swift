@@ -86,7 +86,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         let toolBar = UIToolbar()
         toolBar.barStyle = .default
         toolBar.isTranslucent = true
-        toolBar.tintColor = UIColor(red: 92/255, green: 216/255, blue: 255/255, alpha: 1)
+        toolBar.tintColor = UIColor.black
         toolBar.sizeToFit()
 
         // Adds the buttons
@@ -94,7 +94,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: "cancelClick")
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(CreateDoViewController.cancelClick))
 
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
 
@@ -263,7 +263,19 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         }
 
-        coreDataManager.addDo(destination: travelDestination, distance: travelDistance, duration: travelDuration, finished: false, friend: friendName, notify: false, time: travelTime)
+        detail?.destination = travelDestination
+
+        detail?.distance = travelDistance
+
+        detail?.duration = travelDuration
+
+        detail?.friend = friendName
+
+        detail?.finished = false
+
+        detail?.notify = false
+
+        coreDataManager.addDo(travelDetail: detail!)
 
     }
 

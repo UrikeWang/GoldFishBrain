@@ -82,13 +82,13 @@ class AddDoPopViewController: UIViewController, managerCreateStartDelegate {
                 title: "無交通方式",
                 message: "請選取交通方式",
                 preferredStyle: .alert)
-            
+
             let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
                 alertController.dismiss(animated: true, completion: nil)
             })
-            
+
             alertController.addAction(check)
-            
+
             self.present(alertController, animated: true, completion: nil)
 
         } else {
@@ -157,7 +157,7 @@ class AddDoPopViewController: UIViewController, managerCreateStartDelegate {
 
     func calculateTravelTime(type: String) {
 
-        if let start0 = routePoints["Start"]?[0] as? Double, let start1 = routePoints["Start"]?[1] as? Double, let end0 = routePoints["End"]?[0] as? Double, let end1 = routePoints["End"]?[1] as? Double {
+        if let start0 = routePoints["Start"]?[0], let start1 = routePoints["Start"]?[1], let end0 = routePoints["End"]?[0], let end1 = routePoints["End"]?[1] {
 
             switch type {
             case "driving", "walking":
@@ -180,7 +180,7 @@ class AddDoPopViewController: UIViewController, managerCreateStartDelegate {
                                         if let durationText = duration["text"] as? String, let distanceText = distance["text"] as?String {
 
                                             //swiftlint:disable force_cast
-                                            let desination = self.routeAddresses["Destination"] as! String
+                                            let desination = self.routeAddresses["Destination"]!
                                             //swiftlint:enable force_cast
 
                                             self.travelTime.text = "目的地：\(desination)\r\n總距離：\(distanceText)\r\n總時間：\(durationText)"
@@ -191,9 +191,9 @@ class AddDoPopViewController: UIViewController, managerCreateStartDelegate {
 
                                             self.travelDestination = "\(desination)"
 
-                                            var end00 = String(format: "%0.6f", end0)
+                                            let end00 = String(format: "%0.6f", end0)
 
-                                            var end10 = String(format: "%0.6f", end1)
+                                            let end10 = String(format: "%0.6f", end1)
 
                                             UserDefaults.standard.set(end00, forKey: "destination0")
 

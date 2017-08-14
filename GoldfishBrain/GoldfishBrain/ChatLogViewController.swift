@@ -73,10 +73,13 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        sendMessageView.addTopBorder()
 
         sendMessageButton.setTitle("Send", for: .normal)
+        sendMessageButton.backgroundColor = UIColor.goldfishRed
+        sendMessageButton.setTitleColor(UIColor.white, for: .normal)
         sendMessageButton.addTarget(self, action: #selector(handleSendMessage), for: .touchUpInside)
 
         messageText.placeholder = "Enter message..."
         messageText.font = UIFont.asiTextStyle11Font()
+        messageText.backgroundColor = UIColor.asiGreyish
 
         self.messageText.delegate = self
 

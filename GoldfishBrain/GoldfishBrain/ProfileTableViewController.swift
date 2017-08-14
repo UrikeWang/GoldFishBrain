@@ -96,27 +96,18 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate/
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        
+
         navigationItem.title = "Profile"
-
-        //Initialize the location manager
-//        locationManager = CLLocationManager()
-
-        
 
         locationManager.requestAlwaysAuthorization()
 
         //設定需要重新定位的距離差距
         locationManager.distanceFilter = 10
-        
+
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-
         locationManager.startUpdatingLocation()
-
         locationManager.delegate = self
-
         locationManager.requestLocation()
-        
         locationManager.allowsBackgroundLocationUpdates = true
 
         //Initialize the GMSPlacesClient
@@ -140,8 +131,6 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate/
         profileImage.dropShadow()
 
         firstNameLabel.textAlignment = .center
-
-//        separateLine.backgroundColor = UIColor.goldfishRed
 
         dosTableView.separatorStyle = UITableViewCellSeparatorStyle.none
     }
@@ -203,7 +192,7 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate/
             cell.travelDate.text = "出發時間："
         }
 
-        if let destination = travelDatas[indexPath.row].destination as? String {
+        if let destination = travelDatas[indexPath.row].destination {
 
             cell.travelDestination.text = "目的地：" + destination
 
