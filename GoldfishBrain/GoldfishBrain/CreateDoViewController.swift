@@ -57,7 +57,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     let coreDataManager = CoreDataManager()
 
-    var detail: TravelDetail?
+//    var detail: TravelDetail?
 
     //swiftlint:disable force_cast
     let uid = UserDefaults.standard.value(forKey: "uid") as! String
@@ -80,6 +80,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         // 選取時間時的分鐘間隔 這邊以 5 分鐘為一個間隔
         datePicker.minuteInterval = 5
         datePicker.date = Date()
+        
+        //中文化
         datePicker.locale = Locale(identifier: "zh_TW")
 
         // Creates the toolbar
@@ -234,7 +236,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         if travelDestination != "" && friendID != "" {
 
-            autoSendDo(text: travelDetails.text, id: friendID)
+//            autoSendDo(text: travelDetails.text, id: friendID)
 
             UserDefaults.standard.set(travelDestination, forKey: "destination")
 
@@ -244,16 +246,11 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             print("userdefault", UserDefaults.standard.value(forKey: "destination"))
 
-//            addPopViewController.checkUserCurrentDestination(coordinate: coordinate)
-            profileViewController.checkUserCurrentDestination(coordinate: coordinate)
-
-//            self.delegate?.manager(
-//                self,
-//                destination: travelDestination,
-//                duration: travelDuration,
-//                distance: travelDistance,
-//                coordinate: coordinate
-//            )
+//            profileViewController.checkUserCurrentDestination(coordinate: coordinate)
+            
+//            coreDataManager.addDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName)
+            
+            createEvent(time: travelTime, destination: travelDestination, duration: travelDuration, toFriend: friendID, fromFriend: uid)
 
             self.dismiss(animated: false, completion: nil)
 
@@ -262,21 +259,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
             print("You did not set your destination or friend you want to notify.")
 
         }
-
-        detail?.destination = travelDestination
-
-        detail?.distance = travelDistance
-
-        detail?.duration = travelDuration
-
-        detail?.friend = friendName
-
-        detail?.finished = false
-
-        detail?.notify = false
-
-        coreDataManager.addDo(travelDetail: detail!)
-
+        
     }
 
     @IBAction func cancelDoButton(_ sender: Any) {
@@ -341,6 +324,24 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func createEvent(time: String, destination: String, duration: String, toFriend: String, fromFriend: String) {
+        
+        let eventRef = Database.database().reference().child("events")
+        
+        let userEventsRef = eventRef.child(toFriend)
+        
+        userEventsRef.observeSingleEvent(of: .value, with: { (_) in
+                
+                let values = ["time": time, "destination": destination, "duration": duration, "fromfriend": fromFriend]
+                
+                eventRef.child(toFriend).childByAutoId().updateChildValues(values)
+            
+            
+            
+        })
+    
+    }
 
     func autoSendDo(text: String, id: String) {
 
@@ -350,7 +351,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
 
-            let ref = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("messages")
+//            let ref = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("messages")
 
             let timestamp = Int(Date().timeIntervalSince1970)
 

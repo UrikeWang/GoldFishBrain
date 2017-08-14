@@ -35,19 +35,19 @@ class CoreDataManager {
 
     }
 
-    func addDo(travelDetail: TravelDetail) {
+    func addDo(time: String, destination: String, distance: String, duration: String, friend: String) {
 
         let newTravelData = TravelDataMO(context: context)
 
-        newTravelData.time = travelDetail.time
+        newTravelData.time = time
 
-        newTravelData.destination = travelDetail.destination
+        newTravelData.destination = destination
 
-        newTravelData.distance = travelDetail.distance
+        newTravelData.distance = distance
 
-        newTravelData.duration = travelDetail.duration
+        newTravelData.duration = duration
 
-        newTravelData.friend = travelDetail.friend
+        newTravelData.friend = friend
 
         newTravelData.finished = false
 
