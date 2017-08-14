@@ -8,7 +8,17 @@
 
 import UIKit
 
-class TraceTableViewController: UITableViewController {
+class TraceTableViewController: UITableViewController, traceManagerDelegete {
+
+    let traceManager = TraceManager()
+
+    func traceManager(_ manager: TraceManager, didGetEvent events: [Event]) {
+
+    }
+
+    func traceManager(_ manager: TraceManager, didFailWith error: Error) {
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +31,10 @@ class TraceTableViewController: UITableViewController {
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
 
-        
+        traceManager.delegate = self
+
+        traceManager.fetchFriendEvents()
+
     }
 
     override func didReceiveMemoryWarning() {

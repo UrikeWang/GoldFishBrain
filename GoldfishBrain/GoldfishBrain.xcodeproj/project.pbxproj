@@ -32,6 +32,7 @@
 		6E28477D1F2C81B3002269EC /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E28477C1F2C81B3002269EC /* FriendTableViewCell.swift */; };
 		6E28477F1F2C81C4002269EC /* FriendTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E28477E1F2C81C4002269EC /* FriendTableViewController.swift */; };
 		6E5ECFD91F41746200AFDB97 /* TraceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5ECFD81F41746200AFDB97 /* TraceManager.swift */; };
+		6E5ECFDB1F41758B00AFDB97 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5ECFDA1F41758B00AFDB97 /* Event.swift */; };
 		6E9861C81F31D78200EFEFCB /* DoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9861C71F31D78200EFEFCB /* DoTableViewController.swift */; };
 		6E9861CC1F31F3DF00EFEFCB /* AddDoPopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9861CB1F31F3DF00EFEFCB /* AddDoPopViewController.swift */; };
 		6E9861CE1F31FEEA00EFEFCB /* DoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9861CD1F31FEEA00EFEFCB /* DoTableViewCell.swift */; };
@@ -82,6 +83,7 @@
 		6E28477C1F2C81B3002269EC /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		6E28477E1F2C81C4002269EC /* FriendTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewController.swift; sourceTree = "<group>"; };
 		6E5ECFD81F41746200AFDB97 /* TraceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraceManager.swift; sourceTree = "<group>"; };
+		6E5ECFDA1F41758B00AFDB97 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		6E9861C71F31D78200EFEFCB /* DoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoTableViewController.swift; sourceTree = "<group>"; };
 		6E9861CB1F31F3DF00EFEFCB /* AddDoPopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDoPopViewController.swift; sourceTree = "<group>"; };
 		6E9861CD1F31FEEA00EFEFCB /* DoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoTableViewCell.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				6EC0AB6C1F3CAD55005FA1F6 /* TraceTableViewCell.swift */,
 				6EC0AB6E1F3CAD69005FA1F6 /* TraceTableViewController.swift */,
 				6E5ECFD81F41746200AFDB97 /* TraceManager.swift */,
+				6E5ECFDA1F41758B00AFDB97 /* Event.swift */,
 			);
 			name = Trace;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				6E2847231F27343F002269EC /* GoldfishBrain.xcdatamodeld in Sources */,
 				6E2847391F28722A002269EC /* ProfileManager.swift in Sources */,
 				6E2847791F2B3D67002269EC /* Message.swift in Sources */,
+				6E5ECFDB1F41758B00AFDB97 /* Event.swift in Sources */,
 				6E2847401F28881C002269EC /* PeopleTableViewCell.swift in Sources */,
 				6E2847351F278128002269EC /* ChatRoomTableViewController.swift in Sources */,
 				6E2847771F2B1616002269EC /* StyleGuide.swift in Sources */,

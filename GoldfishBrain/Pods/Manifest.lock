@@ -53,9 +53,6 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.11)
   - IQKeyboardManagerSwift (4.0.10)
-  - JSQMessagesViewController (7.3.5):
-    - JSQSystemSoundPlayer (~> 2.0.1)
-  - JSQSystemSoundPlayer (2.0.1)
   - Kingfisher (3.10.3)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -76,6 +73,7 @@ PODS:
   - SwifterSwift/Cocoa (3.0.0)
   - SwifterSwift/Foundation (3.0.0)
   - SwifterSwift/UIKit (3.0.0)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - Alamofire
@@ -87,11 +85,11 @@ DEPENDENCIES:
   - GoogleMapsDirections
   - GooglePlaces
   - IQKeyboardManagerSwift
-  - JSQMessagesViewController
   - Kingfisher
   - NVActivityIndicatorView
   - SDWebImage
   - SwifterSwift
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
@@ -108,15 +106,14 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
   IQKeyboardManagerSwift: 75ba21a23794a1e6b6fe6d9a267ea17f80e06771
-  JSQMessagesViewController: 6587f56aedbcb150a8ba1d968e1ef58b1bc758b7
-  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   Kingfisher: a0ac82dc5bcf0388dd74b294cf2cc13730c63436
   nanopb: 22bc080fa3955e2116b6ff3ee6c2cb3c15ab97cb
   NVActivityIndicatorView: d3738df7e2e476aca0ba6bf32a8c9fbcfc33d64b
   ObjectMapper: 3d571bb5af471c779e1160828cd9ad5c4ef90958
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SwifterSwift: b35d1fee5352da68878f6321b245d3d99c1af32f
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 6a73ad0b6736a16e9cdfec7fc279f975dd9abba7
+PODFILE CHECKSUM: 025a19d56aa0ede2c053a5eea45db67ccc094e0e
 
 COCOAPODS: 1.2.1

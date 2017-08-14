@@ -80,7 +80,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         // 選取時間時的分鐘間隔 這邊以 5 分鐘為一個間隔
         datePicker.minuteInterval = 5
         datePicker.date = Date()
-        
+
         //中文化
         datePicker.locale = Locale(identifier: "zh_TW")
 
@@ -236,21 +236,21 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         if travelDestination != "" && friendID != "" {
 
-//            autoSendDo(text: travelDetails.text, id: friendID)
+            autoSendDo(text: travelDetails.text, id: friendID)
+
+            print("userdefault", UserDefaults.standard.value(forKey: "destination"))
+
+            profileViewController.checkUserCurrentDestination(coordinate: coordinate)
+
+            coreDataManager.addDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName)
+
+            createEvent(time: travelTime, destination: travelDestination, duration: travelDuration, toFriend: friendID, fromFriend: uid)
 
             UserDefaults.standard.set(travelDestination, forKey: "destination")
 
             UserDefaults.standard.set(friendID, forKey: "friend")
 
             UserDefaults.standard.synchronize()
-
-            print("userdefault", UserDefaults.standard.value(forKey: "destination"))
-
-//            profileViewController.checkUserCurrentDestination(coordinate: coordinate)
-            
-//            coreDataManager.addDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName)
-            
-            createEvent(time: travelTime, destination: travelDestination, duration: travelDuration, toFriend: friendID, fromFriend: uid)
 
             self.dismiss(animated: false, completion: nil)
 
@@ -259,7 +259,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
             print("You did not set your destination or friend you want to notify.")
 
         }
-        
+
     }
 
     @IBAction func cancelDoButton(_ sender: Any) {
@@ -324,23 +324,21 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     func createEvent(time: String, destination: String, duration: String, toFriend: String, fromFriend: String) {
-        
+
         let eventRef = Database.database().reference().child("events")
-        
+
         let userEventsRef = eventRef.child(toFriend)
-        
+
         userEventsRef.observeSingleEvent(of: .value, with: { (_) in
-                
+
                 let values = ["time": time, "destination": destination, "duration": duration, "fromfriend": fromFriend]
-                
+
                 eventRef.child(toFriend).childByAutoId().updateChildValues(values)
-            
-            
-            
+
         })
-    
+
     }
 
     func autoSendDo(text: String, id: String) {
