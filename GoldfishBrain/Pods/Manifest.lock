@@ -73,7 +73,6 @@ PODS:
   - SwifterSwift/Cocoa (3.0.0)
   - SwifterSwift/Foundation (3.0.0)
   - SwifterSwift/UIKit (3.0.0)
-  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - Alamofire
@@ -89,7 +88,6 @@ DEPENDENCIES:
   - NVActivityIndicatorView
   - SDWebImage
   - SwifterSwift
-  - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
@@ -112,8 +110,7 @@ SPEC CHECKSUMS:
   ObjectMapper: 3d571bb5af471c779e1160828cd9ad5c4ef90958
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SwifterSwift: b35d1fee5352da68878f6321b245d3d99c1af32f
-  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 025a19d56aa0ede2c053a5eea45db67ccc094e0e
+PODFILE CHECKSUM: b72d784ab0d40787ffa40f15180a23777782adfb
 
 COCOAPODS: 1.2.1

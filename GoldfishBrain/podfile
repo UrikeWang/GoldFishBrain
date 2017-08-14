@@ -20,6 +20,5 @@ pod 'SwifterSwift'
 pod 'IQKeyboardManagerSwift'
 pod 'SDWebImage'
 pod 'NVActivityIndicatorView'
-pod 'SwiftyJSON'
 
 end

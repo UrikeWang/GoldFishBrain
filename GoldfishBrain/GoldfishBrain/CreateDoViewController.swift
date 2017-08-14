@@ -333,7 +333,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         userEventsRef.observeSingleEvent(of: .value, with: { (_) in
 
-                let values = ["time": time, "destination": destination, "duration": duration, "fromfriend": fromFriend]
+                let values = ["time": time, "destination": destination, "duration": duration, "fromFriend": fromFriend]
 
                 eventRef.child(toFriend).childByAutoId().updateChildValues(values)
 

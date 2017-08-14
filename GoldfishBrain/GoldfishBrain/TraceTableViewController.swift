@@ -12,7 +12,19 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
     let traceManager = TraceManager()
 
+    var events = [Event]()
+
+    @IBOutlet var friendEventTableView: UITableView!
+
     func traceManager(_ manager: TraceManager, didGetEvent events: [Event]) {
+
+        self.events = events
+
+        DispatchQueue.main.async {
+
+            self.friendEventTableView.reloadData()
+
+        }
 
     }
 
@@ -35,6 +47,9 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
         traceManager.fetchFriendEvents()
 
+        friendEventTableView.rowHeight = UITableViewAutomaticDimension
+        friendEventTableView.estimatedRowHeight = 60
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,13 +66,17 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return events.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TraceCell", for: indexPath)
 
-        // Configure the cell...
+        //swiftlint:disable force_cast
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TraceCell", for: indexPath) as! TraceTableViewCell
+
+        let event = events[indexPath.row]
+
+        cell.friendDoContent.text = "\(event.fromFriend)\r出發時間：\(event.time)\r目的地：\(event.destination)\r預估時間：\(event.duration)\r"
 
         return cell
     }
