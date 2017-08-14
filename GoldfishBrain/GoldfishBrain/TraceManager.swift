@@ -27,13 +27,21 @@ class TraceManager {
 
     var event: Event?
 
-    var events = [Event]()
+//    func fetchFriendEvents() {
+//        
+//        let eventRef = Database.database().reference().child("events").child(uid)
+//        
+//        
+//    
+//    }
 
     func fetchFriendEvents() {
 
         let eventRef = Database.database().reference().child("events").child(uid).queryOrdered(byChild: "duration")
 
-        eventRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        eventRef.observe(.value, with: { (snapshot) in
+
+            var events = [Event]()
 
             guard let autoIDListSource = snapshot.value as? [String: Any] else { return }
 
@@ -43,9 +51,7 @@ class TraceManager {
 
                 guard let details = event.value as? [String: Any] else { return }
 
-                if let time = details["time"] as? String, let destination = details["destination"] as? String, let duration = details["duration"] as? String, let fromFriend = details["fromFriend"] as? String {
-
-//                    let userFirstName = self.fetchFriendFirstName(fromFriend: fromFriend)
+                if let time = details["time"] as? String, let destination = details["destination"] as? String, let duration = details["duration"] as? String, let fromFriend = details["fromFriend"] as? String, let eventID = event.key as? String {
 
                     let userRef = Database.database().reference().child("users").child(fromFriend).child("firstName")
 
@@ -53,15 +59,27 @@ class TraceManager {
 
                         if let userFirstName = snapshot.value as? String {
 
-                            self.event = Event(destination: destination, duration: duration, fromFriend: userFirstName, time: time)
+                            self.event = Event(destination: destination, duration: duration, fromFriend: userFirstName, time: time, eventID: eventID)
 
-                            self.events.append(self.event!)
+                            events.append(self.event!)
 
-                            self.delegate?.traceManager(self, didGetEvent: self.events)
+                            self.delegate?.traceManager(self, didGetEvent: events)
 
                         }
 
                     })
+
+//                    let userFirstName = self.fetchFriendFirstName(fromFriend: fromFriend)
+//
+////                        if let userFirstName = snapshot.value as? String {
+//
+//                            self.event = Event(destination: destination, duration: duration, fromFriend: userFirstName, time: time, eventID: eventID)
+//
+//                            self.events.append(self.event!)
+//
+//                            self.delegate?.traceManager(self, didGetEvent: self.events)
+//
+////                        }
 
                 }
 
@@ -71,25 +89,44 @@ class TraceManager {
 
     }
 
-//    func fetchFriendFirstName(fromFriend: String) -> String {
-//        
-//        if fromFriend != "" {
+    func fetchFriendFirstName(fromFriend: String) -> String {
+
+        var userFirstName = ""
+
+        let userRef = Database.database().reference().child("users").child(fromFriend).child("firstName")
+
+        userRef.observe(.value, with: { (snapshot) in
+
+            print("~~~~~~~~", snapshot.value)
+
+            if let firstName = snapshot.value as? String {
+
+                userFirstName = firstName
+
+                print("mmmmm", userFirstName)
+
+            }
+
+        })
+
+        return userFirstName
+
+    }
+
+    func deleteFriendEvent(deleteEventID: String) {
+
+        print("222222222")
+
+        let eventRef = Database.database().reference().child("events").child(uid).child(deleteEventID)
+
+        eventRef.removeValue()
+
+//        eventRef.observeSingleEvent(of: .childRemoved, with: { (snapshot) in
 //            
-//            print("2222")
+//            print("11111111", snapshot)
 //            
-//            let userRef = Database.database().reference().child("users").child(fromFriend).child("firstName")
-//            
-//            userRef.observe(.value, with: { (snapshot) in
-//                
-//                return snapshot
-//            })
-//        
-//        } else {
-//            
-//            return uid
-//        
-//        }
-//
-//    }
+//        })
+
+    }
 
 }

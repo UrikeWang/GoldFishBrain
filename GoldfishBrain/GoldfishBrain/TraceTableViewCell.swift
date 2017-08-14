@@ -51,6 +51,8 @@ class TraceTableViewCell: UITableViewCell {
 
         let button = cancelButton!
 
+        button.setTitle("Cancel", for: .normal)
+
         button.backgroundColor = UIColor.goldfishOrange
 
         button.layer.cornerRadius = button.frame.height/2

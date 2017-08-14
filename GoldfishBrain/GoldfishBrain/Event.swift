@@ -18,4 +18,6 @@ struct Event {
 
     var time: String
 
+    var eventID: String
+
 }

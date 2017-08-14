@@ -16,9 +16,27 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
     @IBOutlet var friendEventTableView: UITableView!
 
+    @IBAction func checkButton(_ sender: UIButton) {
+    }
+
+    @IBAction func cancelButton(_ sender: UIButton) {
+
+        let deleteEventID = events[sender.tag].eventID
+
+        traceManager.deleteFriendEvent(deleteEventID: deleteEventID)
+
+        DispatchQueue.main.async {
+
+            self.friendEventTableView.reloadData()
+        }
+
+    }
+
     func traceManager(_ manager: TraceManager, didGetEvent events: [Event]) {
 
         self.events = events
+
+        print("QQQQQQQQ", events)
 
         DispatchQueue.main.async {
 
@@ -52,6 +70,10 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -75,6 +97,10 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TraceCell", for: indexPath) as! TraceTableViewCell
 
         let event = events[indexPath.row]
+
+        cell.cancelButton.tag = indexPath.row
+
+        cell.checkButton.tag = indexPath.row
 
         cell.friendDoContent.text = "\(event.fromFriend)\r出發時間：\(event.time)\r目的地：\(event.destination)\r預估時間：\(event.duration)\r"
 
