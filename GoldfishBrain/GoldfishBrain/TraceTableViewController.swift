@@ -36,8 +36,6 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
         self.events = events
 
-        print("QQQQQQQQ", events)
-
         DispatchQueue.main.async {
 
             self.friendEventTableView.reloadData()
@@ -87,8 +85,9 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+
         return events.count
+
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

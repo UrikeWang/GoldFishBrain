@@ -27,14 +27,6 @@ class TraceManager {
 
     var event: Event?
 
-//    func fetchFriendEvents() {
-//        
-//        let eventRef = Database.database().reference().child("events").child(uid)
-//        
-//        
-//    
-//    }
-
     func fetchFriendEvents() {
 
         let eventRef = Database.database().reference().child("events").child(uid).queryOrdered(byChild: "duration")
@@ -43,43 +35,41 @@ class TraceManager {
 
             var events = [Event]()
 
-            guard let autoIDListSource = snapshot.value as? [String: Any] else { return }
-
 //            for (key, value) in autoIDListSource {
 
-            for event in autoIDListSource {
+            if snapshot.childrenCount == 0 {
 
-                guard let details = event.value as? [String: Any] else { return }
+                events = []
 
-                if let time = details["time"] as? String, let destination = details["destination"] as? String, let duration = details["duration"] as? String, let fromFriend = details["fromFriend"] as? String, let eventID = event.key as? String {
+                self.delegate?.traceManager(self, didGetEvent: events)
 
-                    let userRef = Database.database().reference().child("users").child(fromFriend).child("firstName")
+            } else {
 
-                    userRef.observe(.value, with: { (snapshot) in
+                guard let autoIDListSource = snapshot.value as? [String: Any] else { return }
 
-                        if let userFirstName = snapshot.value as? String {
+                for event in autoIDListSource {
 
-                            self.event = Event(destination: destination, duration: duration, fromFriend: userFirstName, time: time, eventID: eventID)
+                    guard let details = event.value as? [String: Any] else { return }
 
-                            events.append(self.event!)
+                    if let time = details["time"] as? String, let destination = details["destination"] as? String, let duration = details["duration"] as? String, let fromFriend = details["fromFriend"] as? String, let eventID = event.key as? String {
 
-                            self.delegate?.traceManager(self, didGetEvent: events)
+                        let userRef = Database.database().reference().child("users").child(fromFriend).child("firstName")
 
-                        }
+                        userRef.observe(.value, with: { (snapshot) in
 
-                    })
+                            if let userFirstName = snapshot.value as? String {
 
-//                    let userFirstName = self.fetchFriendFirstName(fromFriend: fromFriend)
-//
-////                        if let userFirstName = snapshot.value as? String {
-//
-//                            self.event = Event(destination: destination, duration: duration, fromFriend: userFirstName, time: time, eventID: eventID)
-//
-//                            self.events.append(self.event!)
-//
-//                            self.delegate?.traceManager(self, didGetEvent: self.events)
-//
-////                        }
+                                self.event = Event(destination: destination, duration: duration, fromFriend: userFirstName, time: time, eventID: eventID)
+
+                                events.append(self.event!)
+
+                                self.delegate?.traceManager(self, didGetEvent: events)
+
+                            }
+
+                        })
+
+                    }
 
                 }
 
@@ -89,43 +79,11 @@ class TraceManager {
 
     }
 
-    func fetchFriendFirstName(fromFriend: String) -> String {
-
-        var userFirstName = ""
-
-        let userRef = Database.database().reference().child("users").child(fromFriend).child("firstName")
-
-        userRef.observe(.value, with: { (snapshot) in
-
-            print("~~~~~~~~", snapshot.value)
-
-            if let firstName = snapshot.value as? String {
-
-                userFirstName = firstName
-
-                print("mmmmm", userFirstName)
-
-            }
-
-        })
-
-        return userFirstName
-
-    }
-
     func deleteFriendEvent(deleteEventID: String) {
-
-        print("222222222")
 
         let eventRef = Database.database().reference().child("events").child(uid).child(deleteEventID)
 
         eventRef.removeValue()
-
-//        eventRef.observeSingleEvent(of: .childRemoved, with: { (snapshot) in
-//            
-//            print("11111111", snapshot)
-//            
-//        })
 
     }
 
