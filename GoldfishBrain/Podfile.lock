@@ -31,6 +31,7 @@ PODS:
     - FirebaseAnalytics (~> 4.0)
     - FirebaseCore (~> 4.0)
     - GTMSessionFetcher/Core (~> 1.1)
+  - GoogleAnalytics (3.17.0)
   - GoogleMaps (2.3.1):
     - GoogleMaps/Maps (= 2.3.1)
   - GoogleMaps/Base (2.3.1)
@@ -80,6 +81,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - GoogleAnalytics
   - GoogleMaps
   - GoogleMapsDirections
   - GooglePlaces
@@ -98,6 +100,7 @@ SPEC CHECKSUMS:
   FirebaseDatabase: d829b3a8c3e2ac7a16773c5df226966b0805dfc2
   FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
   FirebaseStorage: 8110a1ed2034c8fbfd83890d2acc9cdbbd99afec
+  GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   GoogleMaps: c66a71058b9b1294bcdd5463a68e357fa50c079f
   GoogleMapsDirections: 6ee0cbddafd380d10fa3198d593b0531092aa6da
   GooglePlaces: 4a7b22debfa1af65017b82943431822607e45201
@@ -111,6 +114,6 @@ SPEC CHECKSUMS:
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SwifterSwift: b35d1fee5352da68878f6321b245d3d99c1af32f
 
-PODFILE CHECKSUM: b72d784ab0d40787ffa40f15180a23777782adfb
+PODFILE CHECKSUM: f66712c7d814fc5accda8ae4845be3c8b42a3de9
 
 COCOAPODS: 1.2.1

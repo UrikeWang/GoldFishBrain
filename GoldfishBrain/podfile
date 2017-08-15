@@ -20,5 +20,6 @@ pod 'SwifterSwift'
 pod 'IQKeyboardManagerSwift'
 pod 'SDWebImage'
 pod 'NVActivityIndicatorView'
+pod 'GoogleAnalytics'
 
 end

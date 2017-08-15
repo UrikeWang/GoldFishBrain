@@ -65,7 +65,7 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate/
 
         self.userLastName = profiles[0].lastName
 
-        self.firstNameLabel.text = userFirstName
+        self.firstNameLabel.text = "   \(userFirstName)"
 
         // TODO : 是否要將user first / last name 存到userdefaults
 
@@ -127,10 +127,9 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate/
         //changed / set profile image (點擊圖片)
         profileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectionProfileImage)))
         profileImage.isUserInteractionEnabled = true
-        profileImage.layer.cornerRadius = profileImage.frame.width/2
-        profileImage.dropShadow()
 
-        firstNameLabel.textAlignment = .center
+        firstNameLabel.textAlignment = .left
+        firstNameLabel.backgroundColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.7)
 
         dosTableView.separatorStyle = UITableViewCellSeparatorStyle.none
     }
