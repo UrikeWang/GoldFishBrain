@@ -1,3 +1,4 @@
 # Ignore temp files
 
 *.plist
+Key.swift
