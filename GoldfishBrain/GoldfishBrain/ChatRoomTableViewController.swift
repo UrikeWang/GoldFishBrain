@@ -193,7 +193,7 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
         dateFormatter.timeZone = TimeZone.current //Set timezone that you want
 
-        var date = Date(timeIntervalSince1970: TimeInterval(message.timestamp))
+        let date = Date(timeIntervalSince1970: TimeInterval(message.timestamp))
 
         let strDate = dateFormatter.string(from: date)
 

@@ -78,11 +78,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="goldfishicon_去背" translatesAutoresizingMaskIntoConstraints="NO" id="Mcf-FW-cWs">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goldfish_無陰影" translatesAutoresizingMaskIntoConstraints="NO" id="Mcf-FW-cWs">
                                 <rect key="frame" x="93" y="51" width="188" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Mcf-FW-cWs" secondAttribute="height" multiplier="94:65" id="MhI-ND-RUG"/>
-                                    <constraint firstAttribute="height" constant="130" id="l71-NJ-sro"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -102,7 +101,7 @@
                             <constraint firstItem="ylX-0A-31s" firstAttribute="leading" secondItem="7n2-id-Zzl" secondAttribute="leadingMargin" constant="50" id="Y4K-rG-aBf"/>
                             <constraint firstItem="uE9-pQ-cRF" firstAttribute="leading" secondItem="wZ8-pe-kV9" secondAttribute="trailing" constant="29" id="dB5-7y-E17"/>
                             <constraint firstItem="wZ8-pe-kV9" firstAttribute="top" secondItem="cSe-rN-cpP" secondAttribute="bottom" constant="29" id="eOY-mo-6g5"/>
-                            <constraint firstItem="Mcf-FW-cWs" firstAttribute="top" secondItem="Yss-9U-mdF" secondAttribute="bottom" constant="33" id="kz4-tG-jwU"/>
+                            <constraint firstItem="Mcf-FW-cWs" firstAttribute="top" secondItem="Yss-9U-mdF" secondAttribute="bottom" constant="31" id="kz4-tG-jwU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ylX-0A-31s" secondAttribute="trailing" constant="50" id="l2M-4d-X6w"/>
                             <constraint firstItem="wZ8-pe-kV9" firstAttribute="width" secondItem="uE9-pQ-cRF" secondAttribute="width" id="m5U-ej-Cah"/>
                             <constraint firstItem="Mcf-FW-cWs" firstAttribute="centerX" secondItem="7n2-id-Zzl" secondAttribute="centerX" id="pjE-ub-9bZ"/>
@@ -181,7 +180,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goldfishicon_去背" translatesAutoresizingMaskIntoConstraints="NO" id="6bn-3y-Wxe">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goldfish_無陰影" translatesAutoresizingMaskIntoConstraints="NO" id="6bn-3y-Wxe">
                                 <rect key="frame" x="93" y="60" width="188" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="6bn-3y-Wxe" secondAttribute="height" multiplier="94:65" id="BE1-ml-AQX"/>
@@ -391,7 +390,7 @@
                                         <action selector="addDoButton:" destination="Y6y-gz-K84" eventType="touchUpInside" id="ii4-iT-q15"/>
                                     </connections>
                                 </button>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="goldfishicon_去背" translatesAutoresizingMaskIntoConstraints="NO" id="MQC-mn-WF7">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="goldfishicon" translatesAutoresizingMaskIntoConstraints="NO" id="MQC-mn-WF7">
                                     <rect key="frame" x="48" y="28" width="100" height="86"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
@@ -1201,7 +1200,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="trp-2C-Fyz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Do it" image="ic_playlist_add" id="64h-dI-vxs"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dEn-Ge-CB6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dEn-Ge-CB6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1220,7 +1219,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="77L-hf-cQV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chat" image="ic_question_answer" id="oqX-AY-q5J"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="44w-bi-xBi">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="44w-bi-xBi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1285,7 +1284,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wjH-pT-9Kl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Trace" image="ic_loyalty" id="qd1-jT-N21"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rJl-E4-gz6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rJl-E4-gz6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1362,7 +1361,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iYj-or-OB6" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8QB-yT-V3J">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8QB-yT-V3J">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1377,7 +1376,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="goldfishicon_去背" width="164" height="118"/>
+        <image name="goldfish_無陰影" width="146" height="100"/>
+        <image name="goldfishicon" width="164" height="118"/>
         <image name="ic_account_circle" width="24" height="24"/>
         <image name="ic_directions_walk" width="24" height="24"/>
         <image name="ic_drive_eta" width="24" height="24"/>

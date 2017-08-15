@@ -238,7 +238,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             autoSendDo(text: travelDetails.text, id: friendID)
 
-            print("userdefault", UserDefaults.standard.value(forKey: "destination"))
+//            print("userdefault", UserDefaults.standard.value(forKey: "destination"))
 
             profileViewController.checkUserCurrentDestination(coordinate: coordinate)
 
