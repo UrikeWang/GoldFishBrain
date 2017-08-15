@@ -42,9 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FirebaseApp.configure()
 
-        GMSServices.provideAPIKey("AIzaSyCkCP7Fmu2QLKMhavYJHlC64ZhiKF6lSuo")
+        GMSServices.provideAPIKey(servicesKey)
 
-        GMSPlacesClient.provideAPIKey("AIzaSyBbNQ0lsCDDV3GKCSXYfAnA25_yOnf3gio")
+        GMSPlacesClient.provideAPIKey(placesClientKey)
 
         return true
     }
