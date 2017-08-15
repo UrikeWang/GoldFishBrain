@@ -145,17 +145,6 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeopleCell", for: indexPath) as! PeopleTableViewCell
         //swiftlint:enable force_cast
 
-//        cell.peopleNameLabel.text = people[indexPath.row].firstName
-//
-//        let url = URL(string: "\(people[indexPath.row].imageUrl)")
-//
-//        cell.peopleImage.kf.setImage(with: url)
-//
-////        cell.peopleImage.downloadedFrom(link: people[indexPath.row].imageUrl, contentMode: .scaleAspectFill)
-//
-//        cell.peopleImage.layer.masksToBounds = true
-//
-
         let message = messages[indexPath.row]
 
         if let toID = message.toID as? String {

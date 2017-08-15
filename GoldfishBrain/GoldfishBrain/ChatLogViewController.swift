@@ -276,6 +276,8 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func messageManager(_ manager: MessageManager, didFailWith error: Error) {
 
+        print("message log \(error)")
+
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -294,6 +296,18 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         let message = allMessages[indexPath.row]
 
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.dateFormat = "MM-dd HH:mm"
+
+        dateFormatter.timeZone = TimeZone.current
+
+        let date = Date(timeIntervalSince1970: TimeInterval(message.timestamp))
+
+//        let date = Data(timeIntervalSince1970: message.timestamp)
+
+        let strDate = dateFormatter.string(from: date)
+
         if message.fromID == uid {
 
             //swiftlint:disable force_cast
@@ -305,6 +319,8 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.setNeedsUpdateConstraints()
 
             cell.updateConstraintsIfNeeded()
+
+            cell.rightChatTimeLabel.text = strDate
 
             return cell
 
@@ -321,6 +337,8 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.setNeedsUpdateConstraints()
 
             cell.updateConstraintsIfNeeded()
+
+            cell.leftChatTimeLabel.text = strDate
 
             return cell
 

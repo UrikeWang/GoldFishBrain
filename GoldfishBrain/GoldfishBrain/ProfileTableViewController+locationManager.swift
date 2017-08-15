@@ -83,9 +83,9 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
         //        if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
         let camera = GMSCameraPosition.camera(withLatitude: coordinate[0] as CLLocationDegrees, longitude: coordinate[1] as CLLocationDegrees, zoom: 15)
-        
+
         let marker = GMSMarker()
-        
+
         marker.position = camera.target
         marker.map = mapView
 
@@ -119,15 +119,17 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
                 isNotified = true
 
                 locationManager.stopMonitoring(for: region)
-                
+
                 let alertController = UIAlertController(title: "區域通知", message: "進來拉 radius = 100", preferredStyle: .alert)
-                
+
                 let check = UIAlertAction(title: "OK", style: .default) { (_ : UIAlertAction) in
-                    
+
                     alertController.dismiss(animated: true, completion: nil)
                 }
-                
+
                 alertController.addAction(check)
+
+                self.present(alertController, animated: true, completion: nil)
 
             }
 
@@ -136,15 +138,17 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        
+
         let alertController = UIAlertController(title: "區域通知", message: "離開拉 radius = 100", preferredStyle: .alert)
-        
+
         let check = UIAlertAction(title: "OK", style: .default) { (_ : UIAlertAction) in
-            
+
             alertController.dismiss(animated: true, completion: nil)
         }
-        
+
         alertController.addAction(check)
+
+        self.present(alertController, animated: true, completion: nil)
 
         print("exit")
     }

@@ -104,7 +104,6 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate/
         locationManager.startUpdatingLocation()
         locationManager.requestLocation()
         locationManager.allowsBackgroundLocationUpdates = true
-        
 
         //設定需要重新定位的距離差距
         locationManager.distanceFilter = 10

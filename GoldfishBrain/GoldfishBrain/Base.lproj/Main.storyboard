@@ -951,58 +951,80 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="593"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RightChatLogCell" id="dvs-kb-YJK" customClass="RightChatLogTableViewCell" customModule="GoldfishBrain" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="67"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RightChatLogCell" rowHeight="94" id="dvs-kb-YJK" customClass="RightChatLogTableViewCell" customModule="GoldfishBrain" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dvs-kb-YJK" id="D50-7R-nd2">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55b-PS-KAL">
-                                                    <rect key="frame" x="58" y="13" width="296" height="41"/>
+                                                    <rect key="frame" x="88" y="13" width="266" height="47.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alH-4G-OFB">
+                                                    <rect key="frame" x="312" y="65.5" width="42" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="15" id="AJG-s7-pzg"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="55b-PS-KAL" secondAttribute="bottom" constant="5" id="F2M-XL-J4G"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="55b-PS-KAL" secondAttribute="trailing" constant="13" id="HcU-Pw-0yX"/>
+                                                <constraint firstItem="alH-4G-OFB" firstAttribute="trailing" secondItem="55b-PS-KAL" secondAttribute="trailing" id="JLN-Zn-SK9"/>
                                                 <constraint firstItem="55b-PS-KAL" firstAttribute="top" secondItem="D50-7R-nd2" secondAttribute="topMargin" constant="5" id="RWW-3g-QbK"/>
-                                                <constraint firstItem="55b-PS-KAL" firstAttribute="leading" secondItem="D50-7R-nd2" secondAttribute="leadingMargin" constant="50" id="Wci-Nf-Un3"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="55b-PS-KAL" secondAttribute="bottom" constant="5" id="dxb-bS-aSt"/>
+                                                <constraint firstItem="55b-PS-KAL" firstAttribute="leading" secondItem="D50-7R-nd2" secondAttribute="leadingMargin" constant="80" id="Wci-Nf-Un3"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="alH-4G-OFB" secondAttribute="bottom" constant="5" id="lzO-12-df4"/>
+                                                <constraint firstItem="alH-4G-OFB" firstAttribute="top" secondItem="55b-PS-KAL" secondAttribute="bottom" constant="5" id="pgt-RA-dhp"/>
                                                 <constraint firstItem="55b-PS-KAL" firstAttribute="top" secondItem="D50-7R-nd2" secondAttribute="topMargin" constant="5" id="zaZ-jv-KG4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="rightChatText" destination="55b-PS-KAL" id="8FX-xf-K8o"/>
+                                            <outlet property="rightChatTimeLabel" destination="alH-4G-OFB" id="Uwb-Es-efg"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LeftChatLogCell" rowHeight="67" id="02z-6N-Vsg" userLabel="Left ChatLogCell" customClass="LeftChatLogTableViewCell" customModule="GoldfishBrain" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="95" width="375" height="67"/>
+                                        <rect key="frame" x="0.0" y="122" width="375" height="67"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="02z-6N-Vsg" id="wYk-vY-y3J">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNP-Gl-uQe">
-                                                    <rect key="frame" x="21" y="13" width="296" height="40.5"/>
+                                                    <rect key="frame" x="21" y="13" width="266" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KA7-LV-3IE">
+                                                    <rect key="frame" x="21" y="38.5" width="42" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="15" id="YR2-oS-sX0"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="KA7-LV-3IE" firstAttribute="top" secondItem="TNP-Gl-uQe" secondAttribute="bottom" constant="5" id="0o7-Rm-ez6"/>
                                                 <constraint firstItem="TNP-Gl-uQe" firstAttribute="top" secondItem="wYk-vY-y3J" secondAttribute="topMargin" constant="5" id="6cB-24-zPh"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="TNP-Gl-uQe" secondAttribute="bottom" constant="5" id="DYO-PH-U5v"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="TNP-Gl-uQe" secondAttribute="trailing" constant="50" id="HjA-jr-Y0r"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="KA7-LV-3IE" secondAttribute="bottom" constant="5" id="DIq-LZ-iF6"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="TNP-Gl-uQe" secondAttribute="trailing" constant="80" id="HjA-jr-Y0r"/>
                                                 <constraint firstItem="TNP-Gl-uQe" firstAttribute="leading" secondItem="wYk-vY-y3J" secondAttribute="leadingMargin" constant="13" id="N0u-nv-rDt"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="TNP-Gl-uQe" secondAttribute="bottom" constant="5" id="R5w-9c-NWn"/>
+                                                <constraint firstItem="KA7-LV-3IE" firstAttribute="leading" secondItem="TNP-Gl-uQe" secondAttribute="leading" id="ni9-RH-cSs"/>
                                                 <constraint firstItem="TNP-Gl-uQe" firstAttribute="top" secondItem="wYk-vY-y3J" secondAttribute="topMargin" constant="5" id="xMo-D6-eFK"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="leftChatText" destination="TNP-Gl-uQe" id="SuH-l7-Wiu"/>
+                                            <outlet property="leftChatTimeLabel" destination="KA7-LV-3IE" id="Zi4-RO-Fkc"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1200,7 +1222,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="trp-2C-Fyz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Do it" image="ic_playlist_add" id="64h-dI-vxs"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dEn-Ge-CB6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dEn-Ge-CB6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1219,7 +1241,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="77L-hf-cQV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chat" image="ic_question_answer" id="oqX-AY-q5J"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="44w-bi-xBi">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="44w-bi-xBi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1284,7 +1306,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wjH-pT-9Kl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Trace" image="ic_loyalty" id="qd1-jT-N21"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rJl-E4-gz6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rJl-E4-gz6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1361,7 +1383,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iYj-or-OB6" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8QB-yT-V3J">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8QB-yT-V3J">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

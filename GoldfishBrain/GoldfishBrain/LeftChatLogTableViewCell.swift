@@ -12,10 +12,14 @@ class LeftChatLogTableViewCell: UITableViewCell {
 
     @IBOutlet weak var leftChatText: UILabel!
 
+    @IBOutlet weak var leftChatTimeLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
         setupLeftChatText()
+
+        setupLeftChatTimeLabel()
     }
 
     private func setupLeftChatText() {
@@ -24,9 +28,21 @@ class LeftChatLogTableViewCell: UITableViewCell {
 
         label.dropShadow()
 
-        label.layer.cornerRadius = 15
+        label.layer.cornerRadius = 6
+
+        label.sizeToFit()
 
         label.layer.backgroundColor = UIColor.lightGray.cgColor
+
+    }
+
+    private func setupLeftChatTimeLabel() {
+
+        let label = leftChatTimeLabel!
+
+        label.font = UIFont(name: "Georgia", size: 14)
+
+        label.textColor = UIColor.lightGray
 
     }
 

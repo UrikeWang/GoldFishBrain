@@ -198,7 +198,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         friendText.text = name
 
-        travelDetails.text = "出發時間：\(travelTime)\n\r目的地：\(self.travelDestination)\n\r行程時間：\(self.travelDuration)\n\r通知：\(self.friendName)\n\r"
+        travelDetails.text = "出發時間：\(travelTime)\n\r目的地：\(self.travelDestination)\n\r行程時間：\(self.travelDuration)\n\r通知：\(self.friendName)"
 
     }
 
