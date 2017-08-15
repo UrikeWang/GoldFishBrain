@@ -55,7 +55,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     var coordinate = [Double]()
 
-    let coreDataManager = CoreDataManager()
+    let doingCoreDataManager = DoingCoreDataManager()
 
 //    var detail: TravelDetail?
 
@@ -242,15 +242,15 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             profileViewController.checkUserCurrentDestination(coordinate: coordinate)
 
-            coreDataManager.addDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName)
+            doingCoreDataManager.addDoingDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName)
 
             createEvent(time: travelTime, destination: travelDestination, duration: travelDuration, toFriend: friendID, fromFriend: uid)
 
-            UserDefaults.standard.set(travelDestination, forKey: "destination")
-
-            UserDefaults.standard.set(friendID, forKey: "friend")
-
-            UserDefaults.standard.synchronize()
+//            UserDefaults.standard.set(travelDestination, forKey: "destination")
+//
+//            UserDefaults.standard.set(friendID, forKey: "friend")
+//
+//            UserDefaults.standard.synchronize()
 
             self.dismiss(animated: false, completion: nil)
 

@@ -10,7 +10,7 @@ import UIKit
 
 class DoTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var doDetailsTextView: UITextView!
+    @IBOutlet weak var doingTravelDataLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

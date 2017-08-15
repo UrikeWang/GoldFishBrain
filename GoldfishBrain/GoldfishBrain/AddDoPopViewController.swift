@@ -16,7 +16,7 @@ protocol managerDestinationDelegate: class {
     func manager(_ manager: AddDoPopViewController, destination: String, duration: String, distance: String, coordinate: [Double])
 }
 
-class AddDoPopViewController: UIViewController, managerCreateStartDelegate {
+class AddDoPopViewController: UIViewController/*, managerCreateStartDelegate*/ {
 
     @IBOutlet weak var mapView: GMSMapView!
 
@@ -143,17 +143,17 @@ class AddDoPopViewController: UIViewController, managerCreateStartDelegate {
         carButton.tintColor = UIColor.darkGray
     }
 
-    func manager(_ manager: CreateDoViewController, destination: String, duration: String, distance: String, coordinate: [Double]) {
-
-        self.doDestination = destination
-
-        self.doDuration = duration
-
-        self.doDistance = distance
-
-        self.doCoordinate = coordinate
-
-    }
+//    func manager(_ manager: CreateDoViewController, destination: String, duration: String, distance: String, coordinate: [Double]) {
+//
+//        self.doDestination = destination
+//
+//        self.doDuration = duration
+//
+//        self.doDistance = distance
+//
+//        self.doCoordinate = coordinate
+//
+//    }
 
     func calculateTravelTime(type: String) {
 
