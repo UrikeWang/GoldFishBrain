@@ -99,16 +99,17 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate/
 
         navigationItem.title = "Profile"
 
+        locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        locationManager.requestLocation()
+        locationManager.allowsBackgroundLocationUpdates = true
+        
 
         //設定需要重新定位的距離差距
         locationManager.distanceFilter = 10
 
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
-        locationManager.delegate = self
-        locationManager.requestLocation()
-        locationManager.allowsBackgroundLocationUpdates = true
 
         //Initialize the GMSPlacesClient
         placesClient = GMSPlacesClient.shared()
