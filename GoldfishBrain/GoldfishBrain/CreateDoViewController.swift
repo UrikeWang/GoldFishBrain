@@ -55,8 +55,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     var coordinate = [Double]()
 
-    let doingCoreDataManager = DoingCoreDataManager()
-
 //    var detail: TravelDetail?
 
     //swiftlint:disable force_cast
@@ -236,20 +234,37 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         if travelDestination != "" && friendID != "" {
 
+            //自動傳message
             autoSendDo(text: travelDetails.text, id: friendID)
 
-//            print("userdefault", UserDefaults.standard.value(forKey: "destination"))
-
+            //將目的地加到region並開始追蹤
             profileViewController.checkUserCurrentDestination(coordinate: coordinate)
 
-            doingCoreDataManager.addDoingDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName)
+            let doingCoreDataManager = DoingCoreDataManager()
 
+            let doingTravelDatas = doingCoreDataManager.fetchDoingData()
+
+            let doingCount = doingTravelDatas.count
+
+            if doingCount == 0 {
+
+                //加到doingCoreManager
+                doingCoreDataManager.addDoingDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName)
+
+            } else {
+
+                doingCoreDataManager.deleteDoingDo(indexPath: 0)
+
+                doingCoreDataManager.addDoingDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName)
+
+            }
+
+            //存到firebase對方的事件中，讓對方手機中的trace能夠知道
             createEvent(time: travelTime, destination: travelDestination, duration: travelDuration, toFriend: friendID, fromFriend: uid)
 
+            //存到userdefault中，當使用者到達目的地時，會自動傳message到對方的手機中
             UserDefaults.standard.set(travelDestination, forKey: "destination")
-
             UserDefaults.standard.set(friendName, forKey: "friend")
-
             UserDefaults.standard.synchronize()
 
             self.dismiss(animated: false, completion: nil)

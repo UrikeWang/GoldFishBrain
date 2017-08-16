@@ -106,11 +106,11 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
     }
 
-    func fetchDoingTravelDetails() {
-
-        doingTravelDatas = doingCoreDataManager.fetchDoingData()
-
-    }
+//    func fetchDoingTravelDetails() {
+//
+//        doingTravelDatas = doingCoreDataManager.fetchDoingData()
+//
+//    }
 
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
 
@@ -134,6 +134,14 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
                 }
 
                 alertController.addAction(check)
+
+                doingCoreDataManager.updateDoingDo()
+
+//                var doingTravelDatas = [DoingTravelDataMO]()
+//                
+//                doingTravelDatas = doingCoreDataManager.fetchDoingData()
+//                
+//                doingCount = doingTravelDatas.count
 
                 self.present(alertController, animated: true, completion: nil)
 
@@ -161,7 +169,7 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
 
-        print("error:: \(error.localizedDescription)")
+        print("error: \(error.localizedDescription)")
     }
 
     func autoResponse(destination: String, id: String) {

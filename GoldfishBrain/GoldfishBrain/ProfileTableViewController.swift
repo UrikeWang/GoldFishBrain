@@ -53,7 +53,7 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate/
 
     var isNotified = false
 
-    var doingTravelDatas = [DoingTravelDataMO]()
+//    var doingTravelDatas = [DoingTravelDataMO]()
 
     let doingCoreDataManager = DoingCoreDataManager()
 

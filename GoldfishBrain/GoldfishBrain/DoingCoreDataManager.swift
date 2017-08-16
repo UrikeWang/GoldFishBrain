@@ -53,11 +53,44 @@ class DoingCoreDataManager {
 
     }
 
+    //將doingDo搬到do coredata中
     func deleteDoingDo(indexPath: Int) {
 
         let doingTravelDatas = fetchDoingData()
 
+        let coreDataManager = CoreDataManager()
+
+        let data = TravelDataMO(context: context)
+
+        data.destination = doingTravelDatas[indexPath].destination
+
+        data.distance = doingTravelDatas[indexPath].distance
+
+        data.duration = doingTravelDatas[indexPath].duration
+
+        data.finished = false
+
+        data.friend = doingTravelDatas[indexPath].friend
+
+        data.notify = false
+
+        data.time = doingTravelDatas[indexPath].time
+
         context.delete(doingTravelDatas[indexPath])
+
+        appDelegate.saveContext()
+
+    }
+
+    func updateDoingDo() {
+
+        let doingTravelDatas = fetchDoingData()
+
+        let doingCounts = doingTravelDatas.count
+
+        doingTravelDatas[doingCounts - 1].finished = true
+
+        doingTravelDatas[doingCounts - 1].notify = true
 
         appDelegate.saveContext()
 

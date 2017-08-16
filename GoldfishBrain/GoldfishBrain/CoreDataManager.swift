@@ -57,6 +57,7 @@ class CoreDataManager {
 
     }
 
+    //將do從coredata中刪除
     func deleteDo(indexPath: Int) {
 
         let travelDatas = fetchData()
