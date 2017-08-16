@@ -165,6 +165,8 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
                         cell.peopleImage.sd_setImage(with: url, placeholderImage: UIImage(named: "icon-placeholder"))
 
+                        cell.peopleImage.contentMode = .scaleAspectFill
+
                         cell.peopleImage.layer.masksToBounds = true
 
                     }

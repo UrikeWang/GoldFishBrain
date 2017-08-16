@@ -83,6 +83,8 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate/
 
         profileImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "icon-placeholder"))
 
+        profileImage.contentMode = .scaleAspectFill
+
 //        profileImage.downloadedFrom(link: url, contentMode: .scaleAspectFill)
 
         profileImage.layer.masksToBounds = true
@@ -127,7 +129,6 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate/
         //changed / set profile image (點擊圖片)
         profileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectionProfileImage)))
         profileImage.isUserInteractionEnabled = true
-        profileImage.contentMode = .scaleAspectFill
 
         firstNameLabel.textAlignment = .left
         firstNameLabel.backgroundColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.7)

@@ -268,10 +268,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
                     let eventID = value?["eventID"] as? String ?? ""
 
-                    print("22222222", eventID)
-
-                    print("11111111", snapshot)
-
                     self.deleteEvent(eventID: eventID)
 
                 })

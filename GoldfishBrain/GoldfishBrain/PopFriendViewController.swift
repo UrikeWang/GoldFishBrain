@@ -103,6 +103,8 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
         cell.friendPhoto.sd_setImage(with: url, placeholderImage: UIImage(named: "icon-placeholder"))
 
+        cell.friendPhoto.contentMode = .scaleAspectFill
+
         cell.friendPhoto.tag = indexPath.row
 
         return cell

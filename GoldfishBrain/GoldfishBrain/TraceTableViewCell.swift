@@ -21,7 +21,7 @@ class TraceTableViewCell: UITableViewCell {
 
         setupFriendDoContent()
 
-        setupCheckButton()
+//        setupCheckButton()
 
         setupCancelButton()
 
@@ -31,21 +31,21 @@ class TraceTableViewCell: UITableViewCell {
 
     }
 
-    private func setupCheckButton() {
-
-        let button = checkButton!
-
-        button.setTitle("Check", for: .normal)
-
-        button.backgroundColor = UIColor.goldfishRed
-
-        button.layer.cornerRadius = button.frame.height/2
-
-        button.setTitleColor(UIColor.white, for: .normal)
-
-        button.dropShadow()
-
-    }
+//    private func setupCheckButton() {
+//
+//        let button = checkButton!
+//
+//        button.setTitle("Check", for: .normal)
+//
+//        button.backgroundColor = UIColor.goldfishRed
+//
+//        button.layer.cornerRadius = button.frame.height/2
+//
+//        button.setTitleColor(UIColor.white, for: .normal)
+//
+//        button.dropShadow()
+//
+//    }
 
     private func setupCancelButton() {
 

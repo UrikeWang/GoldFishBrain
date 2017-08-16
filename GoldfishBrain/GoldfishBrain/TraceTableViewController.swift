@@ -16,8 +16,8 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
     @IBOutlet var friendEventTableView: UITableView!
 
-    @IBAction func checkButton(_ sender: UIButton) {
-    }
+//    @IBAction func checkButton(_ sender: UIButton) {
+//    }
 
     @IBAction func cancelButton(_ sender: UIButton) {
 
@@ -92,18 +92,30 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        //swiftlint:disable force_cast
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TraceCell", for: indexPath) as! TraceTableViewCell
+        if events.isEmpty {
 
-        let event = events[indexPath.row]
+            //swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NoneEventCell", for: indexPath) as! NoneEventTableViewCell
 
-        cell.cancelButton.tag = indexPath.row
+            return cell
 
-        cell.checkButton.tag = indexPath.row
+        } else {
 
-        cell.friendDoContent.text = "\(event.fromFriend)\r出發時間：\(event.time)\r目的地：\(event.destination)\r預估時間：\(event.duration)\r"
+            //swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TraceCell", for: indexPath) as! TraceTableViewCell
 
-        return cell
+            let event = events[indexPath.row]
+
+            cell.cancelButton.tag = indexPath.row
+
+//            cell.checkButton.tag = indexPath.row
+
+            cell.friendDoContent.text = "朋友：\(event.fromFriend)\r出發時間：\(event.time)\r目的地：\(event.destination)\r預估時間：\(event.duration)\r"
+
+            return cell
+
+        }
+
     }
 
     /*

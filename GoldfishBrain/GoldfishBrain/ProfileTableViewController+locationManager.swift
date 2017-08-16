@@ -96,7 +96,7 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
         print("location:::", coordinate)
 
 //        let regionRadius = 30.0
-        let regionRadius = 100.0
+        let regionRadius = 50.0
 
         let region = CLCircularRegion(center: coordinate, radius: regionRadius, identifier: title)
 
