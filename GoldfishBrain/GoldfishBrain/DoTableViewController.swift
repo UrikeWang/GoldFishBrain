@@ -71,7 +71,11 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
         doingTravelDatas = doingCoreDataManager.fetchDoingData()
 
-        self.popTableView.reloadData()
+        DispatchQueue.main.async {
+
+            self.popTableView.reloadData()
+
+        }
 
     }
 

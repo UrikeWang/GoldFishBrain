@@ -246,11 +246,11 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             createEvent(time: travelTime, destination: travelDestination, duration: travelDuration, toFriend: friendID, fromFriend: uid)
 
-//            UserDefaults.standard.set(travelDestination, forKey: "destination")
-//
-//            UserDefaults.standard.set(friendID, forKey: "friend")
-//
-//            UserDefaults.standard.synchronize()
+            UserDefaults.standard.set(travelDestination, forKey: "destination")
+
+            UserDefaults.standard.set(friendName, forKey: "friend")
+
+            UserDefaults.standard.synchronize()
 
             self.dismiss(animated: false, completion: nil)
 

@@ -39,8 +39,6 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate/
 
 //    var doCoordinate = [Double]()
 
-    var travelDatas = [TravelDataMO]()
-
     @IBOutlet weak var mapView: GMSMapView!
 
 //    let addPopViewController = AddDoPopViewController()
@@ -49,9 +47,15 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate/
 
     var placesClient: GMSPlacesClient!
 
+    var travelDatas = [TravelDataMO]()
+
     let coreDataManager = CoreDataManager()
 
     var isNotified = false
+
+    var doingTravelDatas = [DoingTravelDataMO]()
+
+    let doingCoreDataManager = DoingCoreDataManager()
 
     func profileManager(_ manager: ProfileManager, didGetProfile profile: [Profile]) {
 
@@ -129,6 +133,10 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate/
         firstNameLabel.backgroundColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.7)
 
         dosTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+
+        let userDestination = UserDefaults.standard.value(forKey: "destination") as? String
+
+        print("11111111", userDestination)
     }
 
     override func viewWillAppear(_ animated: Bool) {

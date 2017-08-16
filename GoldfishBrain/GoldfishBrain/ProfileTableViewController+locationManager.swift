@@ -106,15 +106,21 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
     }
 
+    func fetchDoingTravelDetails() {
+
+        doingTravelDatas = doingCoreDataManager.fetchDoingData()
+
+    }
+
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
 
         print("enter")
 
-        if let friendID = UserDefaults.standard.value(forKey: "friend") as? String, let userDestination = UserDefaults.standard.value(forKey: "destination") as? String {
+        if let friendName = UserDefaults.standard.value(forKey: "friend") as? String, let userDestination = UserDefaults.standard.value(forKey: "destination") as? String {
 
             if isNotified == false {
 
-                autoResponse(destination: userDestination, id: friendID)
+                autoResponse(destination: userDestination, id: friendName)
 
                 isNotified = true
 
@@ -139,16 +145,16 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
 
-        let alertController = UIAlertController(title: "區域通知", message: "離開拉 radius = 100", preferredStyle: .alert)
-
-        let check = UIAlertAction(title: "OK", style: .default) { (_ : UIAlertAction) in
-
-            alertController.dismiss(animated: true, completion: nil)
-        }
-
-        alertController.addAction(check)
-
-        self.present(alertController, animated: true, completion: nil)
+//        let alertController = UIAlertController(title: "區域通知", message: "離開拉 radius = 100", preferredStyle: .alert)
+//
+//        let check = UIAlertAction(title: "OK", style: .default) { (_ : UIAlertAction) in
+//
+//            alertController.dismiss(animated: true, completion: nil)
+//        }
+//
+//        alertController.addAction(check)
+//
+//        self.present(alertController, animated: true, completion: nil)
 
         print("exit")
     }
