@@ -59,7 +59,7 @@ class TraceManager {
 
                             if let userFirstName = snapshot.value as? String {
 
-                                self.event = Event(destination: destination, duration: duration, fromFriend: userFirstName, time: time, eventID: eventID)
+                                self.event = Event(destination: destination, duration: duration, fromFriend: userFirstName, time: time, eventID: eventID, fromFriendID: fromFriend)
 
                                 events.append(self.event!)
 

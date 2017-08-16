@@ -20,4 +20,6 @@ struct Event {
 
     var eventID: String
 
+    var fromFriendID: String
+
 }

@@ -199,6 +199,8 @@ class AddDoPopViewController: UIViewController/*, managerCreateStartDelegate*/ {
 
                                             UserDefaults.standard.set(end10, forKey: "destination1")
 
+                                            UserDefaults.standard.synchronize()
+
                                         }
 
                                     }
