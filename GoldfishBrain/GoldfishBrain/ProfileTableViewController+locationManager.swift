@@ -77,6 +77,8 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 //
 //        }
 
+        print("???????????", UserDefaults.standard.value(forKey: "friend"))
+
     }
 
     func checkUserCurrentDestination(coordinate: [Double]) {
@@ -116,11 +118,11 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
         print("enter")
 
-        if let friendName = UserDefaults.standard.value(forKey: "friend") as? String, let userDestination = UserDefaults.standard.value(forKey: "destination") as? String {
+        if let friendID = UserDefaults.standard.value(forKey: "friendID") as? String, let userDestination = UserDefaults.standard.value(forKey: "destination") as? String {
 
             if isNotified == false {
 
-                autoResponse(destination: userDestination, id: friendName)
+                autoResponse(destination: userDestination, id: friendID)
 
                 isNotified = true
 
@@ -180,7 +182,7 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
 
-            _ = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("messages")
+//            _ = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("messages")
 
             let timestamp = Int(Date().timeIntervalSince1970)
 

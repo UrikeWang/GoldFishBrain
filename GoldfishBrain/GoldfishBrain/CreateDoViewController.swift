@@ -280,6 +280,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
             //存到userdefault中，當使用者到達目的地時，會自動傳message到對方的手機中
             UserDefaults.standard.set(travelDestination, forKey: "destination")
             UserDefaults.standard.set(friendName, forKey: "friend")
+            UserDefaults.standard.set(friendID, forKey: "friendID")
             UserDefaults.standard.synchronize()
 
             self.dismiss(animated: false, completion: nil)

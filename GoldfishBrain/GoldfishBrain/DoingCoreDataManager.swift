@@ -68,11 +68,11 @@ class DoingCoreDataManager {
 
         data.duration = doingTravelDatas[indexPath].duration
 
-        data.finished = false
+        data.finished = doingTravelDatas[indexPath].finished
 
         data.friend = doingTravelDatas[indexPath].friend
 
-        data.notify = false
+        data.notify = doingTravelDatas[indexPath].notify
 
         data.time = doingTravelDatas[indexPath].time
 
