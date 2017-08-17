@@ -11,6 +11,7 @@ import CoreData
 import Firebase
 import GoogleMaps
 import GooglePlaces
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.statusBarStyle = .lightContent
 
         UITabBar.appearance().tintColor = UIColor.goldfishOrange
+
+        IQKeyboardManager.sharedManager().enable = true
+
+        IQKeyboardManager.sharedManager().enableAutoToolbar = false
 
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 

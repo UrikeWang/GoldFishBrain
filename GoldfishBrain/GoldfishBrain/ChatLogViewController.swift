@@ -253,7 +253,20 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
         DispatchQueue.main.async {
 
             self.chatLogTableView.reloadData()
+//
+//            DispatchQueue.global().async {
+//                self.moveToLastComment()
+//            }
+
         }
+
+//        chatLogTableView.beginUpdates()
+//        chatLogTableView.insertRowsAtIndexPaths(
+//            [NSIndexPath(forRow: messageList.count – 1, inSection: 0)],
+//            withRowAnimation: UITableViewRowAnimation.Automatic)
+//        chatLogTableView.endUpdates()
+
+//        moveToLastComment()
 
     }
 
@@ -281,20 +294,25 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+
         return 1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+
         return allMessages.count
 
-//        return 10
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let message = allMessages[indexPath.row]
+
+//        let messagePosition = IndexPath(row: allMessages.count, section: 1)
+//        
+////        let messagePosition = IndexPath(forRow: allMessages.count, inSection: 1)
+//        
+//        tableView.scrollToRow(at: messagePosition, at: .bottom, animated: true)
 
         let dateFormatter = DateFormatter()
 
