@@ -133,8 +133,6 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
 
-            //            _ = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("messages")
-
             let timestamp = Int(Date().timeIntervalSince1970)
 
             let channelRef = Database.database().reference().child("channels")
