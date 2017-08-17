@@ -107,8 +107,6 @@ class FriendTableViewController: UITableViewController, chatRoomManagerDelegate 
 
                             destinationViewController?.peopleID = person.id
 
-//                            print("??????", person.id)
-
                         }
 
                     }

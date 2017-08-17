@@ -12,7 +12,7 @@ import Firebase
 
 protocol managerCreateStartDelegate: class {
 
-    func manager(_ manager: CreateDoViewController, destination: String, duration: String, distance: String, coordinate: [Double])
+    func manager(_ manager: CreateDoViewController, didGestDestinationCoordinate coordinate: [Double])
 }
 
 class CreateDoViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITextFieldDelegate, managerDestinationDelegate, managerFriendDelegate {
@@ -65,6 +65,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     let profileViewController = ProfileTableViewController()
 
     weak var delegate: managerCreateStartDelegate?
+
+    weak var tabBarC: TabBarController?
 
     @IBOutlet weak var travelDetails: UITextView!
 
@@ -238,7 +240,13 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
             autoSendDo(text: travelDetails.text, id: friendID)
 
             //將目的地加到region並開始追蹤
-            profileViewController.checkUserCurrentDestination(coordinate: coordinate)
+//            profileViewController.checkUserCurrentDestination(coordinate: coordinate)
+
+            destinationCoordinates = coordinate
+
+            isNotified = false
+
+            print("目的地位置：：：：：", coordinate)
 
             let doingCoreDataManager = DoingCoreDataManager()
 
@@ -300,6 +308,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tabBarC = self.tabBarController as? TabBarController
 
         dateText.placeholder = "Select time.."
 

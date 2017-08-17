@@ -13,7 +13,7 @@ import CoreData
 import GoogleMaps
 import GooglePlaces
 
-class ProfileTableViewController: UITableViewController, profileManagerDelegate/*, managerCreateStartDelegate*/ {
+class ProfileTableViewController: UITableViewController, profileManagerDelegate, managerCreateStartDelegate, UITabBarControllerDelegate {
 
     @IBOutlet weak var firstNameLabel: UILabel!
 
@@ -37,7 +37,7 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate/
 //
 //    var doDistance = ""
 
-//    var doCoordinate = [Double]()
+    var doCoordinate = [Double]()
 
     @IBOutlet weak var mapView: GMSMapView!
 
@@ -56,6 +56,8 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate/
 //    var doingTravelDatas = [DoingTravelDataMO]()
 
     let doingCoreDataManager = DoingCoreDataManager()
+
+    var tabBarC: TabBarController?
 
     func profileManager(_ manager: ProfileManager, didGetProfile profile: [Profile]) {
 
@@ -138,12 +140,25 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate/
         let userDestination = UserDefaults.standard.value(forKey: "destination") as? String
 
         print("11111111", userDestination)
+
+        let addDoVC = CreateDoViewController()
+
+        addDoVC.delegate = self
+
+        tabBarC = self.tabBarController as? TabBarController
+
+        tabBarC?.delegate = self
+
+        tabBarC?.profileVC = self
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated) // No need for semicolon
 
         fetchTravelDetails()
+
+//        self.mapView.reloadInputViews()
 
     }
 

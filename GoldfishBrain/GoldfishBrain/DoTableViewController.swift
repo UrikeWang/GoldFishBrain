@@ -136,7 +136,7 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
             let duration = travelData.duration!
             let friend = travelData.friend!
 
-            cell.doingTravelDataLabel.text = "出發時間：\(date)\r\n目的地：\(destination)\r\n預計行程時間\(duration)\r\n通知朋友：\(friend)"
+            cell.doingTravelDataLabel.text = "出發時間：\(date)\r\n目的地：\(destination)\r\n預計行程時間：\(duration)\r\n通知朋友：\(friend)"
 
             return cell
 

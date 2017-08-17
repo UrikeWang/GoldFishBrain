@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 //        self.window = UIWindow(frame: UIScreen.main.bounds)
 
+        UIApplication.shared.statusBarStyle = .lightContent
+
         UITabBar.appearance().tintColor = UIColor.goldfishOrange
 
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

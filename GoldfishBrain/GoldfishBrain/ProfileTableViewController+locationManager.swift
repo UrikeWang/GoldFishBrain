@@ -13,6 +13,23 @@ import Firebase
 
 extension ProfileTableViewController: CLLocationManagerDelegate {
 
+    func manager(_ manager: CreateDoViewController, didGestDestinationCoordinate coordinate: [Double]) {
+
+        self.doCoordinate = coordinate
+
+//        if doCoordinate.isEmpty == false {
+
+            let marker = GMSMarker()
+
+            marker.position = CLLocationCoordinate2DMake(doCoordinate[0] as CLLocationDegrees, doCoordinate[1] as CLLocationDegrees)
+            marker.map = mapView
+
+        mapView.reloadInputViews()
+
+//        }
+
+    }
+
 //    func manager(_ manager: CreateDoViewController, destination: String, duration: String, distance: String, coordinate: [Double]) {
 //
 //        self.doDestination = destination
@@ -63,44 +80,51 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
         mapView.settings.myLocationButton = true
 
-        print("where am i?", location!)
+        if destinationCoordinates.isEmpty == false {
 
-//        let addDoVC = CreateDoViewController()
-//
-//        addDoVC.delegate = self
-//
-//        print("where??????????", doCoordinate)
-//
-//        if doCoordinate.isEmpty == false {
-//
-//            checkUserCurrentDestination(coordinate: doCoordinate)
-//
-//        }
+            let destination = CLLocation(latitude: destinationCoordinates[0] as CLLocationDegrees, longitude: destinationCoordinates[1] as CLLocationDegrees)
 
-        print("???????????", UserDefaults.standard.value(forKey: "friend"))
+            let distance: CLLocationDistance = location!.distance(from: destination)
+
+            if isNotified == false {
+
+                if let friendID = UserDefaults.standard.value(forKey: "friendID") as? String, let userDestination = UserDefaults.standard.value(forKey: "destination") as? String {
+
+                switch distance {
+                case 0...100:
+
+                    isNotified == true
+
+                    print("我在附近了！！！！")
+                    autoResponse(destination: userDestination, id: friendID)
+
+                    locationManager.stopUpdatingLocation()
+
+                default:
+                    print("nonononono")
+                }
+
+            }
+            }
+        }
+
+        //        print("from tab bar", tabBarC?.destinationCoordinates)
 
     }
 
+    func addUserDestinationMarker() {}
+
     func checkUserCurrentDestination(coordinate: [Double]) {
 
-        //        if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
-        let camera = GMSCameraPosition.camera(withLatitude: coordinate[0] as CLLocationDegrees, longitude: coordinate[1] as CLLocationDegrees, zoom: 15)
-
-        let marker = GMSMarker()
-
-        marker.position = camera.target
-        marker.map = mapView
-
-        let title = "Destination"
-
-        let coordinate = CLLocationCoordinate2D(latitude: coordinate[0] as CLLocationDegrees, longitude: coordinate[1] as CLLocationDegrees)
+        let coordinate2D = CLLocationCoordinate2D(latitude: coordinate[0] as CLLocationDegrees, longitude: coordinate[1] as CLLocationDegrees)
 
         print("location:::", coordinate)
 
-//        let regionRadius = 30.0
-        let regionRadius = 50.0
+        let title = "Destination"
 
-        let region = CLCircularRegion(center: coordinate, radius: regionRadius, identifier: title)
+        let regionRadius = 100.0
+
+        let region = CLCircularRegion(center: coordinate2D, radius: regionRadius, identifier: title)
 
         locationManager.startMonitoring(for: region)
 
@@ -108,66 +132,49 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
     }
 
-//    func fetchDoingTravelDetails() {
+//    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
 //
-//        doingTravelDatas = doingCoreDataManager.fetchDoingData()
+//        print("enter")
 //
-//    }
-
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-
-        print("enter")
-
-        if let friendID = UserDefaults.standard.value(forKey: "friendID") as? String, let userDestination = UserDefaults.standard.value(forKey: "destination") as? String {
-
-            if isNotified == false {
-
-                autoResponse(destination: userDestination, id: friendID)
-
-                isNotified = true
-
-                locationManager.stopMonitoring(for: region)
-
-                let alertController = UIAlertController(title: "區域通知", message: "進來拉 radius = 100", preferredStyle: .alert)
-
-                let check = UIAlertAction(title: "OK", style: .default) { (_ : UIAlertAction) in
-
-                    alertController.dismiss(animated: true, completion: nil)
-                }
-
-                alertController.addAction(check)
-
-                doingCoreDataManager.updateDoingDo()
-
-//                var doingTravelDatas = [DoingTravelDataMO]()
-//                
-//                doingTravelDatas = doingCoreDataManager.fetchDoingData()
-//                
-//                doingCount = doingTravelDatas.count
-
-                self.present(alertController, animated: true, completion: nil)
-
-            }
-
-        }
-
-    }
-
-    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-
-//        let alertController = UIAlertController(title: "區域通知", message: "離開拉 radius = 100", preferredStyle: .alert)
+//        if let friendID = UserDefaults.standard.value(forKey: "friendID") as? String, let userDestination = UserDefaults.standard.value(forKey: "destination") as? String {
 //
-//        let check = UIAlertAction(title: "OK", style: .default) { (_ : UIAlertAction) in
+//            if isNotified == false {
 //
-//            alertController.dismiss(animated: true, completion: nil)
+//                autoResponse(destination: userDestination, id: friendID)
+//
+//                isNotified = true
+//
+//                locationManager.stopMonitoring(for: region)
+//
+//                let alertController = UIAlertController(title: "區域通知", message: "進來拉 radius = 100", preferredStyle: .alert)
+//
+//                let check = UIAlertAction(title: "OK", style: .default) { (_ : UIAlertAction) in
+//
+//                    alertController.dismiss(animated: true, completion: nil)
+//                }
+//
+//                alertController.addAction(check)
+//
+//                doingCoreDataManager.updateDoingDo()
+//
+////                var doingTravelDatas = [DoingTravelDataMO]()
+////                
+////                doingTravelDatas = doingCoreDataManager.fetchDoingData()
+////                
+////                doingCount = doingTravelDatas.count
+//
+//                self.present(alertController, animated: true, completion: nil)
+//
+//            }
+//
 //        }
 //
-//        alertController.addAction(check)
+//    }
 //
-//        self.present(alertController, animated: true, completion: nil)
-
-        print("exit")
-    }
+//    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+//
+//        print("exit~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+//    }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
 
@@ -205,7 +212,7 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
                     let memValues = ["0": uid, "1": id]
 
-                    let values = ["text": "我到達\(destination)", "fromID": uid, "toID": id, "timestamp": timestamp] as [String : Any]
+                    let values = ["text": "我快到 \(destination) 拉！！！", "fromID": uid, "toID": id, "timestamp": timestamp] as [String : Any]
 
                     childTalkRef.child("members").updateChildValues(memValues)
 
@@ -238,7 +245,7 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
                                         istalked = true
 
-                                        let values = ["text": "我到達\(destination)", "fromID": uid, "toID": id, "timestamp": timestamp] as [String : Any]
+                                        let values = ["text": "我到達快到\(destination) 拉！！", "fromID": uid, "toID": id, "timestamp": timestamp] as [String : Any]
 
                                         channelRef.child(chatroomID).childByAutoId().updateChildValues(values)
 
@@ -252,7 +259,7 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
                                     let memValues = ["0": uid, "1": id]
 
-                                    let values = ["text": "我到達\(destination)", "fromID": uid, "toID": id, "timestamp": timestamp] as [String : Any]
+                                    let values = ["text": "我到達快到\(destination)拉！", "fromID": uid, "toID": id, "timestamp": timestamp] as [String : Any]
 
                                     childTalkRef.child("members").updateChildValues(memValues)
 

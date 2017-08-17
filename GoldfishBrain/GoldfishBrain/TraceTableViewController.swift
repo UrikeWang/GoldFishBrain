@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
@@ -22,6 +23,12 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
     @IBAction func cancelButton(_ sender: UIButton) {
 
         let deleteEventID = events[sender.tag].eventID
+
+        let fromFriendID = events[sender.tag].fromFriendID
+
+        let friendDestination = events[sender.tag].destination
+
+        autoSendDelete(destination: friendDestination, id: fromFriendID)
 
         traceManager.deleteFriendEvent(deleteEventID: deleteEventID)
 
@@ -113,6 +120,116 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
             cell.friendDoContent.text = "朋友：\(event.fromFriend)\r出發時間：\(event.time)\r目的地：\(event.destination)\r預估時間：\(event.duration)\r"
 
             return cell
+
+        }
+
+    }
+
+    func autoSendDelete(destination: String, id: String) {
+
+        var istalked = false
+
+        var isrun = Int()
+
+        if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
+
+            //            _ = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("messages")
+
+            let timestamp = Int(Date().timeIntervalSince1970)
+
+            let channelRef = Database.database().reference().child("channels")
+            //            let childRef = ref.childByAutoId()
+
+            let childTalkRef = channelRef.childByAutoId()
+
+            let chatsRef = Database.database().reference().child("users").child(uid).child("chats")
+
+            let chatsToRef =  Database.database().reference().child("users").child(id).child("chats")
+
+            let childTalkTextID = childTalkRef.childByAutoId()
+
+            chatsRef.observeSingleEvent(of: .value, with: { (snapshot) in
+
+                switch snapshot.childrenCount {
+
+                case 0 :
+
+                    let memValues = ["0": uid, "1": id]
+
+                    let values = ["text": "我刪除追蹤 \(destination) 行程拉！！！", "fromID": uid, "toID": id, "timestamp": timestamp] as [String : Any]
+
+                    childTalkRef.child("members").updateChildValues(memValues)
+
+                    childTalkTextID.updateChildValues(values)
+
+                    //                    self.messageText.text = ""
+
+                    chatsRef.updateChildValues([childTalkRef.key: 1])
+
+                    chatsToRef.updateChildValues([childTalkRef.key: 1])
+
+                case _ where snapshot.childrenCount > 0 :
+
+                    isrun = Int(snapshot.childrenCount)
+
+                    for chat in (snapshot.value as? [String: Any])! {
+
+                        //channels ID
+                        if let chatroomID = chat.key as? String {
+
+                            channelRef.observeSingleEvent(of:.value, with: { (dataSnapshot) in
+
+                                if let member = dataSnapshot.childSnapshot(forPath: chatroomID).childSnapshot(forPath: "members").value as? [String] {
+
+                                    let chatMember1 = member[0]
+
+                                    let chatMember2 = member[1]
+
+                                    if (uid == chatMember1 && id == chatMember2) || (uid == chatMember2 && id == chatMember1) {
+
+                                        istalked = true
+
+                                        let values = ["text": "我刪除追蹤 \(destination) 行程拉！！！", "fromID": uid, "toID": id, "timestamp": timestamp] as [String : Any]
+
+                                        channelRef.child(chatroomID).childByAutoId().updateChildValues(values)
+
+                                    }
+
+                                    isrun -= 1
+
+                                }
+
+                                if istalked == false && isrun == 0 {
+
+                                    let memValues = ["0": uid, "1": id]
+
+                                    let values = ["text": "我刪除追蹤 \(destination) 行程拉！！！", "fromID": uid, "toID": id, "timestamp": timestamp] as [String : Any]
+
+                                    childTalkRef.child("members").updateChildValues(memValues)
+
+                                    childTalkTextID.updateChildValues(values)
+
+                                    //                                    self.messageText.text = ""
+
+                                    chatsRef.updateChildValues([childTalkRef.key: 1])
+
+                                    chatsToRef.updateChildValues([childTalkRef.key: 1])
+
+                                    istalked = true
+
+                                }
+
+                            }, withCancel: nil)
+
+                        }
+
+                    }
+
+                default: break
+
+                }
+
+            }, withCancel: nil)
 
         }
 
