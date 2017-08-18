@@ -30,7 +30,7 @@
 	<key>NSLocationUsageDescription</key>
 	<string>追蹤使用者位置，在創建行程後才可以自動發訊息給親朋好友</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>請提供定位存取權限，才可以進行行程位置回報喔！</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>User&apos;s photo </string>
 	<key>UIBackgroundModes</key>
