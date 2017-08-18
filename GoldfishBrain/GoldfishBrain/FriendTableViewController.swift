@@ -39,7 +39,7 @@ class FriendTableViewController: UITableViewController, chatRoomManagerDelegate 
 
         navigationItem.title = "Friend"
 
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+//        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
 

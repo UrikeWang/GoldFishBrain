@@ -68,13 +68,15 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
 
-        lastPageButton.title = "Return"
+        lastPageButton.title = "Back"
 
 //        sendMessageView.addTopBorder()
 
-        sendMessageButton.setTitle("Send", for: .normal)
-        sendMessageButton.backgroundColor = UIColor.goldfishRed
-        sendMessageButton.setTitleColor(UIColor.white, for: .normal)
+//        sendMessageButton.setTitle("Send", for: .normal)
+        sendMessageButton.setImage(UIImage(named: "ic_done.png"), for: .normal)
+        sendMessageButton.backgroundColor = UIColor.asiGreyish
+        sendMessageButton.tintColor = UIColor.white
+//        sendMessageButton.setTitleColor(UIColor.white, for: .normal)
         sendMessageButton.addTarget(self, action: #selector(handleSendMessage), for: .touchUpInside)
 
         messageText.placeholder = "Enter message..."
@@ -253,20 +255,13 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
         DispatchQueue.main.async {
 
             self.chatLogTableView.reloadData()
-//
-//            DispatchQueue.global().async {
-//                self.moveToLastComment()
-//            }
+
+            let pathToLastRow = NSIndexPath(row: allMessages.count - 1, section: 0)
+
+            // Make the last row visible
+            self.chatLogTableView?.scrollToRow(at: pathToLastRow as IndexPath, at: UITableViewScrollPosition.bottom, animated: false)
 
         }
-
-//        chatLogTableView.beginUpdates()
-//        chatLogTableView.insertRowsAtIndexPaths(
-//            [NSIndexPath(forRow: messageList.count – 1, inSection: 0)],
-//            withRowAnimation: UITableViewRowAnimation.Automatic)
-//        chatLogTableView.endUpdates()
-
-//        moveToLastComment()
 
     }
 
