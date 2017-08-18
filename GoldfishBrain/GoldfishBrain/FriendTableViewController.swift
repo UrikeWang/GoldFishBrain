@@ -43,11 +43,23 @@ class FriendTableViewController: UITableViewController, chatRoomManagerDelegate 
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
 
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named:"ic_person_add.png"), style: .plain, target: self, action: #selector(addFriend))
+
         chatRoomManager.delegate = self
 
         chatRoomManager.fetchPeople()
 
         friendTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+
+    }
+
+    func addFriend() {
+
+        //swiftlint:disable force_cast
+        let addFriendVC = storyboard?.instantiateViewController(withIdentifier: "addFriendVC") as! AddFriendViewController
+        //swiftlint:enable force_cast
+
+        present(addFriendVC, animated: true, completion: nil)
 
     }
 

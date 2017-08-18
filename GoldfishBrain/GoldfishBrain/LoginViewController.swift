@@ -179,7 +179,7 @@ class LoginViewController: UIViewController {
         forgotPasswordButton.setTitleColor(UIColor.white, for: .normal)
         forgotPasswordButton.setTitle("Forgot your password?", for: .normal)
         forgotPasswordButton.contentHorizontalAlignment = .center
-        
+
         NVActivityIndicatorView(frame: CGRect(x: view.frame.width/2, y: view.frame.height/2, width: 100, height: 100), type: .pacman, color: UIColor.white, padding: 10)
 
         alertLabel.isHidden = true

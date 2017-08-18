@@ -16,7 +16,7 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
     func manager(_ manager: CreateDoViewController, didGestDestinationCoordinate coordinate: [Double]) {
 
         self.doCoordinate = coordinate
-        
+
 //        Analytics.logEvent(<#T##name: String##String#>, parameters: <#T##[String : Any]?#>)
 
 //        if doCoordinate.isEmpty == false {
@@ -61,7 +61,7 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
         case .authorizedWhenInUse:
             locationManager.startMonitoringSignificantLocationChanges()
-            
+
             locationManager.startUpdatingLocation()
 
         case .authorizedAlways:

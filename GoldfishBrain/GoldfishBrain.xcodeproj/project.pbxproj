@@ -53,6 +53,7 @@
 		6EC0AB711F3DDB10005FA1F6 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0AB701F3DDB10005FA1F6 /* CoreDataManager.swift */; };
 		6EC0AB731F3ED16E005FA1F6 /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0AB721F3ED16E005FA1F6 /* Location.gpx */; };
 		6EC0AB751F3EE1B5005FA1F6 /* ProfileTableViewController+locationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0AB741F3EE1B5005FA1F6 /* ProfileTableViewController+locationManager.swift */; };
+		6ED810541F47470800D20C9C /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED810531F47470800D20C9C /* AddFriendViewController.swift */; };
 		6EE28C7F1F4491AA0071C87A /* NoneEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE28C7E1F4491AA0071C87A /* NoneEventTableViewCell.swift */; };
 		6EF577BA1F3B210100D1068A /* AllMyDosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF577B91F3B210000D1068A /* AllMyDosTableViewCell.swift */; };
 		6EF577C11F3C604900D1068A /* Comix Loud.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6EF577C01F3C604900D1068A /* Comix Loud.ttf */; };
@@ -109,6 +110,7 @@
 		6EC0AB701F3DDB10005FA1F6 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		6EC0AB721F3ED16E005FA1F6 /* Location.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		6EC0AB741F3EE1B5005FA1F6 /* ProfileTableViewController+locationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProfileTableViewController+locationManager.swift"; sourceTree = "<group>"; };
+		6ED810531F47470800D20C9C /* AddFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		6EE28C7E1F4491AA0071C87A /* NoneEventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoneEventTableViewCell.swift; sourceTree = "<group>"; };
 		6EF577B91F3B210000D1068A /* AllMyDosTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllMyDosTableViewCell.swift; sourceTree = "<group>"; };
 		6EF577C01F3C604900D1068A /* Comix Loud.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comix Loud.ttf"; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				6E28477C1F2C81B3002269EC /* FriendTableViewCell.swift */,
+				6ED810531F47470800D20C9C /* AddFriendViewController.swift */,
 				6E28477E1F2C81C4002269EC /* FriendTableViewController.swift */,
 			);
 			name = FriendList;
@@ -458,6 +461,7 @@
 				6EB1D25A1F38961000377FDE /* PopFriendCollectionViewCell.swift in Sources */,
 				6E2847481F29C254002269EC /* ProfileTableViewController+extension.swift in Sources */,
 				6EB1D2581F38941300377FDE /* PopFriendViewController.swift in Sources */,
+				6ED810541F47470800D20C9C /* AddFriendViewController.swift in Sources */,
 				6E28477B1F2B3E77002269EC /* MessageManager.swift in Sources */,
 				6E996A741F3348A00097BA4C /* CreateDoViewController.swift in Sources */,
 				6EB1D2551F383C4F00377FDE /* TravelDetail.swift in Sources */,
