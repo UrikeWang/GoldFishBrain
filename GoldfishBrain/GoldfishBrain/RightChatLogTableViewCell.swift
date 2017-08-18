@@ -42,6 +42,8 @@ class RightChatLogTableViewCell: UITableViewCell {
 
         let label = rightChatText!
 
+//        label.sizeToFit()
+
 //        label.dropShadow()
 //
 //        label.layer.cornerRadius = 6

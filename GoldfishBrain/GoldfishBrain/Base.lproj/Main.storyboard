@@ -43,6 +43,9 @@
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cSe-rN-cpP">
                                 <rect key="frame" x="66" y="420" width="243" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="KGW-FS-jQt"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -51,6 +54,7 @@
                                 <rect key="frame" x="66" y="479" width="107" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="e0x-JY-Ov4"/>
                                     <constraint firstAttribute="width" constant="107" id="oAA-Rd-Cvk"/>
                                 </constraints>
                                 <state key="normal" title="Register"/>
@@ -96,6 +100,7 @@
                             <constraint firstItem="HZ4-r8-SdT" firstAttribute="top" secondItem="JG1-ZP-Iic" secondAttribute="bottom" constant="20" id="HV5-DF-Bpb"/>
                             <constraint firstItem="ylX-0A-31s" firstAttribute="top" secondItem="0ch-w5-2vh" secondAttribute="bottom" constant="10" id="Isa-Dg-dYz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0ch-w5-2vh" secondAttribute="trailing" constant="50" id="JTz-6L-ojs"/>
+                            <constraint firstItem="uE9-pQ-cRF" firstAttribute="height" secondItem="wZ8-pe-kV9" secondAttribute="height" id="Mu0-3p-Vv4"/>
                             <constraint firstItem="0ch-w5-2vh" firstAttribute="leading" secondItem="7n2-id-Zzl" secondAttribute="leadingMargin" constant="50" id="PlU-Bd-Wbj"/>
                             <constraint firstItem="uE9-pQ-cRF" firstAttribute="trailing" secondItem="cSe-rN-cpP" secondAttribute="trailing" id="Py0-vr-bud"/>
                             <constraint firstItem="wZ8-pe-kV9" firstAttribute="leading" secondItem="cSe-rN-cpP" secondAttribute="leading" id="Rup-wT-16z"/>
@@ -149,6 +154,9 @@
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Txo-gY-K6n">
                                 <rect key="frame" x="66" y="302" width="243" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="g8o-5n-eRP"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -977,10 +985,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gh3-H5-SJJ">
-                                                    <rect key="frame" x="78" y="13" width="276" height="62"/>
+                                                    <rect key="frame" x="307" y="13" width="47" height="62"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55b-PS-KAL">
-                                                            <rect key="frame" x="5" y="5" width="271" height="52"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="270" translatesAutoresizingMaskIntoConstraints="NO" id="55b-PS-KAL">
+                                                            <rect key="frame" x="5" y="5" width="42" height="52"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1006,7 +1014,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Gh3-H5-SJJ" secondAttribute="trailing" constant="13" id="3uM-bz-VkZ"/>
-                                                <constraint firstItem="Gh3-H5-SJJ" firstAttribute="leading" secondItem="D50-7R-nd2" secondAttribute="leadingMargin" constant="70" id="5ha-Lu-U0A"/>
+                                                <constraint firstItem="Gh3-H5-SJJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="D50-7R-nd2" secondAttribute="leadingMargin" constant="70" id="5ha-Lu-U0A"/>
                                                 <constraint firstItem="alH-4G-OFB" firstAttribute="top" secondItem="Gh3-H5-SJJ" secondAttribute="bottom" constant="5" id="BKS-i6-jrk"/>
                                                 <constraint firstItem="Gh3-H5-SJJ" firstAttribute="top" secondItem="D50-7R-nd2" secondAttribute="topMargin" constant="5" id="KKy-rn-lqy"/>
                                                 <constraint firstItem="alH-4G-OFB" firstAttribute="trailing" secondItem="Gh3-H5-SJJ" secondAttribute="trailing" id="M9q-Wq-bcn"/>
@@ -1036,10 +1044,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wI0-XT-227">
-                                                    <rect key="frame" x="21" y="13" width="276" height="67"/>
+                                                    <rect key="frame" x="21" y="13" width="55" height="67"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNP-Gl-uQe">
-                                                            <rect key="frame" x="8" y="5" width="263" height="57"/>
+                                                            <rect key="frame" x="8" y="5" width="42" height="57"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1059,7 +1067,7 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="KA7-LV-3IE" secondAttribute="bottom" constant="5" id="DIq-LZ-iF6"/>
                                                 <constraint firstItem="wI0-XT-227" firstAttribute="top" secondItem="wYk-vY-y3J" secondAttribute="topMargin" constant="5" id="JQg-nT-4xt"/>
                                                 <constraint firstItem="KA7-LV-3IE" firstAttribute="leading" secondItem="wI0-XT-227" secondAttribute="leading" id="NGA-aE-y1D"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="wI0-XT-227" secondAttribute="trailing" constant="70" id="k1D-k7-77U"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="wI0-XT-227" secondAttribute="trailing" constant="70" id="k1D-k7-77U"/>
                                                 <constraint firstItem="wI0-XT-227" firstAttribute="leading" secondItem="wYk-vY-y3J" secondAttribute="leadingMargin" constant="13" id="rXZ-oz-OU0"/>
                                             </constraints>
                                         </tableViewCellContentView>
