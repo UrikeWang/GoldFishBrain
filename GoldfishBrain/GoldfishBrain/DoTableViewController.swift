@@ -47,6 +47,7 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
         popTableView.estimatedRowHeight = 200.0
         popTableView.rowHeight = UITableViewAutomaticDimension
+        popTableView.separatorStyle = UITableViewCellSeparatorStyle.none
 
     }
 

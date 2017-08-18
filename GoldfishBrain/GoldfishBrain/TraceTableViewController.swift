@@ -72,6 +72,7 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
         friendEventTableView.rowHeight = UITableViewAutomaticDimension
         friendEventTableView.estimatedRowHeight = 60
+        friendEventTableView.separatorStyle = UITableViewCellSeparatorStyle.none
 
     }
 
