@@ -1075,17 +1075,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="NrY-m8-HLO" secondAttribute="trailing" constant="-16" id="46g-Yy-FBT"/>
-                            <constraint firstItem="NrY-m8-HLO" firstAttribute="leading" secondItem="625-rl-RH7" secondAttribute="leadingMargin" constant="-16" id="GKW-JI-DXO"/>
-                            <constraint firstItem="NrY-m8-HLO" firstAttribute="leading" secondItem="625-rl-RH7" secondAttribute="leading" id="Gce-t7-OVx"/>
+                            <constraint firstItem="NrY-m8-HLO" firstAttribute="leading" secondItem="625-rl-RH7" secondAttribute="leading" id="7nl-e1-qmW"/>
+                            <constraint firstItem="CHh-q9-Ret" firstAttribute="top" secondItem="NrY-m8-HLO" secondAttribute="bottom" id="BX6-ps-Zr3"/>
                             <constraint firstAttribute="trailing" secondItem="fOd-MY-hsL" secondAttribute="trailing" id="I1f-m2-qxf"/>
                             <constraint firstItem="CHh-q9-Ret" firstAttribute="leading" secondItem="625-rl-RH7" secondAttribute="leading" id="TrY-4U-gfd"/>
-                            <constraint firstItem="NrY-m8-HLO" firstAttribute="top" secondItem="625-rl-RH7" secondAttribute="topMargin" id="ZhB-Zj-lpj"/>
+                            <constraint firstAttribute="trailing" secondItem="NrY-m8-HLO" secondAttribute="trailing" id="YQv-X6-yKm"/>
                             <constraint firstItem="fOd-MY-hsL" firstAttribute="leading" secondItem="CHh-q9-Ret" secondAttribute="trailing" id="bP7-mc-Jtx"/>
                             <constraint firstItem="xH8-rW-ocn" firstAttribute="top" secondItem="CHh-q9-Ret" secondAttribute="bottom" id="e7j-cZ-Gkx"/>
                             <constraint firstItem="xH8-rW-ocn" firstAttribute="top" secondItem="fOd-MY-hsL" secondAttribute="bottom" id="gSs-m1-odU"/>
-                            <constraint firstItem="CHh-q9-Ret" firstAttribute="top" secondItem="NrY-m8-HLO" secondAttribute="bottom" id="po2-Ik-Bga"/>
-                            <constraint firstAttribute="trailing" secondItem="NrY-m8-HLO" secondAttribute="trailing" id="qtt-ch-gHv"/>
+                            <constraint firstItem="NrY-m8-HLO" firstAttribute="top" secondItem="625-rl-RH7" secondAttribute="top" id="zd6-50-d5G"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="OCo-uM-Kuv">
