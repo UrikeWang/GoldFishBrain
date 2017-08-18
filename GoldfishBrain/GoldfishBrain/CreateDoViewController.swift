@@ -66,7 +66,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     weak var delegate: managerCreateStartDelegate?
 
-    weak var tabBarC: TabBarController?
+//    weak var tabBarC: TabBarController?
 
     @IBOutlet weak var travelDetails: UITextView!
 
@@ -246,7 +246,13 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             destinationCoordinates = coordinate
 
-            isNotified = false
+//            self.tabBarController.
+//            
+//            self.tabBarController?.destinationCoordinates = coordinate
+//            
+//            print("12333333333", self.tabBarC?.destinationCoordinates)
+
+            isNotified = [0]
 
             print("目的地位置：：：：：", destinationCoordinates)
 
@@ -311,7 +317,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tabBarC = self.tabBarController as? TabBarController
+//        tabBarC = self.tabBarController as? TabBarController
 
         dateText.placeholder = "Select time.."
 

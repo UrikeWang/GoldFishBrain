@@ -11,7 +11,14 @@ import UIKit
 
 class TabBarController: UITabBarController {
 
-    var destinationCoordinates = [Double]()
+    var destinationCoordinates = [Double]() {
+
+        didSet {
+
+            print(123)
+
+        }
+    }
 
     var creatDoVC: CreateDoViewController?
 

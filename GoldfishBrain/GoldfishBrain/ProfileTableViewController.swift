@@ -51,13 +51,13 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
     let coreDataManager = CoreDataManager()
 
-    var isNotified = false
+//    var isNotified = false
 
 //    var doingTravelDatas = [DoingTravelDataMO]()
 
     let doingCoreDataManager = DoingCoreDataManager()
 
-    var tabBarC: TabBarController?
+//    var tabBarC: TabBarController?
 
     func profileManager(_ manager: ProfileManager, didGetProfile profile: [Profile]) {
 
@@ -147,11 +147,11 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
         addDoVC.delegate = self
 
-        tabBarC = self.tabBarController as? TabBarController
-
-        tabBarC?.delegate = self
-
-        tabBarC?.profileVC = self
+//        tabBarC = self.tabBarController as? TabBarController
+//
+//        tabBarC?.delegate = self
+//
+//        tabBarC?.profileVC = self
 
     }
 

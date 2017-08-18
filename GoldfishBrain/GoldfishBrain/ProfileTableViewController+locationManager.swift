@@ -88,14 +88,14 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
             print("outttttttt notified", isNotified)
 
-            if isNotified == false {
+            if isNotified[0] == 0 {
 
                 if let friendID = UserDefaults.standard.value(forKey: "friendID") as? String, let userDestination = UserDefaults.standard.value(forKey: "destination") as? String {
 
                 switch distance {
                 case 0...100:
 
-                    isNotified == true
+                    isNotified[0] = 1
 
                     print("我在附近了！！！！")
                     print("innnnn notified", isNotified)
@@ -103,7 +103,7 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
                     doingCoreDataManager.updateDoingDo()
 
-                    locationManager.stopUpdatingLocation()
+//                    locationManager.stopUpdatingLocation()
 
                 default:
                     print("nonononono")
