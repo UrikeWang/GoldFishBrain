@@ -44,6 +44,8 @@ class LeftChatLogTableViewCell: UITableViewCell {
 
         let label = leftChatText!
 
+//        label.sizeToFit()
+
     }
 
     private func setupLeftChatTimeLabel() {

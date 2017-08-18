@@ -20,6 +20,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var appTitle: UILabel!
     @IBOutlet weak var appLogo: UIImageView!
     @IBOutlet weak var forgotPasswordButton: UIButton!
+    @IBOutlet weak var alertLabel: UILabel!
 
     @IBAction func loginButton(_ sender: Any) {
 
@@ -36,12 +37,20 @@ class LoginViewController: UIViewController {
 
                 print("email or password is false")
 
+                self.alertLabel.isHidden = false
+
+                self.alertLabel.text = "email or password is false"
+
                 return
             }
 
             guard let userUid = user?.uid else {
 
                 print("userUid is nil")
+
+                self.alertLabel.isHidden = false
+
+                self.alertLabel.text = "You have not registered yet."
 
                 return
             }
@@ -66,6 +75,10 @@ class LoginViewController: UIViewController {
 
             print("You have to keyin your email")
 
+            self.alertLabel.isHidden = false
+
+            self.alertLabel.text = "Please enter your email."
+
         } else {
 
             Auth.auth().sendPasswordReset(withEmail: emailText.text!, completion: { (error) in
@@ -77,6 +90,10 @@ class LoginViewController: UIViewController {
                 } else {
 
                     print("Sent password reset mail successfully!")
+
+                    self.alertLabel.isHidden = false
+
+                    self.alertLabel.text = "Login..."
 
                 }
 
@@ -164,6 +181,10 @@ class LoginViewController: UIViewController {
         forgotPasswordButton.contentHorizontalAlignment = .center
         
         NVActivityIndicatorView(frame: CGRect(x: view.frame.width/2, y: view.frame.height/2, width: 100, height: 100), type: .pacman, color: UIColor.white, padding: 10)
+
+        alertLabel.isHidden = true
+        alertLabel.backgroundColor = UIColor.clear
+        alertLabel.textAlignment = .center
 
     }
 
