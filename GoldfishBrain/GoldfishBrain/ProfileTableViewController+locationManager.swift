@@ -19,12 +19,12 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
 //        if doCoordinate.isEmpty == false {
 
-            let marker = GMSMarker()
-
-            marker.position = CLLocationCoordinate2DMake(doCoordinate[0] as CLLocationDegrees, doCoordinate[1] as CLLocationDegrees)
-            marker.map = mapView
-
-        mapView.reloadInputViews()
+//            let marker = GMSMarker()
+//
+//            marker.position = CLLocationCoordinate2DMake(doCoordinate[0] as CLLocationDegrees, doCoordinate[1] as CLLocationDegrees)
+//            marker.map = mapView
+//
+//        mapView.reloadInputViews()
 
 //        }
 
@@ -86,6 +86,8 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
             let distance: CLLocationDistance = location!.distance(from: destination)
 
+            print("outttttttt notified", isNotified)
+
             if isNotified == false {
 
                 if let friendID = UserDefaults.standard.value(forKey: "friendID") as? String, let userDestination = UserDefaults.standard.value(forKey: "destination") as? String {
@@ -96,7 +98,10 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
                     isNotified == true
 
                     print("我在附近了！！！！")
+                    print("innnnn notified", isNotified)
                     autoResponse(destination: userDestination, id: friendID)
+
+                    doingCoreDataManager.updateDoingDo()
 
                     locationManager.stopUpdatingLocation()
 
@@ -112,7 +117,11 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
     }
 
-    func addUserDestinationMarker() {}
+    func startMonitoring() {
+
+        locationManager.startUpdatingLocation()
+
+    }
 
     func checkUserCurrentDestination(coordinate: [Double]) {
 

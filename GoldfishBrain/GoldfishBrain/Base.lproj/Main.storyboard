@@ -945,7 +945,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="67" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NrY-m8-HLO">
-                                <rect key="frame" x="0.0" y="28" width="375" height="589"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RightChatLogCell" rowHeight="108" id="dvs-kb-YJK" customClass="RightChatLogTableViewCell" customModule="GoldfishBrain" customModuleProvider="target">
@@ -1076,15 +1076,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="NrY-m8-HLO" secondAttribute="trailing" constant="-16" id="46g-Yy-FBT"/>
+                            <constraint firstItem="NrY-m8-HLO" firstAttribute="leading" secondItem="625-rl-RH7" secondAttribute="leadingMargin" constant="-16" id="GKW-JI-DXO"/>
                             <constraint firstItem="NrY-m8-HLO" firstAttribute="leading" secondItem="625-rl-RH7" secondAttribute="leading" id="Gce-t7-OVx"/>
                             <constraint firstAttribute="trailing" secondItem="fOd-MY-hsL" secondAttribute="trailing" id="I1f-m2-qxf"/>
                             <constraint firstItem="CHh-q9-Ret" firstAttribute="leading" secondItem="625-rl-RH7" secondAttribute="leading" id="TrY-4U-gfd"/>
+                            <constraint firstItem="NrY-m8-HLO" firstAttribute="top" secondItem="625-rl-RH7" secondAttribute="topMargin" id="ZhB-Zj-lpj"/>
                             <constraint firstItem="fOd-MY-hsL" firstAttribute="leading" secondItem="CHh-q9-Ret" secondAttribute="trailing" id="bP7-mc-Jtx"/>
                             <constraint firstItem="xH8-rW-ocn" firstAttribute="top" secondItem="CHh-q9-Ret" secondAttribute="bottom" id="e7j-cZ-Gkx"/>
                             <constraint firstItem="xH8-rW-ocn" firstAttribute="top" secondItem="fOd-MY-hsL" secondAttribute="bottom" id="gSs-m1-odU"/>
                             <constraint firstItem="CHh-q9-Ret" firstAttribute="top" secondItem="NrY-m8-HLO" secondAttribute="bottom" id="po2-Ik-Bga"/>
                             <constraint firstAttribute="trailing" secondItem="NrY-m8-HLO" secondAttribute="trailing" id="qtt-ch-gHv"/>
-                            <constraint firstItem="NrY-m8-HLO" firstAttribute="top" secondItem="625-rl-RH7" secondAttribute="topMargin" constant="28" id="tkn-z3-J0d"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="OCo-uM-Kuv">
@@ -1201,7 +1203,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="n4t-Yl-zMd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="ic_account_circle" id="g4Q-jE-t4V" userLabel="Profile"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dVy-AU-86f">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dVy-AU-86f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1243,7 +1245,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="trp-2C-Fyz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Do it" image="ic_playlist_add" id="64h-dI-vxs"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dEn-Ge-CB6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dEn-Ge-CB6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1262,7 +1264,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="77L-hf-cQV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chat" image="ic_question_answer" id="oqX-AY-q5J"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="44w-bi-xBi">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="44w-bi-xBi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1281,7 +1283,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wjH-pT-9Kl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Trace" image="ic_loyalty" id="qd1-jT-N21"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rJl-E4-gz6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rJl-E4-gz6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1358,7 +1360,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iYj-or-OB6" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8QB-yT-V3J">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8QB-yT-V3J">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

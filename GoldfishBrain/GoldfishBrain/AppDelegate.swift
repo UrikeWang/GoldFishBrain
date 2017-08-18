@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         IQKeyboardManager.sharedManager().enable = true
 
+        IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
+
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
 
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

@@ -96,6 +96,8 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("?????????", destinationCoordinates)
+
         navigationController?.navigationBar.barTintColor = UIColor.goldfishRed
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
 

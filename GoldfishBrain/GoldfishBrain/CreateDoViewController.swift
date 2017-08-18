@@ -242,11 +242,13 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
             //將目的地加到region並開始追蹤
 //            profileViewController.checkUserCurrentDestination(coordinate: coordinate)
 
+            profileViewController.startMonitoring()
+
             destinationCoordinates = coordinate
 
             isNotified = false
 
-            print("目的地位置：：：：：", coordinate)
+            print("目的地位置：：：：：", destinationCoordinates)
 
             let doingCoreDataManager = DoingCoreDataManager()
 
