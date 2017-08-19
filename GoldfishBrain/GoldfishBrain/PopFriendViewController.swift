@@ -115,16 +115,16 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+
         self.delegate?.manager(self, name: people[indexPath.row].firstName, id: people[indexPath.row].id)
-        
+
         dismiss(animated: true, completion: nil)
-        
+
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
 }

@@ -38,7 +38,7 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
             // 可以自動產生一組獨一無二的 ID 號碼，方便等一下上傳圖片的命名
             let uniqueString = NSUUID().uuidString
 
-            resizeImage(image: image, newWidth: 200)
+//            resizeImage(image: image, newWidth: 200)
 
             saveProfileImage(image: image, imageID: uniqueString)
 
@@ -83,7 +83,7 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
 
                     if error != nil {
 
-                        print("Something wrong with saving photo", error)
+                        print("Something wrong with saving photo", error as Any)
 
                         return
                     }

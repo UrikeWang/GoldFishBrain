@@ -45,7 +45,7 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
 
         }
-        
+
          Analytics.logEvent("轉換地點權限", parameters: ["ChangeAuthorization": status])
 
     }
@@ -53,8 +53,8 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
         let location = locations.last
-        
-        Analytics.logEvent("使用者地點", parameters: ["UserCurrentLocation": location])
+
+        Analytics.logEvent("使用者地點", parameters: ["UserCurrentLocation": location as Any])
 
         mapView.clear()
 
@@ -106,8 +106,6 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
     func checkUserCurrentDestination(coordinate: [Double]) {
 
         let coordinate2D = CLLocationCoordinate2D(latitude: coordinate[0] as CLLocationDegrees, longitude: coordinate[1] as CLLocationDegrees)
-
-        print("location:::", coordinate)
 
         let title = "Destination"
 
@@ -162,7 +160,7 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 //
 //    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
 //
-//        print("exit~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+//        print("exit")
 //    }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

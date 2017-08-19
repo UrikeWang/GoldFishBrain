@@ -163,7 +163,7 @@ class AddDoPopViewController: UIViewController/*, managerCreateStartDelegate*/ {
             switch type {
             case "driving", "walking":
                 let directionURL = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=\(start0),\(start1)&destinations=\(end0),\(end1)&mode=\(type)&key=AIzaSyBAu1RqxhTwvzAD-ODP2KmDrpdT8BJwJxA"
-                
+
                 Analytics.logEvent("選擇交通方式", parameters: ["TravelType": type])
 
                 Alamofire.request(directionURL, method: .get, parameters: nil).responseJSON { response in
@@ -309,12 +309,12 @@ class AddDoPopViewController: UIViewController/*, managerCreateStartDelegate*/ {
         walkButton.tintColor = UIColor.darkGray
         walkButton.layer.cornerRadius = walkButton.frame.width/2
         walkButton.dropShadow()
-        
+
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
+
     }
-    
+
 }

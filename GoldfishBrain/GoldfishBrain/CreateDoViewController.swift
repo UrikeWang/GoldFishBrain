@@ -247,8 +247,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             isNotified = [0]
 
-            print("目的地位置：：：：：", destinationCoordinates)
-
             let doingCoreDataManager = DoingCoreDataManager()
 
             let doingTravelDatas = doingCoreDataManager.fetchDoingData()
@@ -452,8 +450,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
                     childTalkTextID.updateChildValues(values)
 
-//                    self.messageText.text = ""
-
                     chatsRef.updateChildValues([childTalkRef.key: 1])
 
                     chatsToRef.updateChildValues([childTalkRef.key: 1])
@@ -483,7 +479,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
                                         channelRef.child(chatroomID).childByAutoId().updateChildValues(values)
 
-//                                        self.messageText.text = ""
                                     }
 
                                     isrun -= 1
@@ -500,8 +495,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
                                     childTalkTextID.updateChildValues(values)
 
-//                                    self.messageText.text = ""
-
                                     chatsRef.updateChildValues([childTalkRef.key: 1])
 
                                     chatsToRef.updateChildValues([childTalkRef.key: 1])
@@ -511,8 +504,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
                                 }
 
                             }, withCancel: nil)
-
-//                            print("!!!!!!!")
 
                         }
 

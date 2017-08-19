@@ -63,10 +63,6 @@ class ChatRoomManager {
 
                 if let firstName = dict?["firstName"] as? String, let lastName = dict?["lastName"] as? String, let imageUrl = dict?["profileImageURL"] as? String {
 
-                    print("2222222", firstName)
-                    print("3333333", lastName)
-                    print("4444444", imageUrl)
-
                     let man = Person(id: friendID, firstName: firstName, lastName: lastName, imageUrl: imageUrl)
 
                     people.append(man)

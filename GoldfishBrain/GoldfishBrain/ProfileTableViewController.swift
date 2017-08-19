@@ -135,7 +135,7 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
         dosTableView.separatorStyle = UITableViewCellSeparatorStyle.none
 
-        let userDestination = UserDefaults.standard.value(forKey: "destination") as? String
+//        let userDestination = UserDefaults.standard.value(forKey: "destination") as? String
 
         let addDoVC = CreateDoViewController()
 

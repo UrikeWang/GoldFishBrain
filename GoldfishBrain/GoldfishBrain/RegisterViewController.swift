@@ -36,7 +36,7 @@ class RegisterViewController: UIViewController {
         Auth.auth().createUser(withEmail: email, password: password, completion: {(user: User?, error) in
 
             if error != nil {
-                print("錯誤訊息:", error)
+                print("錯誤訊息:", error as Any)
                 return
             }
 

@@ -32,15 +32,15 @@ extension AddDoPopViewController: CLLocationManagerDelegate {
 
         case .authorizedAlways:
             locationManager.startMonitoringSignificantLocationChanges()
-            
+
             locationManager.startUpdatingLocation()
-            
+
             mapView.isMyLocationEnabled = true
-            
+
             mapView.settings.myLocationButton = true
-            
+
         }
-        
+
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
