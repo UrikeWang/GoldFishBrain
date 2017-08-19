@@ -266,10 +266,6 @@ Copyright 2017 Google
    limitations under the License.
 
 
-## GoogleAnalytics
-
-Copyright 2016 Google
-
 ## GoogleMaps
 
 Copyright 2017 Google

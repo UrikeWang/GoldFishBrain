@@ -20,7 +20,6 @@ pod 'SwifterSwift'
 pod 'IQKeyboardManagerSwift'
 pod 'SDWebImage'
 pod 'NVActivityIndicatorView'
-pod 'GoogleAnalytics'
 pod 'Fabric'
 pod 'Crashlytics'
 
