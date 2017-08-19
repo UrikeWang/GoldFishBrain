@@ -61,6 +61,10 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
     }
 
+    func chatRoomManager(_ manager: ChatRoomManager, didGetFriend friend: Person) {
+
+    }
+
     func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: Error) {
 
     }
@@ -103,14 +107,10 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 //        
 //        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "List", style: .plain, target: self, action: #selector(ChatRoomTableViewController))
 //        
-        //right bar button
-//        let icon = UIImage.init(named: "compose")?.withRenderingMode(.alwaysOriginal)
-//        let rightButton = UIBarButtonItem.init(image: icon!, style: .plain, target: self, action: #selector(ChatRoomTableViewController))
-//        self.navigationItem.rightBarButtonItem = rightButton
 
-        chatRoomManager.delegate = self
-
-        chatRoomManager.fetchPeople()
+//        chatRoomManager.delegate = self
+//
+//        chatRoomManager.fetchPeople()
 
         messageManager.delegate = self
 

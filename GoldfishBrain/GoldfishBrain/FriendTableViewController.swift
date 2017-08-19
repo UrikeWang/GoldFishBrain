@@ -28,6 +28,10 @@ class FriendTableViewController: UITableViewController, chatRoomManagerDelegate 
 
     }
 
+    func chatRoomManager(_ manager: ChatRoomManager, didGetFriend friend: Person) {
+
+    }
+
     func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: Error) {
 
     }
@@ -45,9 +49,9 @@ class FriendTableViewController: UITableViewController, chatRoomManagerDelegate 
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named:"ic_person_add.png"), style: .plain, target: self, action: #selector(addFriend))
 
-        chatRoomManager.delegate = self
-
-        chatRoomManager.fetchPeople()
+//        chatRoomManager.delegate = self
+//
+//        chatRoomManager.fetchPeople()
 
         friendTableView.separatorStyle = UITableViewCellSeparatorStyle.none
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddFriendViewController: UIViewController {
+class AddFriendViewController: UIViewController, chatRoomManagerDelegate {
 
     @IBOutlet weak var addFriendEmailLabel: UILabel!
 
@@ -24,10 +24,22 @@ class AddFriendViewController: UIViewController {
 
     @IBOutlet weak var cancelAddFriendButton: UIButton!
 
+    let chatRoomManager = ChatRoomManager()
+
+    var friend: Person?
+
     @IBAction func searchFriendButton(_ sender: Any) {
+
+        guard let friendEmail = addFriendEmailTextField.text else { return }
+
+        chatRoomManager.searchFriend(email: friendEmail)
+
     }
 
     @IBAction func addFriendButton(_ sender: Any) {
+
+        chatRoomManager.addFriend(friend: friend!)
+
     }
 
     @IBAction func cancelAddFriendButton(_ sender: Any) {
@@ -35,8 +47,26 @@ class AddFriendViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
+    func chatRoomManager(_ manager: ChatRoomManager, didGetPeople people: [Person]) {
+
+    }
+
+    func chatRoomManager(_ manager: ChatRoomManager, didGetFriend friend: Person) {
+
+        self.friend = friend
+
+        friendNameLabel.text = self.friend?.firstName
+
+    }
+
+    func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: Error) {
+
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        chatRoomManager.delegate = self
 
         addFriendEmailLabel.text = "Enter your friend's email"
         addFriendEmailLabel.backgroundColor = UIColor.goldfishRedLight
@@ -58,7 +88,7 @@ class AddFriendViewController: UIViewController {
         addFriendButton.setTitleColor(UIColor.white, for: .normal)
         addFriendButton.dropShadow()
 
-        cancelAddFriendButton.setTitle("取消新增", for: .normal)
+        cancelAddFriendButton.setTitle("取消此次新增", for: .normal)
         cancelAddFriendButton.backgroundColor = UIColor.goldfishOrange
         cancelAddFriendButton.layer.cornerRadius = cancelAddFriendButton.frame.height/2
         cancelAddFriendButton.setTitleColor(UIColor.white, for: .normal)
