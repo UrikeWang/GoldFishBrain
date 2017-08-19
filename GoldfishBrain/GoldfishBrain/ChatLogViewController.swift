@@ -22,10 +22,6 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     var allMessages: [Message] = []
 
-//    var outgoingBubbleImageView: JSQMessagesBubbleImage!
-//    
-//    var incomingBubbleImageView: JSQMessagesBubbleImage!
-
     var dict = [String: String]()
 
     var messageCount = 0
@@ -69,8 +65,6 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationController?.navigationBar.tintColor = UIColor.white
 
         lastPageButton.title = "Back"
-
-//        sendMessageView.addTopBorder()
 
         sendMessageButton.setImage(UIImage(named: "ic_done.png"), for: .normal)
         sendMessageButton.backgroundColor = UIColor.asiGreyish
@@ -129,12 +123,9 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
 
-//            let ref = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("messages")
-
             let timestamp = Int(Date().timeIntervalSince1970)
 
             let channelRef = Database.database().reference().child("channels")
-//            let childRef = ref.childByAutoId()
 
             let childTalkRef = channelRef.childByAutoId()
 
@@ -301,12 +292,6 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         let message = allMessages[indexPath.row]
 
-//        let messagePosition = IndexPath(row: allMessages.count, section: 1)
-//        
-////        let messagePosition = IndexPath(forRow: allMessages.count, inSection: 1)
-//        
-//        tableView.scrollToRow(at: messagePosition, at: .bottom, animated: true)
-
         let dateFormatter = DateFormatter()
 
         dateFormatter.dateFormat = "MM-dd HH:mm"
@@ -314,8 +299,6 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
         dateFormatter.timeZone = TimeZone.current
 
         let date = Date(timeIntervalSince1970: TimeInterval(message.timestamp))
-
-//        let date = Data(timeIntervalSince1970: message.timestamp)
 
         let strDate = dateFormatter.string(from: date)
 

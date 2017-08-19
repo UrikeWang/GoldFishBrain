@@ -103,11 +103,6 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
 
-//        friendListButton.title = "List"
-//        
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "List", style: .plain, target: self, action: #selector(ChatRoomTableViewController))
-//        
-
         chatRoomManager.delegate = self
 
 //        chatRoomManager.fetchPeople()

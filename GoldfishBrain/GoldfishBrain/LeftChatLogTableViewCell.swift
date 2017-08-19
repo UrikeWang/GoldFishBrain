@@ -42,7 +42,7 @@ class LeftChatLogTableViewCell: UITableViewCell {
 
     private func setupLeftChatText() {
 
-        let label = leftChatText!
+        _ = leftChatText!
 
 //        label.sizeToFit()
 

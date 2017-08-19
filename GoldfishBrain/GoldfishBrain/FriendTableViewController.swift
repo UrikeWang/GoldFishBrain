@@ -48,15 +48,12 @@ class FriendTableViewController: UITableViewController, chatRoomManagerDelegate 
 
         navigationItem.title = "Friend"
 
-//        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-
         self.navigationController?.navigationBar.tintColor = UIColor.white
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named:"ic_person_add.png"), style: .plain, target: self, action: #selector(addFriend))
 
         chatRoomManager.delegate = self
 
-//        chatRoomManager.fetchPeople()
         chatRoomManager.fetchFriendIDs()
 
         friendTableView.separatorStyle = UITableViewCellSeparatorStyle.none

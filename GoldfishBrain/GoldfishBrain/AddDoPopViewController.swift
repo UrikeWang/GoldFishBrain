@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 import Alamofire
+import Firebase
 
 protocol managerDestinationDelegate: class {
 
@@ -162,6 +163,8 @@ class AddDoPopViewController: UIViewController/*, managerCreateStartDelegate*/ {
             switch type {
             case "driving", "walking":
                 let directionURL = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=\(start0),\(start1)&destinations=\(end0),\(end1)&mode=\(type)&key=AIzaSyBAu1RqxhTwvzAD-ODP2KmDrpdT8BJwJxA"
+                
+                Analytics.logEvent("選擇交通方式", parameters: ["TravelType": type])
 
                 Alamofire.request(directionURL, method: .get, parameters: nil).responseJSON { response in
 
@@ -306,32 +309,12 @@ class AddDoPopViewController: UIViewController/*, managerCreateStartDelegate*/ {
         walkButton.tintColor = UIColor.darkGray
         walkButton.layer.cornerRadius = walkButton.frame.width/2
         walkButton.dropShadow()
-
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-
+        
     }
-
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//
-//        if segue.identifier == "showSelectedDestination" {
-//
-//            //swiftlint:disable force_cast
-//            let VC = segue.destination as! CreateDoViewController
-//            //swiftlint:enable force_cast
-//
-//            VC.travelDistance = self.travelDistance
-//
-//            VC.travelDuration = self.travelDuration
-//
-//            VC.travelDestination = self.travelDestination
-//
-//        }
-//    }
-
+    
 }

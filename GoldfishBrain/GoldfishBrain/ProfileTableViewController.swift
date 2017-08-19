@@ -87,16 +87,12 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
         profileImage.contentMode = .scaleAspectFill
 
-//        profileImage.downloadedFrom(link: url, contentMode: .scaleAspectFill)
-
         profileImage.layer.masksToBounds = true
 
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print("?????????", destinationCoordinates)
 
         navigationController?.navigationBar.barTintColor = UIColor.goldfishRed
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
@@ -141,17 +137,9 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
         let userDestination = UserDefaults.standard.value(forKey: "destination") as? String
 
-        print("11111111", userDestination)
-
         let addDoVC = CreateDoViewController()
 
         addDoVC.delegate = self
-
-//        tabBarC = self.tabBarController as? TabBarController
-//
-//        tabBarC?.delegate = self
-//
-//        tabBarC?.profileVC = self
 
     }
 

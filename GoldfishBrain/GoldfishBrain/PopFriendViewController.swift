@@ -115,37 +115,16 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        
         self.delegate?.manager(self, name: people[indexPath.row].firstName, id: people[indexPath.row].id)
-
+        
         dismiss(animated: true, completion: nil)
-
+        
     }
-
-//    func collectionView(_ collectionView: UICollectionView, didSelectRowAtIndexPath indexPath: IndexPath) {
-//        if indexPath.item == 0 {
-//            let alertController = UIAlertController(title: "Share", message: "No Bookmarks to Share", preferredStyle: .alert)
-//            let cancelAction = UIAlertAction(title: "Dismiss", style: .cancel) { (_) in }
-//            alertController.addAction(cancelAction)
-//            self.present(alertController, animated: true) {}
-//            
-//            self.dismiss(animated: true, completion: nil)
-//        }
-//    }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

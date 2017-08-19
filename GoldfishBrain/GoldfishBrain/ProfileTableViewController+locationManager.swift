@@ -17,32 +17,7 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
         self.doCoordinate = coordinate
 
-//        Analytics.logEvent(<#T##name: String##String#>, parameters: <#T##[String : Any]?#>)
-
-//        if doCoordinate.isEmpty == false {
-
-//            let marker = GMSMarker()
-//
-//            marker.position = CLLocationCoordinate2DMake(doCoordinate[0] as CLLocationDegrees, doCoordinate[1] as CLLocationDegrees)
-//            marker.map = mapView
-//
-//        mapView.reloadInputViews()
-
-//        }
-
     }
-
-//    func manager(_ manager: CreateDoViewController, destination: String, duration: String, distance: String, coordinate: [Double]) {
-//
-//        self.doDestination = destination
-//
-//        self.doDuration = duration
-//
-//        self.doDistance = distance
-//
-//        self.doCoordinate = coordinate
-//
-//    }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
 
@@ -70,12 +45,16 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
 
         }
+        
+         Analytics.logEvent("轉換地點權限", parameters: ["ChangeAuthorization": status])
 
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
         let location = locations.last
+        
+        Analytics.logEvent("使用者地點", parameters: ["UserCurrentLocation": location])
 
         mapView.clear()
 
@@ -91,8 +70,6 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
             let distance: CLLocationDistance = location!.distance(from: destination)
 
-            print("outttttttt notified", isNotified)
-
             if isNotified[0] == 0 {
 
                 if let friendID = UserDefaults.standard.value(forKey: "friendID") as? String, let userDestination = UserDefaults.standard.value(forKey: "destination") as? String {
@@ -102,8 +79,6 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
                     isNotified[0] = 1
 
-                    print("我在附近了！！！！")
-                    print("innnnn notified", isNotified)
                     autoResponse(destination: userDestination, id: friendID)
 
                     doingCoreDataManager.updateDoingDo()
@@ -111,7 +86,7 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 //                    locationManager.stopUpdatingLocation()
 
                 default:
-                    print("nonononono")
+                    print("out of destination for 100 meters")
                 }
 
             }

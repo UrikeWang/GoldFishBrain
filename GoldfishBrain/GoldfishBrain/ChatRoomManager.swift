@@ -110,8 +110,6 @@ class ChatRoomManager {
 
                             self.friend = Person(id: user.key, firstName: firstName, lastName: lastName, imageUrl: imageUrl)
 
-                            print("friend??????", self.friend)
-
                             self.delegate?.chatRoomManager(self, didGetFriend: self.friend!)
 
                         }

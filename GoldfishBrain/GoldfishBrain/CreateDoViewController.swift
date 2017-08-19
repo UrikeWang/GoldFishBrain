@@ -55,18 +55,13 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     var coordinate = [Double]()
 
-//    var detail: TravelDetail?
-
     //swiftlint:disable force_cast
     let uid = UserDefaults.standard.value(forKey: "uid") as! String
     //swiftlint:enable force_cast
 
-//    let addPopViewController = AddDoPopViewController()
     let profileViewController = ProfileTableViewController()
 
     weak var delegate: managerCreateStartDelegate?
-
-//    weak var tabBarC: TabBarController?
 
     @IBOutlet weak var travelDetails: UITextView!
 
@@ -249,8 +244,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 //            self.tabBarController.
 //            
 //            self.tabBarController?.destinationCoordinates = coordinate
-//            
-//            print("12333333333", self.tabBarC?.destinationCoordinates)
 
             isNotified = [0]
 
@@ -431,8 +424,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         var isrun = Int()
 
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
-
-//            let ref = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("messages")
 
             let timestamp = Int(Date().timeIntervalSince1970)
 

@@ -39,7 +39,6 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
         addDoButton.setTitleColor(UIColor.goldfishRed, for: .normal)
         addDoButton.dropShadow()
 
-//        fishImage.tintColor = UIColor.black
         fishImage.layer.shadowOffset = CGSize(width: 0, height: 3)
         fishImage.layer.shadowOpacity = 0.4
         fishImage.layer.shadowRadius = 4
@@ -108,8 +107,6 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-//        if let userDestination = UserDefaults.standard.value(forKey: "destination") as? String, let friendID = UserDefaults.standard.value(forKey: "friend") as? String {
 
         switch doingTravelDatas.count {
         case 0:
