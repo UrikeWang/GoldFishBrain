@@ -108,9 +108,10 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 //        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "List", style: .plain, target: self, action: #selector(ChatRoomTableViewController))
 //        
 
-//        chatRoomManager.delegate = self
-//
+        chatRoomManager.delegate = self
+
 //        chatRoomManager.fetchPeople()
+        chatRoomManager.fetchFriendIDs()
 
         messageManager.delegate = self
 

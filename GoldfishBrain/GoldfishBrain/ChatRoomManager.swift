@@ -23,41 +23,66 @@ class ChatRoomManager {
 
     weak var delegate: chatRoomManagerDelegate?
 
-    var people = [Person]()
-
     var friend: Person?
 
-//    func fetchPeople() {
-//
-//        let ref = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("users")
-//
-//        ref.observeSingleEvent(of:.value, with: { (snapshot: DataSnapshot) in
-//
-//            for user in (snapshot.value as? [String: AnyObject])! {
-//
-//                if let dict = user.value as? [String: AnyObject] {
-//
-//                    if let firstName = dict["firstName"] as? String, let lastName = dict["lastName"] as? String, let imageUrl = dict["profileImageURL"] as? String {
-//
-//                        let man = Person(id: user.key, firstName: firstName, lastName: lastName, imageUrl: imageUrl)
-//
-//                        self.people.append(man)
-//
-//                        self.delegate?.chatRoomManager(self, didGetPeople: self.people)
-//
-//                    } else {
-//
-//                        print("Data fetch failed")
-//
-//                    }
-//
-//                }
-//
-//            }
-//
-//        }, withCancel: nil)
-//
-//    }
+    func fetchFriendIDs() {
+
+        let ref = Database.database().reference().child("users").child(uid)
+
+            ref.child("friends").observe(.value, with: { (snapshot: DataSnapshot) in
+
+                guard let userList  = snapshot.value as? [String: AnyObject] else { return }
+
+                var friendIDs = [String]()
+
+                for user in userList {
+
+                    friendIDs.append(user.key)
+
+                }
+
+                self.fetchPeople(friendIDs: friendIDs)
+
+            }, withCancel: nil)
+
+    }
+
+    func fetchPeople(friendIDs: [String]) {
+
+        var people = [Person]()
+
+        let ref = Database.database().reference().child("users")
+
+        for friendID in friendIDs {
+
+            let friendRef = ref.child(friendID)
+
+            friendRef.observeSingleEvent(of:.value, with: { (snapshot: DataSnapshot) in
+
+                let dict = snapshot.value as? [String: Any]
+
+                if let firstName = dict?["firstName"] as? String, let lastName = dict?["lastName"] as? String, let imageUrl = dict?["profileImageURL"] as? String {
+
+                    print("2222222", firstName)
+                    print("3333333", lastName)
+                    print("4444444", imageUrl)
+
+                    let man = Person(id: friendID, firstName: firstName, lastName: lastName, imageUrl: imageUrl)
+
+                    people.append(man)
+
+                    DispatchQueue.main.async {
+
+                        self.delegate?.chatRoomManager(self, didGetPeople: people)
+                    }
+
+                }
+
+            }, withCancel: nil)
+
+        }
+
+    }
 
     func searchFriend(email: String) {
 

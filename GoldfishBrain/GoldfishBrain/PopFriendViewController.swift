@@ -55,9 +55,9 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        chatRoomManager.delegate = self
-//
-//        chatRoomManager.fetchPeople()
+        chatRoomManager.delegate = self
+
+        chatRoomManager.fetchFriendIDs()
 
         cancelSelectFriendButton.setTitle("Cancel", for: .normal)
         cancelSelectFriendButton.setTitleColor(UIColor.white, for: .normal)
