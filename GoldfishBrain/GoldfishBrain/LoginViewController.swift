@@ -37,11 +37,22 @@ class LoginViewController: UIViewController {
 
                 print("email or password is false")
 
-                self.alertLabel.isHidden = false
+//                self.alertLabel.isHidden = false
+//
+//                self.alertLabel.text = "email or password is false"
 
-                self.alertLabel.text = "email or password is false"
+                let alertController = UIAlertController(
+                    title: "溫馨小提醒",
+                    message: "email或密碼錯誤",
+                    preferredStyle: .alert)
 
-                //TODO : alertController
+                let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+                    alertController.dismiss(animated: true, completion: nil)
+                })
+
+                alertController.addAction(check)
+
+                self.present(alertController, animated: true, completion: nil)
 
                 return
             }
@@ -50,9 +61,9 @@ class LoginViewController: UIViewController {
 
                 print("userUid is nil")
 
-                self.alertLabel.isHidden = false
-
-                self.alertLabel.text = "You have not registered yet."
+//                self.alertLabel.isHidden = false
+//
+//                self.alertLabel.text = "You have not registered yet."
 
                 return
             }
@@ -84,9 +95,22 @@ class LoginViewController: UIViewController {
 
             print("You have to keyin your email")
 
-            self.alertLabel.isHidden = false
+//            self.alertLabel.isHidden = false
+//
+//            self.alertLabel.text = "Please enter your email."
 
-            self.alertLabel.text = "Please enter your email."
+            let alertController = UIAlertController(
+                title: "溫馨小提醒",
+                message: "請輸入email",
+                preferredStyle: .alert)
+
+            let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+                alertController.dismiss(animated: true, completion: nil)
+            })
+
+            alertController.addAction(check)
+
+            self.present(alertController, animated: true, completion: nil)
 
         } else {
 
@@ -100,9 +124,9 @@ class LoginViewController: UIViewController {
 
                     print("Sent password reset mail successfully!")
 
-                    self.alertLabel.isHidden = false
-
-                    self.alertLabel.text = "Login..."
+//                    self.alertLabel.isHidden = false
+//
+//                    self.alertLabel.text = "Login..."
 
                 }
 

@@ -30,7 +30,24 @@ class AddFriendViewController: UIViewController, chatRoomManagerDelegate {
 
     @IBAction func searchFriendButton(_ sender: Any) {
 
-        guard let friendEmail = addFriendEmailTextField.text else { return }
+        guard let friendEmail = addFriendEmailTextField.text
+            else {
+
+                let alertController = UIAlertController(
+                    title: "溫馨小提醒",
+                    message: "使用者不存在",
+                    preferredStyle: .alert)
+
+                let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+                    alertController.dismiss(animated: true, completion: nil)
+                })
+
+                alertController.addAction(check)
+
+                self.present(alertController, animated: true, completion: nil)
+
+                return
+        }
 
         chatRoomManager.searchFriend(email: friendEmail)
 
