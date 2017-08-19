@@ -10,13 +10,14 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 import Alamofire
+import Firebase
 
 protocol managerDestinationDelegate: class {
 
     func manager(_ manager: AddDoPopViewController, destination: String, duration: String, distance: String, coordinate: [Double])
 }
 
-class AddDoPopViewController: UIViewController, managerCreateStartDelegate {
+class AddDoPopViewController: UIViewController/*, managerCreateStartDelegate*/ {
 
     @IBOutlet weak var mapView: GMSMapView!
 
@@ -76,16 +77,20 @@ class AddDoPopViewController: UIViewController, managerCreateStartDelegate {
 
     @IBAction func popoverDone(_ sender: UIButton) {
 
-        print("12345", travelTime.text)
-
         if travelTime.text == "" {
-
-            print("222222")
 
             let alertController = UIAlertController(
                 title: "無交通方式",
                 message: "請選取交通方式",
                 preferredStyle: .alert)
+
+            let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+                alertController.dismiss(animated: true, completion: nil)
+            })
+
+            alertController.addAction(check)
+
+            self.present(alertController, animated: true, completion: nil)
 
         } else {
 
@@ -139,25 +144,27 @@ class AddDoPopViewController: UIViewController, managerCreateStartDelegate {
         carButton.tintColor = UIColor.darkGray
     }
 
-    func manager(_ manager: CreateDoViewController, destination: String, duration: String, distance: String, coordinate: [Double]) {
-
-        self.doDestination = destination
-
-        self.doDuration = duration
-
-        self.doDistance = distance
-
-        self.doCoordinate = coordinate
-
-    }
+//    func manager(_ manager: CreateDoViewController, destination: String, duration: String, distance: String, coordinate: [Double]) {
+//
+//        self.doDestination = destination
+//
+//        self.doDuration = duration
+//
+//        self.doDistance = distance
+//
+//        self.doCoordinate = coordinate
+//
+//    }
 
     func calculateTravelTime(type: String) {
 
-        if let start0 = routePoints["Start"]?[0] as? Double, let start1 = routePoints["Start"]?[1] as? Double, let end0 = routePoints["End"]?[0] as? Double, let end1 = routePoints["End"]?[1] as? Double {
+        if let start0 = routePoints["Start"]?[0], let start1 = routePoints["Start"]?[1], let end0 = routePoints["End"]?[0], let end1 = routePoints["End"]?[1] {
 
             switch type {
             case "driving", "walking":
                 let directionURL = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=\(start0),\(start1)&destinations=\(end0),\(end1)&mode=\(type)&key=AIzaSyBAu1RqxhTwvzAD-ODP2KmDrpdT8BJwJxA"
+
+                Analytics.logEvent("選擇交通方式", parameters: ["TravelType": type])
 
                 Alamofire.request(directionURL, method: .get, parameters: nil).responseJSON { response in
 
@@ -176,7 +183,7 @@ class AddDoPopViewController: UIViewController, managerCreateStartDelegate {
                                         if let durationText = duration["text"] as? String, let distanceText = distance["text"] as?String {
 
                                             //swiftlint:disable force_cast
-                                            let desination = self.routeAddresses["Destination"] as! String
+                                            let desination = self.routeAddresses["Destination"]!
                                             //swiftlint:enable force_cast
 
                                             self.travelTime.text = "目的地：\(desination)\r\n總距離：\(distanceText)\r\n總時間：\(durationText)"
@@ -187,13 +194,15 @@ class AddDoPopViewController: UIViewController, managerCreateStartDelegate {
 
                                             self.travelDestination = "\(desination)"
 
-                                            var end00 = String(format: "%0.6f", end0)
+                                            let end00 = String(format: "%0.6f", end0)
 
-                                            var end10 = String(format: "%0.6f", end1)
+                                            let end10 = String(format: "%0.6f", end1)
 
                                             UserDefaults.standard.set(end00, forKey: "destination0")
 
                                             UserDefaults.standard.set(end10, forKey: "destination1")
+
+                                            UserDefaults.standard.synchronize()
 
                                         }
 
@@ -307,25 +316,5 @@ class AddDoPopViewController: UIViewController, managerCreateStartDelegate {
         super.didReceiveMemoryWarning()
 
     }
-
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//
-//        if segue.identifier == "showSelectedDestination" {
-//
-//            //swiftlint:disable force_cast
-//            let VC = segue.destination as! CreateDoViewController
-//            //swiftlint:enable force_cast
-//
-//            VC.travelDistance = self.travelDistance
-//
-//            VC.travelDuration = self.travelDuration
-//
-//            VC.travelDestination = self.travelDestination
-//
-//        }
-//    }
 
 }

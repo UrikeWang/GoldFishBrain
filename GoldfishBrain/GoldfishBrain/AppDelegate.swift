@@ -11,6 +11,7 @@ import CoreData
 import Firebase
 import GoogleMaps
 import GooglePlaces
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,7 +22,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 //        self.window = UIWindow(frame: UIScreen.main.bounds)
 
+        UIApplication.shared.statusBarStyle = .lightContent
+
         UITabBar.appearance().tintColor = UIColor.goldfishOrange
+
+        IQKeyboardManager.sharedManager().enable = true
+
+        IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
+
+        IQKeyboardManager.sharedManager().enableAutoToolbar = false
 
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
@@ -42,9 +51,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FirebaseApp.configure()
 
-        GMSServices.provideAPIKey("AIzaSyCkCP7Fmu2QLKMhavYJHlC64ZhiKF6lSuo")
+        GMSServices.provideAPIKey(servicesKey)
 
-        GMSPlacesClient.provideAPIKey("AIzaSyBbNQ0lsCDDV3GKCSXYfAnA25_yOnf3gio")
+        GMSPlacesClient.provideAPIKey(placesClientKey)
 
         return true
     }

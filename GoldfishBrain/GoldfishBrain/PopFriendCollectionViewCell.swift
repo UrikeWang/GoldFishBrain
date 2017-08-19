@@ -30,6 +30,12 @@ class PopFriendCollectionViewCell: UICollectionViewCell {
 
         image.layer.masksToBounds = true
 
+        image.layer.shadowOffset = CGSize(width: 0, height: 1)
+
+        image.layer.shadowOpacity = 0.9
+
+//        image.layer.bounds=CGRectMake(0,0,WIDTH,WIDTH)
+//
     }
 
     private func setupFriendNameLabel() {

@@ -61,6 +61,10 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
     }
 
+    func chatRoomManager(_ manager: ChatRoomManager, didGetFriend friend: Person) {
+
+    }
+
     func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: Error) {
 
     }
@@ -99,18 +103,10 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
 
-//        friendListButton.title = "List"
-//        
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "List", style: .plain, target: self, action: #selector(ChatRoomTableViewController))
-//        
-        //right bar button
-//        let icon = UIImage.init(named: "compose")?.withRenderingMode(.alwaysOriginal)
-//        let rightButton = UIBarButtonItem.init(image: icon!, style: .plain, target: self, action: #selector(ChatRoomTableViewController))
-//        self.navigationItem.rightBarButtonItem = rightButton
-
         chatRoomManager.delegate = self
 
-        chatRoomManager.fetchPeople()
+//        chatRoomManager.fetchPeople()
+        chatRoomManager.fetchFriendIDs()
 
         messageManager.delegate = self
 
@@ -145,17 +141,6 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeopleCell", for: indexPath) as! PeopleTableViewCell
         //swiftlint:enable force_cast
 
-//        cell.peopleNameLabel.text = people[indexPath.row].firstName
-//
-//        let url = URL(string: "\(people[indexPath.row].imageUrl)")
-//
-//        cell.peopleImage.kf.setImage(with: url)
-//
-////        cell.peopleImage.downloadedFrom(link: people[indexPath.row].imageUrl, contentMode: .scaleAspectFill)
-//
-//        cell.peopleImage.layer.masksToBounds = true
-//
-
         let message = messages[indexPath.row]
 
         if let toID = message.toID as? String {
@@ -176,6 +161,8 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
                         cell.peopleImage.sd_setImage(with: url, placeholderImage: UIImage(named: "icon-placeholder"))
 
+                        cell.peopleImage.contentMode = .scaleAspectFill
+
                         cell.peopleImage.layer.masksToBounds = true
 
                     }
@@ -193,7 +180,7 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
         dateFormatter.timeZone = TimeZone.current //Set timezone that you want
 
-        var date = Date(timeIntervalSince1970: TimeInterval(message.timestamp))
+        let date = Date(timeIntervalSince1970: TimeInterval(message.timestamp))
 
         let strDate = dateFormatter.string(from: date)
 

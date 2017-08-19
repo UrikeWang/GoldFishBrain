@@ -12,22 +12,53 @@ class RightChatLogTableViewCell: UITableViewCell {
 
     @IBOutlet weak var rightChatText: UILabel!
 
+    @IBOutlet weak var rightChatTimeLabel: UILabel!
+
+    @IBOutlet weak var rightChatView: UIView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
         setupRightChatText()
 
+        setupRightChatTimeLabel()
+
+        setupRightChatView()
+
+    }
+
+    private func setupRightChatView() {
+
+        let view = rightChatView!
+
+        view.dropShadow()
+
+        view.layer.cornerRadius = 6
+
+        view.layer.backgroundColor = UIColor.goldfishRedLight2.cgColor
     }
 
     private func setupRightChatText() {
 
         let label = rightChatText!
 
-        label.dropShadow()
+//        label.sizeToFit()
 
-        label.layer.cornerRadius = 15
+//        label.dropShadow()
+//
+//        label.layer.cornerRadius = 6
+//
+//        label.layer.backgroundColor = UIColor.goldfishRedLight2.cgColor
 
-        label.layer.backgroundColor = UIColor.goldfishRedLight2.cgColor
+    }
+
+    private func setupRightChatTimeLabel() {
+
+        let label = rightChatTimeLabel!
+
+        label.font = UIFont(name: "Georgia", size: 14)
+
+        label.textColor = UIColor.lightGray
 
     }
 

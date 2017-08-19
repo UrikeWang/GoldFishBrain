@@ -12,9 +12,50 @@ class LeftChatLogTableViewCell: UITableViewCell {
 
     @IBOutlet weak var leftChatText: UILabel!
 
+    @IBOutlet weak var leftChatTimeLabel: UILabel!
+
+    @IBOutlet weak var leftChatView: UIView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        setupLeftChatText()
+
+        setupLeftChatTimeLabel()
+
+        setupLeftChatView()
+    }
+
+    private func setupLeftChatView() {
+
+        let view = leftChatView!
+
+        view.dropShadow()
+
+        view.layer.cornerRadius = 6
+
+        view.sizeToFit()
+
+        view.layer.backgroundColor = UIColor.lightGray.cgColor
+
+    }
+
+    private func setupLeftChatText() {
+
+        _ = leftChatText!
+
+//        label.sizeToFit()
+
+    }
+
+    private func setupLeftChatTimeLabel() {
+
+        let label = leftChatTimeLabel!
+
+        label.font = UIFont(name: "Georgia", size: 14)
+
+        label.textColor = UIColor.lightGray
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

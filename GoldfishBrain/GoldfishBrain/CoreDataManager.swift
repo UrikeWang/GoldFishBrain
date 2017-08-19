@@ -35,7 +35,7 @@ class CoreDataManager {
 
     }
 
-    func addDo(destination: String, distance: String, duration: String, finished: Bool, friend: String, notify: Bool, time: String) {
+    func addDo(time: String, destination: String, distance: String, duration: String, friend: String) {
 
         let newTravelData = TravelDataMO(context: context)
 
@@ -57,6 +57,7 @@ class CoreDataManager {
 
     }
 
+    //將do從coredata中刪除
     func deleteDo(indexPath: Int) {
 
         let travelDatas = fetchData()

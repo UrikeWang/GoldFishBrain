@@ -29,16 +29,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>JSQMessagesViewController.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>JSQSystemSoundPlayer.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Kingfisher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -82,6 +72,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>1E636CF9E3A7A0614F665E09863916EE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>2F0C0F810568D3E82219429D9D870F04</key>
 		<dict>
 			<key>primary</key>
@@ -92,7 +87,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>615895A8E339749A69A6681AD59901BD</key>
+		<key>44530F36BA34405EA6B4BFD51524F774</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -103,11 +98,6 @@
 			<true/>
 		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>AA293DA11B784EFD9530E377AA5C3521</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,22 +117,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C7DCF2B547F7871B9BFD74DE93B0E173</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D0581AF7BF4A6DA140D280B19ECC7BFF</key>
+		<key>D3066977A88CBFAF983A800573926147</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>E4DD95323C54A78F879DAB0F1508B8E7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FB7D18C8AA37A41374B110F86818D46D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

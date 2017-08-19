@@ -12,7 +12,7 @@ import Firebase
 
 protocol managerCreateStartDelegate: class {
 
-    func manager(_ manager: CreateDoViewController, destination: String, duration: String, distance: String, coordinate: [Double])
+    func manager(_ manager: CreateDoViewController, didGestDestinationCoordinate coordinate: [Double])
 }
 
 class CreateDoViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITextFieldDelegate, managerDestinationDelegate, managerFriendDelegate {
@@ -41,8 +41,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     let dateTimeFormatter = DateFormatter()
 
-    var datePicker = UIDatePicker()
-
     var travelDuration = ""
 
     var travelDistance = ""
@@ -57,15 +55,11 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     var coordinate = [Double]()
 
-    let coreDataManager = CoreDataManager()
-
-    var detail: TravelDetail?
-
     //swiftlint:disable force_cast
     let uid = UserDefaults.standard.value(forKey: "uid") as! String
     //swiftlint:enable force_cast
 
-    let addPopViewController = AddDoPopViewController()
+    let profileViewController = ProfileTableViewController()
 
     weak var delegate: managerCreateStartDelegate?
 
@@ -73,25 +67,23 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     @IBAction func dateText(_ sender: UITextField) {
 
-        let datePickerView: UIDatePicker = UIDatePicker()
-
-        datePickerView.datePickerMode = UIDatePickerMode.date
+        let datePicker: UIDatePicker = UIDatePicker()
 
         // 設置 UIDatePicker 格式
-        datePickerView.datePickerMode = .dateAndTime
+        datePicker.datePickerMode = .dateAndTime
 
         // 選取時間時的分鐘間隔 這邊以 5 分鐘為一個間隔
-        datePickerView.minuteInterval = 5
+        datePicker.minuteInterval = 5
+        datePicker.date = Date()
 
-        datePickerView.date = Date()
-
+        //中文化
         datePicker.locale = Locale(identifier: "zh_TW")
 
         // Creates the toolbar
         let toolBar = UIToolbar()
         toolBar.barStyle = .default
         toolBar.isTranslucent = true
-        toolBar.tintColor = UIColor(red: 92/255, green: 216/255, blue: 255/255, alpha: 1)
+        toolBar.tintColor = UIColor.black
         toolBar.sizeToFit()
 
         // Adds the buttons
@@ -99,17 +91,17 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: "cancelClick")
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(CreateDoViewController.cancelClick))
 
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
 
         toolBar.isUserInteractionEnabled = true
 
-        sender.inputView = datePickerView
+        sender.inputView = datePicker
 
         sender.inputAccessoryView = toolBar
 
-        datePickerView.addTarget(self, action: #selector(CreateDoViewController.datePickerValueChanged), for: UIControlEvents.valueChanged)
+        datePicker.addTarget(self, action: #selector(CreateDoViewController.datePickerValueChanged), for: UIControlEvents.valueChanged)
     }
 
     @IBAction func destinationText(_ sender: Any) {
@@ -201,7 +193,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         friendText.text = name
 
-        travelDetails.text = "出發時間：\(travelTime)\n\r目的地：\(self.travelDestination)\n\r行程時間：\(self.travelDuration)\n\r通知：\(self.friendName)\n\r"
+        travelDetails.text = "出發時間：\(travelTime)\n\r目的地：\(self.travelDestination)\n\r行程時間：\(self.travelDuration)\n\r通知：\(self.friendName)"
 
     }
 
@@ -239,25 +231,64 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         if travelDestination != "" && friendID != "" {
 
+            //自動傳message
             autoSendDo(text: travelDetails.text, id: friendID)
 
+            //將目的地加到region並開始追蹤
+//            profileViewController.checkUserCurrentDestination(coordinate: coordinate)
+
+            profileViewController.startMonitoring()
+
+            destinationCoordinates = coordinate
+
+//            self.tabBarController.
+//            
+//            self.tabBarController?.destinationCoordinates = coordinate
+
+            isNotified = [0]
+
+            let doingCoreDataManager = DoingCoreDataManager()
+
+            let doingTravelDatas = doingCoreDataManager.fetchDoingData()
+
+            let doingCount = doingTravelDatas.count
+
+            if doingCount == 0 {
+
+                //加到doingCoreManager
+                doingCoreDataManager.addDoingDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName)
+
+            } else {
+
+                //先刪除原本的目的地資訊
+                doingCoreDataManager.deleteDoingDo(indexPath: 0)
+
+                //加到doingCoreManager
+                doingCoreDataManager.addDoingDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName)
+
+                //將對方firebase原本的事件刪除
+                let eventID = Database.database().reference().child("users").child(uid)//.child("eventID")
+
+                eventID.observeSingleEvent(of: .value, with: { (snapshot) in
+
+                    let value = snapshot.value as? NSDictionary
+
+                    let eventID = value?["eventID"] as? String ?? ""
+
+                    self.deleteEvent(eventID: eventID)
+
+                })
+
+             }
+
+            //存到firebase對方的事件中，讓對方手機中的trace能夠知道
+            createEvent(time: travelTime, destination: travelDestination, duration: travelDuration, toFriend: friendID, fromFriend: uid)
+
+            //存到userdefault中，當使用者到達目的地時，會自動傳message到對方的手機中
             UserDefaults.standard.set(travelDestination, forKey: "destination")
-
-            UserDefaults.standard.set(friendID, forKey: "friend")
-
+            UserDefaults.standard.set(friendName, forKey: "friend")
+            UserDefaults.standard.set(friendID, forKey: "friendID")
             UserDefaults.standard.synchronize()
-
-            print("userdefault", UserDefaults.standard.value(forKey: "destination"))
-
-            addPopViewController.checkUserCurrentDestination(coordinate: coordinate)
-
-//            self.delegate?.manager(
-//                self,
-//                destination: travelDestination,
-//                duration: travelDuration,
-//                distance: travelDistance,
-//                coordinate: coordinate
-//            )
 
             self.dismiss(animated: false, completion: nil)
 
@@ -267,19 +298,17 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         }
 
-        coreDataManager.addDo(destination: travelDestination, distance: travelDistance, duration: travelDuration, finished: false, friend: friendName, notify: false, time: travelTime)
-
     }
 
     @IBAction func cancelDoButton(_ sender: Any) {
-
-//        self.present(DoTableViewController(), animated: true, completion: nil)
 
         self.dismiss(animated: true, completion: nil)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+//        tabBarC = self.tabBarController as? TabBarController
 
         dateText.placeholder = "Select time.."
 
@@ -323,17 +352,67 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     override func viewWillAppear(_ animated: Bool) {
 
         super.viewWillAppear(animated) // No need for semicolon
-//        dateText.text = travelTime
-//
-//        print("33333333", travelTime)
-//
-//        travelDetails.text = "目的地：\(travelDestination)\r\n起始時間：\(travelTime)\r\n總距離：\(travelDistance)\r\n預估時間：\(travelDuration)\r\n"
 
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func createEvent(time: String, destination: String, duration: String, toFriend: String, fromFriend: String) {
+
+        let eventRef = Database.database().reference().child("events").child(toFriend).childByAutoId()
+
+        let eventID = eventRef.key
+
+//        UserDefaults.standard.set(eventID, forKey: "eventID")
+//        
+//        UserDefaults.standard.synchronize()
+
+        eventRef.observeSingleEvent(of: .value, with: { (_) in
+
+                let values = ["time": time, "destination": destination, "duration": duration, "fromFriend": fromFriend]
+
+                eventRef.updateChildValues(values)
+
+        })
+
+        let userRef = Database.database().reference().child("users").child(uid)
+
+        let eventValue = ["eventID": eventID]
+
+        userRef.updateChildValues(eventValue)
+
+    }
+
+    func deleteEvent(eventID: String) {
+
+            let eventRef = Database.database().reference().child("events")
+
+            eventRef.observe(.value, with: { (dataSnapshot) in
+
+                for snapshotChild in dataSnapshot.children {
+
+                    guard let eventSource = snapshotChild as? DataSnapshot else { return }
+
+                    if let userDict = eventSource.value as? [String: AnyObject] {
+
+                        for event in userDict {
+
+                            if event.key == eventID {
+
+                                eventRef.child(eventSource.key).child(eventID).removeValue()
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            })
+
     }
 
     func autoSendDo(text: String, id: String) {
@@ -343,8 +422,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         var isrun = Int()
 
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
-
-            let ref = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("messages")
 
             let timestamp = Int(Date().timeIntervalSince1970)
 
@@ -372,8 +449,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
                     childTalkRef.child("members").updateChildValues(memValues)
 
                     childTalkTextID.updateChildValues(values)
-
-//                    self.messageText.text = ""
 
                     chatsRef.updateChildValues([childTalkRef.key: 1])
 
@@ -404,7 +479,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
                                         channelRef.child(chatroomID).childByAutoId().updateChildValues(values)
 
-//                                        self.messageText.text = ""
                                     }
 
                                     isrun -= 1
@@ -421,8 +495,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
                                     childTalkTextID.updateChildValues(values)
 
-//                                    self.messageText.text = ""
-
                                     chatsRef.updateChildValues([childTalkRef.key: 1])
 
                                     chatsToRef.updateChildValues([childTalkRef.key: 1])
@@ -432,8 +504,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
                                 }
 
                             }, withCancel: nil)
-
-//                            print("!!!!!!!")
 
                         }
 

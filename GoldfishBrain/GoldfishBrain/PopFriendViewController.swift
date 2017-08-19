@@ -44,6 +44,10 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
     }
 
+    func chatRoomManager(_ manager: ChatRoomManager, didGetFriend friend: Person) {
+
+    }
+
     func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: Error) {
 
     }
@@ -53,7 +57,7 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
         chatRoomManager.delegate = self
 
-        chatRoomManager.fetchPeople()
+        chatRoomManager.fetchFriendIDs()
 
         cancelSelectFriendButton.setTitle("Cancel", for: .normal)
         cancelSelectFriendButton.setTitleColor(UIColor.white, for: .normal)
@@ -103,6 +107,8 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
         cell.friendPhoto.sd_setImage(with: url, placeholderImage: UIImage(named: "icon-placeholder"))
 
+        cell.friendPhoto.contentMode = .scaleAspectFill
+
         cell.friendPhoto.tag = indexPath.row
 
         return cell
@@ -116,30 +122,9 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
     }
 
-//    func collectionView(_ collectionView: UICollectionView, didSelectRowAtIndexPath indexPath: IndexPath) {
-//        if indexPath.item == 0 {
-//            let alertController = UIAlertController(title: "Share", message: "No Bookmarks to Share", preferredStyle: .alert)
-//            let cancelAction = UIAlertAction(title: "Dismiss", style: .cancel) { (_) in }
-//            alertController.addAction(cancelAction)
-//            self.present(alertController, animated: true) {}
-//            
-//            self.dismiss(animated: true, completion: nil)
-//        }
-//    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

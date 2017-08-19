@@ -22,10 +22,6 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     var allMessages: [Message] = []
 
-//    var outgoingBubbleImageView: JSQMessagesBubbleImage!
-//    
-//    var incomingBubbleImageView: JSQMessagesBubbleImage!
-
     var dict = [String: String]()
 
     var messageCount = 0
@@ -68,15 +64,16 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
 
-        lastPageButton.title = "Return"
+        lastPageButton.title = "Back"
 
-//        sendMessageView.addTopBorder()
-
-        sendMessageButton.setTitle("Send", for: .normal)
+        sendMessageButton.setImage(UIImage(named: "ic_done.png"), for: .normal)
+        sendMessageButton.backgroundColor = UIColor.asiGreyish
+        sendMessageButton.tintColor = UIColor.white
         sendMessageButton.addTarget(self, action: #selector(handleSendMessage), for: .touchUpInside)
 
         messageText.placeholder = "Enter message..."
         messageText.font = UIFont.asiTextStyle11Font()
+        messageText.backgroundColor = UIColor.asiGreyish
 
         self.messageText.delegate = self
 
@@ -126,12 +123,9 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
 
-            let ref = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("messages")
-
             let timestamp = Int(Date().timeIntervalSince1970)
 
             let channelRef = Database.database().reference().child("channels")
-//            let childRef = ref.childByAutoId()
 
             let childTalkRef = channelRef.childByAutoId()
 
@@ -250,6 +244,12 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
         DispatchQueue.main.async {
 
             self.chatLogTableView.reloadData()
+
+            let pathToLastRow = NSIndexPath(row: allMessages.count - 1, section: 0)
+
+            // Make the last row visible
+            self.chatLogTableView?.scrollToRow(at: pathToLastRow as IndexPath, at: UITableViewScrollPosition.bottom, animated: false)
+
         }
 
     }
@@ -273,23 +273,34 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func messageManager(_ manager: MessageManager, didFailWith error: Error) {
 
+        print("message log \(error)")
+
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+
         return 1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+
         return allMessages.count
 
-//        return 10
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let message = allMessages[indexPath.row]
+
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.dateFormat = "MM-dd HH:mm"
+
+        dateFormatter.timeZone = TimeZone.current
+
+        let date = Date(timeIntervalSince1970: TimeInterval(message.timestamp))
+
+        let strDate = dateFormatter.string(from: date)
 
         if message.fromID == uid {
 
@@ -302,6 +313,8 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.setNeedsUpdateConstraints()
 
             cell.updateConstraintsIfNeeded()
+
+            cell.rightChatTimeLabel.text = strDate
 
             return cell
 
@@ -318,6 +331,8 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.setNeedsUpdateConstraints()
 
             cell.updateConstraintsIfNeeded()
+
+            cell.leftChatTimeLabel.text = strDate
 
             return cell
 

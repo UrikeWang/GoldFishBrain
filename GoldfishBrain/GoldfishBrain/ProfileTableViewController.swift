@@ -10,8 +10,10 @@ import UIKit
 import FirebaseDatabase
 import Kingfisher
 import CoreData
+import GoogleMaps
+import GooglePlaces
 
-class ProfileTableViewController: UITableViewController, profileManagerDelegate {
+class ProfileTableViewController: UITableViewController, profileManagerDelegate, managerCreateStartDelegate, UITabBarControllerDelegate {
 
     @IBOutlet weak var firstNameLabel: UILabel!
 
@@ -29,15 +31,33 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
 
     var userLastName = ""
 
-    var travelDatas = [TravelDataMO]()
+//    var doDestination = ""
+//
+//    var doDuration = ""
+//
+//    var doDistance = ""
 
-    var travelData: TravelDataMO!
+    var doCoordinate = [Double]()
+
+    @IBOutlet weak var mapView: GMSMapView!
+
+//    let addPopViewController = AddDoPopViewController()
+
+    var locationManager = CLLocationManager()
+
+    var placesClient: GMSPlacesClient!
+
+    var travelDatas = [TravelDataMO]()
 
     let coreDataManager = CoreDataManager()
 
-    //swiftlint:disable force_cast
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    //swiftlint:enable force_cast
+//    var isNotified = false
+
+//    var doingTravelDatas = [DoingTravelDataMO]()
+
+    let doingCoreDataManager = DoingCoreDataManager()
+
+//    var tabBarC: TabBarController?
 
     func profileManager(_ manager: ProfileManager, didGetProfile profile: [Profile]) {
 
@@ -47,7 +67,7 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
 
         self.userLastName = profiles[0].lastName
 
-        self.firstNameLabel.text = userFirstName
+        self.firstNameLabel.text = "   \(userFirstName)"
 
         // TODO : 是否要將user first / last name 存到userdefaults
 
@@ -65,7 +85,7 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
 
         profileImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "icon-placeholder"))
 
-//        profileImage.downloadedFrom(link: url, contentMode: .scaleAspectFill)
+        profileImage.contentMode = .scaleAspectFill
 
         profileImage.layer.masksToBounds = true
 
@@ -75,12 +95,25 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
         super.viewDidLoad()
 
         navigationController?.navigationBar.barTintColor = UIColor.goldfishRed
-
-        navigationItem.title = "Profile"
-
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
+
+        navigationItem.title = "Profile"
+
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        locationManager.requestLocation()
+        locationManager.allowsBackgroundLocationUpdates = true
+
+        //設定需要重新定位的距離差距
+        locationManager.distanceFilter = 10
+
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+
+        //Initialize the GMSPlacesClient
+        placesClient = GMSPlacesClient.shared()
 
         //取得user註冊時的first/last name 為async
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
@@ -96,20 +129,26 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
         //changed / set profile image (點擊圖片)
         profileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectionProfileImage)))
         profileImage.isUserInteractionEnabled = true
-        profileImage.layer.cornerRadius = profileImage.frame.width/2
-        profileImage.dropShadow()
 
-        firstNameLabel.textAlignment = .center
-
-//        separateLine.backgroundColor = UIColor.goldfishRed
+        firstNameLabel.textAlignment = .left
+        firstNameLabel.backgroundColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.7)
 
         dosTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+
+//        let userDestination = UserDefaults.standard.value(forKey: "destination") as? String
+
+        let addDoVC = CreateDoViewController()
+
+        addDoVC.delegate = self
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated) // No need for semicolon
 
         fetchTravelDetails()
+
+//        self.mapView.reloadInputViews()
 
     }
 
@@ -154,7 +193,7 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllMyDosCell", for: indexPath) as! AllMyDosTableViewCell
         //swiftlint:enable force_cast
 
-        if let date = travelDatas[indexPath.row].time as? String {
+        if let date = travelDatas[indexPath.row].time {
 
             cell.travelDate.text = "出發時間：" + date
 
@@ -163,13 +202,13 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
             cell.travelDate.text = "出發時間："
         }
 
-        if let destination = travelDatas[indexPath.row].destination as? String {
+        if let destination = travelDatas[indexPath.row].destination {
 
-            cell.travelDestinationTextView.text = "目的地：" + destination
+            cell.travelDestination.text = "目的地：" + destination
 
         } else {
 
-            cell.travelDestinationTextView.text = "目的地："
+            cell.travelDestination.text = "目的地："
         }
 
         if let finished = travelDatas[indexPath.row].finished as? Bool {
@@ -190,7 +229,7 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
             cell.travelNotified.text = "行程是否通知："
         }
 
-        cell.travelDestinationTextView.tag = indexPath.row
+        cell.travelDestination.tag = indexPath.row
 
         return cell
     }
@@ -209,50 +248,5 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate 
 
         }
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

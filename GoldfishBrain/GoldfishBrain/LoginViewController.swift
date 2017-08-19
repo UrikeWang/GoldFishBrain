@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import NVActivityIndicatorView
 
 class LoginViewController: UIViewController {
 
@@ -19,6 +20,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var appTitle: UILabel!
     @IBOutlet weak var appLogo: UIImageView!
     @IBOutlet weak var forgotPasswordButton: UIButton!
+    @IBOutlet weak var alertLabel: UILabel!
 
     @IBAction func loginButton(_ sender: Any) {
 
@@ -35,12 +37,20 @@ class LoginViewController: UIViewController {
 
                 print("email or password is false")
 
+                self.alertLabel.isHidden = false
+
+                self.alertLabel.text = "email or password is false"
+
                 return
             }
 
             guard let userUid = user?.uid else {
 
                 print("userUid is nil")
+
+                self.alertLabel.isHidden = false
+
+                self.alertLabel.text = "You have not registered yet."
 
                 return
             }
@@ -65,6 +75,10 @@ class LoginViewController: UIViewController {
 
             print("You have to keyin your email")
 
+            self.alertLabel.isHidden = false
+
+            self.alertLabel.text = "Please enter your email."
+
         } else {
 
             Auth.auth().sendPasswordReset(withEmail: emailText.text!, completion: { (error) in
@@ -76,6 +90,10 @@ class LoginViewController: UIViewController {
                 } else {
 
                     print("Sent password reset mail successfully!")
+
+                    self.alertLabel.isHidden = false
+
+                    self.alertLabel.text = "Login..."
 
                 }
 
@@ -123,7 +141,7 @@ class LoginViewController: UIViewController {
         appTitle.font = UIFont(name: "Comix Loud", size: 20.0)
 
         let attrString = NSMutableAttributedString(string: appTitle.text!)
-        var style = NSMutableParagraphStyle()
+        let style = NSMutableParagraphStyle()
         style.lineSpacing = 24 // change line spacing between paragraph like 36 or 48
         style.minimumLineHeight = 20 // change line spacing between each line like 30 or 40
         attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSRange(location: 0, length: (appTitle.text?.characters.count)!))
@@ -161,6 +179,12 @@ class LoginViewController: UIViewController {
         forgotPasswordButton.setTitleColor(UIColor.white, for: .normal)
         forgotPasswordButton.setTitle("Forgot your password?", for: .normal)
         forgotPasswordButton.contentHorizontalAlignment = .center
+
+        NVActivityIndicatorView(frame: CGRect(x: view.frame.width/2, y: view.frame.height/2, width: 100, height: 100), type: .pacman, color: UIColor.white, padding: 10)
+
+        alertLabel.isHidden = true
+        alertLabel.backgroundColor = UIColor.clear
+        alertLabel.textAlignment = .center
 
     }
 
