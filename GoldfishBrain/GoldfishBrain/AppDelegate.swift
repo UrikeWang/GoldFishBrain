@@ -14,6 +14,7 @@ import GooglePlaces
 import IQKeyboardManagerSwift
 import Fabric
 import Crashlytics
+import NVActivityIndicatorView
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -35,6 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
 
         Fabric.with([Crashlytics.self])
+
+        NVActivityIndicatorView.DEFAULT_TYPE = .ballScaleMultiple
 
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 

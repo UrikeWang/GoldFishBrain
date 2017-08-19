@@ -41,6 +41,8 @@ class LoginViewController: UIViewController {
 
                 self.alertLabel.text = "email or password is false"
 
+                //TODO : alertController
+
                 return
             }
 
@@ -55,6 +57,10 @@ class LoginViewController: UIViewController {
                 return
             }
 
+            let activityData = ActivityData(message: "Login...", textColor: UIColor.white)
+
+            NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
+
             UserDefaults.standard.set(userUid, forKey: "uid")
 
             UserDefaults.standard.synchronize()
@@ -64,7 +70,10 @@ class LoginViewController: UIViewController {
 
             let tabBarVC = storyBoard.instantiateViewController(withIdentifier: "TabBarVC")
 
+            NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+
             self.present(tabBarVC, animated: true, completion: nil)
+
         }
 
     }

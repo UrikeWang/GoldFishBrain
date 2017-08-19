@@ -65,6 +65,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uE9-pQ-cRF">
                                 <rect key="frame" x="202" y="479" width="107" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="z74-Ai-IMI"/>
+                                </constraints>
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="loginButton:" destination="T1B-Ok-wDG" eventType="touchUpInside" id="xtG-q2-GMk"/>
@@ -96,7 +99,6 @@
                             <constraint firstItem="0ch-w5-2vh" firstAttribute="top" secondItem="HZ4-r8-SdT" secondAttribute="bottom" constant="10" id="BmJ-fV-TdY"/>
                             <constraint firstItem="uE9-pQ-cRF" firstAttribute="leading" secondItem="wZ8-pe-kV9" secondAttribute="trailing" constant="29" id="CqM-Jn-4Mz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="HZ4-r8-SdT" secondAttribute="trailing" constant="50" id="FNs-hi-wQy"/>
-                            <constraint firstItem="H42-xa-BPA" firstAttribute="top" secondItem="wZ8-pe-kV9" secondAttribute="bottom" constant="158" id="GDw-PT-bPx"/>
                             <constraint firstItem="HZ4-r8-SdT" firstAttribute="top" secondItem="JG1-ZP-Iic" secondAttribute="bottom" constant="20" id="HV5-DF-Bpb"/>
                             <constraint firstItem="ylX-0A-31s" firstAttribute="top" secondItem="0ch-w5-2vh" secondAttribute="bottom" constant="10" id="Isa-Dg-dYz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0ch-w5-2vh" secondAttribute="trailing" constant="50" id="JTz-6L-ojs"/>
@@ -282,6 +284,7 @@
                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6tt-pu-DIJ">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="173"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="173" id="hGX-RY-qNp"/>
                                     </constraints>
@@ -820,6 +823,7 @@
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e1k-eH-Ibw">
                                                     <rect key="frame" x="18" y="18" width="80" height="80"/>
+                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="VCU-Zk-z6L"/>
                                                         <constraint firstAttribute="height" constant="80" id="XbH-BM-EVu"/>
@@ -882,7 +886,7 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dbe-GF-HkX">
                                             <rect key="frame" x="28" y="13" width="50" height="50"/>
-                                            <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="0rv-AV-MGb"/>
                                                 <constraint firstAttribute="height" constant="50" id="FOc-Yn-xVe"/>
@@ -1229,8 +1233,6 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="n4t-Yl-zMd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="ic_account_circle" id="g4Q-jE-t4V" userLabel="Profile"/>
                     <toolbarItems/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="667"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dVy-AU-86f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1275,7 +1277,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dEn-Ge-CB6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dEn-Ge-CB6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1296,7 +1298,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="44w-bi-xBi">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="44w-bi-xBi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1317,7 +1319,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rJl-E4-gz6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rJl-E4-gz6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1348,7 +1350,6 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C32-gO-kkz">
                                             <rect key="frame" x="28" y="13" width="50" height="50"/>
-                                            <color key="backgroundColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="79m-jl-hkS"/>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="JET-gL-dyc"/>
@@ -1453,7 +1454,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdy-va-viB">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdy-va-viB">
                                 <rect key="frame" x="28" y="198" width="319" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="kvR-9M-Fh3"/>
@@ -1521,7 +1522,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8QB-yT-V3J">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8QB-yT-V3J">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1547,6 +1548,6 @@
         <image name="ic_question_answer" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GOw-hA-LLG"/>
+        <segue reference="YcT-13-zxj"/>
     </inferredMetricsTieBreakers>
 </document>
