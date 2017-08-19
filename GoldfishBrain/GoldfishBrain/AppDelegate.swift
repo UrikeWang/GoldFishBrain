@@ -12,6 +12,8 @@ import Firebase
 import GoogleMaps
 import GooglePlaces
 import IQKeyboardManagerSwift
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
 
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
+
+        Fabric.with([Crashlytics.self])
 
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
