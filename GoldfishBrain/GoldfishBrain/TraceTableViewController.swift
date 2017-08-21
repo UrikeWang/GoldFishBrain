@@ -30,11 +30,6 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
         let alertController = UIAlertController(title: "溫馨小提醒", message: "真的要刪除追蹤朋友行程嗎？", preferredStyle: .alert)
 
-//        let alertController = UIAlertController(
-//            title: "溫馨小提醒",
-//            message: "真的要刪除這個行程嗎？",
-//            preferredStyle: .alert)
-//
         let check = UIAlertAction(title: "確定", style: .default, handler: { (_ : UIAlertAction) in
 
             self.autoSendDelete(destination: friendDestination, id: fromFriendID)
