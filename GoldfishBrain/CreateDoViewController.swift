@@ -73,7 +73,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         datePicker.datePickerMode = .dateAndTime
 
         // 選取時間時的分鐘間隔 這邊以 5 分鐘為一個間隔
-        datePicker.minuteInterval = 5
+        datePicker.minuteInterval = 1
         datePicker.date = Date()
 
         //中文化
@@ -241,10 +241,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             destinationCoordinates = coordinate
 
-//            self.tabBarController.
-//            
-//            self.tabBarController?.destinationCoordinates = coordinate
-
             isNotified = [0]
 
             let doingCoreDataManager = DoingCoreDataManager()
@@ -310,7 +306,16 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
 //        tabBarC = self.tabBarController as? TabBarController
 
-        dateText.placeholder = "Select time.."
+        let date = Date()
+
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+
+        let dateString = dateFormatter.string(from: date)
+
+        dateText.text = dateString
+//        dateText.placeholder = "Select time.."
 
         destinationText.placeholder = "Select destination"
 

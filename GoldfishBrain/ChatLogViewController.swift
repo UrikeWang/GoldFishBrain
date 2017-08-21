@@ -69,11 +69,11 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
         sendMessageButton.setImage(UIImage(named: "ic_done.png"), for: .normal)
         sendMessageButton.backgroundColor = UIColor.asiGreyish
         sendMessageButton.tintColor = UIColor.white
-        
+
         if messageText.text != "" {
-            
+
             sendMessageButton.addTarget(self, action: #selector(handleSendMessage), for: .touchUpInside)
-        
+
         }
 
         messageText.placeholder = "Enter message..."
@@ -232,11 +232,11 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 
         textField.resignFirstResponder()
-        
+
         if messageText.text != "" {
-            
+
             handleSendMessage()
-            
+
         }
 
         return true

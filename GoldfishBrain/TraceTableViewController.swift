@@ -81,7 +81,7 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
         navigationController?.navigationBar.barTintColor = UIColor.goldfishRed
 
-        navigationItem.title = "Friend Trip"
+        navigationItem.title = "Friend's Trip"
 
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
 

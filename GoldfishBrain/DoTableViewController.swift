@@ -37,7 +37,11 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
         addDoButton.layer.borderWidth = 1
         addDoButton.setTitle("建立行程", for: .normal)
         addDoButton.setTitleColor(UIColor.goldfishRed, for: .normal)
-        addDoButton.dropShadow()
+        addDoButton.layer.masksToBounds = false
+        addDoButton.layer.shadowColor = UIColor.black.cgColor
+        addDoButton.layer.shadowOpacity = 0.3
+        addDoButton.layer.shadowOffset = CGSize(width: 4, height: 8)
+        addDoButton.layer.shadowRadius = 5
 
         fishImage.layer.shadowOffset = CGSize(width: 0, height: 3)
         fishImage.layer.shadowOpacity = 0.4

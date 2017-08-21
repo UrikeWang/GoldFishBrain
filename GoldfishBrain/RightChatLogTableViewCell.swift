@@ -34,9 +34,9 @@ class RightChatLogTableViewCell: UITableViewCell {
 //        view.dropShadow()
 
         view.layer.cornerRadius = 6
-        
+
         view.layer.borderColor = UIColor.goldfishRed.cgColor
-        
+
         view.layer.borderWidth = 1
 
     }

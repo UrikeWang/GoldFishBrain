@@ -35,9 +35,9 @@ class LeftChatLogTableViewCell: UITableViewCell {
         view.layer.cornerRadius = 6
 
 //        view.sizeToFit()
-        
+
         view.layer.borderColor = UIColor.asiSeaBlue.cgColor
-        
+
         view.layer.borderWidth = 1
 
     }
