@@ -54,7 +54,7 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
         let location = locations.last
 
-        Analytics.logEvent("使用者地點", parameters: ["UserCurrentLocation": location as Any])
+//        Analytics.logEvent("使用者地點", parameters: ["UserCurrentLocation": location as Any])
 
         mapView.clear()
 

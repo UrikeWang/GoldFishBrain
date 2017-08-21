@@ -28,14 +28,31 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
         let friendDestination = events[sender.tag].destination
 
-        autoSendDelete(destination: friendDestination, id: fromFriendID)
+        let alertController = UIAlertController(title: "溫馨小提醒", message: "真的要刪除追蹤朋友行程嗎？", preferredStyle: .alert)
 
-        traceManager.deleteFriendEvent(deleteEventID: deleteEventID)
+        let check = UIAlertAction(title: "確定", style: .default, handler: { (_ : UIAlertAction) in
 
-        DispatchQueue.main.async {
+            self.autoSendDelete(destination: friendDestination, id: fromFriendID)
 
-            self.friendEventTableView.reloadData()
+            self.traceManager.deleteFriendEvent(deleteEventID: deleteEventID)
+
+            DispatchQueue.main.async {
+
+                self.friendEventTableView.reloadData()
+            }
+
+        })
+
+        let cancel = UIAlertAction(title: "取消", style: .default) { (_ : UIAlertAction) in
+
+            alertController.dismiss(animated: true, completion: nil)
         }
+
+        alertController.addAction(check)
+
+        alertController.addAction(cancel)
+
+        self.present(alertController, animated: true, completion: nil)
 
     }
 
