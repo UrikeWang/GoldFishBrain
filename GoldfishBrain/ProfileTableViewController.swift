@@ -31,12 +31,6 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
     var userLastName = ""
 
-//    var doDestination = ""
-//
-//    var doDuration = ""
-//
-//    var doDistance = ""
-
     var doCoordinate = [Double]()
 
     @IBOutlet weak var mapView: GMSMapView!
@@ -133,7 +127,6 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
         firstNameLabel.textAlignment = .left
         firstNameLabel.backgroundColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.7)
 
-//        dosTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         dosTableView.separatorColor = UIColor.goldfishRed
         dosTableView.separatorInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
 
@@ -214,22 +207,27 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
         }
 
         if let finished = travelDatas[indexPath.row].finished as? Bool {
-
-            cell.travelFinished.text = "行程是否完成：\(finished)"
+            
+            switch finished {
+            case true:
+                cell.travelFinished.text = "行程是否完成：已抵達目的地"
+            default: break
+                
+            }
 
         } else {
 
             cell.travelFinished.text = "行程是否完成："
         }
 
-        if let notified = travelDatas[indexPath.row].notify as? Bool {
-
-            cell.travelNotified.text = "行程是否通知：\(notified)"
-
-        } else {
-
-            cell.travelNotified.text = "行程是否通知："
-        }
+//        if let notified = travelDatas[indexPath.row].notify as? Bool {
+//
+//            cell.travelNotified.text = "行程是否通知：\(notified)"
+//
+//        } else {
+//
+//            cell.travelNotified.text = "行程是否通知："
+//        }
 
         cell.travelDestination.tag = indexPath.row
 

@@ -98,7 +98,7 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
-        return "進行中..."
+        return "目的地前往中..."
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

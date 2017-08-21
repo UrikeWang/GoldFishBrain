@@ -20,7 +20,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var appTitle: UILabel!
     @IBOutlet weak var appLogo: UIImageView!
     @IBOutlet weak var forgotPasswordButton: UIButton!
-    @IBOutlet weak var alertLabel: UILabel!
 
     @IBAction func loginButton(_ sender: Any) {
 
@@ -34,12 +33,19 @@ class LoginViewController: UIViewController {
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
 
             if error != nil {
-
-                print("email or password is false")
-
-                self.alertLabel.isHidden = false
-
-                self.alertLabel.text = "email or password is false"
+                
+                let alertController = UIAlertController(
+                    title: "溫馨小提醒",
+                    message: "email/password錯誤",
+                    preferredStyle: .alert)
+                
+                let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+                    alertController.dismiss(animated: true, completion: nil)
+                })
+                
+                alertController.addAction(check)
+                
+                self.present(alertController, animated: true, completion: nil)
 
                 return
             }
@@ -48,9 +54,9 @@ class LoginViewController: UIViewController {
 
                 print("userUid is nil")
 
-                self.alertLabel.isHidden = false
-
-                self.alertLabel.text = "You have not registered yet."
+//                self.alertLabel.isHidden = false
+//
+//                self.alertLabel.text = "You have not registered yet."
 
                 return
             }
@@ -73,11 +79,24 @@ class LoginViewController: UIViewController {
 
         if emailText.text == "" {
 
-            print("You have to keyin your email")
+//            print("You have to keyin your email")
+//
+//            self.alertLabel.isHidden = false
 
-            self.alertLabel.isHidden = false
-
-            self.alertLabel.text = "Please enter your email."
+//            self.alertLabel.text = "Please enter your email."
+            
+            let alertController = UIAlertController(
+                title: "溫馨小提醒",
+                message: "請輸入email",
+                preferredStyle: .alert)
+            
+            let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+                alertController.dismiss(animated: true, completion: nil)
+            })
+            
+            alertController.addAction(check)
+            
+            self.present(alertController, animated: true, completion: nil)
 
         } else {
 
@@ -89,11 +108,15 @@ class LoginViewController: UIViewController {
 
                 } else {
 
-                    print("Sent password reset mail successfully!")
+//                    print("Sent password reset mail successfully!")
 
-                    self.alertLabel.isHidden = false
-
-                    self.alertLabel.text = "Login..."
+//                    self.alertLabel.isHidden = false
+//
+//                    self.alertLabel.text = "Login..."
+                    
+                    let activityData = ActivityData()
+                    
+                    NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
 
                 }
 
@@ -180,11 +203,11 @@ class LoginViewController: UIViewController {
         forgotPasswordButton.setTitle("Forgot your password?", for: .normal)
         forgotPasswordButton.contentHorizontalAlignment = .center
 
-        NVActivityIndicatorView(frame: CGRect(x: view.frame.width/2, y: view.frame.height/2, width: 100, height: 100), type: .pacman, color: UIColor.white, padding: 10)
+//        NVActivityIndicatorView(frame: CGRect(x: view.frame.width/2, y: view.frame.height/2, width: 100, height: 100), type: .pacman, color: UIColor.white, padding: 10)
 
-        alertLabel.isHidden = true
-        alertLabel.backgroundColor = UIColor.clear
-        alertLabel.textAlignment = .center
+//        alertLabel.isHidden = true
+//        alertLabel.backgroundColor = UIColor.clear
+//        alertLabel.textAlignment = .center
 
     }
 

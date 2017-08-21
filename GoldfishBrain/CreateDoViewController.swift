@@ -110,7 +110,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         let popVC = storyboard?.instantiateViewController(withIdentifier: "popVC") as! AddDoPopViewController
         //swiftlint:enable force_cast
 
-        popVC.modalPresentationStyle = .popover
+        popVC.modalPresentationStyle = .fullScreen
 
         popVC.delegate = self
 
@@ -124,7 +124,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             popOverVC.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
 
-            popVC.preferredContentSize = CGSize(width: 350, height: 600)
+//            popVC.preferredContentSize = CGSize(width: 350, height: 600)
 
             popOverVC.delegate = self
 
@@ -145,7 +145,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         let popFriendVC = storyboard?.instantiateViewController(withIdentifier: "popFriendVC") as! PopFriendViewController
         //swiftlint:enable force_cast
 
-        popFriendVC.modalPresentationStyle = .overFullScreen
+        popFriendVC.modalPresentationStyle = .fullScreen
 
         popFriendVC.delegate = self
 
@@ -261,7 +261,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
             } else {
 
                 //先刪除原本的目的地資訊
-                doingCoreDataManager.deleteDoingDo(indexPath: 0)
+//                doingCoreDataManager.deleteDoingDo(indexPath: 0)
 
                 //加到doingCoreManager
                 doingCoreDataManager.addDoingDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName)
