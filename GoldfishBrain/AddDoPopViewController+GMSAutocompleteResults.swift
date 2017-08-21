@@ -17,6 +17,8 @@ extension AddDoPopViewController: GMSAutocompleteResultsViewControllerDelegate {
         mapView.clear()
 
         searchController?.isActive = false
+        
+        searchController?.searchBar.text = place.formattedAddress
 
         mapView.camera = GMSCameraPosition(target: place.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
 

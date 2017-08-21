@@ -21,8 +21,6 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
     @IBOutlet var dosTableView: UITableView!
 
-    @IBOutlet weak var separateLine: UIView!
-
     var profiles: [Profile] = []
 
     let profileManager = ProfileManager()
@@ -153,6 +151,8 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
         dosTableView.separatorColor = UIColor.goldfishRed
         dosTableView.separatorInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        dosTableView.rowHeight = UITableViewAutomaticDimension
+        dosTableView.estimatedRowHeight = 60
 
 //        let userDestination = UserDefaults.standard.value(forKey: "destination") as? String
 

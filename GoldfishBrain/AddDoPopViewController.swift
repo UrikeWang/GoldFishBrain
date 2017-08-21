@@ -63,9 +63,9 @@ class AddDoPopViewController: UIViewController/*, managerCreateStartDelegate*/ {
 
     var doCoordinate = [Double]()
 
-    //swiftlint:disable force_cast
-    let uid = UserDefaults.standard.value(forKey: "uid") as! String
-    //swiftlint:enable force_cast
+//    //swiftlint:disable force_cast
+//    let uid = UserDefaults.standard.value(forKey: "uid") as! String
+//    //swiftlint:enable force_cast
 
     var notify = false
 
@@ -80,7 +80,7 @@ class AddDoPopViewController: UIViewController/*, managerCreateStartDelegate*/ {
         if travelTime.text == "" {
 
             let alertController = UIAlertController(
-                title: "無交通方式",
+                title: "溫馨小提醒",
                 message: "請選取交通方式",
                 preferredStyle: .alert)
 
