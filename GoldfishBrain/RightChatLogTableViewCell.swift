@@ -31,11 +31,14 @@ class RightChatLogTableViewCell: UITableViewCell {
 
         let view = rightChatView!
 
-        view.dropShadow()
+//        view.dropShadow()
 
         view.layer.cornerRadius = 6
+        
+        view.layer.borderColor = UIColor.goldfishRed.cgColor
+        
+        view.layer.borderWidth = 1
 
-        view.layer.backgroundColor = UIColor.goldfishRedLight2.cgColor
     }
 
     private func setupRightChatText() {

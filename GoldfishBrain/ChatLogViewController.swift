@@ -69,7 +69,12 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
         sendMessageButton.setImage(UIImage(named: "ic_done.png"), for: .normal)
         sendMessageButton.backgroundColor = UIColor.asiGreyish
         sendMessageButton.tintColor = UIColor.white
-        sendMessageButton.addTarget(self, action: #selector(handleSendMessage), for: .touchUpInside)
+        
+        if messageText.text != "" {
+            
+            sendMessageButton.addTarget(self, action: #selector(handleSendMessage), for: .touchUpInside)
+        
+        }
 
         messageText.placeholder = "Enter message..."
         messageText.font = UIFont.asiTextStyle11Font()
@@ -227,8 +232,12 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 
         textField.resignFirstResponder()
-
-        handleSendMessage()
+        
+        if messageText.text != "" {
+            
+            handleSendMessage()
+            
+        }
 
         return true
     }
@@ -325,8 +334,6 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
             //swiftlint:enable force_cast
 
             cell.leftChatText.text = message.text
-
-            cell.leftChatText.layer.backgroundColor = UIColor.lightGray.cgColor
 
             cell.setNeedsUpdateConstraints()
 

@@ -51,7 +51,7 @@ class TraceTableViewCell: UITableViewCell {
 
         let button = cancelButton!
 
-        button.setTitle("Cancel", for: .normal)
+        button.setTitle("取消追蹤朋友行程", for: .normal)
 
         button.backgroundColor = UIColor.goldfishOrange
 

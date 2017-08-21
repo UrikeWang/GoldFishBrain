@@ -25,7 +25,7 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
         navigationController?.navigationBar.barTintColor = UIColor.goldfishRed
 
-        navigationItem.title = "Do it"
+        navigationItem.title = "My Trip"
 
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
 
@@ -74,7 +74,7 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
         DispatchQueue.main.async {
 
             self.popTableView.reloadData()
-            
+
             print("2222222", self.doingTravelDatas.count)
 
         }
@@ -109,7 +109,7 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         print("11111111", doingTravelDatas.count)
 
         switch doingTravelDatas.count {
@@ -155,7 +155,7 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
             doingCoreDataManager.fetchDoingData()
 
             self.doingTravelDatas.remove(at: indexPath.row)
-            
+
             doingTravelDatas = []
 
             self.popTableView.reloadData()

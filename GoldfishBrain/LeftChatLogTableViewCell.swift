@@ -30,13 +30,15 @@ class LeftChatLogTableViewCell: UITableViewCell {
 
         let view = leftChatView!
 
-        view.dropShadow()
+//        view.dropShadow()
 
         view.layer.cornerRadius = 6
 
-        view.sizeToFit()
-
-        view.layer.backgroundColor = UIColor.lightGray.cgColor
+//        view.sizeToFit()
+        
+        view.layer.borderColor = UIColor.asiSeaBlue.cgColor
+        
+        view.layer.borderWidth = 1
 
     }
 

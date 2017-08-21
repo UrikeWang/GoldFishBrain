@@ -616,7 +616,9 @@
                             <constraint firstItem="Xkx-jw-nwe" firstAttribute="leading" secondItem="snF-18-srj" secondAttribute="leading" id="qoR-3K-OMF"/>
                             <constraint firstAttribute="trailing" secondItem="G9G-GW-FbB" secondAttribute="trailing" id="rcB-kD-asI"/>
                             <constraint firstItem="lmY-PG-JYH" firstAttribute="top" secondItem="B7y-qk-Op7" secondAttribute="bottom" id="sYW-Ec-eeU"/>
+                            <constraint firstItem="wCD-9D-EbN" firstAttribute="height" secondItem="Jza-aK-hji" secondAttribute="height" id="weN-Tz-2of"/>
                             <constraint firstItem="Xkx-jw-nwe" firstAttribute="trailing" secondItem="snF-18-srj" secondAttribute="trailing" id="xca-Pc-Vr5"/>
+                            <constraint firstItem="wCD-9D-EbN" firstAttribute="width" secondItem="Jza-aK-hji" secondAttribute="width" id="xkj-2e-PVh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pIO-VR-6Rj" secondAttribute="trailing" constant="12" id="yXO-SV-DsA"/>
                         </constraints>
                     </view>
@@ -732,9 +734,11 @@
                             <constraint firstItem="nna-Fc-4lL" firstAttribute="leading" secondItem="BjU-FY-zKN" secondAttribute="leading" id="Wh2-cT-RnR"/>
                             <constraint firstItem="nna-Fc-4lL" firstAttribute="top" secondItem="BjU-FY-zKN" secondAttribute="bottom" constant="20" id="Z5Y-w3-2jd"/>
                             <constraint firstItem="4Gd-Dt-fzH" firstAttribute="leading" secondItem="i0s-PE-kTW" secondAttribute="leading" id="anO-Gt-Eab"/>
+                            <constraint firstItem="gh6-iT-zDx" firstAttribute="width" secondItem="Xsf-0I-vxi" secondAttribute="width" id="fyo-Q8-5ZW"/>
                             <constraint firstAttribute="bottom" secondItem="4Gd-Dt-fzH" secondAttribute="bottom" constant="230" id="j8s-39-RVL"/>
                             <constraint firstItem="Xsf-0I-vxi" firstAttribute="top" secondItem="Lil-5j-vFp" secondAttribute="top" id="jpO-Xt-wWc"/>
                             <constraint firstItem="gh6-iT-zDx" firstAttribute="leading" secondItem="Xsf-0I-vxi" secondAttribute="trailing" constant="14" id="knb-I4-EBH"/>
+                            <constraint firstItem="gh6-iT-zDx" firstAttribute="height" secondItem="Xsf-0I-vxi" secondAttribute="height" id="lJa-IF-CSw"/>
                             <constraint firstItem="Lil-5j-vFp" firstAttribute="top" secondItem="nna-Fc-4lL" secondAttribute="top" id="ngI-Hf-2As"/>
                             <constraint firstItem="daW-BQ-Ogn" firstAttribute="leading" secondItem="i0s-PE-kTW" secondAttribute="leadingMargin" constant="35" id="oVy-Zi-TNF"/>
                             <constraint firstItem="4Gd-Dt-fzH" firstAttribute="top" secondItem="i0s-PE-kTW" secondAttribute="top" id="qmb-vS-ui2"/>
@@ -959,7 +963,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gh3-H5-SJJ">
-                                                    <rect key="frame" x="307" y="13" width="47" height="62"/>
+                                                    <rect key="frame" x="302" y="13" width="52" height="62"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="270" translatesAutoresizingMaskIntoConstraints="NO" id="55b-PS-KAL">
                                                             <rect key="frame" x="5" y="5" width="42" height="52"/>
@@ -968,9 +972,8 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="55b-PS-KAL" secondAttribute="trailing" id="Kcx-wL-UMH"/>
+                                                        <constraint firstAttribute="trailing" secondItem="55b-PS-KAL" secondAttribute="trailing" constant="5" id="Kcx-wL-UMH"/>
                                                         <constraint firstItem="55b-PS-KAL" firstAttribute="top" secondItem="Gh3-H5-SJJ" secondAttribute="top" constant="5" id="oKi-S0-OjL"/>
                                                         <constraint firstAttribute="bottom" secondItem="55b-PS-KAL" secondAttribute="bottom" constant="5" id="wbP-tD-cwX"/>
                                                         <constraint firstItem="55b-PS-KAL" firstAttribute="leading" secondItem="Gh3-H5-SJJ" secondAttribute="leading" constant="5" id="zFJ-4y-Yld"/>
@@ -1018,21 +1021,20 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wI0-XT-227">
-                                                    <rect key="frame" x="21" y="13" width="55" height="67"/>
+                                                    <rect key="frame" x="21" y="13" width="52" height="67"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNP-Gl-uQe">
-                                                            <rect key="frame" x="8" y="5" width="42" height="57"/>
+                                                            <rect key="frame" x="5" y="5" width="42" height="57"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstItem="TNP-Gl-uQe" firstAttribute="top" secondItem="wI0-XT-227" secondAttribute="top" constant="5" id="67U-pq-PSg"/>
-                                                        <constraint firstAttribute="trailing" secondItem="TNP-Gl-uQe" secondAttribute="trailing" constant="5" id="B0B-ub-IJC"/>
-                                                        <constraint firstItem="TNP-Gl-uQe" firstAttribute="centerY" secondItem="wI0-XT-227" secondAttribute="centerY" id="K3Y-JG-V0a"/>
-                                                        <constraint firstItem="TNP-Gl-uQe" firstAttribute="leading" secondItem="wI0-XT-227" secondAttribute="leadingMargin" id="pyK-do-iOv"/>
+                                                        <constraint firstAttribute="trailing" secondItem="TNP-Gl-uQe" secondAttribute="trailing" constant="5" id="8Sd-aX-pbx"/>
+                                                        <constraint firstAttribute="bottom" secondItem="TNP-Gl-uQe" secondAttribute="bottom" constant="5" id="avD-8W-cDv"/>
+                                                        <constraint firstItem="TNP-Gl-uQe" firstAttribute="top" secondItem="wI0-XT-227" secondAttribute="top" constant="5" id="hwe-jw-bl7"/>
+                                                        <constraint firstItem="TNP-Gl-uQe" firstAttribute="leading" secondItem="wI0-XT-227" secondAttribute="leading" constant="5" id="ouN-tA-noB"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -1203,7 +1205,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="n4t-Yl-zMd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="ic_account_circle" id="g4Q-jE-t4V" userLabel="Profile"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dVy-AU-86f">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dVy-AU-86f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1245,7 +1247,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="trp-2C-Fyz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Do it" image="ic_playlist_add" id="64h-dI-vxs"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dEn-Ge-CB6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dEn-Ge-CB6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1264,7 +1266,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="77L-hf-cQV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chat" image="ic_question_answer" id="oqX-AY-q5J"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="44w-bi-xBi">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="44w-bi-xBi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1283,7 +1285,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wjH-pT-9Kl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Trace" image="ic_loyalty" id="qd1-jT-N21"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rJl-E4-gz6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rJl-E4-gz6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1485,7 +1487,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iYj-or-OB6" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8QB-yT-V3J">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8QB-yT-V3J">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

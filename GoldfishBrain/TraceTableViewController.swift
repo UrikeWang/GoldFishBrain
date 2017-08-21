@@ -27,40 +27,36 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
         let fromFriendID = events[sender.tag].fromFriendID
 
         let friendDestination = events[sender.tag].destination
-        
-        
+
         let alertController = UIAlertController(
             title: "溫馨小提醒",
             message: "真的要刪除朋友的行程嗎？",
             preferredStyle: .alert)
-        
+
         let ok = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
-            
+
             self.autoSendDelete(destination: friendDestination, id: fromFriendID)
-            
+
             self.traceManager.deleteFriendEvent(deleteEventID: deleteEventID)
-            
+
             DispatchQueue.main.async {
-                
+
                 self.friendEventTableView.reloadData()
             }
-            
-            
+
             alertController.dismiss(animated: true, completion: nil)
         })
-        
+
         let cancel = UIAlertAction(title: "Cancel", style: .default) { (_ : UIAlertAction) in
-            
+
             alertController.dismiss(animated: true, completion: nil)
         }
-        
-        alertController.addAction(ok)
-        
-        alertController.addAction(cancel)
-        
-        self.present(alertController, animated: true, completion: nil)
 
-        
+        alertController.addAction(ok)
+
+        alertController.addAction(cancel)
+
+        self.present(alertController, animated: true, completion: nil)
 
     }
 
@@ -85,7 +81,7 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
         navigationController?.navigationBar.barTintColor = UIColor.goldfishRed
 
-        navigationItem.title = "Trace"
+        navigationItem.title = "Friend Trip"
 
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
 
