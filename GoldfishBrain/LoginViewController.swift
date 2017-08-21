@@ -33,18 +33,18 @@ class LoginViewController: UIViewController {
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
 
             if error != nil {
-                
+
                 let alertController = UIAlertController(
                     title: "溫馨小提醒",
                     message: "email/password錯誤",
                     preferredStyle: .alert)
-                
+
                 let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
                     alertController.dismiss(animated: true, completion: nil)
                 })
-                
+
                 alertController.addAction(check)
-                
+
                 self.present(alertController, animated: true, completion: nil)
 
                 return
@@ -84,18 +84,18 @@ class LoginViewController: UIViewController {
 //            self.alertLabel.isHidden = false
 
 //            self.alertLabel.text = "Please enter your email."
-            
+
             let alertController = UIAlertController(
                 title: "溫馨小提醒",
                 message: "請輸入email",
                 preferredStyle: .alert)
-            
+
             let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
                 alertController.dismiss(animated: true, completion: nil)
             })
-            
+
             alertController.addAction(check)
-            
+
             self.present(alertController, animated: true, completion: nil)
 
         } else {
@@ -113,9 +113,9 @@ class LoginViewController: UIViewController {
 //                    self.alertLabel.isHidden = false
 //
 //                    self.alertLabel.text = "Login..."
-                    
+
                     let activityData = ActivityData()
-                    
+
                     NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
 
                 }

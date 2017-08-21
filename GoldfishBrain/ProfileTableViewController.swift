@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FirebaseDatabase
+import Firebase
 import Kingfisher
 import CoreData
 import GoogleMaps
@@ -52,6 +52,30 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
     let doingCoreDataManager = DoingCoreDataManager()
 
 //    var tabBarC: TabBarController?
+
+    @IBAction func logoutButton(_ sender: Any) {
+
+        do {
+
+            try Auth.auth().signOut()
+
+        } catch let logoutError {
+
+            print("登出錯誤:", logoutError)
+
+        }
+
+        UserDefaults.standard.removeObject(forKey: "uid")
+
+        UserDefaults.standard.synchronize()
+
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+
+        let loginVC = storyBoard.instantiateViewController(withIdentifier: "LoginVC")
+
+        self.present(loginVC, animated: true, completion: nil)
+
+    }
 
     func profileManager(_ manager: ProfileManager, didGetProfile profile: [Profile]) {
 
@@ -207,12 +231,12 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
         }
 
         if let finished = travelDatas[indexPath.row].finished as? Bool {
-            
+
             switch finished {
             case true:
                 cell.travelFinished.text = "行程是否完成：已抵達目的地"
             default: break
-                
+
             }
 
         } else {

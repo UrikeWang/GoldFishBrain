@@ -26,30 +26,6 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
     @IBOutlet weak var friendListButton: UIBarButtonItem!
 
-    @IBAction func logoutButton(_ sender: Any) {
-
-        do {
-
-            try Auth.auth().signOut()
-
-        } catch let logoutError {
-
-            print("登出錯誤:", logoutError)
-
-        }
-
-        UserDefaults.standard.removeObject(forKey: "uid")
-
-        UserDefaults.standard.synchronize()
-
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-
-        let loginVC = storyBoard.instantiateViewController(withIdentifier: "LoginVC")
-
-        self.present(loginVC, animated: true, completion: nil)
-
-    }
-
     func chatRoomManager(_ manager: ChatRoomManager, didGetPeople people: [Person]) {
 
         self.people = people

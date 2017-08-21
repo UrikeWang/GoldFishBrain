@@ -72,7 +72,7 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
         friendEventTableView.rowHeight = UITableViewAutomaticDimension
         friendEventTableView.estimatedRowHeight = 60
-        
+
         friendEventTableView.separatorColor = UIColor.goldfishRed
         friendEventTableView.separatorInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
 
