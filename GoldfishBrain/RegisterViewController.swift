@@ -37,6 +37,20 @@ class RegisterViewController: UIViewController {
 
             if error != nil {
                 print("錯誤訊息:", error as Any)
+
+                let alertController = UIAlertController(
+                    title: "溫馨小提醒",
+                    message: "請輸入正確的個人資料",
+                    preferredStyle: .alert)
+
+                let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+                    alertController.dismiss(animated: true, completion: nil)
+                })
+
+                alertController.addAction(check)
+
+                self.present(alertController, animated: true, completion: nil)
+
                 return
             }
 

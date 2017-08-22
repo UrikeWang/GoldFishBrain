@@ -36,7 +36,7 @@ class LoginViewController: UIViewController {
 
                 let alertController = UIAlertController(
                     title: "溫馨小提醒",
-                    message: "email/password錯誤",
+                    message: "請輸入正確的個人資料",
                     preferredStyle: .alert)
 
                 let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
