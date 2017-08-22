@@ -231,8 +231,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         if travelDestination != "" && friendID != "" {
 
-            print("33333333333", friendID)
-
             //自動傳message
             autoSendDo(text: travelDetails.text, id: friendID)
 
@@ -249,8 +247,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             let doingTravelDatas = doingCoreDataManager.fetchDoingData()
 
-            print("111111111111", doingTravelDatas[0].friendID)
-
             let doingCount = doingTravelDatas.count
 
             if doingCount == 0 {
@@ -259,8 +255,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
                 doingCoreDataManager.addDoingDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName, friendID: friendID)
 
             } else {
-
-                print("222222222", doingTravelDatas[0].friendID)
 
                 autoSendDo(text: "我取消前往 \(doingTravelDatas[0].destination!) 的行程了", id: doingTravelDatas[0].friendID!)
 

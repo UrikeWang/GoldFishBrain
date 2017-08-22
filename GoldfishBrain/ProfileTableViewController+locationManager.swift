@@ -64,6 +64,14 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
         mapView.settings.myLocationButton = true
 
+        let marker = GMSMarker()
+
+        marker.position = CLLocationCoordinate2DMake((location?.coordinate.latitude)!, (location?.coordinate.longitude)!)
+
+        marker.title = "我的位置"
+
+        marker.map = mapView
+
         if destinationCoordinates.isEmpty == false {
 
             let destination = CLLocation(latitude: destinationCoordinates[0] as CLLocationDegrees, longitude: destinationCoordinates[1] as CLLocationDegrees)

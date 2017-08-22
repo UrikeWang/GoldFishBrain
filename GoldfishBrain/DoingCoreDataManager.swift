@@ -55,22 +55,6 @@ class DoingCoreDataManager {
 
     }
 
-//    func fetchDoingDoFriendID(indexPath: Int) -> [String] {
-//
-//        let doingTravelDatas = fetchDoingData()
-//
-//        var pastTravelDetails = [String]()
-//
-//        pastTravelDetails[0] = doingTravelDatas[indexPath].friendID!
-//
-//        pastTravelDetails[1] = doingTravelDatas[indexPath].destination!
-//
-//        print("1111111111前一筆", pastTravelDetails)
-//
-//        return pastTravelDetails
-//
-//    }
-
     //將doingDo搬到do coredata中
     func deleteDoingDo(indexPath: Int) {
 
