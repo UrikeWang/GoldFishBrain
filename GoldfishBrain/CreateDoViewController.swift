@@ -72,7 +72,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         // 設置 UIDatePicker 格式
         datePicker.datePickerMode = .dateAndTime
 
-        // 選取時間時的分鐘間隔 這邊以 5 分鐘為一個間隔
+        // 選取時間時的分鐘間隔 這邊以 1 分鐘為一個間隔
         datePicker.minuteInterval = 1
         datePicker.date = Date()
 
@@ -257,7 +257,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
             } else {
 
                 //先刪除原本的目的地資訊
-//                doingCoreDataManager.deleteDoingDo(indexPath: 0)
+                doingCoreDataManager.deleteDoingDo(indexPath: 0)
 
                 //加到doingCoreManager
                 doingCoreDataManager.addDoingDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName)
@@ -315,7 +315,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         let dateString = dateFormatter.string(from: date)
 
         dateText.text = dateString
-//        dateText.placeholder = "Select time.."
+
+        travelTime = dateString
 
         destinationText.placeholder = "Select destination"
 

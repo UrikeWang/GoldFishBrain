@@ -80,6 +80,8 @@ class DoingCoreDataManager {
 
         appDelegate.saveContext()
 
+//        return data.friend
+
     }
 
     func updateDoingDo() {
