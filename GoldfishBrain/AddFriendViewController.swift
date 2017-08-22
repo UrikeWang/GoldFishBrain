@@ -70,7 +70,7 @@ class AddFriendViewController: UIViewController, chatRoomManagerDelegate {
 
         chatRoomManager.delegate = self
 
-        addFriendEmailLabel.text = "    Enter your friend's email"
+        addFriendEmailLabel.text = "    輸入朋友Email"
         addFriendEmailLabel.backgroundColor = UIColor.goldfishRedLight
         addFriendEmailLabel.textColor = UIColor.white
 
@@ -80,7 +80,7 @@ class AddFriendViewController: UIViewController, chatRoomManagerDelegate {
         searchFriendButton.setTitleColor(UIColor.white, for: .normal)
         searchFriendButton.dropShadow()
 
-        checkFriendLabel.text = "    Check your friend's name"
+        checkFriendLabel.text = "    確認朋友名字"
         checkFriendLabel.backgroundColor = UIColor.goldfishOrangeLight
         checkFriendLabel.textColor = UIColor.white
 

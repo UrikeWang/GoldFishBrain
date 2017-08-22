@@ -324,29 +324,29 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         //textFieldDidBeginEditing
         self.dateText.delegate = self
 
-        dateLabel.text = "Select your start time"
+        dateLabel.text = "    選擇您的出發時間"
         dateLabel.backgroundColor = UIColor.goldfishRedLight
         dateLabel.textColor = UIColor.white
 
-        destinationLabel.text = "Select your desination"
+        destinationLabel.text = "    選擇您的目的地"
         destinationLabel.backgroundColor = UIColor.goldfishRedLight
         destinationLabel.textColor = UIColor.white
 
-        toWhoLabel.text = "Select your friend who you want to notify"
+        toWhoLabel.text = "    選擇您要通知的朋友"
         toWhoLabel.backgroundColor = UIColor.goldfishRedLight
         toWhoLabel.textColor = UIColor.white
 
-        detailsLabel.text = "行程資訊"
+        detailsLabel.text = "    行程資訊"
         detailsLabel.backgroundColor = UIColor.goldfishOrangeLight
         detailsLabel.textColor = UIColor.white
 
-        createDoButton.setTitle("Create", for: .normal)
+        createDoButton.setTitle("新增", for: .normal)
         createDoButton.backgroundColor = UIColor.goldfishRed
         createDoButton.layer.cornerRadius = createDoButton.frame.height/2
         createDoButton.setTitleColor(UIColor.white, for: .normal)
         createDoButton.dropShadow()
 
-        cancelDoButton.setTitle("Cancel", for: .normal)
+        cancelDoButton.setTitle("取消", for: .normal)
         cancelDoButton.backgroundColor = UIColor.goldfishOrange
         cancelDoButton.layer.cornerRadius = cancelDoButton.frame.height/2
         cancelDoButton.setTitleColor(UIColor.white, for: .normal)
