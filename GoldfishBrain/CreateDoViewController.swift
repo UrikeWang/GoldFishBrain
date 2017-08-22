@@ -157,7 +157,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             popOverFriendVC.sourceView = viewForSource
 
-//            popOverFriendVC.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+            popOverFriendVC.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
 //
 //            popFriendVC.preferredContentSize = CGSize(width: 350, height: 300)
 

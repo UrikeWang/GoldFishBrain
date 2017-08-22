@@ -907,9 +907,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WFV-RQ-qVw">
-                                <rect key="frame" x="0.0" y="28" width="375" height="492"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WFV-RQ-qVw">
+                                <rect key="frame" x="16" y="28" width="343" height="566"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BUL-14-xzU">
                                     <size key="itemSize" width="141" height="171"/>
@@ -962,9 +961,11 @@
                                     <outlet property="delegate" destination="geo-yk-Xvs" id="Yi2-cX-8eF"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bg-65-He6">
-                                <rect key="frame" x="96" y="581" width="183" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bg-65-He6">
+                                <rect key="frame" x="145" y="602" width="85" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="85" id="gDD-ls-6JO"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="cancelSelectFriendButton:" destination="geo-yk-Xvs" eventType="touchDragInside" id="jGg-tT-ke4"/>
@@ -972,6 +973,14 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="WFV-RQ-qVw" secondAttribute="trailing" id="7jD-mV-d8M"/>
+                            <constraint firstItem="2hu-ZN-7Zj" firstAttribute="top" secondItem="8bg-65-He6" secondAttribute="bottom" constant="35" id="9FY-jp-I6C"/>
+                            <constraint firstItem="WFV-RQ-qVw" firstAttribute="top" secondItem="QQt-6w-glO" secondAttribute="bottom" constant="8" id="BLW-fG-Bvb"/>
+                            <constraint firstItem="WFV-RQ-qVw" firstAttribute="leading" secondItem="4DI-JQ-3Do" secondAttribute="leadingMargin" id="GEY-d9-IdJ"/>
+                            <constraint firstItem="8bg-65-He6" firstAttribute="top" secondItem="WFV-RQ-qVw" secondAttribute="bottom" constant="8" id="WpM-tw-qnW"/>
+                            <constraint firstItem="8bg-65-He6" firstAttribute="centerX" secondItem="4DI-JQ-3Do" secondAttribute="centerX" id="hl8-or-ov5"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="cancelSelectFriendButton" destination="8bg-65-He6" id="m8a-Zz-qnE"/>
