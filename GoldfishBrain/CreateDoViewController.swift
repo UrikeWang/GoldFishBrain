@@ -180,7 +180,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         destinationText.text = destination
 
-        travelDetails.text = "出發時間：\(travelTime)\n\r目的地：\(self.travelDestination)\n\r行程時間：\(self.travelDuration)\n\r通知：\(self.friendName)"
+        travelDetails.text = "出發時間：\(travelTime)\n\r目的地點：\(self.travelDestination)\n\r行程時間：\(self.travelDuration)\n\r通知：\(self.friendName)"
 
         self.view.reloadInputViews()
     }
@@ -193,7 +193,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         friendText.text = name
 
-        travelDetails.text = "出發時間：\(travelTime)\n\r目的地：\(self.travelDestination)\n\r行程時間：\(self.travelDuration)\n\r通知：\(self.friendName)"
+        travelDetails.text = "出發時間：\(travelTime)\n\r目的地點：\(self.travelDestination)\n\r行程時間：\(self.travelDuration)\n\r通知：\(self.friendName)"
 
     }
 

@@ -220,29 +220,29 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
             if let date = travelDatas[indexPath.row].time {
 
-                cell.travelDate.text = "出發時間：" + date
+                cell.travelDate.text = date
 
             } else {
 
-                cell.travelDate.text = "出發時間："
+                cell.travelDate.text = ""
             }
 
             if let destination = travelDatas[indexPath.row].destination {
 
-                cell.travelDestination.text = "目的地：" + destination
+                cell.travelDestination.text = destination
 
             } else {
 
-                cell.travelDestination.text = "目的地："
+                cell.travelDestination.text = ""
             }
 
             if let finished = travelDatas[indexPath.row].finished as? Bool {
 
                 switch finished {
                 case true:
-                    cell.travelFinished.text = "行程是否完成：已抵達目的地"
+                    cell.travelFinished.text = "已抵達目的地點"
                 default:
-                    cell.travelFinished.text = "行程是否完成：行程已取消"
+                    cell.travelFinished.text = "行程已取消"
 
                 }
 

@@ -114,8 +114,6 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        print("11111111", doingTravelDatas.count)
-
         switch doingTravelDatas.count {
         case 0:
 
@@ -142,7 +140,12 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
             let duration = travelData.duration!
             let friend = travelData.friend!
 
-            cell.doingTravelDataLabel.text = "出發時間：\(date)\r\n目的地：\(destination)\r\n預計行程時間：\(duration)\r\n通知朋友：\(friend)"
+            cell.doingTravelDate.text = date
+            cell.doingTravelDestination.text = destination
+            cell.doingToFriend.text = friend
+            cell.doingTravelDuration.text = duration
+
+//            cell.doingTravelDataLabel.text = "出發時間：\(date)\r\n目的地點：\(destination)\r\n通知朋友：\(friend)\r\n預計行程時間：\(duration)"
 
             return cell
 

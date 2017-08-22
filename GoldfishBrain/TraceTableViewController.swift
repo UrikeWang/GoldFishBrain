@@ -142,7 +142,7 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
 //            cell.checkButton.tag = indexPath.row
 
-            cell.friendDoContent.text = "朋友：\(event.fromFriend)\r出發時間：\(event.time)\r目的地：\(event.destination)\r預估時間：\(event.duration)\r"
+            cell.friendDoContent.text = "朋友：\(event.fromFriend)\r出發時間：\(event.time)\r目的地點：\(event.destination)\r預估時間：\(event.duration)\r"
 
             return cell
 

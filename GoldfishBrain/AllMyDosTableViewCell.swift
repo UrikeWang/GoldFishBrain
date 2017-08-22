@@ -20,9 +20,43 @@ class AllMyDosTableViewCell: UITableViewCell {
 
     @IBOutlet weak var travelNotified: UILabel! //到達目的地時通知狀態
 
+    @IBOutlet weak var travelDataLabel: UILabel!
+
+    @IBOutlet weak var travelDestinationLabel: UILabel!
+
+    @IBOutlet weak var travelFinishedLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        setupTravelDataLabel()
+
+        setupTravelDestinationLabel()
+
+        setupTravelFinishedLabel()
+    }
+
+    private func setupTravelDataLabel() {
+
+        let label =  travelDataLabel!
+
+        label.text = "出發時間："
+
+    }
+
+    private func setupTravelDestinationLabel() {
+
+        let label =  travelDestinationLabel!
+
+        label.text = "目的地點："
+    }
+
+    private func setupTravelFinishedLabel() {
+
+        let label =  travelFinishedLabel!
+
+        label.text = "行程結果："
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

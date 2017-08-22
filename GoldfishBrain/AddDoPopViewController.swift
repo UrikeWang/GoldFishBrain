@@ -186,7 +186,7 @@ class AddDoPopViewController: UIViewController/*, managerCreateStartDelegate*/ {
                                             let desination = self.routeAddresses["Destination"]!
                                             //swiftlint:enable force_cast
 
-                                            self.travelTime.text = "目的地：\(desination)\r\n總距離：\(distanceText)\r\n總時間：\(durationText)"
+                                            self.travelTime.text = "目的地點：\(desination)\r\n總距離：\(distanceText)\r\n總時間：\(durationText)"
 
                                             self.travelDuration = "\(durationText)"
 
