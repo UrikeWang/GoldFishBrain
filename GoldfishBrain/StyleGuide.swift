@@ -34,7 +34,7 @@ extension UIColor {
     }
 
     class var textBackground: UIColor {
-        return UIColor(red: 78.0 / 255.0, green: 77.0 / 255.0, blue: 77.0 / 255.0, alpha: 0.5)
+        return UIColor(red: 78.0 / 255.0, green: 77.0 / 255.0, blue: 77.0 / 255.0, alpha: 0.3)
     }
 
     class var buttonBackground: UIColor {

@@ -172,14 +172,14 @@ class LoginViewController: UIViewController {
         appTitle.textAlignment = .center
         appTitle.textColor = UIColor.white
 
-        emailText.placeholder = "Enter your email address"
+        emailText.placeholder = "Email"
         emailText.backgroundColor = UIColor.textBackground
         emailText.layer.cornerRadius = 15
         emailText.textAlignment = .center
         emailText.textColor = UIColor.white
         emailText.returnKeyType = .done
 
-        passwordText.placeholder = "Enter your password"
+        passwordText.placeholder = "Password"
         passwordText.backgroundColor = UIColor.textBackground
         passwordText.layer.cornerRadius = 15
         passwordText.textAlignment = .center
