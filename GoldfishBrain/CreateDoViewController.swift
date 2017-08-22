@@ -231,6 +231,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         if travelDestination != "" && friendID != "" {
 
+            print("33333333333", friendID)
+
             //自動傳message
             autoSendDo(text: travelDetails.text, id: friendID)
 
@@ -247,20 +249,26 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             let doingTravelDatas = doingCoreDataManager.fetchDoingData()
 
+            print("111111111111", doingTravelDatas[0].friendID)
+
             let doingCount = doingTravelDatas.count
 
             if doingCount == 0 {
 
                 //加到doingCoreManager
-                doingCoreDataManager.addDoingDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName)
+                doingCoreDataManager.addDoingDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName, friendID: friendID)
 
             } else {
+
+                print("222222222", doingTravelDatas[0].friendID)
+
+                autoSendDo(text: "我取消前往 \(doingTravelDatas[0].destination!) 的行程了", id: doingTravelDatas[0].friendID!)
 
                 //先刪除原本的目的地資訊
                 doingCoreDataManager.deleteDoingDo(indexPath: 0)
 
                 //加到doingCoreManager
-                doingCoreDataManager.addDoingDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName)
+                doingCoreDataManager.addDoingDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName, friendID: friendID)
 
                 //將對方firebase原本的事件刪除
                 let eventID = Database.database().reference().child("users").child(uid)//.child("eventID")
@@ -438,7 +446,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             let chatsRef = Database.database().reference().child("users").child(uid).child("chats")
 
-            let chatsToRef =  Database.database().reference().child("users").child(friendID).child("chats")
+            let chatsToRef =  Database.database().reference().child("users").child(id).child("chats")
 
             let childTalkTextID = childTalkRef.childByAutoId()
 
@@ -448,9 +456,9 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
                 case 0 :
 
-                    let memValues = ["0": uid, "1": self.friendID]
+                    let memValues = ["0": uid, "1": id]
 
-                    let values = ["text": text, "fromID": uid, "toID": self.friendID, "timestamp": timestamp] as [String : Any]
+                    let values = ["text": text, "fromID": uid, "toID": id, "timestamp": timestamp] as [String : Any]
 
                     childTalkRef.child("members").updateChildValues(memValues)
 
@@ -477,11 +485,11 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
                                     let chatMember2 = member[1]
 
-                                    if (uid == chatMember1 && self.friendID == chatMember2) || (uid == chatMember2 && self.friendID == chatMember1) {
+                                    if (uid == chatMember1 && id == chatMember2) || (uid == chatMember2 && id == chatMember1) {
 
                                         istalked = true
 
-                                        let values = ["text": text, "fromID": uid, "toID": self.friendID, "timestamp": timestamp] as [String : Any]
+                                        let values = ["text": text, "fromID": uid, "toID": id, "timestamp": timestamp] as [String : Any]
 
                                         channelRef.child(chatroomID).childByAutoId().updateChildValues(values)
 
@@ -493,9 +501,9 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
                                 if istalked == false && isrun == 0 {
 
-                                    let memValues = ["0": uid, "1": self.friendID]
+                                    let memValues = ["0": uid, "1": id]
 
-                                    let values = ["text": text, "fromID": uid, "toID": self.friendID, "timestamp": timestamp] as [String : Any]
+                                    let values = ["text": text, "fromID": uid, "toID": id, "timestamp": timestamp] as [String : Any]
 
                                     childTalkRef.child("members").updateChildValues(memValues)
 

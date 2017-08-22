@@ -31,7 +31,7 @@ class DoingCoreDataManager {
 
     }
 
-    func addDoingDo(time: String, destination: String, distance: String, duration: String, friend: String) {
+    func addDoingDo(time: String, destination: String, distance: String, duration: String, friend: String, friendID: String) {
 
         let newTravelData = DoingTravelDataMO(context: context)
 
@@ -45,6 +45,8 @@ class DoingCoreDataManager {
 
         newTravelData.friend = friend
 
+        newTravelData.friendID = friendID
+
         newTravelData.finished = false
 
         newTravelData.notify = false
@@ -52,6 +54,22 @@ class DoingCoreDataManager {
         appDelegate.saveContext()
 
     }
+
+//    func fetchDoingDoFriendID(indexPath: Int) -> [String] {
+//
+//        let doingTravelDatas = fetchDoingData()
+//
+//        var pastTravelDetails = [String]()
+//
+//        pastTravelDetails[0] = doingTravelDatas[indexPath].friendID!
+//
+//        pastTravelDetails[1] = doingTravelDatas[indexPath].destination!
+//
+//        print("1111111111前一筆", pastTravelDetails)
+//
+//        return pastTravelDetails
+//
+//    }
 
     //將doingDo搬到do coredata中
     func deleteDoingDo(indexPath: Int) {
