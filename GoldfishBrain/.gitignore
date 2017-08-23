@@ -1,4 +1,5 @@
 # Ignore temp files
 
-*.plist
+GoogleService-Info.plist
+Info.plist
 Key.swift
