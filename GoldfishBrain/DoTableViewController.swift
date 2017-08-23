@@ -20,6 +20,8 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
     let doingCoreDataManager = DoingCoreDataManager()
 
+    var sectionList = ["使用方式", "行程進行中"]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -103,7 +105,7 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -111,31 +113,48 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
         return 60.0
     }
 
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//
+//        return "目的地前往中..."
+//    }
+
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
-        return "目的地前往中..."
+        return sectionList[section]
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return doingTravelDatas.count
+//        return doingTravelDatas.count
+
+        switch section {
+        case 0:
+
+            return 1
+
+        case 1:
+
+            return doingTravelDatas.count
+
+        default:
+
+            return 0
+        }
+
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        switch doingTravelDatas.count {
-        case 0:
+        if indexPath.section == 0 {
 
             //swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: "NoneDoCell", for: indexPath) as! NoneDoTableViewCell
             //swiftlint:enable force_cast
 
-            cell.noneLabel.text = "No more task"
-
             return cell
 
-        default:
-
+        } else {
+//
             //swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: "DoCell", for: indexPath) as! DoTableViewCell
             //swiftlint:enable force_cast
@@ -154,9 +173,23 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
             cell.doingToFriend.text = friend
             cell.doingTravelDuration.text = duration
 
-//            cell.doingTravelDataLabel.text = "出發時間：\(date)\r\n目的地點：\(destination)\r\n通知朋友：\(friend)\r\n預計行程時間：\(duration)"
+            //            cell.doingTravelDataLabel.text = "出發時間：\(date)\r\n目的地點：\(destination)\r\n通知朋友：\(friend)\r\n預計行程時間：\(duration)"
 
             return cell
+
+        }
+
+    }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+
+        if indexPath.section == 0 {
+
+            return false
+
+        } else {
+
+            return true
 
         }
 
