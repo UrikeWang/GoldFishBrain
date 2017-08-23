@@ -12,10 +12,6 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
     @IBOutlet var popTableView: UITableView!
 
-//    @IBOutlet weak var addDoButton: UIButton!
-
-//    @IBOutlet weak var fishImage: UIImageView!
-
     var doingTravelDatas = [DoingTravelDataMO]()
 
     let doingCoreDataManager = DoingCoreDataManager()
@@ -33,38 +29,11 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
 
-//        addDoButton.layer.cornerRadius = 15
-//        addDoButton.layer.borderColor = UIColor(red: 218.0 / 255.0, green: 52.0 / 255.0, blue: 51.0 / 255.0, alpha: 0.6).cgColor
-//        addDoButton.backgroundColor = UIColor.white
-//        addDoButton.layer.borderWidth = 1
-//        addDoButton.setTitle("建立行程", for: .normal)
-//        addDoButton.setTitleColor(UIColor.goldfishRed, for: .normal)
-//        addDoButton.layer.masksToBounds = false
-//        addDoButton.layer.shadowColor = UIColor.black.cgColor
-//        addDoButton.layer.shadowOpacity = 0.3
-//        addDoButton.layer.shadowOffset = CGSize(width: 4, height: 8)
-//        addDoButton.layer.shadowRadius = 5
-
-//        fishImage.layer.shadowOffset = CGSize(width: 0, height: 3)
-//        fishImage.layer.shadowOpacity = 0.4
-//        fishImage.layer.shadowRadius = 4
-//        fishImage.layer.shadowColor = UIColor.black.cgColor
-
         popTableView.estimatedRowHeight = 200.0
         popTableView.rowHeight = UITableViewAutomaticDimension
         popTableView.separatorStyle = UITableViewCellSeparatorStyle.none
 
     }
-
-//    @IBAction func addDoButton(_ sender: Any) {
-//
-//        //swiftlint:disable force_cast
-//        let addDoVC = storyboard?.instantiateViewController(withIdentifier: "addDoVC") as! CreateDoViewController
-//        //swiftlint:enable force_cast
-//
-//        present(addDoVC, animated: true, completion: nil)
-//
-//    }
 
     @IBAction func addTripButton(_ sender: Any) {
 
@@ -113,11 +82,6 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
         return 60.0
     }
 
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//
-//        return "目的地前往中..."
-//    }
-
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
         return sectionList[section]
@@ -154,7 +118,7 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
             return cell
 
         } else {
-//
+
             //swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: "DoCell", for: indexPath) as! DoTableViewCell
             //swiftlint:enable force_cast

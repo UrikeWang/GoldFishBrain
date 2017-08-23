@@ -46,6 +46,7 @@
 		6EB1D2581F38941300377FDE /* PopFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB1D2571F38941300377FDE /* PopFriendViewController.swift */; };
 		6EB1D25A1F38961000377FDE /* PopFriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB1D2591F38961000377FDE /* PopFriendCollectionViewCell.swift */; };
 		6EB1D27D1F3B03B400377FDE /* NoneDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB1D27C1F3B03B400377FDE /* NoneDoTableViewCell.swift */; };
+		6EBBFD601F4D4F8C00125B51 /* CollapsibleTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBBFD5F1F4D4F8C00125B51 /* CollapsibleTableViewHeader.swift */; };
 		6EC0AB6D1F3CAD55005FA1F6 /* TraceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0AB6C1F3CAD55005FA1F6 /* TraceTableViewCell.swift */; };
 		6EC0AB6F1F3CAD69005FA1F6 /* TraceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0AB6E1F3CAD69005FA1F6 /* TraceTableViewController.swift */; };
 		6EC0AB711F3DDB10005FA1F6 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0AB701F3DDB10005FA1F6 /* CoreDataManager.swift */; };
@@ -104,6 +105,7 @@
 		6EB1D2571F38941300377FDE /* PopFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopFriendViewController.swift; sourceTree = "<group>"; };
 		6EB1D2591F38961000377FDE /* PopFriendCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopFriendCollectionViewCell.swift; sourceTree = "<group>"; };
 		6EB1D27C1F3B03B400377FDE /* NoneDoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoneDoTableViewCell.swift; sourceTree = "<group>"; };
+		6EBBFD5F1F4D4F8C00125B51 /* CollapsibleTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewHeader.swift; sourceTree = "<group>"; };
 		6EC0AB6C1F3CAD55005FA1F6 /* TraceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraceTableViewCell.swift; sourceTree = "<group>"; };
 		6EC0AB6E1F3CAD69005FA1F6 /* TraceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraceTableViewController.swift; sourceTree = "<group>"; };
 		6EC0AB701F3DDB10005FA1F6 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				6E9861C71F31D78200EFEFCB /* DoTableViewController.swift */,
 				6E9861CD1F31FEEA00EFEFCB /* DoTableViewCell.swift */,
 				6EB1D27C1F3B03B400377FDE /* NoneDoTableViewCell.swift */,
+				6EBBFD5F1F4D4F8C00125B51 /* CollapsibleTableViewHeader.swift */,
 			);
 			name = Do;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				6E5ECFDB1F41758B00AFDB97 /* Event.swift in Sources */,
 				6E2847401F28881C002269EC /* PeopleTableViewCell.swift in Sources */,
 				6E2847351F278128002269EC /* ChatRoomTableViewController.swift in Sources */,
+				6EBBFD601F4D4F8C00125B51 /* CollapsibleTableViewHeader.swift in Sources */,
 				6E2847771F2B1616002269EC /* StyleGuide.swift in Sources */,
 				6E2847461F28A6FB002269EC /* Person.swift in Sources */,
 				6E9861C81F31D78200EFEFCB /* DoTableViewController.swift in Sources */,
