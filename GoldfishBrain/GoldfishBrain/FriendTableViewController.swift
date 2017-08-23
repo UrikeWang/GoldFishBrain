@@ -46,7 +46,7 @@ class FriendTableViewController: UITableViewController, chatRoomManagerDelegate 
 
         navigationController?.navigationBar.barTintColor = UIColor.goldfishRed
 
-        navigationItem.title = "Friend"
+        navigationItem.title = "Friend List"
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
 

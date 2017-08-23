@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FirebaseDatabase
+import Firebase
 import Kingfisher
 import CoreData
 import GoogleMaps
@@ -21,8 +21,6 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
     @IBOutlet var dosTableView: UITableView!
 
-    @IBOutlet weak var separateLine: UIView!
-
     var profiles: [Profile] = []
 
     let profileManager = ProfileManager()
@@ -30,12 +28,6 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
     var userFirstName = ""
 
     var userLastName = ""
-
-//    var doDestination = ""
-//
-//    var doDuration = ""
-//
-//    var doDistance = ""
 
     var doCoordinate = [Double]()
 
@@ -58,6 +50,30 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
     let doingCoreDataManager = DoingCoreDataManager()
 
 //    var tabBarC: TabBarController?
+
+    @IBAction func logoutButton(_ sender: Any) {
+
+        do {
+
+            try Auth.auth().signOut()
+
+        } catch let logoutError {
+
+            print("登出錯誤:", logoutError)
+
+        }
+
+        UserDefaults.standard.removeObject(forKey: "uid")
+
+        UserDefaults.standard.synchronize()
+
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+
+        let loginVC = storyBoard.instantiateViewController(withIdentifier: "LoginVC")
+
+        self.present(loginVC, animated: true, completion: nil)
+
+    }
 
     func profileManager(_ manager: ProfileManager, didGetProfile profile: [Profile]) {
 
@@ -133,7 +149,14 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
         firstNameLabel.textAlignment = .left
         firstNameLabel.backgroundColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.7)
 
-        dosTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+//        dosTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+
+        dosTableView.separatorColor = UIColor.goldfishRed
+        dosTableView.separatorInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        dosTableView.rowHeight = UITableViewAutomaticDimension
+        dosTableView.estimatedRowHeight = 60
+
+        dosTableView.tableFooterView = UIView(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
 
 //        let userDestination = UserDefaults.standard.value(forKey: "destination") as? String
 
@@ -189,49 +212,70 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        //swiftlint:disable force_cast
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AllMyDosCell", for: indexPath) as! AllMyDosTableViewCell
-        //swiftlint:enable force_cast
+        if travelDatas.count > 0 {
 
-        if let date = travelDatas[indexPath.row].time {
+            //swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AllMyDosCell", for: indexPath) as! AllMyDosTableViewCell
+            //swiftlint:enable force_cast
 
-            cell.travelDate.text = "出發時間：" + date
+            if let date = travelDatas[indexPath.row].time {
+
+                cell.travelDate.text = date
+
+            } else {
+
+                cell.travelDate.text = ""
+            }
+
+            if let destination = travelDatas[indexPath.row].destination {
+
+                cell.travelDestination.text = destination
+
+            } else {
+
+                cell.travelDestination.text = ""
+            }
+
+            if let finished = travelDatas[indexPath.row].finished as? Bool {
+
+                switch finished {
+                case true:
+                    cell.travelFinished.text = "已抵達目的地點"
+                default:
+                    cell.travelFinished.text = "行程已取消"
+
+                }
+
+            } else {
+
+                cell.travelFinished.text = "行程是否完成："
+            }
+
+            //        if let notified = travelDatas[indexPath.row].notify as? Bool {
+            //
+            //            cell.travelNotified.text = "行程是否通知：\(notified)"
+            //
+            //        } else {
+            //
+            //            cell.travelNotified.text = "行程是否通知："
+            //        }
+
+            cell.travelDestination.tag = indexPath.row
+
+//            cell.layoutMargins = UIEdgeinsetsZero
+
+            return cell
 
         } else {
 
-            cell.travelDate.text = "出發時間："
+            //swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NoneMyDoCell", for: indexPath) as! NoneMyDoTableViewCell
+            //swiftlint:enable force_cast
+
+            return cell
+
         }
 
-        if let destination = travelDatas[indexPath.row].destination {
-
-            cell.travelDestination.text = "目的地：" + destination
-
-        } else {
-
-            cell.travelDestination.text = "目的地："
-        }
-
-        if let finished = travelDatas[indexPath.row].finished as? Bool {
-
-            cell.travelFinished.text = "行程是否完成：\(finished)"
-
-        } else {
-
-            cell.travelFinished.text = "行程是否完成："
-        }
-
-        if let notified = travelDatas[indexPath.row].notify as? Bool {
-
-            cell.travelNotified.text = "行程是否通知：\(notified)"
-
-        } else {
-
-            cell.travelNotified.text = "行程是否通知："
-        }
-
-        cell.travelDestination.tag = indexPath.row
-
-        return cell
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

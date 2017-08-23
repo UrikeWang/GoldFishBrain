@@ -59,12 +59,12 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
         chatRoomManager.fetchFriendIDs()
 
-        cancelSelectFriendButton.setTitle("Cancel", for: .normal)
+        cancelSelectFriendButton.setTitle("取消", for: .normal)
         cancelSelectFriendButton.setTitleColor(UIColor.white, for: .normal)
         cancelSelectFriendButton.layer.borderWidth = 2
         cancelSelectFriendButton.backgroundColor = UIColor.goldfishRed
         cancelSelectFriendButton.layer.borderColor = UIColor.goldfishRed.cgColor
-        cancelSelectFriendButton.layer.cornerRadius = 20
+        cancelSelectFriendButton.layer.cornerRadius = cancelSelectFriendButton.frame.height/2
         cancelSelectFriendButton.dropShadow()
 
     }

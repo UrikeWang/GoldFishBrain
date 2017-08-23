@@ -18,9 +18,21 @@ extension AddDoPopViewController: GMSAutocompleteResultsViewControllerDelegate {
 
         searchController?.isActive = false
 
+        searchController?.searchBar.text = place.formattedAddress
+
         mapView.camera = GMSCameraPosition(target: place.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
 
+        //選取地點之後，會先預設為走路
         routePoints["End"] = [place.coordinate.latitude, place.coordinate.longitude]
+
+        calculateTravelTime(type: "walking")
+
+        walkButton.layer.borderWidth = 1
+        walkButton.layer.borderColor = UIColor.goldfishRed.cgColor
+        walkButton.tintColor = UIColor.goldfishRed
+
+        carButton.layer.borderColor = UIColor.clear.cgColor
+        carButton.tintColor = UIColor.darkGray
 
         // Creates a marker in the center of the map
         let destinationMarker = GMSMarker()

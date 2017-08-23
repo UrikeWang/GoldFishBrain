@@ -8,41 +8,40 @@
 
 import UIKit
 
-class DoTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
+class DoTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate, CollapsibleTableViewHeaderDelegate {
 
     @IBOutlet var popTableView: UITableView!
-
-    @IBOutlet weak var addDoButton: UIButton!
-
-    @IBOutlet weak var fishImage: UIImageView!
 
     var doingTravelDatas = [DoingTravelDataMO]()
 
     let doingCoreDataManager = DoingCoreDataManager()
+
+    var sectionList = ["使用方式", "行程進行中"]
+
+    var sectionsCollapsed = [false, false] //false為全展開
+
+    func toggleSection(header: CollapsibleTableViewHeader, section: Int) {
+
+        let collapsed = !sectionsCollapsed[section]
+
+        sectionsCollapsed[section] = collapsed
+
+        header.setCollapsed(collapsed)
+
+        popTableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .automatic)
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationController?.navigationBar.barTintColor = UIColor.goldfishRed
 
-        navigationItem.title = "Do it"
+        navigationItem.title = "My Trip"
 
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
-
-        addDoButton.layer.cornerRadius = 15
-        addDoButton.layer.borderColor = UIColor(red: 218.0 / 255.0, green: 52.0 / 255.0, blue: 51.0 / 255.0, alpha: 0.6).cgColor
-        addDoButton.backgroundColor = UIColor.white
-        addDoButton.layer.borderWidth = 1
-        addDoButton.setTitle("建立行程", for: .normal)
-        addDoButton.setTitleColor(UIColor.goldfishRed, for: .normal)
-        addDoButton.dropShadow()
-
-        fishImage.layer.shadowOffset = CGSize(width: 0, height: 3)
-        fishImage.layer.shadowOpacity = 0.4
-        fishImage.layer.shadowRadius = 4
-        fishImage.layer.shadowColor = UIColor.black.cgColor
 
         popTableView.estimatedRowHeight = 200.0
         popTableView.rowHeight = UITableViewAutomaticDimension
@@ -50,7 +49,7 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
     }
 
-    @IBAction func addDoButton(_ sender: Any) {
+    @IBAction func addTripButton(_ sender: Any) {
 
         //swiftlint:disable force_cast
         let addDoVC = storyboard?.instantiateViewController(withIdentifier: "addDoVC") as! CreateDoViewController
@@ -59,6 +58,7 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
         present(addDoVC, animated: true, completion: nil)
 
     }
+
     override func viewWillAppear(_ animated: Bool) {
 
         super.viewWillAppear(animated) // No need for semicolon
@@ -88,44 +88,78 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 
-        return 60.0
+        return 44.0
+
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
 
-        return "進行中..."
+        return 1.0
+    }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as? CollapsibleTableViewHeader ?? CollapsibleTableViewHeader(reuseIdentifier: "header")
+
+        header.titleLabel.text = sectionList[section]
+
+        header.arrowLabel.text = ">"
+
+        header.setCollapsed(sectionsCollapsed[section])
+
+        header.section = section
+
+        header.delegate = self
+
+        return header
+
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return doingTravelDatas.count
+
+        switch section {
+
+        case 0:
+
+            return sectionsCollapsed[section] ? 0 : 1
+
+        case 1:
+
+            return sectionsCollapsed[section] ? 0 : doingTravelDatas.count
+
+        default:
+
+            return 0
+        }
+
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
+        return UITableViewAutomaticDimension
+
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        switch doingTravelDatas.count {
-        case 0:
+        if indexPath.section == 0 {
 
             //swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: "NoneDoCell", for: indexPath) as! NoneDoTableViewCell
             //swiftlint:enable force_cast
 
-            cell.noneLabel.text = "No more task"
-
             return cell
 
-        default:
+        } else {
 
             //swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: "DoCell", for: indexPath) as! DoTableViewCell
             //swiftlint:enable force_cast
-
-            //            cell.doDetailsTextView.text = "目的地：\(userDestination)\r\n通知朋友：\(friendID)"
 
             let travelData = doingTravelDatas[indexPath.row]
 
@@ -134,9 +168,28 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
             let duration = travelData.duration!
             let friend = travelData.friend!
 
-            cell.doingTravelDataLabel.text = "出發時間：\(date)\r\n目的地：\(destination)\r\n預計行程時間：\(duration)\r\n通知朋友：\(friend)"
+            cell.doingTravelDate.text = date
+            cell.doingTravelDestination.text = destination
+            cell.doingToFriend.text = friend
+            cell.doingTravelDuration.text = duration
+
+            //            cell.doingTravelDataLabel.text = "出發時間：\(date)\r\n目的地點：\(destination)\r\n通知朋友：\(friend)\r\n預計行程時間：\(duration)"
 
             return cell
+
+        }
+
+    }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+
+        if indexPath.section == 0 {
+
+            return false
+
+        } else {
+
+            return true
 
         }
 
@@ -151,6 +204,8 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
             doingCoreDataManager.fetchDoingData()
 
             self.doingTravelDatas.remove(at: indexPath.row)
+
+            doingTravelDatas = []
 
             self.popTableView.reloadData()
 

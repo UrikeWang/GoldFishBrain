@@ -37,6 +37,20 @@ class RegisterViewController: UIViewController {
 
             if error != nil {
                 print("錯誤訊息:", error as Any)
+
+                let alertController = UIAlertController(
+                    title: "溫馨小提醒",
+                    message: "請輸入正確的個人資料",
+                    preferredStyle: .alert)
+
+                let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+                    alertController.dismiss(animated: true, completion: nil)
+                })
+
+                alertController.addAction(check)
+
+                self.present(alertController, animated: true, completion: nil)
+
                 return
             }
 
@@ -129,7 +143,7 @@ class RegisterViewController: UIViewController {
         appTitle.textAlignment = .center
         appTitle.textColor = UIColor.white
 
-        firstNameText.placeholder = "Register your first name"
+        firstNameText.placeholder = "First Name"
         firstNameText.backgroundColor = UIColor.textBackground
         firstNameText.layer.cornerRadius = 15
         firstNameText.textAlignment = .center
@@ -137,21 +151,21 @@ class RegisterViewController: UIViewController {
         firstNameText.returnKeyType = .done
 //        firstNameText.font = UIFont(descriptor: ".Myriad Pro Semibold", size: 16)
 
-        lastNameText.placeholder = "Register your last name"
+        lastNameText.placeholder = "Last Name"
         lastNameText.backgroundColor = UIColor.textBackground
         lastNameText.layer.cornerRadius = 15
         lastNameText.textAlignment = .center
         lastNameText.textColor = UIColor.white
         lastNameText.returnKeyType = .done
 
-        emailText.placeholder = "Register your email address"
+        emailText.placeholder = "Email"
         emailText.backgroundColor = UIColor.textBackground
         emailText.layer.cornerRadius = 15
         emailText.textAlignment = .center
         emailText.textColor = UIColor.white
         emailText.returnKeyType = .done
 
-        passwordText.placeholder = "Enter your password"
+        passwordText.placeholder = "Password"
         passwordText.backgroundColor = UIColor.textBackground
         passwordText.layer.cornerRadius = 15
         passwordText.textAlignment = .center

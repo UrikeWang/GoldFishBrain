@@ -31,7 +31,7 @@ class DoingCoreDataManager {
 
     }
 
-    func addDoingDo(time: String, destination: String, distance: String, duration: String, friend: String) {
+    func addDoingDo(time: String, destination: String, distance: String, duration: String, friend: String, friendID: String) {
 
         let newTravelData = DoingTravelDataMO(context: context)
 
@@ -44,6 +44,8 @@ class DoingCoreDataManager {
         newTravelData.duration = duration
 
         newTravelData.friend = friend
+
+        newTravelData.friendID = friendID
 
         newTravelData.finished = false
 
@@ -79,6 +81,8 @@ class DoingCoreDataManager {
         context.delete(doingTravelDatas[indexPath])
 
         appDelegate.saveContext()
+
+//        return data.friend
 
     }
 
