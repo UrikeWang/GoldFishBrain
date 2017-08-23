@@ -50,6 +50,16 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         peopleFirstName = ""
     }
+    
+    @IBAction func sendMessageButton(_ sender: Any) {
+        
+        if messageText.text != "" {
+            
+            handleSendMessage()
+            
+        }
+    }
+    
 
     //swiftlint:disable force_cast
     let uid = UserDefaults.standard.value(forKey: "uid") as! String

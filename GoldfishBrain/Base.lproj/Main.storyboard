@@ -1263,6 +1263,9 @@
                                     <constraint firstAttribute="width" constant="60" id="fRC-Ts-LcI"/>
                                     <constraint firstAttribute="height" constant="50" id="fe6-g2-lSv"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="sendMessageButton:" destination="kTR-4i-9W3" eventType="touchUpInside" id="VBU-0W-mTK"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
