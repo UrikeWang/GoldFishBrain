@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DoTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
+class DoTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate, CollapsibleTableViewHeaderDelegate {
 
     @IBOutlet var popTableView: UITableView!
 
@@ -17,6 +17,20 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
     let doingCoreDataManager = DoingCoreDataManager()
 
     var sectionList = ["使用方式", "行程進行中"]
+
+    var sectionsCollapsed = [false, false] //false為全展開
+
+    func toggleSection(header: CollapsibleTableViewHeader, section: Int) {
+
+        let collapsed = !sectionsCollapsed[section]
+
+        sectionsCollapsed[section] = collapsed
+
+        header.setCollapsed(collapsed)
+
+        popTableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .automatic)
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,31 +93,55 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 
-        return 60.0
+        return 44.0
+
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
 
-        return sectionList[section]
+        return 1.0
+    }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as? CollapsibleTableViewHeader ?? CollapsibleTableViewHeader(reuseIdentifier: "header")
+
+        header.titleLabel.text = sectionList[section]
+
+        header.arrowLabel.text = ">"
+
+        header.setCollapsed(sectionsCollapsed[section])
+
+        header.section = section
+
+        header.delegate = self
+
+        return header
+
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-//        return doingTravelDatas.count
 
         switch section {
+
         case 0:
 
-            return 1
+            return sectionsCollapsed[section] ? 0 : 1
 
         case 1:
 
-            return doingTravelDatas.count
+            return sectionsCollapsed[section] ? 0 : doingTravelDatas.count
 
         default:
 
             return 0
         }
+
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
+        return UITableViewAutomaticDimension
 
     }
 
@@ -122,8 +160,6 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
             //swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: "DoCell", for: indexPath) as! DoTableViewCell
             //swiftlint:enable force_cast
-
-            //            cell.doDetailsTextView.text = "目的地：\(userDestination)\r\n通知朋友：\(friendID)"
 
             let travelData = doingTravelDatas[indexPath.row]
 

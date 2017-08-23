@@ -69,10 +69,10 @@ extension UIImage {
             transform = transform.rotated(by: CGFloat.pi)
         case .left, .leftMirrored:
             transform = transform.translatedBy(x: self.size.width, y: 0)
-            transform = transform.rotated(by: CGFloat(M_PI_2))
+            transform = transform.rotated(by: .pi / 2)
         case .right, .rightMirrored:
             transform = transform.translatedBy(x: 0, y: self.size.height)
-            transform = transform.rotated(by: -CGFloat(M_PI_2))
+            transform = transform.rotated(by: .pi / 2)
         default:
             print("1 is normal")
         }
@@ -165,10 +165,21 @@ extension UIView {
         self.layer.shadowOffset = CGSize(width: 0, height: 1)
         self.layer.shadowRadius = 2
 
-//        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
-//        self.layer.shouldRasterize = true
-//        
-//        self.layer.rasterizationScale = UIScreen.main.scale
+    }
+
+    func rotate(_ toValue: CGFloat, duration: CFTimeInterval = 0.2) {
+
+        let animation = CABasicAnimation(keyPath: "transform.rotation")
+
+        animation.toValue = toValue
+
+        animation.duration = duration
+
+        animation.isRemovedOnCompletion = false
+
+        animation.fillMode = kCAFillModeForwards
+
+        self.layer.add(animation, forKey: nil)
 
     }
 
