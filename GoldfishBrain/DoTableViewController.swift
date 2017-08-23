@@ -12,9 +12,9 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
     @IBOutlet var popTableView: UITableView!
 
-    @IBOutlet weak var addDoButton: UIButton!
+//    @IBOutlet weak var addDoButton: UIButton!
 
-    @IBOutlet weak var fishImage: UIImageView!
+//    @IBOutlet weak var fishImage: UIImageView!
 
     var doingTravelDatas = [DoingTravelDataMO]()
 
@@ -31,22 +31,22 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
 
-        addDoButton.layer.cornerRadius = 15
-        addDoButton.layer.borderColor = UIColor(red: 218.0 / 255.0, green: 52.0 / 255.0, blue: 51.0 / 255.0, alpha: 0.6).cgColor
-        addDoButton.backgroundColor = UIColor.white
-        addDoButton.layer.borderWidth = 1
-        addDoButton.setTitle("建立行程", for: .normal)
-        addDoButton.setTitleColor(UIColor.goldfishRed, for: .normal)
-        addDoButton.layer.masksToBounds = false
-        addDoButton.layer.shadowColor = UIColor.black.cgColor
-        addDoButton.layer.shadowOpacity = 0.3
-        addDoButton.layer.shadowOffset = CGSize(width: 4, height: 8)
-        addDoButton.layer.shadowRadius = 5
+//        addDoButton.layer.cornerRadius = 15
+//        addDoButton.layer.borderColor = UIColor(red: 218.0 / 255.0, green: 52.0 / 255.0, blue: 51.0 / 255.0, alpha: 0.6).cgColor
+//        addDoButton.backgroundColor = UIColor.white
+//        addDoButton.layer.borderWidth = 1
+//        addDoButton.setTitle("建立行程", for: .normal)
+//        addDoButton.setTitleColor(UIColor.goldfishRed, for: .normal)
+//        addDoButton.layer.masksToBounds = false
+//        addDoButton.layer.shadowColor = UIColor.black.cgColor
+//        addDoButton.layer.shadowOpacity = 0.3
+//        addDoButton.layer.shadowOffset = CGSize(width: 4, height: 8)
+//        addDoButton.layer.shadowRadius = 5
 
-        fishImage.layer.shadowOffset = CGSize(width: 0, height: 3)
-        fishImage.layer.shadowOpacity = 0.4
-        fishImage.layer.shadowRadius = 4
-        fishImage.layer.shadowColor = UIColor.black.cgColor
+//        fishImage.layer.shadowOffset = CGSize(width: 0, height: 3)
+//        fishImage.layer.shadowOpacity = 0.4
+//        fishImage.layer.shadowRadius = 4
+//        fishImage.layer.shadowColor = UIColor.black.cgColor
 
         popTableView.estimatedRowHeight = 200.0
         popTableView.rowHeight = UITableViewAutomaticDimension
@@ -54,7 +54,17 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
     }
 
-    @IBAction func addDoButton(_ sender: Any) {
+//    @IBAction func addDoButton(_ sender: Any) {
+//
+//        //swiftlint:disable force_cast
+//        let addDoVC = storyboard?.instantiateViewController(withIdentifier: "addDoVC") as! CreateDoViewController
+//        //swiftlint:enable force_cast
+//
+//        present(addDoVC, animated: true, completion: nil)
+//
+//    }
+
+    @IBAction func addTripButton(_ sender: Any) {
 
         //swiftlint:disable force_cast
         let addDoVC = storyboard?.instantiateViewController(withIdentifier: "addDoVC") as! CreateDoViewController
@@ -63,6 +73,7 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
         present(addDoVC, animated: true, completion: nil)
 
     }
+
     override func viewWillAppear(_ animated: Bool) {
 
         super.viewWillAppear(animated) // No need for semicolon
@@ -78,8 +89,6 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
         DispatchQueue.main.async {
 
             self.popTableView.reloadData()
-
-            print("2222222", self.doingTravelDatas.count)
 
         }
 
