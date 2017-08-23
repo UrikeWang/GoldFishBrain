@@ -72,8 +72,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         // 設置 UIDatePicker 格式
         datePicker.datePickerMode = .dateAndTime
 
-        // 選取時間時的分鐘間隔 這邊以 5 分鐘為一個間隔
-        datePicker.minuteInterval = 5
+        // 選取時間時的分鐘間隔 這邊以 1 分鐘為一個間隔
+        datePicker.minuteInterval = 1
         datePicker.date = Date()
 
         //中文化
@@ -110,7 +110,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         let popVC = storyboard?.instantiateViewController(withIdentifier: "popVC") as! AddDoPopViewController
         //swiftlint:enable force_cast
 
-        popVC.modalPresentationStyle = .popover
+        popVC.modalPresentationStyle = .fullScreen
 
         popVC.delegate = self
 
@@ -124,7 +124,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             popOverVC.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
 
-            popVC.preferredContentSize = CGSize(width: 350, height: 600)
+//            popVC.preferredContentSize = CGSize(width: 350, height: 600)
 
             popOverVC.delegate = self
 
@@ -145,7 +145,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         let popFriendVC = storyboard?.instantiateViewController(withIdentifier: "popFriendVC") as! PopFriendViewController
         //swiftlint:enable force_cast
 
-        popFriendVC.modalPresentationStyle = .overFullScreen
+        popFriendVC.modalPresentationStyle = .fullScreen
 
         popFriendVC.delegate = self
 
@@ -157,7 +157,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             popOverFriendVC.sourceView = viewForSource
 
-//            popOverFriendVC.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+            popOverFriendVC.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
 //
 //            popFriendVC.preferredContentSize = CGSize(width: 350, height: 300)
 
@@ -180,7 +180,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         destinationText.text = destination
 
-        travelDetails.text = "出發時間：\(travelTime)\n\r目的地：\(self.travelDestination)\n\r行程時間：\(self.travelDuration)\n\r通知：\(self.friendName)"
+        travelDetails.text = "出發時間：\(travelTime)\n\r目的地點：\(self.travelDestination)\n\r行程時間：\(self.travelDuration)\n\r通知：\(self.friendName)"
 
         self.view.reloadInputViews()
     }
@@ -193,7 +193,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         friendText.text = name
 
-        travelDetails.text = "出發時間：\(travelTime)\n\r目的地：\(self.travelDestination)\n\r行程時間：\(self.travelDuration)\n\r通知：\(self.friendName)"
+        travelDetails.text = "出發時間：\(travelTime)\n\r目的地點：\(self.travelDestination)\n\r行程時間：\(self.travelDuration)\n\r通知：\(self.friendName)"
 
     }
 
@@ -241,10 +241,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             destinationCoordinates = coordinate
 
-//            self.tabBarController.
-//            
-//            self.tabBarController?.destinationCoordinates = coordinate
-
             isNotified = [0]
 
             let doingCoreDataManager = DoingCoreDataManager()
@@ -256,15 +252,17 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
             if doingCount == 0 {
 
                 //加到doingCoreManager
-                doingCoreDataManager.addDoingDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName)
+                doingCoreDataManager.addDoingDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName, friendID: friendID)
 
             } else {
+
+                autoSendDo(text: "我取消前往 \(doingTravelDatas[0].destination!) 的行程了", id: doingTravelDatas[0].friendID!)
 
                 //先刪除原本的目的地資訊
                 doingCoreDataManager.deleteDoingDo(indexPath: 0)
 
                 //加到doingCoreManager
-                doingCoreDataManager.addDoingDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName)
+                doingCoreDataManager.addDoingDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName, friendID: friendID)
 
                 //將對方firebase原本的事件刪除
                 let eventID = Database.database().reference().child("users").child(uid)//.child("eventID")
@@ -310,7 +308,17 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
 //        tabBarC = self.tabBarController as? TabBarController
 
-        dateText.placeholder = "Select time.."
+        let date = Date()
+
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+
+        let dateString = dateFormatter.string(from: date)
+
+        dateText.text = dateString
+
+        travelTime = dateString
 
         destinationText.placeholder = "Select destination"
 
@@ -319,29 +327,29 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         //textFieldDidBeginEditing
         self.dateText.delegate = self
 
-        dateLabel.text = "Select your start time"
+        dateLabel.text = "    選擇您的出發時間"
         dateLabel.backgroundColor = UIColor.goldfishRedLight
         dateLabel.textColor = UIColor.white
 
-        destinationLabel.text = "Select your desination"
+        destinationLabel.text = "    選擇您的目的地"
         destinationLabel.backgroundColor = UIColor.goldfishRedLight
         destinationLabel.textColor = UIColor.white
 
-        toWhoLabel.text = "Select your friend who you want to notify"
+        toWhoLabel.text = "    選擇您要通知的朋友"
         toWhoLabel.backgroundColor = UIColor.goldfishRedLight
         toWhoLabel.textColor = UIColor.white
 
-        detailsLabel.text = "行程資訊"
+        detailsLabel.text = "    行程資訊"
         detailsLabel.backgroundColor = UIColor.goldfishOrangeLight
         detailsLabel.textColor = UIColor.white
 
-        createDoButton.setTitle("Create", for: .normal)
+        createDoButton.setTitle("新增", for: .normal)
         createDoButton.backgroundColor = UIColor.goldfishRed
         createDoButton.layer.cornerRadius = createDoButton.frame.height/2
         createDoButton.setTitleColor(UIColor.white, for: .normal)
         createDoButton.dropShadow()
 
-        cancelDoButton.setTitle("Cancel", for: .normal)
+        cancelDoButton.setTitle("取消", for: .normal)
         cancelDoButton.backgroundColor = UIColor.goldfishOrange
         cancelDoButton.layer.cornerRadius = cancelDoButton.frame.height/2
         cancelDoButton.setTitleColor(UIColor.white, for: .normal)
@@ -432,7 +440,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             let chatsRef = Database.database().reference().child("users").child(uid).child("chats")
 
-            let chatsToRef =  Database.database().reference().child("users").child(friendID).child("chats")
+            let chatsToRef =  Database.database().reference().child("users").child(id).child("chats")
 
             let childTalkTextID = childTalkRef.childByAutoId()
 
@@ -442,9 +450,9 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
                 case 0 :
 
-                    let memValues = ["0": uid, "1": self.friendID]
+                    let memValues = ["0": uid, "1": id]
 
-                    let values = ["text": text, "fromID": uid, "toID": self.friendID, "timestamp": timestamp] as [String : Any]
+                    let values = ["text": text, "fromID": uid, "toID": id, "timestamp": timestamp] as [String : Any]
 
                     childTalkRef.child("members").updateChildValues(memValues)
 
@@ -471,11 +479,11 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
                                     let chatMember2 = member[1]
 
-                                    if (uid == chatMember1 && self.friendID == chatMember2) || (uid == chatMember2 && self.friendID == chatMember1) {
+                                    if (uid == chatMember1 && id == chatMember2) || (uid == chatMember2 && id == chatMember1) {
 
                                         istalked = true
 
-                                        let values = ["text": text, "fromID": uid, "toID": self.friendID, "timestamp": timestamp] as [String : Any]
+                                        let values = ["text": text, "fromID": uid, "toID": id, "timestamp": timestamp] as [String : Any]
 
                                         channelRef.child(chatroomID).childByAutoId().updateChildValues(values)
 
@@ -487,9 +495,9 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
                                 if istalked == false && isrun == 0 {
 
-                                    let memValues = ["0": uid, "1": self.friendID]
+                                    let memValues = ["0": uid, "1": id]
 
-                                    let values = ["text": text, "fromID": uid, "toID": self.friendID, "timestamp": timestamp] as [String : Any]
+                                    let values = ["text": text, "fromID": uid, "toID": id, "timestamp": timestamp] as [String : Any]
 
                                     childTalkRef.child("members").updateChildValues(memValues)
 

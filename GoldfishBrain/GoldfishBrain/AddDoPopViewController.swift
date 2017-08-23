@@ -63,9 +63,9 @@ class AddDoPopViewController: UIViewController/*, managerCreateStartDelegate*/ {
 
     var doCoordinate = [Double]()
 
-    //swiftlint:disable force_cast
-    let uid = UserDefaults.standard.value(forKey: "uid") as! String
-    //swiftlint:enable force_cast
+//    //swiftlint:disable force_cast
+//    let uid = UserDefaults.standard.value(forKey: "uid") as! String
+//    //swiftlint:enable force_cast
 
     var notify = false
 
@@ -80,7 +80,7 @@ class AddDoPopViewController: UIViewController/*, managerCreateStartDelegate*/ {
         if travelTime.text == "" {
 
             let alertController = UIAlertController(
-                title: "無交通方式",
+                title: "溫馨小提醒",
                 message: "請選取交通方式",
                 preferredStyle: .alert)
 
@@ -186,7 +186,7 @@ class AddDoPopViewController: UIViewController/*, managerCreateStartDelegate*/ {
                                             let desination = self.routeAddresses["Destination"]!
                                             //swiftlint:enable force_cast
 
-                                            self.travelTime.text = "目的地：\(desination)\r\n總距離：\(distanceText)\r\n總時間：\(durationText)"
+                                            self.travelTime.text = "目的地點：\(desination)\r\n總距離：\(distanceText)\r\n總時間：\(durationText)"
 
                                             self.travelDuration = "\(durationText)"
 
@@ -264,7 +264,7 @@ class AddDoPopViewController: UIViewController/*, managerCreateStartDelegate*/ {
         searchController = UISearchController(searchResultsController: resultsViewController)
         searchController?.searchResultsUpdater = resultsViewController
 
-        let subView = UIView(frame: CGRect(x: 0, y: 0.0, width: 350, height: 45.0))
+        let subView = UIView(frame: CGRect(x: 0, y: 20.0, width: view.frame.width, height: 45.0))
 
         subView.addSubview((searchController?.searchBar)!)
         view.addSubview(subView)

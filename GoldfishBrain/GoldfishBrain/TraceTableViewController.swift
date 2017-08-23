@@ -28,9 +28,12 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
         let friendDestination = events[sender.tag].destination
 
-        let alertController = UIAlertController(title: "溫馨小提醒", message: "真的要刪除追蹤朋友行程嗎？", preferredStyle: .alert)
+        let alertController = UIAlertController(
+            title: "溫馨小提醒",
+            message: "真的要刪除朋友的行程嗎？",
+            preferredStyle: .alert)
 
-        let check = UIAlertAction(title: "確定", style: .default, handler: { (_ : UIAlertAction) in
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
 
             self.autoSendDelete(destination: friendDestination, id: fromFriendID)
 
@@ -41,14 +44,15 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
                 self.friendEventTableView.reloadData()
             }
 
+            alertController.dismiss(animated: true, completion: nil)
         })
 
-        let cancel = UIAlertAction(title: "取消", style: .default) { (_ : UIAlertAction) in
+        let cancel = UIAlertAction(title: "Cancel", style: .default) { (_ : UIAlertAction) in
 
             alertController.dismiss(animated: true, completion: nil)
         }
 
-        alertController.addAction(check)
+        alertController.addAction(ok)
 
         alertController.addAction(cancel)
 
@@ -77,7 +81,7 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
         navigationController?.navigationBar.barTintColor = UIColor.goldfishRed
 
-        navigationItem.title = "Trace"
+        navigationItem.title = "Friend's Trip"
 
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
 
@@ -89,7 +93,10 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
         friendEventTableView.rowHeight = UITableViewAutomaticDimension
         friendEventTableView.estimatedRowHeight = 60
-        friendEventTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+
+        friendEventTableView.separatorColor = UIColor.goldfishRed
+        friendEventTableView.separatorInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        friendEventTableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
 
     }
 
@@ -135,7 +142,15 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
 //            cell.checkButton.tag = indexPath.row
 
-            cell.friendDoContent.text = "朋友：\(event.fromFriend)\r出發時間：\(event.time)\r目的地：\(event.destination)\r預估時間：\(event.duration)\r"
+            cell.friendName.text = event.fromFriend
+
+            cell.friendDoDate.text = event.time
+
+            cell.friendDoDestination.text = event.destination
+
+            cell.friendDoDuration.text = event.duration
+
+//            cell.friendDoContent.text = "朋友：\(event.fromFriend)\r出發時間：\(event.time)\r目的地點：\(event.destination)\r預估時間：\(event.duration)\r"
 
             return cell
 

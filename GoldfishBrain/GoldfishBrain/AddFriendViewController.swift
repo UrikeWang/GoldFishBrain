@@ -30,24 +30,7 @@ class AddFriendViewController: UIViewController, chatRoomManagerDelegate {
 
     @IBAction func searchFriendButton(_ sender: Any) {
 
-        guard let friendEmail = addFriendEmailTextField.text
-            else {
-
-                let alertController = UIAlertController(
-                    title: "溫馨小提醒",
-                    message: "使用者不存在",
-                    preferredStyle: .alert)
-
-                let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
-                    alertController.dismiss(animated: true, completion: nil)
-                })
-
-                alertController.addAction(check)
-
-                self.present(alertController, animated: true, completion: nil)
-
-                return
-        }
+        guard let friendEmail = addFriendEmailTextField.text else { return }
 
         chatRoomManager.searchFriend(email: friendEmail)
 
@@ -87,7 +70,7 @@ class AddFriendViewController: UIViewController, chatRoomManagerDelegate {
 
         chatRoomManager.delegate = self
 
-        addFriendEmailLabel.text = "Enter your friend's email"
+        addFriendEmailLabel.text = "    輸入朋友Email"
         addFriendEmailLabel.backgroundColor = UIColor.goldfishRedLight
         addFriendEmailLabel.textColor = UIColor.white
 
@@ -97,7 +80,7 @@ class AddFriendViewController: UIViewController, chatRoomManagerDelegate {
         searchFriendButton.setTitleColor(UIColor.white, for: .normal)
         searchFriendButton.dropShadow()
 
-        checkFriendLabel.text = "Check your friend's name"
+        checkFriendLabel.text = "    確認朋友名字"
         checkFriendLabel.backgroundColor = UIColor.goldfishOrangeLight
         checkFriendLabel.textColor = UIColor.white
 

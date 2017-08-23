@@ -54,7 +54,7 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
         let location = locations.last
 
-//        Analytics.logEvent("使用者地點", parameters: ["UserCurrentLocation": location as Any])
+        Analytics.logEvent("使用者地點", parameters: ["UserCurrentLocation": location as Any])
 
         mapView.clear()
 
@@ -63,6 +63,14 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
         mapView.isMyLocationEnabled = true
 
         mapView.settings.myLocationButton = true
+
+        let marker = GMSMarker()
+
+        marker.position = CLLocationCoordinate2DMake((location?.coordinate.latitude)!, (location?.coordinate.longitude)!)
+
+        marker.title = "我的位置"
+
+        marker.map = mapView
 
         if destinationCoordinates.isEmpty == false {
 
