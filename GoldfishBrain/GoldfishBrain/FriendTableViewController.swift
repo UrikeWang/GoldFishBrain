@@ -21,8 +21,6 @@ class FriendTableViewController: UITableViewController, chatRoomManagerDelegate 
 
         self.people = people
 
-        print("111111111", people)
-
         DispatchQueue.main.async {
 
             self.friendTableView.reloadData()
@@ -39,7 +37,7 @@ class FriendTableViewController: UITableViewController, chatRoomManagerDelegate 
 
     }
 
-    func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: Error) {
+    func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: String) {
 
     }
 

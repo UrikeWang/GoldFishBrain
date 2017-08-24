@@ -50,7 +50,7 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
     }
 
-    func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: Error) {
+    func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: String) {
 
     }
 
@@ -73,11 +73,25 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+
+    }
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+        if people.count == 0 {
+
+            noFriendImageView.isHidden = false
+
+        } else {
+
+            noFriendImageView.isHidden = true
+
+        }
 
         return people.count
     }
@@ -98,11 +112,6 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        if people.count == 0 {
-
-            noFriendImageView.isHidden = false
-        }
 
         //swiftlint:disable force_cast
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopFriendCell", for: indexPath) as! PopFriendCollectionViewCell

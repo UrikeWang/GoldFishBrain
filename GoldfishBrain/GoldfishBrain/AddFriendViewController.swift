@@ -30,9 +30,26 @@ class AddFriendViewController: UIViewController, chatRoomManagerDelegate {
 
     @IBAction func searchFriendButton(_ sender: Any) {
 
-        guard let friendEmail = addFriendEmailTextField.text else { return }
+        if addFriendEmailTextField.text == "" {
 
-        chatRoomManager.searchFriend(email: friendEmail)
+            let alertController = UIAlertController(
+                title: "溫馨小提醒",
+                message: "請輸入朋友的Email",
+                preferredStyle: .alert)
+
+            let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+                alertController.dismiss(animated: true, completion: nil)
+            })
+
+            alertController.addAction(check)
+
+            self.present(alertController, animated: true, completion: nil)
+
+            return
+
+        }
+
+        chatRoomManager.searchFriend(email: addFriendEmailTextField.text!)
 
     }
 
@@ -61,7 +78,24 @@ class AddFriendViewController: UIViewController, chatRoomManagerDelegate {
 
     }
 
-    func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: Error) {
+    func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: String) {
+
+        friendNameLabel.text = ""
+
+        let alertController = UIAlertController(
+            title: "溫馨小提醒",
+            message: "\(error)",
+            preferredStyle: .alert)
+
+        let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+            alertController.dismiss(animated: true, completion: nil)
+        })
+
+        alertController.addAction(check)
+
+        self.present(alertController, animated: true, completion: nil)
+
+        return
 
     }
 

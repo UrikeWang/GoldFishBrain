@@ -41,7 +41,7 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
     }
 
-    func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: Error) {
+    func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: String) {
 
     }
 
