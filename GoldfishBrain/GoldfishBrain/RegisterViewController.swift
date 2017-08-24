@@ -182,8 +182,6 @@ class RegisterViewController: UIViewController {
 
     @IBAction func loginButton(_ sender: Any) {
 
-        print("1111111111", firstNameText.text)
-
         if firstNameText.text! != "" || lastNameText.text! != "" || emailText.text! != "" || passwordText.text! != "" {
 
             let alertController = UIAlertController(
@@ -195,7 +193,6 @@ class RegisterViewController: UIViewController {
 
                 self.dismiss(animated: true, completion: nil)
 
-//                alertController.dismiss(animated: true, completion: nil)
             })
 
             let cancel = UIAlertAction(title: "Cancel", style: .default) { (_ : UIAlertAction) in
@@ -246,7 +243,7 @@ class RegisterViewController: UIViewController {
         appTitle.font = UIFont(name: "Comix Loud", size: 20.0)
 
         let attrString = NSMutableAttributedString(string: appTitle.text!)
-        var style = NSMutableParagraphStyle()
+        let style = NSMutableParagraphStyle()
         style.lineSpacing = 24 // change line spacing between paragraph like 36 or 48
         style.minimumLineHeight = 20 // change line spacing between each line like 30 or 40
         attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSRange(location: 0, length: (appTitle.text?.characters.count)!))
