@@ -27,6 +27,8 @@ class ChatRoomManager {
 
     func fetchFriendIDs() {
 
+        print("???????????", uid)
+
         let ref = Database.database().reference().child("users").child(uid)
 
             ref.child("friends").observe(.value, with: { (snapshot: DataSnapshot) in

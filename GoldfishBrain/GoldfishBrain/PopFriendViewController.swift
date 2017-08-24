@@ -20,6 +20,8 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
     @IBOutlet weak var cancelSelectFriendButton: UIButton!
 
+    @IBOutlet weak var noFriendImageView: UIImageView!
+
     let chatRoomManager = ChatRoomManager()
 
     var people = [Person]()
@@ -67,6 +69,8 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
         cancelSelectFriendButton.layer.cornerRadius = cancelSelectFriendButton.frame.height/2
         cancelSelectFriendButton.dropShadow()
 
+        noFriendImageView.isHidden = true
+
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -94,6 +98,11 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        if people.count == 0 {
+
+            noFriendImageView.isHidden = false
+        }
 
         //swiftlint:disable force_cast
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopFriendCell", for: indexPath) as! PopFriendCollectionViewCell

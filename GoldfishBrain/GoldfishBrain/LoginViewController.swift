@@ -65,6 +65,8 @@ class LoginViewController: UIViewController {
 
             UserDefaults.standard.synchronize()
 
+            uid = userUid
+
             //因為Firebase會延遲，按下確認鍵，將註冊的個人資料丟到Firebase上，這是需要幾秒鐘的時間，倘若直接Segue，資料還來不及送達Firebase，就已經到達下一個頁面，這就非常有可能造成Error
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 

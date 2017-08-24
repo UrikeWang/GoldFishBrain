@@ -1064,6 +1064,12 @@
                                     <action selector="cancelSelectFriendButton:" destination="geo-yk-Xvs" eventType="touchDragInside" id="jGg-tT-ke4"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="螢幕快照 2017-08-24 下午9.27.54" translatesAutoresizingMaskIntoConstraints="NO" id="ISu-AU-UYf">
+                                <rect key="frame" x="0.0" y="64" width="375" height="276.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ISu-AU-UYf" secondAttribute="height" multiplier="1756:1294" id="NyR-ZA-U8A"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1073,7 +1079,10 @@
                             <constraint firstItem="WFV-RQ-qVw" firstAttribute="leading" secondItem="4DI-JQ-3Do" secondAttribute="leadingMargin" id="GEY-d9-IdJ"/>
                             <constraint firstItem="WFV-RQ-qVw" firstAttribute="top" secondItem="P5T-qC-3wQ" secondAttribute="bottom" id="LsK-nI-0CE"/>
                             <constraint firstItem="8bg-65-He6" firstAttribute="top" secondItem="WFV-RQ-qVw" secondAttribute="bottom" constant="8" id="WpM-tw-qnW"/>
+                            <constraint firstItem="ISu-AU-UYf" firstAttribute="top" secondItem="P5T-qC-3wQ" secondAttribute="bottom" id="dAS-fC-4j9"/>
                             <constraint firstItem="8bg-65-He6" firstAttribute="centerX" secondItem="4DI-JQ-3Do" secondAttribute="centerX" id="hl8-or-ov5"/>
+                            <constraint firstItem="ISu-AU-UYf" firstAttribute="leading" secondItem="4DI-JQ-3Do" secondAttribute="leading" id="lnY-7w-B0K"/>
+                            <constraint firstAttribute="trailing" secondItem="ISu-AU-UYf" secondAttribute="trailing" id="rKz-Wp-WCa"/>
                             <constraint firstItem="P5T-qC-3wQ" firstAttribute="leading" secondItem="4DI-JQ-3Do" secondAttribute="leading" id="sQL-kL-FgB"/>
                             <constraint firstAttribute="trailing" secondItem="P5T-qC-3wQ" secondAttribute="trailing" id="vko-ha-Cso"/>
                         </constraints>
@@ -1081,11 +1090,12 @@
                     <connections>
                         <outlet property="cancelSelectFriendButton" destination="8bg-65-He6" id="m8a-Zz-qnE"/>
                         <outlet property="friendCollectionView" destination="WFV-RQ-qVw" id="zwn-oW-RcL"/>
+                        <outlet property="noFriendImageView" destination="ISu-AU-UYf" id="huR-Lg-JFw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8xL-wU-xgo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6641" y="216"/>
+            <point key="canvasLocation" x="6640.8000000000002" y="215.44227886056973"/>
         </scene>
         <!--Chat Room Table View Controller-->
         <scene sceneID="Xd9-ZS-D8Y">
@@ -1390,52 +1400,52 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5wB-hg-7wX">
-                                            <rect key="frame" x="93" y="100" width="254" height="21"/>
+                                            <rect key="frame" x="88" y="97.5" width="259" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sEs-Db-Pyk">
-                                            <rect key="frame" x="93" y="129" width="254" height="77"/>
+                                            <rect key="frame" x="88" y="126.5" width="259" height="73"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUU-hR-ViX">
-                                            <rect key="frame" x="93" y="191.5" width="254" height="66"/>
+                                            <rect key="frame" x="88" y="178.5" width="259" height="79"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_access_time" translatesAutoresizingMaskIntoConstraints="NO" id="LOS-F8-2OZ">
-                                            <rect key="frame" x="28" y="88" width="45" height="45"/>
+                                            <rect key="frame" x="28" y="88" width="40" height="40"/>
                                             <color key="backgroundColor" red="0.80126750469207764" green="0.624767005443573" blue="0.87847602367401123" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="45" id="GVP-lm-lgo"/>
-                                                <constraint firstAttribute="width" constant="45" id="cSi-Mf-wXb"/>
+                                                <constraint firstAttribute="height" constant="40" id="GVP-lm-lgo"/>
+                                                <constraint firstAttribute="width" constant="40" id="cSi-Mf-wXb"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_location_on" translatesAutoresizingMaskIntoConstraints="NO" id="2wf-Zn-ddl">
-                                            <rect key="frame" x="28" y="145" width="45" height="45"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_person_pin_circle" translatesAutoresizingMaskIntoConstraints="NO" id="2wf-Zn-ddl">
+                                            <rect key="frame" x="28" y="143" width="40" height="40"/>
                                             <color key="backgroundColor" red="0.52497023344039917" green="0.47204598784446716" blue="0.70594990253448486" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="45" id="ufA-92-oes"/>
-                                                <constraint firstAttribute="width" constant="45" id="yMZ-rQ-2SD"/>
+                                                <constraint firstAttribute="height" constant="40" id="ufA-92-oes"/>
+                                                <constraint firstAttribute="width" constant="40" id="yMZ-rQ-2SD"/>
                                             </constraints>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_timer" translatesAutoresizingMaskIntoConstraints="NO" id="wgw-fr-iIb">
-                                            <rect key="frame" x="28" y="202" width="45" height="45"/>
+                                            <rect key="frame" x="28" y="198" width="40" height="40"/>
                                             <color key="backgroundColor" red="0.38077670335769653" green="0.2710614800453186" blue="0.58832257986068726" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="45" id="SUJ-7f-SfC"/>
-                                                <constraint firstAttribute="width" constant="45" id="v16-Ez-AMB"/>
+                                                <constraint firstAttribute="height" constant="40" id="SUJ-7f-SfC"/>
+                                                <constraint firstAttribute="width" constant="40" id="v16-Ez-AMB"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="LOS-F8-2OZ" firstAttribute="leading" secondItem="UwA-lB-dHP" secondAttribute="leading" id="0qX-lF-iyL"/>
                                         <constraint firstItem="2wf-Zn-ddl" firstAttribute="leading" secondItem="UwA-lB-dHP" secondAttribute="leading" id="2VG-KJ-UVm"/>
-                                        <constraint firstItem="wgw-fr-iIb" firstAttribute="top" secondItem="2wf-Zn-ddl" secondAttribute="bottom" constant="12" id="5xw-qH-xJm"/>
+                                        <constraint firstItem="wgw-fr-iIb" firstAttribute="top" secondItem="2wf-Zn-ddl" secondAttribute="bottom" constant="15" id="5xw-qH-xJm"/>
                                         <constraint firstItem="5wB-hg-7wX" firstAttribute="centerY" secondItem="LOS-F8-2OZ" secondAttribute="centerY" id="69x-Cg-aaU"/>
                                         <constraint firstItem="UwA-lB-dHP" firstAttribute="trailing" secondItem="sEs-Db-Pyk" secondAttribute="trailing" id="7ko-Z6-rNi"/>
                                         <constraint firstItem="5wB-hg-7wX" firstAttribute="leading" secondItem="2wf-Zn-ddl" secondAttribute="trailing" constant="20" id="BPc-YT-ee6"/>
@@ -1455,7 +1465,7 @@
                                         <constraint firstItem="UwA-lB-dHP" firstAttribute="leading" secondItem="Kip-Dv-3pW" secondAttribute="leadingMargin" constant="20" id="tdp-qY-3Qf"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="p9c-Ee-mKP" secondAttribute="trailing" constant="85" id="tlk-Iy-10W"/>
                                         <constraint firstItem="sEs-Db-Pyk" firstAttribute="centerY" secondItem="2wf-Zn-ddl" secondAttribute="centerY" id="upZ-Gv-PAI"/>
-                                        <constraint firstItem="2wf-Zn-ddl" firstAttribute="top" secondItem="LOS-F8-2OZ" secondAttribute="bottom" constant="12" id="vwR-Th-0Nx"/>
+                                        <constraint firstItem="2wf-Zn-ddl" firstAttribute="top" secondItem="LOS-F8-2OZ" secondAttribute="bottom" constant="15" id="vwR-Th-0Nx"/>
                                         <constraint firstItem="sEs-Db-Pyk" firstAttribute="top" secondItem="5wB-hg-7wX" secondAttribute="bottom" constant="8" id="wQr-Xa-Kic"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -1513,7 +1523,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="n4t-Yl-zMd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="ic_account_circle" id="g4Q-jE-t4V" userLabel="Profile"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dVy-AU-86f">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dVy-AU-86f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1555,7 +1565,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="trp-2C-Fyz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Do it" image="ic_playlist_add" id="64h-dI-vxs"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dEn-Ge-CB6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dEn-Ge-CB6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1574,7 +1584,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="77L-hf-cQV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chat" image="ic_question_answer" id="oqX-AY-q5J"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="44w-bi-xBi">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="44w-bi-xBi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1593,7 +1603,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wjH-pT-9Kl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Trace" image="ic_loyalty" id="qd1-jT-N21"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rJl-E4-gz6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rJl-E4-gz6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1814,7 +1824,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iYj-or-OB6" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8QB-yT-V3J">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8QB-yT-V3J">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1837,13 +1847,13 @@
         <image name="ic_beenhere" width="24" height="24"/>
         <image name="ic_directions_walk" width="24" height="24"/>
         <image name="ic_drive_eta" width="24" height="24"/>
-        <image name="ic_location_on" width="24" height="24"/>
         <image name="ic_loyalty" width="24" height="24"/>
         <image name="ic_people" width="24" height="24"/>
         <image name="ic_person_pin_circle" width="24" height="24"/>
         <image name="ic_playlist_add" width="24" height="24"/>
         <image name="ic_question_answer" width="24" height="24"/>
         <image name="ic_timer" width="24" height="24"/>
+        <image name="螢幕快照 2017-08-24 下午9.27.54" width="1756" height="1294"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="GOw-hA-LLG"/>

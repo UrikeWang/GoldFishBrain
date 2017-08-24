@@ -54,53 +54,56 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 //    var tabBarC: TabBarController?
 
     @IBAction func logoutButton(_ sender: Any) {
-        
+
         let alertController = UIAlertController(
             title: "溫馨小提醒",
             message: "真的要離開登出嗎？登出之後，原本進行中的行程與歷史行程都會被刪除喔！",
             preferredStyle: .alert)
-        
+
         let ok = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
-            
+
             do {
-                
+
                 try Auth.auth().signOut()
-                
+
             } catch let logoutError {
-                
+
                 print("登出錯誤:", logoutError)
-                
+
             }
-            
+
             //清空userdefaults
-            UserDefaults.standard.removeObject(forKey: "uid")
-            
+            UserDefaults.standard.set("", forKey: "uid")
+
             UserDefaults.standard.synchronize()
-            
+
+            //清空key
+            uid = ""
+
             //清空coreData
             self.coreDataManager.clearDo()
-            
+
             self.doingCoreDataManager.clearDoing()
-            
+
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            
+
             let loginVC = storyBoard.instantiateViewController(withIdentifier: "LoginVC")
-            
+
             self.present(loginVC, animated: true, completion: nil)
-            
+
 //            self.dismiss(animated: true, completion: nil)
-            
+
         })
-        
+
         let cancel = UIAlertAction(title: "Cancel", style: .default) { (_ : UIAlertAction) in
-            
+
             alertController.dismiss(animated: true, completion: nil)
         }
-        
+
         alertController.addAction(ok)
-        
+
         alertController.addAction(cancel)
-        
+
         self.present(alertController, animated: true, completion: nil)
 
     }
