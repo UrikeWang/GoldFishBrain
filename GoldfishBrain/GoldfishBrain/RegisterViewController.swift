@@ -25,6 +25,86 @@ class RegisterViewController: UIViewController {
 
     @IBAction func registerButton(_ sender: Any) {
 
+        //firstname 空值
+        if firstNameText.text == "" {
+
+            let alertController = UIAlertController(
+                title: "溫馨小提醒",
+                message: "請輸入FirstName",
+                preferredStyle: .alert)
+
+            let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+                alertController.dismiss(animated: true, completion: nil)
+            })
+
+            alertController.addAction(check)
+
+            self.present(alertController, animated: true, completion: nil)
+
+            return
+
+        }
+
+        //lastname 空值
+        if lastNameText.text == "" {
+
+            let alertController = UIAlertController(
+                title: "溫馨小提醒",
+                message: "請輸入LastName",
+                preferredStyle: .alert)
+
+            let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+                alertController.dismiss(animated: true, completion: nil)
+            })
+
+            alertController.addAction(check)
+
+            self.present(alertController, animated: true, completion: nil)
+
+            return
+
+        }
+
+        //email 空值
+        if emailText.text == "" {
+
+            let alertController = UIAlertController(
+                title: "溫馨小提醒",
+                message: "請輸入Email",
+                preferredStyle: .alert)
+
+            let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+                alertController.dismiss(animated: true, completion: nil)
+            })
+
+            alertController.addAction(check)
+
+            self.present(alertController, animated: true, completion: nil)
+
+            return
+
+        }
+
+        //password 空值
+        if passwordText.text == "" {
+
+            let alertController = UIAlertController(
+                title: "溫馨小提醒",
+                message: "請輸入Password",
+                preferredStyle: .alert)
+
+            let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+                alertController.dismiss(animated: true, completion: nil)
+            })
+
+            alertController.addAction(check)
+
+            self.present(alertController, animated: true, completion: nil)
+
+            return
+
+        }
+
         guard let email = emailText.text, let password = passwordText.text, let firstName = firstNameText.text, let lastName = lastNameText.text else {
 
             print("Register failed!")
@@ -36,11 +116,10 @@ class RegisterViewController: UIViewController {
         Auth.auth().createUser(withEmail: email, password: password, completion: {(user: User?, error) in
 
             if error != nil {
-                print("錯誤訊息:", error as Any)
 
                 let alertController = UIAlertController(
                     title: "溫馨小提醒",
-                    message: "請輸入正確的個人資料",
+                    message: "\((error?.localizedDescription)!)",
                     preferredStyle: .alert)
 
                 let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
@@ -103,7 +182,39 @@ class RegisterViewController: UIViewController {
 
     @IBAction func loginButton(_ sender: Any) {
 
-        dismiss(animated: true, completion: nil)
+        print("1111111111", firstNameText.text)
+
+        if firstNameText.text! != "" || lastNameText.text! != "" || emailText.text! != "" || passwordText.text! != "" {
+
+            let alertController = UIAlertController(
+                title: "溫馨小提醒",
+                message: "真的要離開註冊頁面嗎？",
+                preferredStyle: .alert)
+
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+
+                self.dismiss(animated: true, completion: nil)
+
+//                alertController.dismiss(animated: true, completion: nil)
+            })
+
+            let cancel = UIAlertAction(title: "Cancel", style: .default) { (_ : UIAlertAction) in
+
+                alertController.dismiss(animated: true, completion: nil)
+            }
+
+            alertController.addAction(ok)
+
+            alertController.addAction(cancel)
+
+            self.present(alertController, animated: true, completion: nil)
+
+        } else {
+
+            self.dismiss(animated: true, completion: nil)
+
+        }
+
     }
 
     override func viewDidLoad() {
