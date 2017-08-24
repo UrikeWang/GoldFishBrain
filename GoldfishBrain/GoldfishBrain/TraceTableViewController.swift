@@ -124,7 +124,7 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        if events.isEmpty {
+        if events.count == 0 {
 
             //swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: "NoneEventCell", for: indexPath) as! NoneEventTableViewCell

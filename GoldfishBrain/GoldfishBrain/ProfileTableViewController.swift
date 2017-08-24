@@ -21,6 +21,8 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
     @IBOutlet var dosTableView: UITableView!
 
+    @IBOutlet weak var changePhotoButton: UIButton!
+
     var profiles: [Profile] = []
 
     let profileManager = ProfileManager()
@@ -63,15 +65,27 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
         }
 
+        //清空userdefaults
         UserDefaults.standard.removeObject(forKey: "uid")
 
         UserDefaults.standard.synchronize()
+
+        //清空coreData
+        coreDataManager.clearDo()
+
+        doingCoreDataManager.clearDoing()
 
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
         let loginVC = storyBoard.instantiateViewController(withIdentifier: "LoginVC")
 
         self.present(loginVC, animated: true, completion: nil)
+
+    }
+
+    @IBAction func changePhotoButton(_ sender: Any) {
+
+        handleSelectionProfileImage()
 
     }
 
@@ -142,9 +156,11 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
         }
 
+        changePhotoButton.tintColor = UIColor(red: 170.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 0.8)
+
         //changed / set profile image (點擊圖片)
-        profileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectionProfileImage)))
-        profileImage.isUserInteractionEnabled = true
+//        profileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectionProfileImage)))
+//        profileImage.isUserInteractionEnabled = true
 
         firstNameLabel.textAlignment = .left
         firstNameLabel.backgroundColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.7)

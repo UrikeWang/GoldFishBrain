@@ -37,6 +37,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     @IBOutlet weak var detailsLabel: UILabel!
 
+    @IBOutlet weak var navigationView: UIView!
+
     var effect: UIVisualEffect!
 
     let dateTimeFormatter = DateFormatter()
@@ -307,6 +309,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         super.viewDidLoad()
 
 //        tabBarC = self.tabBarController as? TabBarController
+
+//        navigationView.backgroundColor = UIColor.goldfishRedNavigation
 
         let date = Date()
 

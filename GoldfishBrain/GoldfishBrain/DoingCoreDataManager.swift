@@ -100,4 +100,26 @@ class DoingCoreDataManager {
 
     }
 
+    func clearDoing() {
+
+        var doingTravelDatas = [DoingTravelDataMO]()
+
+        do {
+
+            doingTravelDatas = try context.fetch(DoingTravelDataMO.fetchRequest())
+
+            for item in doingTravelDatas {
+
+                context.delete(item)
+
+            }
+
+        } catch {
+
+            print("無儲存的資料了")
+
+        }
+
+    }
+
 }
