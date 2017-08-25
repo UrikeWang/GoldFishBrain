@@ -39,6 +39,11 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
         self.people = people
 
+        if self.people.count == 0 {
+
+            noFriendImageView.isHidden = false
+        }
+
         DispatchQueue.main.async {
 
             self.friendCollectionView.reloadData()
@@ -73,9 +78,9 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        <#code#>
+//    }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -83,16 +88,11 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        if people.count == 0 {
-
-            noFriendImageView.isHidden = false
-
-        } else {
+        if people.count > 0 {
 
             noFriendImageView.isHidden = true
 
         }
-
         return people.count
     }
 

@@ -120,7 +120,7 @@ class ChatRoomManager {
 
             if found == false {
 
-                self.delegate?.chatRoomManager(self, didFailWith: "此mail不存在，請再次確認朋友的Email")
+                self.delegate?.chatRoomManager(self, didFailWith: "此mail不存在，或是大小寫有誤，請再次確認朋友的Email")
 
             }
 
