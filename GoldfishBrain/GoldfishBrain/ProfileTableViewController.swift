@@ -124,8 +124,6 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
         self.firstNameLabel.text = "   \(userFirstName)"
 
-        // TODO : 是否要將user first / last name 存到userdefaults
-
     }
 
     func profileManager(_ manager: ProfileManager, didFailWith error: Error) {
