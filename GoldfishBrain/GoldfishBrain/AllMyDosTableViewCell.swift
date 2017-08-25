@@ -44,7 +44,7 @@ class AllMyDosTableViewCell: UITableViewCell {
         image.tintColor = UIColor(red: 68.0/255.0, green: 196.0/255.0, blue: 192.0/255.0, alpha: 1)
         image.backgroundColor = UIColor.white
         image.layer.cornerRadius = image.frame.width/2
-//        image.dropShadow()
+        image.dropShadow()
 
     }
 
@@ -55,7 +55,7 @@ class AllMyDosTableViewCell: UITableViewCell {
         image.tintColor = UIColor(red: 81.0/255.0, green: 155.0/255.0, blue: 202.0/255.0, alpha: 1)
         image.backgroundColor = UIColor.white
         image.layer.cornerRadius = image.frame.width/2
-//        image.dropShadow()
+        image.dropShadow()
 
     }
 
@@ -66,7 +66,7 @@ class AllMyDosTableViewCell: UITableViewCell {
         image.tintColor = UIColor(red: 72.0/255.0, green: 110.0/255.0, blue: 161.0/255.0, alpha: 1)
         image.backgroundColor = UIColor.white
         image.layer.cornerRadius = image.frame.width/2
-//        image.dropShadow()
+        image.dropShadow()
 
     }
 

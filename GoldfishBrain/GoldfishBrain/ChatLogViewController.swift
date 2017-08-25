@@ -90,8 +90,6 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        messageText.layer.sublayerTransform = CATransform3DMakeScale(5, 5, 30)
         messageText.textContainerInset = UIEdgeInsets(top: 15, left: 10, bottom: 0, right: 10)
         messageText.addPlaceholderText(text: placeholderText)
-//        self.messageText.placeholderText = "Enter message..."
-//        messageText.font = UIFont.asiTextStyle14Font()
         messageText.font = UIFont(name: "Helvetica", size: 20.0)
         messageText.backgroundColor = UIColor.asiGreyish
 
