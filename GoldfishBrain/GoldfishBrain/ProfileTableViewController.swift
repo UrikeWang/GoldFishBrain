@@ -287,21 +287,10 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
             } else {
 
-                cell.travelFinished.text = "行程是否完成："
+                cell.travelFinished.text = ""
             }
 
-            //        if let notified = travelDatas[indexPath.row].notify as? Bool {
-            //
-            //            cell.travelNotified.text = "行程是否通知：\(notified)"
-            //
-            //        } else {
-            //
-            //            cell.travelNotified.text = "行程是否通知："
-            //        }
-
             cell.travelDestination.tag = indexPath.row
-
-//            cell.layoutMargins = UIEdgeinsetsZero
 
             return cell
 

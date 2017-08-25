@@ -35,14 +35,6 @@ class NoneDoTableViewCell: UITableViewCell {
 
     }
 
-//    private func setupTitleLabel() {
-//
-//        let label = titleLabel!
-//
-//        label.text = "使用方式"
-//
-//    }
-
     private func setupNote1Label() {
 
         let label = note1Label!

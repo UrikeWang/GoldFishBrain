@@ -1309,16 +1309,6 @@
                                     <outlet property="delegate" destination="kTR-4i-9W3" id="G7c-wG-pZO"/>
                                 </connections>
                             </tableView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CHh-q9-Ret">
-                                <rect key="frame" x="0.0" y="617" width="315" height="50"/>
-                                <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="sm7-GY-zEF"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fOd-MY-hsL">
                                 <rect key="frame" x="315" y="617" width="60" height="50"/>
                                 <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1330,17 +1320,27 @@
                                     <action selector="sendMessageButton:" destination="kTR-4i-9W3" eventType="touchUpInside" id="VBU-0W-mTK"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HFF-jt-6L0">
+                                <rect key="frame" x="0.0" y="617" width="315" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="aEC-kl-OG0"/>
+                                </constraints>
+                                <color key="textColor" red="0.086390132521911342" green="0.18477953645165196" blue="0.41412198604060912" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="fOd-MY-hsL" firstAttribute="leading" secondItem="HFF-jt-6L0" secondAttribute="trailing" id="5LL-eA-qGt"/>
+                            <constraint firstItem="HFF-jt-6L0" firstAttribute="leading" secondItem="625-rl-RH7" secondAttribute="leading" id="6Rh-Wl-AKp"/>
                             <constraint firstItem="NrY-m8-HLO" firstAttribute="leading" secondItem="625-rl-RH7" secondAttribute="leading" id="7nl-e1-qmW"/>
-                            <constraint firstItem="CHh-q9-Ret" firstAttribute="top" secondItem="NrY-m8-HLO" secondAttribute="bottom" id="BX6-ps-Zr3"/>
                             <constraint firstAttribute="trailing" secondItem="fOd-MY-hsL" secondAttribute="trailing" id="I1f-m2-qxf"/>
-                            <constraint firstItem="CHh-q9-Ret" firstAttribute="leading" secondItem="625-rl-RH7" secondAttribute="leading" id="TrY-4U-gfd"/>
+                            <constraint firstItem="HFF-jt-6L0" firstAttribute="top" secondItem="NrY-m8-HLO" secondAttribute="bottom" id="Uze-Xe-vJr"/>
                             <constraint firstAttribute="trailing" secondItem="NrY-m8-HLO" secondAttribute="trailing" id="YQv-X6-yKm"/>
-                            <constraint firstItem="fOd-MY-hsL" firstAttribute="leading" secondItem="CHh-q9-Ret" secondAttribute="trailing" id="bP7-mc-Jtx"/>
-                            <constraint firstItem="xH8-rW-ocn" firstAttribute="top" secondItem="CHh-q9-Ret" secondAttribute="bottom" id="e7j-cZ-Gkx"/>
                             <constraint firstItem="xH8-rW-ocn" firstAttribute="top" secondItem="fOd-MY-hsL" secondAttribute="bottom" id="gSs-m1-odU"/>
+                            <constraint firstItem="xH8-rW-ocn" firstAttribute="top" secondItem="HFF-jt-6L0" secondAttribute="bottom" id="hYQ-It-II9"/>
                             <constraint firstItem="NrY-m8-HLO" firstAttribute="top" secondItem="625-rl-RH7" secondAttribute="top" id="zd6-50-d5G"/>
                         </constraints>
                     </view>
@@ -1355,7 +1355,7 @@
                     <connections>
                         <outlet property="chatLogTableView" destination="NrY-m8-HLO" id="jX1-DK-fjH"/>
                         <outlet property="lastPageButton" destination="i4a-Xb-CiN" id="prc-QJ-yQM"/>
-                        <outlet property="messageText" destination="CHh-q9-Ret" id="kUC-qA-76H"/>
+                        <outlet property="messageText" destination="HFF-jt-6L0" id="xXc-hF-iAS"/>
                         <outlet property="sendMessageButton" destination="fOd-MY-hsL" id="NiO-mh-bdg"/>
                     </connections>
                 </viewController>
@@ -1523,7 +1523,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="n4t-Yl-zMd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="ic_account_circle" id="g4Q-jE-t4V" userLabel="Profile"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dVy-AU-86f">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dVy-AU-86f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1565,7 +1565,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="trp-2C-Fyz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Do it" image="ic_playlist_add" id="64h-dI-vxs"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dEn-Ge-CB6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dEn-Ge-CB6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1584,7 +1584,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="77L-hf-cQV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chat" image="ic_question_answer" id="oqX-AY-q5J"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="44w-bi-xBi">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="44w-bi-xBi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1603,7 +1603,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wjH-pT-9Kl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Trace" image="ic_loyalty" id="qd1-jT-N21"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rJl-E4-gz6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rJl-E4-gz6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1822,7 +1822,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iYj-or-OB6" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8QB-yT-V3J">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8QB-yT-V3J">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -10,7 +10,7 @@ import UIKit
 import FirebaseDatabase
 //import JSQMessagesViewController
 
-class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, messageManagerDelegate {
+class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, messageManagerDelegate {
 
     var people = [Person]()
 
@@ -30,11 +30,13 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     var getChatroomID = false
 
+    let placeholderText = "請輸入內容..."
+
 //    var textArray = [Message]()
 
     @IBOutlet weak var sendMessageView: UIView!
 
-    @IBOutlet weak var messageText: UITextField!
+    @IBOutlet weak var messageText: UITextView!
 
     @IBOutlet weak var sendMessageButton: UIButton!
 
@@ -85,16 +87,17 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         }
 
-        messageText.placeholder = "Enter message..."
-        messageText.font = UIFont.asiTextStyle11Font()
+//        messageText.layer.sublayerTransform = CATransform3DMakeScale(5, 5, 30)
+        messageText.textContainerInset = UIEdgeInsets(top: 15, left: 10, bottom: 0, right: 10)
+        messageText.addPlaceholderText(text: placeholderText)
+//        self.messageText.placeholderText = "Enter message..."
+//        messageText.font = UIFont.asiTextStyle14Font()
+        messageText.font = UIFont(name: "Helvetica", size: 20.0)
         messageText.backgroundColor = UIColor.asiGreyish
 
         self.messageText.delegate = self
 
         messageManager.delegate = self
-
-//        messageManager.observeMessages()
-
         messageManager.observeUserMessages()
 
         chatLogTableView.separatorStyle = UITableViewCellSeparatorStyle.none
@@ -237,19 +240,44 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     }
 
-    //按完return鍵能自動送出message
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.white {
 
-        textField.resignFirstResponder()
+            textView.text = nil
 
-        if messageText.text != "" {
+            textView.textColor = UIColor.asiDenimBlue
+        }
+    }
 
-            handleSendMessage()
+    //按完空白處鍵能自動送出message
+    func textViewShouldEndEditing(_ textView: UITextView) {
+//        textView.resignFirstResponder()
+
+        if messageText.text == "" {
+
+            textView.addPlaceholderText(text: placeholderText)
+
+        } else {
+
+//            handleSendMessage()
 
         }
 
-        return true
     }
+
+    //textField處理方式
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//
+//        textField.resignFirstResponder()
+//
+//        if messageText.text != "" {
+//
+//            handleSendMessage()
+//
+//        }
+//
+//        return true
+//    }
 
     func messageManager(_ manager: MessageManager, didGetMessage message: [Message]) {
 
