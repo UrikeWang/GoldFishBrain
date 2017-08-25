@@ -185,7 +185,7 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 //        profileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectionProfileImage)))
 //        profileImage.isUserInteractionEnabled = true
 
-        firstNameLabel.textAlignment = .left
+        firstNameLabel.textAlignment = .center
         firstNameLabel.backgroundColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.7)
 
 //        dosTableView.separatorStyle = UITableViewCellSeparatorStyle.none

@@ -138,7 +138,7 @@ class RegisterViewController: UIViewController {
                 return
 
             }
-            
+
             uid = registerUid
 
             let ref = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/")
@@ -169,7 +169,7 @@ class RegisterViewController: UIViewController {
                 UserDefaults.standard.set(userUid, forKey: "uid")
 
                 UserDefaults.standard.synchronize()
-                
+
                 uid = userUid
 
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle:nil)

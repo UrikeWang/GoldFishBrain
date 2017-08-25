@@ -275,15 +275,6 @@
                                     <rect key="frame" x="0.0" y="170" width="375" height="177"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sz5-CN-92v" userLabel="First Name Label">
-                                    <rect key="frame" x="0.0" y="115" width="169" height="40"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="pGw-QR-4cT"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HNV-1u-brd">
                                     <rect key="frame" x="320" y="115" width="45" height="45"/>
                                     <constraints>
@@ -295,17 +286,26 @@
                                         <action selector="changePhotoButton:" destination="4yG-oa-5WG" eventType="touchUpInside" id="xMb-7L-vKP"/>
                                     </connections>
                                 </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sz5-CN-92v" userLabel="First Name Label">
+                                    <rect key="frame" x="103" y="115" width="169" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="pGw-QR-4cT"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" red="0.36078431370000003" green="0.84705882349999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="fGj-bU-ROv" firstAttribute="leading" secondItem="1UB-De-v8Q" secondAttribute="leading" id="19R-mp-SeU"/>
+                                <constraint firstItem="6tt-pu-DIJ" firstAttribute="leading" secondItem="fGj-bU-ROv" secondAttribute="leading" id="1GH-uq-LRz"/>
                                 <constraint firstAttribute="bottom" secondItem="fGj-bU-ROv" secondAttribute="bottom" id="1Jh-X5-3x3"/>
                                 <constraint firstAttribute="trailing" secondItem="fGj-bU-ROv" secondAttribute="trailing" id="6dQ-jG-Vco"/>
                                 <constraint firstItem="sz5-CN-92v" firstAttribute="top" secondItem="1UB-De-v8Q" secondAttribute="top" constant="115" id="GeF-ug-WdS"/>
                                 <constraint firstItem="6tt-pu-DIJ" firstAttribute="top" secondItem="1UB-De-v8Q" secondAttribute="top" id="IZW-Zt-ixo"/>
                                 <constraint firstItem="6tt-pu-DIJ" firstAttribute="trailing" secondItem="fGj-bU-ROv" secondAttribute="trailing" id="Mh4-t7-lmd"/>
-                                <constraint firstItem="sz5-CN-92v" firstAttribute="leading" secondItem="1UB-De-v8Q" secondAttribute="leading" id="Q4R-Zi-O8N"/>
-                                <constraint firstItem="6tt-pu-DIJ" firstAttribute="leading" secondItem="sz5-CN-92v" secondAttribute="leading" id="bpe-uA-Wxg"/>
+                                <constraint firstItem="sz5-CN-92v" firstAttribute="centerX" secondItem="1UB-De-v8Q" secondAttribute="centerX" id="OhD-wV-4ka"/>
                                 <constraint firstItem="fGj-bU-ROv" firstAttribute="top" secondItem="HNV-1u-brd" secondAttribute="bottom" constant="10" id="hXi-aD-4o9"/>
                                 <constraint firstItem="fGj-bU-ROv" firstAttribute="top" secondItem="sz5-CN-92v" secondAttribute="bottom" constant="15" id="wlI-Sb-UtW"/>
                                 <constraint firstAttribute="trailing" secondItem="HNV-1u-brd" secondAttribute="trailing" constant="10" id="x3X-tI-rq9"/>
@@ -653,6 +653,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="GNc-oZ-kst">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="jmB-5p-J2m"/>
                         <barButtonItem key="rightBarButtonItem" image="ic_playlist_add" id="0UA-Q1-mRc">
                             <connections>
                                 <action selector="addTripButton:" destination="Y6y-gz-K84" id="i5Z-UD-sAm"/>
@@ -1548,10 +1549,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="n4t-Yl-zMd" kind="relationship" relationship="viewControllers" id="obT-aq-r1D"/>
                         <segue destination="trp-2C-Fyz" kind="relationship" relationship="viewControllers" id="HnN-bQ-s4k"/>
                         <segue destination="wjH-pT-9Kl" kind="relationship" relationship="viewControllers" id="gbf-JZ-lj1"/>
                         <segue destination="77L-hf-cQV" kind="relationship" relationship="viewControllers" id="Cl2-ih-irK"/>
+                        <segue destination="n4t-Yl-zMd" kind="relationship" relationship="viewControllers" id="obT-aq-r1D"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uSh-Ho-6cr" userLabel="First Responder" sceneMemberID="firstResponder"/>

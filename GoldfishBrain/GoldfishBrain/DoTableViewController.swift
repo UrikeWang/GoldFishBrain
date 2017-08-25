@@ -43,6 +43,8 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
 
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"ic_person_add.png"), style: .plain, target: self, action: #selector(addFriend))
+
         popTableView.estimatedRowHeight = 200.0
         popTableView.rowHeight = UITableViewAutomaticDimension
         popTableView.separatorStyle = UITableViewCellSeparatorStyle.none
@@ -64,6 +66,16 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
         super.viewWillAppear(animated) // No need for semicolon
 
         fetchDoingTravelDetails()
+
+    }
+
+    func addFriend() {
+
+        //swiftlint:disable force_cast
+        let addFriendVC = storyboard?.instantiateViewController(withIdentifier: "addFriendVC") as! AddFriendViewController
+        //swiftlint:enable force_cast
+
+        present(addFriendVC, animated: true, completion: nil)
 
     }
 
