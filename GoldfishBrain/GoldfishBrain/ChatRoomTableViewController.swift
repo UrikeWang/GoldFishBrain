@@ -22,6 +22,8 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
     var messageManager = MessageManager()
 
+    let noChatImageView = UIImageView()
+
     @IBOutlet var chatRoomTableView: UITableView!
 
     @IBOutlet weak var friendListButton: UIBarButtonItem!
@@ -48,6 +50,16 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
     func messageManager(_ manager: MessageManager, didGetMessage message: [Message]) {
 
         self.messages = message
+
+        if self.messages.count == 0 {
+
+            noChatImageView.isHidden = false
+
+        } else {
+
+            noChatImageView.isHidden = true
+
+        }
 
         DispatchQueue.main.async {
 
@@ -91,6 +103,14 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
         messageManager.observeUserMessages()
 
         chatRoomTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+
+        noChatImageView.image = UIImage(named: "聊天去背")
+
+        noChatImageView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width * 0.74)
+
+        view.addSubview(noChatImageView)
+
+        noChatImageView.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {

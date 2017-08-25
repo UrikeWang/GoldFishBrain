@@ -20,6 +20,8 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 //    @IBAction func checkButton(_ sender: UIButton) {
 //    }
 
+    let noEventImageView = UIImageView()
+
     @IBAction func cancelButton(_ sender: UIButton) {
 
         let deleteEventID = events[sender.tag].eventID
@@ -64,6 +66,16 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
         self.events = events
 
+        if self.events.count == 0 {
+
+            noEventImageView.isHidden = false
+
+        } else {
+
+            noEventImageView.isHidden = true
+
+        }
+
         DispatchQueue.main.async {
 
             self.friendEventTableView.reloadData()
@@ -97,6 +109,14 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
         friendEventTableView.separatorColor = UIColor.goldfishRed
         friendEventTableView.separatorInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         friendEventTableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+
+        noEventImageView.image = UIImage(named: "朋友行程去背")
+
+        noEventImageView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width * 0.74)
+
+        view.addSubview(noEventImageView)
+
+        noEventImageView.isHidden = true
 
     }
 

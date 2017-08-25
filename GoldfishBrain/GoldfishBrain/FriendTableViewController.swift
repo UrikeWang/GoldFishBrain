@@ -17,9 +17,21 @@ class FriendTableViewController: UITableViewController, chatRoomManagerDelegate 
 
     @IBOutlet var friendTableView: UITableView!
 
+    let noFriendImageView = UIImageView()
+
     func chatRoomManager(_ manager: ChatRoomManager, didGetPeople people: [Person]) {
 
         self.people = people
+
+        if self.people.count == 0 {
+
+            noFriendImageView.isHidden = false
+
+        } else {
+
+            noFriendImageView.isHidden = true
+
+        }
 
         DispatchQueue.main.async {
 
@@ -57,6 +69,14 @@ class FriendTableViewController: UITableViewController, chatRoomManagerDelegate 
         chatRoomManager.fetchFriendIDs()
 
         friendTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+
+        noFriendImageView.image = UIImage(named: "朋友去背")
+
+        noFriendImageView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width * 0.74)
+
+        view.addSubview(noFriendImageView)
+
+        noFriendImageView.isHidden = true
 
     }
 
