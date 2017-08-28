@@ -233,16 +233,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         if travelDestination != "" && friendID != "" {
 
-            //自動傳message
-            autoSendDo(text: travelDetails.text, id: friendID)
-
-            //將目的地加到region並開始追蹤
-//            profileViewController.checkUserCurrentDestination(coordinate: coordinate)
-
-            profileViewController.startMonitoring()
-
-            destinationCoordinates = coordinate
-
             isNotified = [0]
 
             let doingCoreDataManager = DoingCoreDataManager()
@@ -289,6 +279,16 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
             UserDefaults.standard.set(friendName, forKey: "friend")
             UserDefaults.standard.set(friendID, forKey: "friendID")
             UserDefaults.standard.synchronize()
+
+            //自動傳message
+            autoSendDo(text: travelDetails.text, id: friendID)
+
+            //將目的地加到region並開始追蹤
+            //            profileViewController.checkUserCurrentDestination(coordinate: coordinate)
+
+            profileViewController.startMonitoring()
+
+            destinationCoordinates = coordinate
 
             self.dismiss(animated: false, completion: nil)
 

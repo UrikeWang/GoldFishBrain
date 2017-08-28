@@ -82,22 +82,22 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
                 if let friendID = UserDefaults.standard.value(forKey: "friendID") as? String, let userDestination = UserDefaults.standard.value(forKey: "destination") as? String {
 
-                switch distance {
-                case 0...100:
+                    switch distance {
+                    case 0...100:
 
-                    isNotified[0] = 1
+                        isNotified[0] = 1
 
-                    autoResponse(destination: userDestination, id: friendID)
+                        autoResponse(destination: userDestination, id: friendID)
 
-                    doingCoreDataManager.updateDoingDo()
+                        doingCoreDataManager.updateDoingDo()
 
-//                    locationManager.stopUpdatingLocation()
+                        //                    locationManager.stopUpdatingLocation()
 
-                default:
-                    print("out of destination for 100 meters")
+                    default:
+                        print("out of destination for 100 meters")
+                    }
+
                 }
-
-            }
             }
         }
 
