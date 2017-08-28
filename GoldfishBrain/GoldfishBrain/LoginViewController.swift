@@ -190,15 +190,17 @@ class LoginViewController: UIViewController {
         let gradientLayer = CAGradientLayer()
 
         gradientLayer.frame = self.view.bounds
+        
+        gradientLayer.colors = [ UIColor.asiSeaBlue.cgColor, UIColor.white.cgColor ]
 
-        gradientLayer.colors = [ UIColor(red: 229.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0).cgColor,
-                                 UIColor(red: 241.0 / 255.0, green: 171.0 / 255.0, blue: 64.0 / 255.0, alpha: 1.0).cgColor,
-                                 UIColor(red: 218.0 / 255.0, green: 52.0 / 255.0, blue: 51.0 / 255.0, alpha: 1.0).cgColor,
-                                 UIColor.white.cgColor ]
+//        gradientLayer.colors = [ UIColor(red: 229.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0).cgColor,
+//                                 UIColor(red: 241.0 / 255.0, green: 171.0 / 255.0, blue: 64.0 / 255.0, alpha: 1.0).cgColor,
+//                                 UIColor(red: 218.0 / 255.0, green: 52.0 / 255.0, blue: 51.0 / 255.0, alpha: 1.0).cgColor,
+//                                 UIColor.white.cgColor ]
 
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 1.0)
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
 
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
 
         self.view.layer.insertSublayer(gradientLayer, at: 0)
 

@@ -33,8 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
 
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if uid != "" {
 
-        if UserDefaults.standard.value(forKey: "uid") != nil {
+//        if UserDefaults.standard.value(forKey: "uid") != nil {
 
             let tabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
 
