@@ -205,6 +205,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         travelTime = dateText.text!
 
+        travelDetails.text = "出發時間：\(travelTime)\n\r目的地點：\(self.travelDestination)\n\r行程時間：\(self.travelDuration)\n\r通知：\(self.friendName)"
+
     }
 
     func cancelClick() {
@@ -312,10 +314,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         friendText.placeholder = "Select friend"
 
-        //textFieldDidBeginEditing
         self.dateText.delegate = self
-
-//        self.friendText.delegate = self
 
         dateLabel.text = "    選擇您的出發時間"
         dateLabel.backgroundColor = UIColor.goldfishRedLight
@@ -350,6 +349,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     override func viewWillAppear(_ animated: Bool) {
 
         super.viewWillAppear(animated)
+
+        self.dateText.resignFirstResponder()
 
         self.destinationText.resignFirstResponder()
 
