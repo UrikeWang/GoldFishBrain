@@ -137,7 +137,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         self.present(popFriendVC, animated: true, completion: nil)
 
     }
-    
+
 //    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
 //        
 //        self.view.endEditing(true)
@@ -147,15 +147,15 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 //        return true
 //
 //    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        self.view.becomeFirstResponder()
-        
-        textField.resignFirstResponder()
-        
-        return true
-    }
+
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        
+//        self.view.becomeFirstResponder()
+//        
+//        textField.resignFirstResponder()
+//        
+//        return true
+//    }
 
     func manager(_ manager: AddDoPopViewController, destination: String, duration: String, distance: String, coordinate: [Double]) {
 
@@ -183,7 +183,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         friendText.text = name
 
         travelDetails.text = "出發時間：\(travelTime)\n\r目的地點：\(self.travelDestination)\n\r行程時間：\(self.travelDuration)\n\r通知：\(self.friendName)"
-        
+
         self.view.reloadInputViews()
 
     }
@@ -294,7 +294,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.endEditing(true)
+//        self.view.endEditing(true)
 
         let date = Date()
 
@@ -314,7 +314,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         //textFieldDidBeginEditing
         self.dateText.delegate = self
-        
+
 //        self.friendText.delegate = self
 
         dateLabel.text = "    選擇您的出發時間"
@@ -351,7 +351,11 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         super.viewWillAppear(animated)
 
-        self.view.endEditing(true)
+        self.destinationText.resignFirstResponder()
+
+        self.friendText.resignFirstResponder()
+
+        self.travelDetails.resignFirstResponder()
 
     }
 
