@@ -210,10 +210,14 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
         if editingStyle == .delete {
+            
+//            doingCoreDataManager.fetchDoingData()
+            
+            let creatDoViewController = CreateDoViewController()
+            
+            creatDoViewController.autoSendDo(text: "我取消前往 \(doingTravelDatas[0].destination!) 的行程了", id: doingTravelDatas[0].friendID!)
 
             doingCoreDataManager.deleteDoingDo(indexPath: indexPath.row)
-
-            doingCoreDataManager.fetchDoingData()
 
             self.doingTravelDatas.remove(at: indexPath.row)
 

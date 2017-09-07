@@ -126,8 +126,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
             popOverVC.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
 
-//            popVC.preferredContentSize = CGSize(width: 350, height: 600)
-
             popOverVC.delegate = self
 
             /*//把原本按鈕隱藏
@@ -160,8 +158,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
             popOverFriendVC.sourceView = viewForSource
 
             popOverFriendVC.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
-//
-//            popFriendVC.preferredContentSize = CGSize(width: 350, height: 300)
 
             popOverFriendVC.delegate = self
 
