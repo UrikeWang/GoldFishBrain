@@ -108,6 +108,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     @IBAction func destinationText(_ sender: Any) {
 
+        self.destinationText.endEditing(true)
+
         //swiftlint:disable force_cast
         let popVC = storyboard?.instantiateViewController(withIdentifier: "popVC") as! AddDoPopViewController
         //swiftlint:enable force_cast
@@ -116,30 +118,13 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         popVC.delegate = self
 
-        if let popOverVC = popVC.popoverPresentationController {
-
-            //swiftlint:disable force_cast
-            let viewForSource = sender as! UITextField
-            //swiftlint:enable force_cast
-
-            popOverVC.sourceView = viewForSource
-
-            popOverVC.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
-
-            popOverVC.delegate = self
-
-            /*//把原本按鈕隱藏
-            viewForSource.alpha = 0.0
-            viewForSource.layer.cornerRadius = 5
-            viewForSource.layer.borderWidth = 2
-            */
-        }
-
         self.present(popVC, animated: true, completion: nil)
 
     }
 
     @IBAction func toWhoText(_ sender: Any) {
+
+        self.friendText.endEditing(true)
 
         //swiftlint:disable force_cast
         let popFriendVC = storyboard?.instantiateViewController(withIdentifier: "popFriendVC") as! PopFriendViewController
@@ -149,21 +134,27 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         popFriendVC.delegate = self
 
-        if let popOverFriendVC = popFriendVC.popoverPresentationController {
-
-            //swiftlint:disable force_cast
-            let viewForSource = sender as! UITextField
-            //swiftlint:enable force_cast
-
-            popOverFriendVC.sourceView = viewForSource
-
-            popOverFriendVC.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
-
-            popOverFriendVC.delegate = self
-
-        }
-
         self.present(popFriendVC, animated: true, completion: nil)
+
+    }
+    
+//    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+//        
+//        self.view.endEditing(true)
+//        
+//        textField.resignFirstResponder()
+//        
+//        return true
+//
+//    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        self.view.becomeFirstResponder()
+        
+        textField.resignFirstResponder()
+        
+        return true
     }
 
     func manager(_ manager: AddDoPopViewController, destination: String, duration: String, distance: String, coordinate: [Double]) {
@@ -192,6 +183,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         friendText.text = name
 
         travelDetails.text = "出發時間：\(travelTime)\n\r目的地點：\(self.travelDestination)\n\r行程時間：\(self.travelDuration)\n\r通知：\(self.friendName)"
+        
+        self.view.reloadInputViews()
 
     }
 
@@ -279,9 +272,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
             //自動傳message
             autoSendDo(text: travelDetails.text, id: friendID)
 
-            //將目的地加到region並開始追蹤
-            //            profileViewController.checkUserCurrentDestination(coordinate: coordinate)
-
             profileViewController.startMonitoring()
 
             destinationCoordinates = coordinate
@@ -304,9 +294,7 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        tabBarC = self.tabBarController as? TabBarController
-
-//        navigationView.backgroundColor = UIColor.goldfishRedNavigation
+        self.view.endEditing(true)
 
         let date = Date()
 
@@ -326,6 +314,8 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
         //textFieldDidBeginEditing
         self.dateText.delegate = self
+        
+//        self.friendText.delegate = self
 
         dateLabel.text = "    選擇您的出發時間"
         dateLabel.backgroundColor = UIColor.goldfishRedLight
@@ -359,13 +349,10 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     override func viewWillAppear(_ animated: Bool) {
 
-        super.viewWillAppear(animated) // No need for semicolon
+        super.viewWillAppear(animated)
 
-    }
+        self.view.endEditing(true)
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     func createEvent(time: String, destination: String, duration: String, toFriend: String, fromFriend: String) {
@@ -373,10 +360,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         let eventRef = Database.database().reference().child("events").child(toFriend).childByAutoId()
 
         let eventID = eventRef.key
-
-//        UserDefaults.standard.set(eventID, forKey: "eventID")
-//        
-//        UserDefaults.standard.synchronize()
 
         eventRef.observeSingleEvent(of: .value, with: { (_) in
 
@@ -526,15 +509,5 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
         }
 
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -63,10 +63,6 @@ class AddDoPopViewController: UIViewController/*, managerCreateStartDelegate*/ {
 
     var doCoordinate = [Double]()
 
-//    //swiftlint:disable force_cast
-//    let uid = UserDefaults.standard.value(forKey: "uid") as! String
-//    //swiftlint:enable force_cast
-
     var notify = false
 
     @IBOutlet weak var travelTime: UITextView!
@@ -116,7 +112,7 @@ class AddDoPopViewController: UIViewController/*, managerCreateStartDelegate*/ {
     @IBAction func publicTransportationButton(_ sender: Any) {
 
         calculateTravelTime(type: "transit")
-        //transit_mode=bus
+
     }
 
     @IBAction func carButton(_ sender: Any) {
@@ -143,18 +139,6 @@ class AddDoPopViewController: UIViewController/*, managerCreateStartDelegate*/ {
         carButton.layer.borderColor = UIColor.clear.cgColor
         carButton.tintColor = UIColor.darkGray
     }
-
-//    func manager(_ manager: CreateDoViewController, destination: String, duration: String, distance: String, coordinate: [Double]) {
-//
-//        self.doDestination = destination
-//
-//        self.doDuration = duration
-//
-//        self.doDistance = distance
-//
-//        self.doCoordinate = coordinate
-//
-//    }
 
     func calculateTravelTime(type: String) {
 

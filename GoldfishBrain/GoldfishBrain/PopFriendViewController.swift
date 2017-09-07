@@ -78,10 +78,6 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
     }
 
-//    override func viewDidAppear(_ animated: Bool) {
-//        <#code#>
-//    }
-
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -120,8 +116,6 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
         cell.friendNameLabel.text = people[indexPath.row].firstName
 
         let url = URL(string: "\(people[indexPath.row].imageUrl)")
-
-//        cell.friendPhoto.kf.setImage(with: url)
 
         cell.friendPhoto.sd_setImage(with: url, placeholderImage: UIImage(named: "icon-placeholder"))
 
