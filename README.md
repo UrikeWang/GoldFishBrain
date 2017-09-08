@@ -1,3 +1,8 @@
+---
+typora-copy-images-to: ipic
+
+---
+
 # **GoldfishBrain**
 
 //介紹App
@@ -10,7 +15,7 @@
 
 - 新增行程
 
-  <img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fjc9fvukipj30yi1pcwkr.jpg" style="zoom:50%" />
+  ![IMG_8328](https://ws4.sinaimg.cn/large/006tKfTcgy1fjc9fvukipj30yi1pcwkr.jpg)
 
 - 111
 
