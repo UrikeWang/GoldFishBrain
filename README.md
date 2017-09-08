@@ -42,14 +42,15 @@
   <img src="" width="250">
 </p>
 
-<p align="left">
-  <img src="" width="250">
-  <img src="" width="250">
-</p>
-
 ## Libraries
 
-//使用的第三方套件
+- Firebase
+- Crashlytics
+- IQKeyboardManagerSwift
+- GoogleMaps
+- GooglePlaces
+- GoogleMapsDirections
+- NVActivityIndicatorView
 
 ## Requirement
 
@@ -58,6 +59,8 @@
 - Pod Install
 
 ## App Store
+
+https://itunes.apple.com/us/app/id1273532360
 
 ## Contacts
 
