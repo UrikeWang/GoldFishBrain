@@ -35,8 +35,6 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
     @IBOutlet weak var mapView: GMSMapView!
 
-//    let addPopViewController = AddDoPopViewController()
-
     var locationManager = CLLocationManager()
 
     var placesClient: GMSPlacesClient!
@@ -45,13 +43,7 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
     let coreDataManager = CoreDataManager()
 
-//    var isNotified = false
-
-//    var doingTravelDatas = [DoingTravelDataMO]()
-
     let doingCoreDataManager = DoingCoreDataManager()
-
-//    var tabBarC: TabBarController?
 
     @IBAction func logoutButton(_ sender: Any) {
 
@@ -90,8 +82,6 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
             let loginVC = storyBoard.instantiateViewController(withIdentifier: "LoginVC")
 
             self.present(loginVC, animated: true, completion: nil)
-
-//            self.dismiss(animated: true, completion: nil)
 
         })
 
@@ -133,8 +123,6 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
     func profileManager(_ manager: ProfileManager, didGetImage url: String) {
 
         let imageUrl = URL(string: "\(url)")
-
-//        profileImage.kf.setImage(with: imageUrl)
 
         profileImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "icon-placeholder"))
 
@@ -181,14 +169,8 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
         changePhotoButton.tintColor = UIColor(red: 170.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 0.8)
 
-        //changed / set profile image (點擊圖片)
-//        profileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectionProfileImage)))
-//        profileImage.isUserInteractionEnabled = true
-
         firstNameLabel.textAlignment = .center
         firstNameLabel.backgroundColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.7)
-
-//        dosTableView.separatorStyle = UITableViewCellSeparatorStyle.none
 
         dosTableView.separatorColor = UIColor.goldfishRed
         dosTableView.separatorInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
@@ -196,8 +178,6 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
         dosTableView.estimatedRowHeight = 60
 
         dosTableView.tableFooterView = UIView(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
-
-//        let userDestination = UserDefaults.standard.value(forKey: "destination") as? String
 
         let addDoVC = CreateDoViewController()
 
@@ -209,8 +189,6 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
         super.viewWillAppear(animated) // No need for semicolon
 
         fetchTravelDetails()
-
-//        self.mapView.reloadInputViews()
 
     }
 

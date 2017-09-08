@@ -237,7 +237,6 @@ class RegisterViewController: UIViewController {
 
         self.view.layer.insertSublayer(gradientLayer, at: 0)
 
-//        appLogo.tintColor = UIColor.black
         appLogo.layer.shadowOffset = CGSize(width: 0, height: 3)
         appLogo.layer.shadowOpacity = 0.4
         appLogo.layer.shadowRadius = 4
@@ -261,7 +260,6 @@ class RegisterViewController: UIViewController {
         firstNameText.textAlignment = .center
         firstNameText.textColor = UIColor.white
         firstNameText.returnKeyType = .done
-//        firstNameText.font = UIFont(descriptor: ".Myriad Pro Semibold", size: 16)
 
         lastNameText.placeholder = "Last Name"
         lastNameText.backgroundColor = UIColor.textBackground

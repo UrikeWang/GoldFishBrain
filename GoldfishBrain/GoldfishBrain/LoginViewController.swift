@@ -191,8 +191,6 @@ class LoginViewController: UIViewController {
 
         gradientLayer.frame = self.view.bounds
 
-//        gradientLayer.colors = [ UIColor.asiSeaBlue.cgColor, UIColor.white.cgColor ]
-
         gradientLayer.colors = [ UIColor(red: 229.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0).cgColor,
                                  UIColor(red: 241.0 / 255.0, green: 171.0 / 255.0, blue: 64.0 / 255.0, alpha: 1.0).cgColor,
                                  UIColor(red: 218.0 / 255.0, green: 52.0 / 255.0, blue: 51.0 / 255.0, alpha: 1.0).cgColor,
@@ -203,7 +201,6 @@ class LoginViewController: UIViewController {
 
         self.view.layer.insertSublayer(gradientLayer, at: 0)
 
-//        appLogo.tintColor = UIColor.black
         appLogo.layer.shadowOffset = CGSize(width: 0, height: 3)
         appLogo.layer.shadowOpacity = 0.4
         appLogo.layer.shadowRadius = 4
@@ -251,12 +248,6 @@ class LoginViewController: UIViewController {
         forgotPasswordButton.setTitleColor(UIColor.white, for: .normal)
         forgotPasswordButton.setTitle("Forgot your password?", for: .normal)
         forgotPasswordButton.contentHorizontalAlignment = .center
-
-//        NVActivityIndicatorView(frame: CGRect(x: view.frame.width/2, y: view.frame.height/2, width: 100, height: 100), type: .pacman, color: UIColor.white, padding: 10)
-
-//        alertLabel.isHidden = true
-//        alertLabel.backgroundColor = UIColor.clear
-//        alertLabel.textAlignment = .center
 
     }
 

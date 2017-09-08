@@ -23,8 +23,6 @@ class NoneDoTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-//        setupTitleLabel()
-
         setupNote1Label()
 
         setupNote2Label()

@@ -56,6 +56,8 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
     }
 
     func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: String) {
+        
+       print("chatRome error occured : \(error)")
 
     }
 

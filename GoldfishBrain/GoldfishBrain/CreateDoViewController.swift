@@ -138,25 +138,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     }
 
-//    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-//        
-//        self.view.endEditing(true)
-//        
-//        textField.resignFirstResponder()
-//        
-//        return true
-//
-//    }
-
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        
-//        self.view.becomeFirstResponder()
-//        
-//        textField.resignFirstResponder()
-//        
-//        return true
-//    }
-
     func manager(_ manager: AddDoPopViewController, destination: String, duration: String, distance: String, coordinate: [Double]) {
 
         self.travelDistance = distance
@@ -296,8 +277,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        self.view.endEditing(true)
-
         let date = Date()
 
         let dateFormatter = DateFormatter()
@@ -422,7 +401,6 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
             let timestamp = Int(Date().timeIntervalSince1970)
 
             let channelRef = Database.database().reference().child("channels")
-            //            let childRef = ref.childByAutoId()
 
             let childTalkRef = channelRef.childByAutoId()
 

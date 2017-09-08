@@ -99,7 +99,7 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+
         return 2
     }
 
@@ -184,8 +184,6 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
             cell.doingTravelDestination.text = destination
             cell.doingToFriend.text = friend
             cell.doingTravelDuration.text = duration
-
-            //            cell.doingTravelDataLabel.text = "出發時間：\(date)\r\n目的地點：\(destination)\r\n通知朋友：\(friend)\r\n預計行程時間：\(duration)"
 
             return cell
 

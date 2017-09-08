@@ -229,7 +229,6 @@ class AddDoPopViewController: UIViewController/*, managerCreateStartDelegate*/ {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
 
         locationManager.requestAlwaysAuthorization()
-//        locationManager.requestWhenInUseAuthorization()
 
         locationManager.distanceFilter = 50
 

@@ -124,11 +124,6 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -160,8 +155,6 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
             cell.cancelButton.tag = indexPath.row
 
-//            cell.checkButton.tag = indexPath.row
-
             cell.friendName.text = event.fromFriend
 
             cell.friendDoDate.text = event.time
@@ -169,8 +162,6 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
             cell.friendDoDestination.text = event.destination
 
             cell.friendDoDuration.text = event.duration
-
-//            cell.friendDoContent.text = "朋友：\(event.fromFriend)\r出發時間：\(event.time)\r目的地點：\(event.destination)\r預估時間：\(event.duration)\r"
 
             return cell
 
@@ -189,7 +180,6 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
             let timestamp = Int(Date().timeIntervalSince1970)
 
             let channelRef = Database.database().reference().child("channels")
-            //            let childRef = ref.childByAutoId()
 
             let childTalkRef = channelRef.childByAutoId()
 
@@ -212,8 +202,6 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
                     childTalkRef.child("members").updateChildValues(memValues)
 
                     childTalkTextID.updateChildValues(values)
-
-                    //                    self.messageText.text = ""
 
                     chatsRef.updateChildValues([childTalkRef.key: 1])
 
@@ -260,8 +248,6 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
                                     childTalkTextID.updateChildValues(values)
 
-                                    //                                    self.messageText.text = ""
-
                                     chatsRef.updateChildValues([childTalkRef.key: 1])
 
                                     chatsToRef.updateChildValues([childTalkRef.key: 1])
@@ -285,50 +271,5 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
         }
 
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -20,8 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-//        self.window = UIWindow(frame: UIScreen.main.bounds)
-
         UIApplication.shared.statusBarStyle = .lightContent
 
         UITabBar.appearance().tintColor = UIColor.goldfishOrange
@@ -36,8 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if uid != "" {
 
-//        if UserDefaults.standard.value(forKey: "uid") != nil {
-
             let tabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
 
             self.window?.rootViewController = tabBarVC
@@ -49,7 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = loginVC
 
         }
-//        print("somebody have logged in", UserDefaults.standard.value(forKey:"uid"))
 
         FirebaseApp.configure()
 

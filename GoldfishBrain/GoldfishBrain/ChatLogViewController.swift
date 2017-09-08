@@ -32,8 +32,6 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     let placeholderText = "請輸入內容..."
 
-//    var textArray = [Message]()
-
     @IBOutlet weak var sendMessageView: UIView!
 
     @IBOutlet weak var messageText: UITextView!
@@ -87,7 +85,6 @@ class ChatLogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         }
 
-//        messageText.layer.sublayerTransform = CATransform3DMakeScale(5, 5, 30)
         messageText.textContainerInset = UIEdgeInsets(top: 15, left: 10, bottom: 0, right: 10)
         messageText.addPlaceholderText(text: placeholderText)
         messageText.font = UIFont(name: "Helvetica", size: 20.0)

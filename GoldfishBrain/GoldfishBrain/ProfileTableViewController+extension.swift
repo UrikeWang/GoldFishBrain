@@ -48,23 +48,6 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
         }
     }
 
-//    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
-//
-//        let scale = newWidth / image.size.width
-//
-//        let newHeight = image.size.height * scale
-//
-//        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
-//
-//        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight ))
-//
-//        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-//
-//        UIGraphicsEndImageContext()
-//
-//        return newImage!
-//    }
-
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
 
         picker.dismiss(animated: true, completion: nil)
@@ -76,8 +59,6 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
         if let uid = UserDefaults.standard.value(forKey: "uid") {
 
             let storageRef = Storage.storage().reference().child("\(uid)").child("profileImageURL")
-
-//            if let uploadData = UIImagePNGRepresentation(image) {
 
             if let uploadData = image {
 
