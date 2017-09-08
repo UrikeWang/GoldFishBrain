@@ -1,8 +1,3 @@
----
-typora-copy-images-to: ipic
-
----
-
 # **GoldfishBrain**
 
 //介紹App
