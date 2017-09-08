@@ -38,7 +38,7 @@
 
   - 使用者抵達目的地時的頁面呈現
   <p align="left">
-  <img src="" width="250">
+  <img src="https://user-images.githubusercontent.com/28559402/30210011-2ce005d4-94cd-11e7-8755-35ea25d52a27.PNG" width="250">
   <img src="" width="250">
 </p>
 
