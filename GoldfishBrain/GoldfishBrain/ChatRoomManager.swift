@@ -13,7 +13,7 @@ protocol chatRoomManagerDelegate: class {
 
     func chatRoomManager(_ manager: ChatRoomManager, didGetPeople people: [Person])
 
-    func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: Error)
+    func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: String)
 
     func chatRoomManager(_ manager: ChatRoomManager, didGetFriend friend: Person)
 
@@ -82,6 +82,8 @@ class ChatRoomManager {
 
     func searchFriend(email: String) {
 
+        var found = false
+
         let ref = Database.database().reference().child("users")
 
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -98,11 +100,11 @@ class ChatRoomManager {
 
                                 else {
 
-                                    print("此mail不存在")
-
                                     return
 
                             }
+
+                            found = true
 
                             self.friend = Person(id: user.key, firstName: firstName, lastName: lastName, imageUrl: imageUrl)
 
@@ -113,6 +115,12 @@ class ChatRoomManager {
                     }
 
                 }
+
+            }
+
+            if found == false {
+
+                self.delegate?.chatRoomManager(self, didFailWith: "此mail不存在，或是大小寫有誤，請再次確認朋友的Email")
 
             }
 

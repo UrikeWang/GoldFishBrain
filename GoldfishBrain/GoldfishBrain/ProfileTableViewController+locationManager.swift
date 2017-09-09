@@ -82,22 +82,22 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
                 if let friendID = UserDefaults.standard.value(forKey: "friendID") as? String, let userDestination = UserDefaults.standard.value(forKey: "destination") as? String {
 
-                switch distance {
-                case 0...100:
+                    switch distance {
+                    case 0...100:
 
-                    isNotified[0] = 1
+                        isNotified[0] = 1
 
-                    autoResponse(destination: userDestination, id: friendID)
+                        autoResponse(destination: userDestination, id: friendID)
 
-                    doingCoreDataManager.updateDoingDo()
+                        doingCoreDataManager.updateDoingDo()
 
-//                    locationManager.stopUpdatingLocation()
+                        //                    locationManager.stopUpdatingLocation()
 
-                default:
-                    print("out of destination for 100 meters")
+                    default:
+                        print("out of destination for 100 meters")
+                    }
+
                 }
-
-            }
             }
         }
 
@@ -184,12 +184,9 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
 
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
 
-//            _ = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/").child("messages")
-
             let timestamp = Int(Date().timeIntervalSince1970)
 
             let channelRef = Database.database().reference().child("channels")
-            //            let childRef = ref.childByAutoId()
 
             let childTalkRef = channelRef.childByAutoId()
 
@@ -212,8 +209,6 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
                     childTalkRef.child("members").updateChildValues(memValues)
 
                     childTalkTextID.updateChildValues(values)
-
-                    //                    self.messageText.text = ""
 
                     chatsRef.updateChildValues([childTalkRef.key: 1])
 
@@ -259,8 +254,6 @@ extension ProfileTableViewController: CLLocationManagerDelegate {
                                     childTalkRef.child("members").updateChildValues(memValues)
 
                                     childTalkTextID.updateChildValues(values)
-
-                                    //                                    self.messageText.text = ""
 
                                     chatsRef.updateChildValues([childTalkRef.key: 1])
 

@@ -56,6 +56,8 @@ class MessageManager {
 
             case 0 :
 
+                self.delegate?.messageManager(self, didGetMessage: self.messages)
+
                 print("no chat contents!")
 
             case _ where snapshot.childrenCount > 0 :

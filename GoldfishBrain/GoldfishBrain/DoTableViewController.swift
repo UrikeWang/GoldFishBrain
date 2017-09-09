@@ -43,6 +43,8 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
 
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"ic_person_add.png"), style: .plain, target: self, action: #selector(addFriend))
+
         popTableView.estimatedRowHeight = 200.0
         popTableView.rowHeight = UITableViewAutomaticDimension
         popTableView.separatorStyle = UITableViewCellSeparatorStyle.none
@@ -67,6 +69,16 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
     }
 
+    func addFriend() {
+
+        //swiftlint:disable force_cast
+        let addFriendVC = storyboard?.instantiateViewController(withIdentifier: "addFriendVC") as! AddFriendViewController
+        //swiftlint:enable force_cast
+
+        present(addFriendVC, animated: true, completion: nil)
+
+    }
+
     func fetchDoingTravelDetails() {
 
         doingTravelDatas = doingCoreDataManager.fetchDoingData()
@@ -87,7 +99,7 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+
         return 2
     }
 
@@ -173,8 +185,6 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
             cell.doingToFriend.text = friend
             cell.doingTravelDuration.text = duration
 
-            //            cell.doingTravelDataLabel.text = "出發時間：\(date)\r\n目的地點：\(destination)\r\n通知朋友：\(friend)\r\n預計行程時間：\(duration)"
-
             return cell
 
         }
@@ -199,9 +209,11 @@ class DoTableViewController: UITableViewController, UIPopoverPresentationControl
 
         if editingStyle == .delete {
 
-            doingCoreDataManager.deleteDoingDo(indexPath: indexPath.row)
+            let creatDoViewController = CreateDoViewController()
 
-            doingCoreDataManager.fetchDoingData()
+            creatDoViewController.autoSendDo(text: "我取消前往 \(doingTravelDatas[0].destination!) 的行程了", id: doingTravelDatas[0].friendID!)
+
+            doingCoreDataManager.deleteDoingDo(indexPath: indexPath.row)
 
             self.doingTravelDatas.remove(at: indexPath.row)
 

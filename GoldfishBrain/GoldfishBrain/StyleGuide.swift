@@ -33,6 +33,14 @@ extension UIColor {
         return UIColor(red: 218.0 / 255.0, green: 52.0 / 255.0, blue: 51.0 / 255.0, alpha: 1.0)
     }
 
+    class var goldfishRedNavigation: UIColor {
+        return UIColor(red: 206.0 / 255.0, green: 90.0 / 255.0, blue: 85.0 / 255.0, alpha: 1.0)
+    }
+
+    class var goldfishOrangeSection: UIColor {
+        return UIColor(red: 218.0 / 255.0, green: 114.0 / 255.0, blue: 15.0 / 255.0, alpha: 1.0)
+    }
+
     class var goldfishOrange: UIColor {
         return UIColor(red: 241.0 / 255.0, green: 171.0 / 255.0, blue: 64.0 / 255.0, alpha: 1.0)
     }

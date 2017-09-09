@@ -25,6 +25,86 @@ class RegisterViewController: UIViewController {
 
     @IBAction func registerButton(_ sender: Any) {
 
+        //firstname 空值
+        if firstNameText.text == "" {
+
+            let alertController = UIAlertController(
+                title: "溫馨小提醒",
+                message: "請輸入FirstName",
+                preferredStyle: .alert)
+
+            let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+                alertController.dismiss(animated: true, completion: nil)
+            })
+
+            alertController.addAction(check)
+
+            self.present(alertController, animated: true, completion: nil)
+
+            return
+
+        }
+
+        //lastname 空值
+        if lastNameText.text == "" {
+
+            let alertController = UIAlertController(
+                title: "溫馨小提醒",
+                message: "請輸入LastName",
+                preferredStyle: .alert)
+
+            let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+                alertController.dismiss(animated: true, completion: nil)
+            })
+
+            alertController.addAction(check)
+
+            self.present(alertController, animated: true, completion: nil)
+
+            return
+
+        }
+
+        //email 空值
+        if emailText.text == "" {
+
+            let alertController = UIAlertController(
+                title: "溫馨小提醒",
+                message: "請輸入Email",
+                preferredStyle: .alert)
+
+            let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+                alertController.dismiss(animated: true, completion: nil)
+            })
+
+            alertController.addAction(check)
+
+            self.present(alertController, animated: true, completion: nil)
+
+            return
+
+        }
+
+        //password 空值
+        if passwordText.text == "" {
+
+            let alertController = UIAlertController(
+                title: "溫馨小提醒",
+                message: "請輸入Password",
+                preferredStyle: .alert)
+
+            let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+                alertController.dismiss(animated: true, completion: nil)
+            })
+
+            alertController.addAction(check)
+
+            self.present(alertController, animated: true, completion: nil)
+
+            return
+
+        }
+
         guard let email = emailText.text, let password = passwordText.text, let firstName = firstNameText.text, let lastName = lastNameText.text else {
 
             print("Register failed!")
@@ -36,11 +116,10 @@ class RegisterViewController: UIViewController {
         Auth.auth().createUser(withEmail: email, password: password, completion: {(user: User?, error) in
 
             if error != nil {
-                print("錯誤訊息:", error as Any)
 
                 let alertController = UIAlertController(
                     title: "溫馨小提醒",
-                    message: "請輸入正確的個人資料",
+                    message: "\((error?.localizedDescription)!)",
                     preferredStyle: .alert)
 
                 let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
@@ -54,11 +133,13 @@ class RegisterViewController: UIViewController {
                 return
             }
 
-            guard let uid = user?.uid else {
+            guard var registerUid = user?.uid else {
 
                 return
 
             }
+
+            uid = registerUid
 
             let ref = Database.database().reference(fromURL: "https://goldfishbrain-e2684.firebaseio.com/")
 
@@ -89,6 +170,8 @@ class RegisterViewController: UIViewController {
 
                 UserDefaults.standard.synchronize()
 
+                uid = userUid
+
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 
                 let tabBarVC = storyBoard.instantiateViewController(withIdentifier: "TabBarVC")
@@ -103,7 +186,36 @@ class RegisterViewController: UIViewController {
 
     @IBAction func loginButton(_ sender: Any) {
 
-        dismiss(animated: true, completion: nil)
+        if firstNameText.text! != "" || lastNameText.text! != "" || emailText.text! != "" || passwordText.text! != "" {
+
+            let alertController = UIAlertController(
+                title: "溫馨小提醒",
+                message: "真的要離開註冊頁面嗎？",
+                preferredStyle: .alert)
+
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+
+                self.dismiss(animated: true, completion: nil)
+
+            })
+
+            let cancel = UIAlertAction(title: "Cancel", style: .default) { (_ : UIAlertAction) in
+
+                alertController.dismiss(animated: true, completion: nil)
+            }
+
+            alertController.addAction(ok)
+
+            alertController.addAction(cancel)
+
+            self.present(alertController, animated: true, completion: nil)
+
+        } else {
+
+            self.dismiss(animated: true, completion: nil)
+
+        }
+
     }
 
     override func viewDidLoad() {
@@ -125,7 +237,6 @@ class RegisterViewController: UIViewController {
 
         self.view.layer.insertSublayer(gradientLayer, at: 0)
 
-//        appLogo.tintColor = UIColor.black
         appLogo.layer.shadowOffset = CGSize(width: 0, height: 3)
         appLogo.layer.shadowOpacity = 0.4
         appLogo.layer.shadowRadius = 4
@@ -135,7 +246,7 @@ class RegisterViewController: UIViewController {
         appTitle.font = UIFont(name: "Comix Loud", size: 20.0)
 
         let attrString = NSMutableAttributedString(string: appTitle.text!)
-        var style = NSMutableParagraphStyle()
+        let style = NSMutableParagraphStyle()
         style.lineSpacing = 24 // change line spacing between paragraph like 36 or 48
         style.minimumLineHeight = 20 // change line spacing between each line like 30 or 40
         attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSRange(location: 0, length: (appTitle.text?.characters.count)!))
@@ -149,7 +260,6 @@ class RegisterViewController: UIViewController {
         firstNameText.textAlignment = .center
         firstNameText.textColor = UIColor.white
         firstNameText.returnKeyType = .done
-//        firstNameText.font = UIFont(descriptor: ".Myriad Pro Semibold", size: 16)
 
         lastNameText.placeholder = "Last Name"
         lastNameText.backgroundColor = UIColor.textBackground

@@ -142,6 +142,17 @@ extension UITextField {
     }
 }
 
+extension UITextView {
+
+    func addPlaceholderText(text: String) {
+
+        self.text = text
+        self.textColor = UIColor.white
+
+    }
+
+}
+
 extension UIView {
 
     func addTopBorder() {

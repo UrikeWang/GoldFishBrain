@@ -36,7 +36,7 @@ class LoginViewController: UIViewController {
 
                 let alertController = UIAlertController(
                     title: "溫馨小提醒",
-                    message: "請輸入正確的個人資料",
+                    message: "\((error?.localizedDescription)!)",
                     preferredStyle: .alert)
 
                 let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
@@ -65,6 +65,8 @@ class LoginViewController: UIViewController {
 
             UserDefaults.standard.synchronize()
 
+            uid = userUid
+
             //因為Firebase會延遲，按下確認鍵，將註冊的個人資料丟到Firebase上，這是需要幾秒鐘的時間，倘若直接Segue，資料還來不及送達Firebase，就已經到達下一個頁面，這就非常有可能造成Error
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 
@@ -87,7 +89,7 @@ class LoginViewController: UIViewController {
 
             let alertController = UIAlertController(
                 title: "溫馨小提醒",
-                message: "請輸入email",
+                message: "請輸入email，這樣才能寄通知信到您原本註冊的信箱喔！",
                 preferredStyle: .alert)
 
             let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
@@ -104,7 +106,20 @@ class LoginViewController: UIViewController {
 
                 if error != nil {
 
-                    print("error occured", error)
+                    let alertController = UIAlertController(
+                        title: "溫馨小提醒",
+                        message: "\((error?.localizedDescription)!)",
+                        preferredStyle: .alert)
+
+                    let check = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+                        alertController.dismiss(animated: true, completion: nil)
+                    })
+
+                    alertController.addAction(check)
+
+                    self.present(alertController, animated: true, completion: nil)
+
+                    return
 
                 } else {
 
@@ -127,11 +142,44 @@ class LoginViewController: UIViewController {
 
     @IBAction func registerButton(_ sender: Any) {
 
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        if emailText.text! != "" || passwordText.text! != "" {
 
-        let registerVC = storyBoard.instantiateViewController(withIdentifier: "RegisterVC")
+            let alertController = UIAlertController(
+                title: "溫馨小提醒",
+                message: "真的要離開登入頁面嗎？",
+                preferredStyle: .alert)
 
-        self.present(registerVC, animated: true, completion: nil)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
+
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+
+                let registerVC = storyBoard.instantiateViewController(withIdentifier: "RegisterVC")
+
+                self.present(registerVC, animated: true, completion: nil)
+
+            })
+
+            let cancel = UIAlertAction(title: "Cancel", style: .default) { (_ : UIAlertAction) in
+
+                alertController.dismiss(animated: true, completion: nil)
+            }
+
+            alertController.addAction(ok)
+
+            alertController.addAction(cancel)
+
+            self.present(alertController, animated: true, completion: nil)
+
+        } else {
+
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+
+            let registerVC = storyBoard.instantiateViewController(withIdentifier: "RegisterVC")
+
+            self.present(registerVC, animated: true, completion: nil)
+
+        }
+
     }
 
     override func viewDidLoad() {
@@ -149,12 +197,10 @@ class LoginViewController: UIViewController {
                                  UIColor.white.cgColor ]
 
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 1.0)
-
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
 
         self.view.layer.insertSublayer(gradientLayer, at: 0)
 
-//        appLogo.tintColor = UIColor.black
         appLogo.layer.shadowOffset = CGSize(width: 0, height: 3)
         appLogo.layer.shadowOpacity = 0.4
         appLogo.layer.shadowRadius = 4
@@ -202,12 +248,6 @@ class LoginViewController: UIViewController {
         forgotPasswordButton.setTitleColor(UIColor.white, for: .normal)
         forgotPasswordButton.setTitle("Forgot your password?", for: .normal)
         forgotPasswordButton.contentHorizontalAlignment = .center
-
-//        NVActivityIndicatorView(frame: CGRect(x: view.frame.width/2, y: view.frame.height/2, width: 100, height: 100), type: .pacman, color: UIColor.white, padding: 10)
-
-//        alertLabel.isHidden = true
-//        alertLabel.backgroundColor = UIColor.clear
-//        alertLabel.textAlignment = .center
 
     }
 

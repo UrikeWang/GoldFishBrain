@@ -15,7 +15,6 @@ class NoneEventTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        setupNoneEventLabel()
     }
 
     private func setupNoneEventLabel() {

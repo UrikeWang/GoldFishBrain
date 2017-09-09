@@ -33,36 +33,19 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
 
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
 
+            let imageZip = UIImageJPEGRepresentation(image, 0.5)
+
             profileImage.image = image
 
             // 可以自動產生一組獨一無二的 ID 號碼，方便等一下上傳圖片的命名
             let uniqueString = NSUUID().uuidString
 
-//            resizeImage(image: image, newWidth: 200)
-
-            saveProfileImage(image: image, imageID: uniqueString)
+            saveProfileImage(image: imageZip, imageID: uniqueString)
 
         } else {
 
             print("Something went wrong")
         }
-    }
-
-    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
-
-        let scale = newWidth / image.size.width
-
-        let newHeight = image.size.height * scale
-
-        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
-
-        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight ))
-
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-
-        UIGraphicsEndImageContext()
-
-        return newImage!
     }
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -71,13 +54,13 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
 
     }
 
-    func saveProfileImage(image: UIImage, imageID: String) {
+    func saveProfileImage(image: Data?, imageID: String) {
 
         if let uid = UserDefaults.standard.value(forKey: "uid") {
 
             let storageRef = Storage.storage().reference().child("\(uid)").child("profileImageURL")
 
-            if let uploadData = UIImagePNGRepresentation(image) {
+            if let uploadData = image {
 
                 storageRef.putData(uploadData, metadata: nil, completion: { (data, error) in
 

@@ -284,7 +284,7 @@ public extension SwifterSwift {
 	///   - millisecondsOffset: allow execution of method if it was not called since millisecondsOffset.
 	///   - queue: a queue that action closure should be executed on (default is DispatchQueue.main).
 	///   - action: closure to be executed in a debounced way.
-	public static func debounce(millisecondsDelay: Int, queue: DispatchQueue = .main, action: @escaping (()->Void)) -> ()->Void {
+	public static func debounce(millisecondsDelay: Int, queue: DispatchQueue = .main, action: @escaping (() -> Void)) -> () -> Void {
 		//http://stackoverflow.com/questions/27116684/how-can-i-debounce-a-method-call
 		var lastFireTime = DispatchTime.now()
 		let dispatchDelay = DispatchTimeInterval.milliseconds(millisecondsDelay)

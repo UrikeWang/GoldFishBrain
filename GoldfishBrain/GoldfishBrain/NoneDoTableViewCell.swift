@@ -23,8 +23,6 @@ class NoneDoTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-//        setupTitleLabel()
-
         setupNote1Label()
 
         setupNote2Label()
@@ -35,19 +33,11 @@ class NoneDoTableViewCell: UITableViewCell {
 
     }
 
-//    private func setupTitleLabel() {
-//
-//        let label = titleLabel!
-//
-//        label.text = "使用方式"
-//
-//    }
-
     private func setupNote1Label() {
 
         let label = note1Label!
 
-        label.text = "點選右上方按鈕，即可建立您的行程"
+        label.text = "若沒有好友，是無法進行行程通知的喔！請先點選左上角按鈕新增好友。"
 
     }
 
@@ -55,7 +45,7 @@ class NoneDoTableViewCell: UITableViewCell {
 
         let label = note2Label!
 
-        label.text = "建立行程後，會自動發送行程通知給您選取的朋友"
+        label.text = "點選右上方按鈕，即可建立您的行程。"
 
     }
 
@@ -63,7 +53,7 @@ class NoneDoTableViewCell: UITableViewCell {
 
         let label = note3Label!
 
-        label.text = "若沒有好友，是無法進行行程通知的喔！請先於Chat頁面新增好友"
+        label.text = "建立行程後，會自動發送行程通知給您選取的朋友，並於到達後，也會自動發送通知給您的朋友喔！"
 
     }
 

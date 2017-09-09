@@ -245,7 +245,6 @@
 			isa = PBXGroup;
 			children = (
 				6E28477C1F2C81B3002269EC /* FriendTableViewCell.swift */,
-				6ED810531F47470800D20C9C /* AddFriendViewController.swift */,
 				6E28477E1F2C81C4002269EC /* FriendTableViewController.swift */,
 			);
 			name = FriendList;
@@ -259,6 +258,7 @@
 				6EB1D2561F384DC800377FDE /* Location */,
 				6E9861C71F31D78200EFEFCB /* DoTableViewController.swift */,
 				6E9861CD1F31FEEA00EFEFCB /* DoTableViewCell.swift */,
+				6ED810531F47470800D20C9C /* AddFriendViewController.swift */,
 				6EB1D27C1F3B03B400377FDE /* NoneDoTableViewCell.swift */,
 				6EBBFD5F1F4D4F8C00125B51 /* CollapsibleTableViewHeader.swift */,
 			);
@@ -630,7 +630,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = swift.GoldfishBrain;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -645,7 +645,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = swift.GoldfishBrain;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

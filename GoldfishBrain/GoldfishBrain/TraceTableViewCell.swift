@@ -55,8 +55,8 @@ class TraceTableViewCell: UITableViewCell {
 
         let image = dateImage!
 
-        image.tintColor = UIColor.white
-        image.backgroundColor = UIColor(red: 204.0/255.0, green: 159.0/255.0, blue: 224.0/255.0, alpha: 1)
+        image.tintColor = UIColor(red: 204.0/255.0, green: 159.0/255.0, blue: 224.0/255.0, alpha: 1)
+        image.backgroundColor = UIColor.white
         image.layer.cornerRadius = image.frame.width/2
         image.dropShadow()
 
@@ -66,8 +66,8 @@ class TraceTableViewCell: UITableViewCell {
 
         let image = destinationImage!
 
-        image.tintColor = UIColor.white
-        image.backgroundColor = UIColor(red: 134.0/255.0, green: 120.0/255.0, blue: 180.0/255.0, alpha: 1)
+        image.tintColor = UIColor(red: 134.0/255.0, green: 120.0/255.0, blue: 180.0/255.0, alpha: 1)
+        image.backgroundColor = UIColor.white
         image.layer.cornerRadius = image.frame.width/2
         image.dropShadow()
 
@@ -77,8 +77,8 @@ class TraceTableViewCell: UITableViewCell {
 
         let image = durationImage!
 
-        image.tintColor = UIColor.white
-        image.backgroundColor = UIColor(red: 97.0/255.0, green: 69.0/255.0, blue: 150.0/255.0, alpha: 1)
+        image.tintColor = UIColor(red: 97.0/255.0, green: 69.0/255.0, blue: 150.0/255.0, alpha: 1)
+        image.backgroundColor = UIColor.white
         image.layer.cornerRadius = image.frame.width/2
         image.dropShadow()
 

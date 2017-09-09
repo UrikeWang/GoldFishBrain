@@ -68,4 +68,26 @@ class CoreDataManager {
 
     }
 
+    func clearDo() {
+
+        var travelDatas = [TravelDataMO]()
+
+        do {
+
+            travelDatas = try context.fetch(TravelDataMO.fetchRequest())
+
+            for item in travelDatas {
+
+                context.delete(item)
+
+            }
+
+        } catch {
+
+            print("無儲存的資料了")
+
+        }
+
+    }
+
 }

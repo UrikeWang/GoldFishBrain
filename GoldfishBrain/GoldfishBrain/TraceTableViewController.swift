@@ -20,6 +20,8 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 //    @IBAction func checkButton(_ sender: UIButton) {
 //    }
 
+    let noEventImageView = UIImageView()
+
     @IBAction func cancelButton(_ sender: UIButton) {
 
         let deleteEventID = events[sender.tag].eventID
@@ -64,6 +66,16 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
         self.events = events
 
+        if self.events.count == 0 {
+
+            noEventImageView.isHidden = false
+
+        } else {
+
+            noEventImageView.isHidden = true
+
+        }
+
         DispatchQueue.main.async {
 
             self.friendEventTableView.reloadData()
@@ -98,15 +110,18 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
         friendEventTableView.separatorInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         friendEventTableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
 
+        noEventImageView.image = UIImage(named: "朋友行程去背")
+
+        noEventImageView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width * 0.74)
+
+        view.addSubview(noEventImageView)
+
+        noEventImageView.isHidden = true
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
 
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
@@ -124,7 +139,7 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        if events.isEmpty {
+        if events.count == 0 {
 
             //swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: "NoneEventCell", for: indexPath) as! NoneEventTableViewCell
@@ -140,8 +155,6 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
             cell.cancelButton.tag = indexPath.row
 
-//            cell.checkButton.tag = indexPath.row
-
             cell.friendName.text = event.fromFriend
 
             cell.friendDoDate.text = event.time
@@ -149,8 +162,6 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
             cell.friendDoDestination.text = event.destination
 
             cell.friendDoDuration.text = event.duration
-
-//            cell.friendDoContent.text = "朋友：\(event.fromFriend)\r出發時間：\(event.time)\r目的地點：\(event.destination)\r預估時間：\(event.duration)\r"
 
             return cell
 
@@ -169,7 +180,6 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
             let timestamp = Int(Date().timeIntervalSince1970)
 
             let channelRef = Database.database().reference().child("channels")
-            //            let childRef = ref.childByAutoId()
 
             let childTalkRef = channelRef.childByAutoId()
 
@@ -192,8 +202,6 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
                     childTalkRef.child("members").updateChildValues(memValues)
 
                     childTalkTextID.updateChildValues(values)
-
-                    //                    self.messageText.text = ""
 
                     chatsRef.updateChildValues([childTalkRef.key: 1])
 
@@ -240,8 +248,6 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
 
                                     childTalkTextID.updateChildValues(values)
 
-                                    //                                    self.messageText.text = ""
-
                                     chatsRef.updateChildValues([childTalkRef.key: 1])
 
                                     chatsToRef.updateChildValues([childTalkRef.key: 1])
@@ -265,50 +271,5 @@ class TraceTableViewController: UITableViewController, traceManagerDelegete {
         }
 
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

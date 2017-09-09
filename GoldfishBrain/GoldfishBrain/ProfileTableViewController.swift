@@ -21,6 +21,8 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
     @IBOutlet var dosTableView: UITableView!
 
+    @IBOutlet weak var changePhotoButton: UIButton!
+
     var profiles: [Profile] = []
 
     let profileManager = ProfileManager()
@@ -33,8 +35,6 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
     @IBOutlet weak var mapView: GMSMapView!
 
-//    let addPopViewController = AddDoPopViewController()
-
     var locationManager = CLLocationManager()
 
     var placesClient: GMSPlacesClient!
@@ -43,35 +43,64 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
     let coreDataManager = CoreDataManager()
 
-//    var isNotified = false
-
-//    var doingTravelDatas = [DoingTravelDataMO]()
-
     let doingCoreDataManager = DoingCoreDataManager()
-
-//    var tabBarC: TabBarController?
 
     @IBAction func logoutButton(_ sender: Any) {
 
-        do {
+        let alertController = UIAlertController(
+            title: "溫馨小提醒",
+            message: "真的要離開登出嗎？登出之後，原本進行中的行程與歷史行程都會被刪除喔！",
+            preferredStyle: .alert)
 
-            try Auth.auth().signOut()
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (_ : UIAlertAction) in
 
-        } catch let logoutError {
+            do {
 
-            print("登出錯誤:", logoutError)
+                try Auth.auth().signOut()
 
+            } catch let logoutError {
+
+                print("登出錯誤:", logoutError)
+
+            }
+
+            //清空userdefaults
+            UserDefaults.standard.set("", forKey: "uid")
+
+            UserDefaults.standard.synchronize()
+
+            //清空key
+            uid = ""
+
+            //清空coreData
+            self.coreDataManager.clearDo()
+
+            self.doingCoreDataManager.clearDoing()
+
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+
+            let loginVC = storyBoard.instantiateViewController(withIdentifier: "LoginVC")
+
+            self.present(loginVC, animated: true, completion: nil)
+
+        })
+
+        let cancel = UIAlertAction(title: "Cancel", style: .default) { (_ : UIAlertAction) in
+
+            alertController.dismiss(animated: true, completion: nil)
         }
 
-        UserDefaults.standard.removeObject(forKey: "uid")
+        alertController.addAction(ok)
 
-        UserDefaults.standard.synchronize()
+        alertController.addAction(cancel)
 
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        self.present(alertController, animated: true, completion: nil)
 
-        let loginVC = storyBoard.instantiateViewController(withIdentifier: "LoginVC")
+    }
 
-        self.present(loginVC, animated: true, completion: nil)
+    @IBAction func changePhotoButton(_ sender: Any) {
+
+        handleSelectionProfileImage()
 
     }
 
@@ -85,8 +114,6 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
         self.firstNameLabel.text = "   \(userFirstName)"
 
-        // TODO : 是否要將user first / last name 存到userdefaults
-
     }
 
     func profileManager(_ manager: ProfileManager, didFailWith error: Error) {
@@ -96,8 +123,6 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
     func profileManager(_ manager: ProfileManager, didGetImage url: String) {
 
         let imageUrl = URL(string: "\(url)")
-
-//        profileImage.kf.setImage(with: imageUrl)
 
         profileImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "icon-placeholder"))
 
@@ -142,14 +167,10 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
         }
 
-        //changed / set profile image (點擊圖片)
-        profileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectionProfileImage)))
-        profileImage.isUserInteractionEnabled = true
+        changePhotoButton.tintColor = UIColor(red: 170.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 0.8)
 
-        firstNameLabel.textAlignment = .left
+        firstNameLabel.textAlignment = .center
         firstNameLabel.backgroundColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.7)
-
-//        dosTableView.separatorStyle = UITableViewCellSeparatorStyle.none
 
         dosTableView.separatorColor = UIColor.goldfishRed
         dosTableView.separatorInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
@@ -157,8 +178,6 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
         dosTableView.estimatedRowHeight = 60
 
         dosTableView.tableFooterView = UIView(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
-
-//        let userDestination = UserDefaults.standard.value(forKey: "destination") as? String
 
         let addDoVC = CreateDoViewController()
 
@@ -170,8 +189,6 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
         super.viewWillAppear(animated) // No need for semicolon
 
         fetchTravelDetails()
-
-//        self.mapView.reloadInputViews()
 
     }
 
@@ -248,21 +265,10 @@ class ProfileTableViewController: UITableViewController, profileManagerDelegate,
 
             } else {
 
-                cell.travelFinished.text = "行程是否完成："
+                cell.travelFinished.text = ""
             }
 
-            //        if let notified = travelDatas[indexPath.row].notify as? Bool {
-            //
-            //            cell.travelNotified.text = "行程是否通知：\(notified)"
-            //
-            //        } else {
-            //
-            //            cell.travelNotified.text = "行程是否通知："
-            //        }
-
             cell.travelDestination.tag = indexPath.row
-
-//            cell.layoutMargins = UIEdgeinsetsZero
 
             return cell
 

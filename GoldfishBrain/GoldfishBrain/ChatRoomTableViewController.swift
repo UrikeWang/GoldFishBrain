@@ -22,6 +22,8 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
     var messageManager = MessageManager()
 
+    let noChatImageView = UIImageView()
+
     @IBOutlet var chatRoomTableView: UITableView!
 
     @IBOutlet weak var friendListButton: UIBarButtonItem!
@@ -41,13 +43,23 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
     }
 
-    func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: Error) {
+    func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: String) {
 
     }
 
     func messageManager(_ manager: MessageManager, didGetMessage message: [Message]) {
 
         self.messages = message
+
+        if self.messages.count == 0 {
+
+            noChatImageView.isHidden = false
+
+        } else {
+
+            noChatImageView.isHidden = true
+
+        }
 
         DispatchQueue.main.async {
 
@@ -81,16 +93,21 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
         chatRoomManager.delegate = self
 
-//        chatRoomManager.fetchPeople()
         chatRoomManager.fetchFriendIDs()
 
         messageManager.delegate = self
 
-//        messageManager.observeMessages()
-
         messageManager.observeUserMessages()
 
         chatRoomTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+
+        noChatImageView.image = UIImage(named: "聊天去背")
+
+        noChatImageView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width * 0.74)
+
+        view.addSubview(noChatImageView)
+
+        noChatImageView.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -106,8 +123,7 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-//        return people.count
+
         return messages.count
     }
 
@@ -132,8 +148,6 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
                     if let profileImageURL = dict["profileImageURL"] as? String {
 
                         let url = URL(string: "\(profileImageURL)")
-
-//                        cell.peopleImage.kf.setImage(with: url)
 
                         cell.peopleImage.sd_setImage(with: url, placeholderImage: UIImage(named: "icon-placeholder"))
 
@@ -195,50 +209,5 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
 
         }
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

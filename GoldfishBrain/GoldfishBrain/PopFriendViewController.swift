@@ -20,6 +20,8 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
     @IBOutlet weak var cancelSelectFriendButton: UIButton!
 
+    @IBOutlet weak var noFriendImageView: UIImageView!
+
     let chatRoomManager = ChatRoomManager()
 
     var people = [Person]()
@@ -37,6 +39,11 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
         self.people = people
 
+        if self.people.count == 0 {
+
+            noFriendImageView.isHidden = false
+        }
+
         DispatchQueue.main.async {
 
             self.friendCollectionView.reloadData()
@@ -48,7 +55,9 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
     }
 
-    func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: Error) {
+    func chatRoomManager(_ manager: ChatRoomManager, didFailWith error: String) {
+        
+       print("chatRome error occured : \(error)")
 
     }
 
@@ -67,6 +76,8 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
         cancelSelectFriendButton.layer.cornerRadius = cancelSelectFriendButton.frame.height/2
         cancelSelectFriendButton.dropShadow()
 
+        noFriendImageView.isHidden = true
+
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -75,6 +86,11 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
+        if people.count > 0 {
+
+            noFriendImageView.isHidden = true
+
+        }
         return people.count
     }
 
@@ -102,8 +118,6 @@ class PopFriendViewController: UIViewController, chatRoomManagerDelegate, UIColl
         cell.friendNameLabel.text = people[indexPath.row].firstName
 
         let url = URL(string: "\(people[indexPath.row].imageUrl)")
-
-//        cell.friendPhoto.kf.setImage(with: url)
 
         cell.friendPhoto.sd_setImage(with: url, placeholderImage: UIImage(named: "icon-placeholder"))
 
