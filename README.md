@@ -1,10 +1,19 @@
-# GoldfishBrain**
+# GoldfishBrain
 
 是一款針對使用者設定的目的地，進行地點偵測，等到使用者到達目的地時，會發送順利抵達目的地的訊息給親朋好友，
 應用上的發想：
  - 設定目的地並發送通知給親朋好友，當安全抵達目的地時，則自動通知親朋好友
  - 設定目的地並發送通知給親朋好友，當使用者快抵達目的地時，則自動通知在目的地附近的親朋好友可以出發會合
 
+## Libraries
+
+- Firebase
+- Crashlytics
+- IQKeyboardManagerSwift
+- GoogleMaps
+- GooglePlaces
+- GoogleMapsDirections
+- NVActivityIndicatorView
 
 ## ScreenShot
 
@@ -41,16 +50,6 @@
   <img src="https://user-images.githubusercontent.com/28559402/30210011-2ce005d4-94cd-11e7-8755-35ea25d52a27.PNG" width="250">
   <img src="" width="250">
 </p>
-
-## Libraries
-
-- Firebase
-- Crashlytics
-- IQKeyboardManagerSwift
-- GoogleMaps
-- GooglePlaces
-- GoogleMapsDirections
-- NVActivityIndicatorView
 
 ## Requirement
 
