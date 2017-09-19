@@ -156,41 +156,35 @@ class AddDoPopViewController: UIViewController/*, managerCreateStartDelegate*/ {
 
                     case .success(let data):
 
-                        if let travelData = data as? [String: Any] {
+                        if let travelData = data as? [String: Any],
+                            let route = travelData["rows"] as? [[String: Any]],
+                            let detailData = route.first?["elements"] as? [[String: Any]] {
 
-                            if let route = travelData["rows"] as? [[String: Any]] {
+                            if let duration = detailData.first?["duration"] as? [String: Any], let distance = detailData.first?["distance"] as? [String: Any] {
 
-                                if let detailData = route.first?["elements"] as? [[String: Any]] {
+                                if let durationText = duration["text"] as? String, let distanceText = distance["text"] as?String {
 
-                                    if let duration = detailData.first?["duration"] as? [String: Any], let distance = detailData.first?["distance"] as? [String: Any] {
+                                    //swiftlint:disable force_cast
+                                    let desination = self.routeAddresses["Destination"]!
+                                    //swiftlint:enable force_cast
 
-                                        if let durationText = duration["text"] as? String, let distanceText = distance["text"] as?String {
+                                    self.travelTime.text = "目的地點：\(desination)\r\n總距離：\(distanceText)\r\n總時間：\(durationText)"
 
-                                            //swiftlint:disable force_cast
-                                            let desination = self.routeAddresses["Destination"]!
-                                            //swiftlint:enable force_cast
+                                    self.travelDuration = "\(durationText)"
 
-                                            self.travelTime.text = "目的地點：\(desination)\r\n總距離：\(distanceText)\r\n總時間：\(durationText)"
+                                    self.travelDistance = "\(distanceText)"
 
-                                            self.travelDuration = "\(durationText)"
+                                    self.travelDestination = "\(desination)"
 
-                                            self.travelDistance = "\(distanceText)"
+                                    let end00 = String(format: "%0.6f", end0)
 
-                                            self.travelDestination = "\(desination)"
+                                    let end10 = String(format: "%0.6f", end1)
 
-                                            let end00 = String(format: "%0.6f", end0)
+                                    UserDefaults.standard.set(end00, forKey: "destination0")
 
-                                            let end10 = String(format: "%0.6f", end1)
+                                    UserDefaults.standard.set(end10, forKey: "destination1")
 
-                                            UserDefaults.standard.set(end00, forKey: "destination0")
-
-                                            UserDefaults.standard.set(end10, forKey: "destination1")
-
-                                            UserDefaults.standard.synchronize()
-
-                                        }
-
-                                    }
+                                    UserDefaults.standard.synchronize()
 
                                 }
 

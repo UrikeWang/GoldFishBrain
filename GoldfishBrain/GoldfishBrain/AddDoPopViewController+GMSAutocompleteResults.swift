@@ -49,7 +49,7 @@ extension AddDoPopViewController: GMSAutocompleteResultsViewControllerDelegate {
 
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                            didFailAutocompleteWithError error: Error) {
-        // TODO: handle the error.
+
         print("Error: ", error.localizedDescription)
     }
 

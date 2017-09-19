@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import NVActivityIndicatorView
 
 protocol traceManagerDelegete: class {
 
@@ -28,6 +29,10 @@ class TraceManager {
     var event: Event?
 
     func fetchFriendEvents() {
+        
+        let activityData = ActivityData()
+        
+        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
 
         let eventRef = Database.database().reference().child("events").child(uid)//.queryOrdered(byChild: "duration")
 
@@ -42,6 +47,8 @@ class TraceManager {
                 events = []
 
                 self.delegate?.traceManager(self, didGetEvent: events)
+                
+                NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
 
             } else {
 
@@ -64,6 +71,8 @@ class TraceManager {
                                 events.append(self.event!)
 
                                 self.delegate?.traceManager(self, didGetEvent: events)
+                                
+                                NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
 
                             }
 

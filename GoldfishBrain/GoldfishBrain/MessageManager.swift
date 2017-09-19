@@ -75,9 +75,13 @@ class MessageManager {
 
                                     channelRef.child(chatroomID).observe(.childAdded, with: { (snapshot) in
 
-                                        if let dicts = snapshot.value as? [String: Any] {
+                                        if let dicts = snapshot.value as? [String: Any],
+                                            let text = dicts["text"] as? String,
+                                            let fromID = dicts["fromID"] as? String,
+                                            let toID = dicts["toID"] as? String,
+                                            let timestamp = dicts["timestamp"] as? Int {
 
-                                            if let text = dicts["text"] as? String, let fromID = dicts["fromID"] as? String, let toID = dicts["toID"] as? String, let timestamp = dicts["timestamp"] as? Int {
+//                                            if let text = dicts["text"] as? String, let fromID = dicts["fromID"] as? String, let toID = dicts["toID"] as? String, let timestamp = dicts["timestamp"] as? Int {
 
                                                 if fromID == uid || toID == uid {
 
@@ -117,7 +121,7 @@ class MessageManager {
 
                                                 print("Message data fetch failed")
 
-                                            }
+//                                            }
 
                                         }
 

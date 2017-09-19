@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseDatabase
+import NVActivityIndicatorView
 
 protocol chatRoomManagerDelegate: class {
 
@@ -26,6 +27,10 @@ class ChatRoomManager {
     var friend: Person?
 
     func fetchFriendIDs() {
+        
+        let activityData = ActivityData()
+        
+        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
 
         let ref = Database.database().reference().child("users").child(uid)
 
@@ -71,6 +76,8 @@ class ChatRoomManager {
 
                         self.delegate?.chatRoomManager(self, didGetPeople: people)
                     }
+
+                    NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
 
                 }
 

@@ -152,7 +152,7 @@ class RegisterViewController: UIViewController {
 
                 if err != nil {
 
-                    print("錯誤訊息", err)
+                    print("錯誤訊息", err as Any)
                     return
                 }
 
