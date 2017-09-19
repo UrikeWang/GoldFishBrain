@@ -134,33 +134,53 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
         //swiftlint:enable force_cast
 
         let message = messages[indexPath.row]
+        
+        guard let toID = message.toID as? String else { return UITableViewCell() }
+        
+        for person in self.people {
 
-        if let toID = message.toID as? String {
+            if toID == person.id {
 
-            let ref = Database.database().reference().child("users").child(toID)
+                cell.peopleNameLabel.text = person.firstName
 
-            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                let url = URL(string: "\(person.imageUrl)")
 
-                if let dict = snapshot.value as? [String: AnyObject] {
+                cell.peopleImage.sd_setImage(with: url, placeholderImage: UIImage(named: "icon-placeholder"))
 
-                    cell.peopleNameLabel.text = dict["firstName"] as? String
+                cell.peopleImage.contentMode = .scaleAspectFill
 
-                    if let profileImageURL = dict["profileImageURL"] as? String {
+                cell.peopleImage.layer.masksToBounds = true
 
-                        let url = URL(string: "\(profileImageURL)")
-
-                        cell.peopleImage.sd_setImage(with: url, placeholderImage: UIImage(named: "icon-placeholder"))
-
-                        cell.peopleImage.contentMode = .scaleAspectFill
-
-                        cell.peopleImage.layer.masksToBounds = true
-
-                    }
-                }
-
-            }, withCancel: nil)
+            }
 
         }
+
+//        if let toID = message.toID as? String {
+//
+//            let ref = Database.database().reference().child("users").child(toID)
+//
+//            ref.observe(.value, with: { (snapshot) in
+//
+//                if let dict = snapshot.value as? [String: AnyObject] {
+//
+//                    cell.peopleNameLabel.text = dict["firstName"] as? String
+//
+//                    if let profileImageURL = dict["profileImageURL"] as? String {
+//
+//                        let url = URL(string: "\(profileImageURL)")
+//
+//                        cell.peopleImage.sd_setImage(with: url, placeholderImage: UIImage(named: "icon-placeholder"))
+//
+//                        cell.peopleImage.contentMode = .scaleAspectFill
+//
+//                        cell.peopleImage.layer.masksToBounds = true
+//
+//                    }
+//                }
+//
+//            }, withCancel: nil)
+//
+//        }
 
         cell.peopleChatContentLabel.text = message.text
 
