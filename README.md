@@ -5,6 +5,26 @@
  - 設定目的地並發送通知給親朋好友，當安全抵達目的地時，則自動通知親朋好友
  - 設定目的地並發送通知給親朋好友，當使用者快抵達目的地時，則自動通知在目的地附近的親朋好友可以出發會合
  
+### Notes
+下載此專案後，請先申請GoogleMaps 與 GooglePlaces API Key並把以下兩個檔案補齊：
+- GoogleService-Info.plist
+  連結說明：https://support.google.com/firebase/answer/7015592?hl=zh-Hant
+
+- Key.swift
+  檔案格式如下：
+  
+  ```import Foundation```
+
+  ```let servicesKey = "< Your GoogleMaps provideAPIKey>"```
+
+  ```let placesClientKey = "<Your GooglePlaces provideAPIKey>"```
+
+  ```var destinationCoordinates = [Double]()```
+
+  ```var isNotified = [Int]()```
+
+  ```var uid = UserDefaults.standard.value(forKey: "uid") as? String  ?? "" ```
+ 
 ## Features
 
 - 使用者可以設定要通知的朋友
