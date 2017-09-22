@@ -134,9 +134,9 @@ class ChatRoomTableViewController: UITableViewController, chatRoomManagerDelegat
         //swiftlint:enable force_cast
 
         let message = messages[indexPath.row]
-        
+
         guard let toID = message.toID as? String else { return UITableViewCell() }
-        
+
         for person in self.people {
 
             if toID == person.id {
