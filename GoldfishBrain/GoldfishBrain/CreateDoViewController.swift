@@ -217,6 +217,9 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
                 //加到doingCoreManager
                 doingCoreDataManager.addDoingDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName, friendID: friendID)
+                
+                //存到firebase對方的事件中，讓對方手機中的trace能夠知道
+                self.createEvent(time: self.travelTime, destination: self.travelDestination, duration: self.travelDuration, toFriend: self.friendID, fromFriend: self.uid)
 
             } else {
 
@@ -229,22 +232,27 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
                 doingCoreDataManager.addDoingDo(time: travelTime, destination: travelDestination, distance: travelDistance, duration: travelDuration, friend: friendName, friendID: friendID)
 
                 //將對方firebase原本的事件刪除
-                let eventID = Database.database().reference().child("users").child(uid)//.child("eventID")
+                let pastEventID = Database.database().reference().child("users").child(uid)
 
-                eventID.observeSingleEvent(of: .value, with: { (snapshot) in
+                pastEventID.observeSingleEvent(of: .value, with: { (snapshot) in
 
                     let value = snapshot.value as? NSDictionary
 
-                    let eventID = value?["eventID"] as? String ?? ""
+                    let willDeleteEventID = value?["eventID"] as? String ?? ""
+                    
+                    print(willDeleteEventID)
 
-                    self.deleteEvent(eventID: eventID)
+                    self.deleteEvent(eventID: willDeleteEventID)
+                    
+                    //存到firebase對方的事件中，讓對方手機中的trace能夠知道
+                    self.createEvent(time: self.travelTime, destination: self.travelDestination, duration: self.travelDuration, toFriend: self.friendID, fromFriend: self.uid)
 
                 })
 
              }
 
-            //存到firebase對方的事件中，讓對方手機中的trace能夠知道
-            createEvent(time: travelTime, destination: travelDestination, duration: travelDuration, toFriend: friendID, fromFriend: uid)
+//            //存到firebase對方的事件中，讓對方手機中的trace能夠知道
+//            createEvent(time: travelTime, destination: travelDestination, duration: travelDuration, toFriend: friendID, fromFriend: uid)
 
             //存到userdefault中，當使用者到達目的地時，會自動傳message到對方的手機中
             UserDefaults.standard.set(travelDestination, forKey: "destination")
@@ -341,19 +349,25 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     func createEvent(time: String, destination: String, duration: String, toFriend: String, fromFriend: String) {
 
+        print(toFriend)
+        
         let eventRef = Database.database().reference().child("events").child(toFriend).childByAutoId()
+        
+//        let eventRef = Database.database().reference().child("events").child("9UeTpw084PNL9nQLcJ50IVOX5902").childByAutoId()
 
-        let eventID = eventRef.key
-
-        eventRef.observeSingleEvent(of: .value, with: { (_) in
+//        eventRef.observeSingleEvent(of: .value, with: { (_) in
 
                 let values = ["time": time, "destination": destination, "duration": duration, "fromFriend": fromFriend]
 
                 eventRef.updateChildValues(values)
 
-        })
+//        })
 
         let userRef = Database.database().reference().child("users").child(uid)
+        
+        let eventID = eventRef.key
+        
+        print("11111111\(eventID)")
 
         let eventValue = ["eventID": eventID]
 
@@ -363,30 +377,34 @@ class CreateDoViewController: UIViewController, UIPopoverPresentationControllerD
 
     func deleteEvent(eventID: String) {
 
-            let eventRef = Database.database().reference().child("events")
-
-            eventRef.observe(.value, with: { (dataSnapshot) in
-
-                for snapshotChild in dataSnapshot.children {
-
-                    guard let eventSource = snapshotChild as? DataSnapshot else { return }
-
-                    if let userDict = eventSource.value as? [String: AnyObject] {
-
-                        for event in userDict {
-
-                            if event.key == eventID {
-
-                                eventRef.child(eventSource.key).child(eventID).removeValue()
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            })
+//            let eventRef = Database.database().reference().child("events")
+//
+//            eventRef.observe(.value, with: { (dataSnapshot) in
+//
+//                for snapshotChild in dataSnapshot.children {
+//
+//                    guard let eventSource = snapshotChild as? DataSnapshot else { return }
+//
+//                    if let userDict = eventSource.value as? [String: AnyObject] {
+//
+//                        for event in userDict {
+//
+//                            if event.key == eventID {
+//
+//                                eventRef.child(eventSource.key).child(eventID).removeValue()
+//                            }
+//
+//                        }
+//
+//                    }
+//
+//                }
+//
+//            })
+        
+        let eventRef = Database.database().reference().child("events").child(eventID)
+        
+        eventRef.removeValue()
 
     }
 
